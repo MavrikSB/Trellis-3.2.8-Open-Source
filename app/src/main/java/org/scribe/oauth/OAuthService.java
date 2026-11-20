@@ -1,18 +1,17 @@
-            package org.scribe.oauth;
+package org.scribe.oauth;
 
-            import org.scribe.model.OAuthRequest;
-            import org.scribe.model.Token;
-            import org.scribe.model.Verifier;
-            
-            
-            public interface OAuthService {
-                Token getAccessToken(Token token, Verifier verifier);
+import org.scribe.model.OAuthRequest;
+import org.scribe.model.Token;
+import org.scribe.model.Verifier;
 
-                String getAuthorizationUrl(Token token);
+public interface OAuthService {
+    Token getAccessToken(Token token, Verifier verifier);
 
-                Token getRequestToken();
+    String getAuthorizationUrl(Token token);
 
-                String getVersion();
+    Token getRequestToken();
 
-                void signRequest(Token token, OAuthRequest oAuthRequest);
-            }
+    String getVersion();
+
+    void signRequest(Token token, OAuthRequest oAuthRequest);
+}

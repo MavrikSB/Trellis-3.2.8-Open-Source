@@ -1,24 +1,23 @@
-            package org.apache.commons.p005io.input;
-            
-            
-    public class TailerListenerAdapter implements TailerListener {
-                @Override 
-        public void init(Tailer tailer) {
-                }
+package org.apache.commons.p005io.input;
 
-                @Override 
-        public void fileNotFound() {
-                }
+public class TailerListenerAdapter implements TailerListener {
+    @Override
+    public void init(Tailer tailer) {
+    }
 
-                @Override 
-        public void fileRotated() {
-                }
+    @Override
+    public void fileNotFound() {
+    }
 
-                @Override 
-        public void handle(String line) {
-                }
+    @Override
+    public void fileRotated() {
+    }
 
-                @Override 
-        public void handle(Exception ex) {
-                }
-            }
+    @Override
+    public void handle(String line) {
+    }
+
+    @Override
+    public void handle(Exception ex) {
+    }
+}

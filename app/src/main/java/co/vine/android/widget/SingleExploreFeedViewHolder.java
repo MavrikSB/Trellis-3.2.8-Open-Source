@@ -1,20 +1,19 @@
-            package co.vine.android.widget;
+package co.vine.android.widget;
 
-            import android.view.View;
-            import co.vine.android.R;
-            import co.vine.android.player.OldSdkVideoView;
-            
-            
-    public class SingleExploreFeedViewHolder extends GenericFeedViewHolder {
-                public final OldSdkVideoView videoView;
+import android.view.View;
+import co.vine.android.R;
+import co.vine.android.player.OldSdkVideoView;
 
-        public SingleExploreFeedViewHolder(View view) {
-            super(view);
-            this.videoView = (OldSdkVideoView) view.findViewById(R.id.videoView);
-                }
+public class SingleExploreFeedViewHolder extends GenericFeedViewHolder {
+    public final OldSdkVideoView videoView;
 
-                @Override 
-        public View getViewForVideoImage() {
-            return this.videoView;
-                }
-            }
+    public SingleExploreFeedViewHolder(View view) {
+        super(view);
+        this.videoView = (OldSdkVideoView) view.findViewById(R.id.videoView);
+    }
+
+    @Override
+    public View getViewForVideoImage() {
+        return this.videoView;
+    }
+}

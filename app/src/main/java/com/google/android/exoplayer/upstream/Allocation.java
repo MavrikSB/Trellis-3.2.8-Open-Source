@@ -1,16 +1,15 @@
-            package com.google.android.exoplayer.upstream;
-            
-            
-            public interface Allocation {
-                int capacity();
+package com.google.android.exoplayer.upstream;
 
-                void ensureCapacity(int i);
+public interface Allocation {
+    int capacity();
 
-                byte[][] getBuffers();
+    void ensureCapacity(int i);
 
-                int getFragmentLength(int i);
+    byte[][] getBuffers();
 
-                int getFragmentOffset(int i);
+    int getFragmentLength(int i);
 
-                void release();
-            }
+    int getFragmentOffset(int i);
+
+    void release();
+}

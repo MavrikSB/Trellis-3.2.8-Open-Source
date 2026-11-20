@@ -1,32 +1,31 @@
-            package com.jeremyfeinstein.slidingmenu.lib;
+package com.jeremyfeinstein.slidingmenu.lib;
 
-            import android.graphics.Canvas;
-            import android.graphics.drawable.Drawable;
-            import android.view.View;
-            
-            
-            public interface MenuInterface {
-                void drawFade(Canvas canvas, int i, CustomViewBehind customViewBehind, View view);
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 
-                void drawSelector(View view, Canvas canvas, float f);
+public interface MenuInterface {
+    void drawFade(Canvas canvas, int i, CustomViewBehind customViewBehind, View view);
 
-                void drawShadow(Canvas canvas, Drawable drawable, int i);
+    void drawSelector(View view, Canvas canvas, float f);
 
-                int getAbsLeftBound(CustomViewBehind customViewBehind, View view);
+    void drawShadow(Canvas canvas, Drawable drawable, int i);
 
-                int getAbsRightBound(CustomViewBehind customViewBehind, View view);
+    int getAbsLeftBound(CustomViewBehind customViewBehind, View view);
 
-                int getMenuLeft(CustomViewBehind customViewBehind, View view);
+    int getAbsRightBound(CustomViewBehind customViewBehind, View view);
 
-                boolean marginTouchAllowed(View view, int i, int i2);
+    int getMenuLeft(CustomViewBehind customViewBehind, View view);
 
-                boolean menuClosedSlideAllowed(int i);
+    boolean marginTouchAllowed(View view, int i, int i2);
 
-                boolean menuOpenSlideAllowed(int i);
+    boolean menuClosedSlideAllowed(int i);
 
-                boolean menuOpenTouchAllowed(View view, int i, int i2);
+    boolean menuOpenSlideAllowed(int i);
 
-                boolean menuTouchInQuickReturn(View view, int i, int i2);
+    boolean menuOpenTouchAllowed(View view, int i, int i2);
 
-                void scrollBehindTo(int i, int i2, CustomViewBehind customViewBehind, float f);
-            }
+    boolean menuTouchInQuickReturn(View view, int i, int i2);
+
+    void scrollBehindTo(int i, int i2, CustomViewBehind customViewBehind, float f);
+}

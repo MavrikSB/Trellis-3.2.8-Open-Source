@@ -1,44 +1,43 @@
-            package com.fasterxml.jackson.core.type;
-            
-            
-            public abstract class ResolvedType {
-                public abstract ResolvedType containedType(int i);
+package com.fasterxml.jackson.core.type;
 
-                public abstract int containedTypeCount();
+public abstract class ResolvedType {
+    public abstract ResolvedType containedType(int i);
 
-                public abstract String containedTypeName(int i);
+    public abstract int containedTypeCount();
 
-                public abstract ResolvedType getContentType();
+    public abstract String containedTypeName(int i);
 
-                public abstract ResolvedType getKeyType();
+    public abstract ResolvedType getContentType();
 
-                public abstract Class<?> getRawClass();
+    public abstract ResolvedType getKeyType();
 
-                public abstract boolean hasGenericTypes();
+    public abstract Class<?> getRawClass();
 
-                public abstract boolean hasRawClass(Class<?> cls);
+    public abstract boolean hasGenericTypes();
 
-                public abstract boolean isAbstract();
+    public abstract boolean hasRawClass(Class<?> cls);
 
-                public abstract boolean isArrayType();
+    public abstract boolean isAbstract();
 
-                public abstract boolean isCollectionLikeType();
+    public abstract boolean isArrayType();
 
-                public abstract boolean isConcrete();
+    public abstract boolean isCollectionLikeType();
 
-                public abstract boolean isContainerType();
+    public abstract boolean isConcrete();
 
-                public abstract boolean isEnumType();
+    public abstract boolean isContainerType();
 
-                public abstract boolean isFinal();
+    public abstract boolean isEnumType();
 
-                public abstract boolean isInterface();
+    public abstract boolean isFinal();
 
-                public abstract boolean isMapLikeType();
+    public abstract boolean isInterface();
 
-                public abstract boolean isPrimitive();
+    public abstract boolean isMapLikeType();
 
-                public abstract boolean isThrowable();
+    public abstract boolean isPrimitive();
 
-                public abstract String toCanonical();
-            }
+    public abstract boolean isThrowable();
+
+    public abstract String toCanonical();
+}

@@ -1,71 +1,65 @@
-            package com.google.android.gms.wallet;
+package com.google.android.gms.wallet;
 
-            import android.os.Parcel;
-            import android.os.Parcelable;
-            import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-            
-            
-            public final class ProxyCard implements SafeParcelable {
-                public static final Parcelable.Creator<ProxyCard> CREATOR = new C1217k();
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-                
-                private final int f2522iM;
+public final class ProxyCard implements SafeParcelable {
+    public static final Parcelable.Creator<ProxyCard> CREATOR = new C1217k();
 
-                
-                String f2523um;
+    private final int f2522iM;
 
-                
-                String f2524un;
+    String f2523um;
 
-                
-                int f2525uo;
+    String f2524un;
 
-                
-                int f2526up;
+    int f2525uo;
 
-                ProxyCard(int versionCode, String pan, String cvn, int expirationMonth, int expirationYear) {
-                    this.f2522iM = versionCode;
-                    this.f2523um = pan;
-                    this.f2524un = cvn;
-                    this.f2525uo = expirationMonth;
-                    this.f2526up = expirationYear;
-                }
+    int f2526up;
 
-                public ProxyCard(String pan, String cvn, int expirationMonth, int expirationYear) {
-                    this.f2522iM = 1;
-                    this.f2523um = pan;
-                    this.f2524un = cvn;
-                    this.f2525uo = expirationMonth;
-                    this.f2526up = expirationYear;
-                }
+    ProxyCard(int versionCode, String pan, String cvn, int expirationMonth, int expirationYear) {
+        this.f2522iM = versionCode;
+        this.f2523um = pan;
+        this.f2524un = cvn;
+        this.f2525uo = expirationMonth;
+        this.f2526up = expirationYear;
+    }
 
-                @Override 
-                public int describeContents() {
-                    return 0;
-                }
+    public ProxyCard(String pan, String cvn, int expirationMonth, int expirationYear) {
+        this.f2522iM = 1;
+        this.f2523um = pan;
+        this.f2524un = cvn;
+        this.f2525uo = expirationMonth;
+        this.f2526up = expirationYear;
+    }
 
-                public String getCvn() {
-                    return this.f2524un;
-                }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-                public int getExpirationMonth() {
-                    return this.f2525uo;
-                }
+    public String getCvn() {
+        return this.f2524un;
+    }
 
-                public int getExpirationYear() {
-                    return this.f2526up;
-                }
+    public int getExpirationMonth() {
+        return this.f2525uo;
+    }
 
-                public String getPan() {
-                    return this.f2523um;
-                }
+    public int getExpirationYear() {
+        return this.f2526up;
+    }
 
-                public int getVersionCode() {
-                    return this.f2522iM;
-                }
+    public String getPan() {
+        return this.f2523um;
+    }
 
-                @Override 
-                public void writeToParcel(Parcel out, int flags) {
-                    C1217k.m2372a(this, out, flags);
-                }
-            }
+    public int getVersionCode() {
+        return this.f2522iM;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        C1217k.m2372a(this, out, flags);
+    }
+}

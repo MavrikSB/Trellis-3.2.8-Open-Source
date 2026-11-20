@@ -1,44 +1,37 @@
-            package com.google.android.gms.internal;
+package com.google.android.gms.internal;
 
-            import android.content.Context;
-            import android.os.IBinder;
-            import android.view.View;
-            import com.google.android.gms.dynamic.AbstractC0907e;
-            import com.google.android.gms.dynamic.BinderC0905c;
-            
-            
-            
-            public final class C1029dn extends AbstractC0907e<InterfaceC1026dk> {
+import android.content.Context;
+import android.os.IBinder;
+import android.view.View;
+import com.google.android.gms.dynamic.AbstractC0907e;
+import com.google.android.gms.dynamic.BinderC0905c;
 
-                
-                private static final C1029dn f1719ll = new C1029dn();
+public final class C1029dn extends AbstractC0907e<InterfaceC1026dk> {
+    private static final C1029dn f1719ll = new C1029dn();
 
-                private C1029dn() {
-                    super("com.google.android.gms.common.ui.SignInButtonCreatorImpl");
-                }
+    private C1029dn() {
+        super("com.google.android.gms.common.ui.SignInButtonCreatorImpl");
+    }
 
-                
-                public static View m1610d(Context context, int i, int i2) throws AbstractC0907e.a {
-                    return f1719ll.m1611e(context, i, i2);
-                }
+    public static View m1610d(Context context, int i, int i2) throws AbstractC0907e.a {
+        return f1719ll.m1611e(context, i, i2);
+    }
 
-                
-                private View m1611e(Context context, int i, int i2) throws AbstractC0907e.a {
-                    try {
-                        return (View) BinderC0905c.m1165b(m1168t(context).mo1597a(BinderC0905c.m1166g(context), i, i2));
-                    } catch (Exception e) {
-                        throw new AbstractC0907e.a("Could not get button with size " + i + " and color " + i2, e);
-                    }
-                }
+    private View m1611e(Context context, int i, int i2) throws AbstractC0907e.a {
+        try {
+            return (View) BinderC0905c.m1165b(m1168t(context).mo1597a(BinderC0905c.m1166g(context), i, i2));
+        } catch (Exception e) {
+            throw new AbstractC0907e.a("Could not get button with size " + i + " and color " + i2, e);
+        }
+    }
 
-                @Override 
-                
-                public  InterfaceC1026dk mo1167d(IBinder iBinder) {
-                    return m1612y(iBinder);
-                }
+    @Override
 
-                
-                public InterfaceC1026dk m1612y(IBinder iBinder) {
-                    return InterfaceC1026dk.a.m1598x(iBinder);
-                }
-            }
+    public  InterfaceC1026dk mo1167d(IBinder iBinder) {
+        return m1612y(iBinder);
+    }
+
+    public InterfaceC1026dk m1612y(IBinder iBinder) {
+        return InterfaceC1026dk.a.m1598x(iBinder);
+    }
+}

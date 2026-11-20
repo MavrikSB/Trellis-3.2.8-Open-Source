@@ -1,108 +1,107 @@
-            package co.vine.android.widget;
+package co.vine.android.widget;
 
-            import android.content.Context;
-            import android.util.AttributeSet;
-            import android.view.LayoutInflater;
-            import android.view.View;
-            import android.view.ViewGroup;
-            import android.widget.AbsListView;
-            import co.vine.android.R;
-            import co.vine.android.views.SdkListView;
-            
-            
-    public class ConversationList extends SdkListView implements AbsListView.OnScrollListener {
-                private View mGetMoreHeaderProgressContainer;
-                private GetMoreListener mGetMoreListener;
-                private View mProgressView;
-                private AbsListView.OnScrollListener mScrollListener;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import co.vine.android.R;
+import co.vine.android.views.SdkListView;
 
-                public interface GetMoreListener {
-                    void getMore();
-                }
+public class ConversationList extends SdkListView implements AbsListView.OnScrollListener {
+    private View mGetMoreHeaderProgressContainer;
+    private GetMoreListener mGetMoreListener;
+    private View mProgressView;
+    private AbsListView.OnScrollListener mScrollListener;
 
-        public ConversationList(Context context) {
-            super(context);
-                }
+    public interface GetMoreListener {
+        void getMore();
+    }
 
-        public ConversationList(Context context, AttributeSet attrs) {
-            super(context, attrs);
-                }
+    public ConversationList(Context context) {
+        super(context);
+    }
 
-        public ConversationList(Context context, AttributeSet attrs, int defStyle) {
-            super(context, attrs, defStyle);
-                }
+    public ConversationList(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-                @Override 
-        protected void onFinishInflate() {
-            super.onFinishInflate();
-            super.setOnScrollListener(this);
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            this.mGetMoreHeaderProgressContainer = inflater.inflate(R.layout.conversation_header, (ViewGroup) null);
-            this.mProgressView = this.mGetMoreHeaderProgressContainer.findViewById(R.id.header_content);
-            addHeaderView(this.mGetMoreHeaderProgressContainer, null, false);
-                }
+    public ConversationList(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
 
-                @Override 
-        public void setOnScrollListener(AbsListView.OnScrollListener l) {
-            this.mScrollListener = l;
-                }
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        super.setOnScrollListener(this);
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        this.mGetMoreHeaderProgressContainer = inflater.inflate(R.layout.conversation_header, (ViewGroup) null);
+        this.mProgressView = this.mGetMoreHeaderProgressContainer.findViewById(R.id.header_content);
+        addHeaderView(this.mGetMoreHeaderProgressContainer, null, false);
+    }
 
-                @Override 
-        public void onScrollStateChanged(AbsListView view, int scrollState) {
-            if (this.mScrollListener != null) {
-                this.mScrollListener.onScrollStateChanged(view, scrollState);
-                    }
-                }
+    @Override
+    public void setOnScrollListener(AbsListView.OnScrollListener l) {
+        this.mScrollListener = l;
+    }
 
-                @Override 
-        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            if (visibleItemCount != 0) {
-                if (this.mGetMoreListener != null && firstVisibleItem == 0 && this.mProgressView.getVisibility() != 8) {
-                    View child = getChildAt(0);
-                    if (child == this.mGetMoreHeaderProgressContainer) {
-                        this.mGetMoreListener.getMore();
-                            }
-                        }
-                if (this.mScrollListener != null) {
-                    this.mScrollListener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
-                        }
-                    }
-                }
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if (this.mScrollListener != null) {
+            this.mScrollListener.onScrollStateChanged(view, scrollState);
+        }
+    }
 
-        public void setGetMoreListener(GetMoreListener listener) {
-            this.mGetMoreListener = listener;
-                }
-
-        public void deactivateRefresh(boolean permanently) {
-            this.mProgressView.setVisibility(8);
-            if (permanently) {
-                removeHeaderView(this.mGetMoreHeaderProgressContainer);
-                    }
-                }
-
-        public void deactivateRefresh() {
-            deactivateRefresh(false);
-                }
-
-        public void reactivateRefresh() {
-            this.mProgressView.setVisibility(4);
-                }
-
-        public void showProgress() {
-            if (this.mProgressView.getVisibility() != 8) {
-                this.mProgressView.setVisibility(0);
-                    }
-                }
-
-        public void hideProgress() {
-           this.mProgressView.setVisibility(4);
-                }
-
-                @Override 
-       protected void onSizeChanged(int w, int h, int oldW, int oldH) {
-           super.onSizeChanged(w, h, oldW, oldH);
-           if (getCount() > 0) {
-               setSelection(getCount() - 1);
-                    }
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        if (visibleItemCount != 0) {
+            if (this.mGetMoreListener != null && firstVisibleItem == 0 && this.mProgressView.getVisibility() != 8) {
+                View child = getChildAt(0);
+                if (child == this.mGetMoreHeaderProgressContainer) {
+                    this.mGetMoreListener.getMore();
                 }
             }
+            if (this.mScrollListener != null) {
+                this.mScrollListener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
+            }
+        }
+    }
+
+    public void setGetMoreListener(GetMoreListener listener) {
+        this.mGetMoreListener = listener;
+    }
+
+    public void deactivateRefresh(boolean permanently) {
+        this.mProgressView.setVisibility(8);
+        if (permanently) {
+            removeHeaderView(this.mGetMoreHeaderProgressContainer);
+        }
+    }
+
+    public void deactivateRefresh() {
+        deactivateRefresh(false);
+    }
+
+    public void reactivateRefresh() {
+        this.mProgressView.setVisibility(4);
+    }
+
+    public void showProgress() {
+        if (this.mProgressView.getVisibility() != 8) {
+            this.mProgressView.setVisibility(0);
+        }
+    }
+
+    public void hideProgress() {
+        this.mProgressView.setVisibility(4);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldW, int oldH) {
+        super.onSizeChanged(w, h, oldW, oldH);
+        if (getCount() > 0) {
+            setSelection(getCount() - 1);
+        }
+    }
+}

@@ -1,14 +1,13 @@
-            package com.googlecode.javacpp.annotation;
+package com.googlecode.javacpp.annotation;
 
-            import java.lang.annotation.ElementType;
-            import java.lang.annotation.Retention;
-            import java.lang.annotation.RetentionPolicy;
-            import java.lang.annotation.Target;
-            
-            
-            @Target({ElementType.METHOD, ElementType.PARAMETER})
-            @Retention(RetentionPolicy.RUNTIME)
-            @Adapter("StringAdapter")
-            @Cast({"std::string&"})
-            public @interface StdString {
-            }
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target({ElementType.METHOD, ElementType.PARAMETER})
+@Retention(RetentionPolicy.RUNTIME)
+@Adapter("StringAdapter")
+@Cast({"std::string&"})
+public @interface StdString {
+}

@@ -1,19 +1,18 @@
-            package com.facebook;
+package com.facebook;
 
-            import android.os.Bundle;
-            
-            
-    public class NonCachingTokenCachingStrategy extends TokenCachingStrategy {
-                @Override 
-        public Bundle load() {
-            return null;
-                }
+import android.os.Bundle;
 
-                @Override 
-        public void save(Bundle bundle) {
-                }
+public class NonCachingTokenCachingStrategy extends TokenCachingStrategy {
+    @Override
+    public Bundle load() {
+        return null;
+    }
 
-                @Override 
-        public void clear() {
-                }
-            }
+    @Override
+    public void save(Bundle bundle) {
+    }
+
+    @Override
+    public void clear() {
+    }
+}

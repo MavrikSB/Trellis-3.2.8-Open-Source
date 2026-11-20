@@ -1,12 +1,11 @@
-            package com.google.android.gms.games.multiplayer.realtime;
-            
-            
-            public interface RoomUpdateListener {
-                void onJoinedRoom(int i, Room room);
+package com.google.android.gms.games.multiplayer.realtime;
 
-                void onLeftRoom(int i, String str);
+public interface RoomUpdateListener {
+    void onJoinedRoom(int i, Room room);
 
-                void onRoomConnected(int i, Room room);
+    void onLeftRoom(int i, String str);
 
-                void onRoomCreated(int i, Room room);
-            }
+    void onRoomConnected(int i, Room room);
+
+    void onRoomCreated(int i, Room room);
+}

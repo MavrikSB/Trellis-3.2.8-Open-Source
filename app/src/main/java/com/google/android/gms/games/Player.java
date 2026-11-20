@@ -1,25 +1,24 @@
-            package com.google.android.gms.games;
+package com.google.android.gms.games;
 
-            import android.database.CharArrayBuffer;
-            import android.net.Uri;
-            import android.os.Parcelable;
-            import com.google.android.gms.common.data.Freezable;
-            
-            
-            public interface Player extends Parcelable, Freezable<Player> {
-                String getDisplayName();
+import android.database.CharArrayBuffer;
+import android.net.Uri;
+import android.os.Parcelable;
+import com.google.android.gms.common.data.Freezable;
 
-                void getDisplayName(CharArrayBuffer charArrayBuffer);
+public interface Player extends Parcelable, Freezable<Player> {
+    String getDisplayName();
 
-                Uri getHiResImageUri();
+    void getDisplayName(CharArrayBuffer charArrayBuffer);
 
-                Uri getIconImageUri();
+    Uri getHiResImageUri();
 
-                String getPlayerId();
+    Uri getIconImageUri();
 
-                long getRetrievedTimestamp();
+    String getPlayerId();
 
-                boolean hasHiResImage();
+    long getRetrievedTimestamp();
 
-                boolean hasIconImage();
-            }
+    boolean hasHiResImage();
+
+    boolean hasIconImage();
+}

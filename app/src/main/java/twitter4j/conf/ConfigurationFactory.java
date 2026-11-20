@@ -1,10 +1,9 @@
-            package twitter4j.conf;
-            
-            
-            public interface ConfigurationFactory {
-                void dispose();
+package twitter4j.conf;
 
-                Configuration getInstance();
+public interface ConfigurationFactory {
+    void dispose();
 
-                Configuration getInstance(String str);
-            }
+    Configuration getInstance();
+
+    Configuration getInstance(String str);
+}

@@ -1,10 +1,9 @@
-            package twitter4j.internal.http;
+package twitter4j.internal.http;
 
-            import twitter4j.TwitterException;
-            
-            
-            public interface HttpClient {
-                HttpResponse request(HttpRequest httpRequest) throws TwitterException;
+import twitter4j.TwitterException;
 
-                void shutdown();
-            }
+public interface HttpClient {
+    HttpResponse request(HttpRequest httpRequest) throws TwitterException;
+
+    void shutdown();
+}

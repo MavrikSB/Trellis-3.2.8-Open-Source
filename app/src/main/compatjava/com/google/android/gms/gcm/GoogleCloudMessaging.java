@@ -3,12 +3,6 @@ package com.google.android.gms.gcm;
 import android.content.Context;
 import java.io.IOException;
 
-
-
-
-
-
-
 public final class GoogleCloudMessaging {
     private GoogleCloudMessaging() {
     }

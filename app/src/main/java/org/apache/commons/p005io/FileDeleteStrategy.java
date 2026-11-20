@@ -1,52 +1,51 @@
-            package org.apache.commons.p005io;
+package org.apache.commons.p005io;
 
-            import java.io.File;
-            import java.io.IOException;
-            
-            
-    public class FileDeleteStrategy {
-                private final String name;
-                public static final FileDeleteStrategy NORMAL = new FileDeleteStrategy("Normal");
-                public static final FileDeleteStrategy FORCE = new ForceFileDeleteStrategy();
+import java.io.File;
+import java.io.IOException;
 
-        protected FileDeleteStrategy(String name) {
-            this.name = name;
-                }
+public class FileDeleteStrategy {
+    private final String name;
+    public static final FileDeleteStrategy NORMAL = new FileDeleteStrategy("Normal");
+    public static final FileDeleteStrategy FORCE = new ForceFileDeleteStrategy();
 
-        public boolean deleteQuietly(File fileToDelete) {
-            if (fileToDelete == null || !fileToDelete.exists()) {
-                return true;
-                    }
-                    try {
-                return doDelete(fileToDelete);
-                    } catch (IOException e) {
-                return false;
-                    }
-                }
+    protected FileDeleteStrategy(String name) {
+        this.name = name;
+    }
 
-        public void delete(File fileToDelete) throws IOException {
-            if (fileToDelete.exists() && !doDelete(fileToDelete)) {
-                throw new IOException("Deletion failed: " + fileToDelete);
-                    }
-                }
+    public boolean deleteQuietly(File fileToDelete) {
+        if (fileToDelete == null || !fileToDelete.exists()) {
+            return true;
+        }
+        try {
+            return doDelete(fileToDelete);
+        } catch (IOException e) {
+            return false;
+        }
+    }
 
-       protected boolean doDelete(File fileToDelete) throws IOException {
-           return fileToDelete.delete();
-                }
+    public void delete(File fileToDelete) throws IOException {
+        if (fileToDelete.exists() && !doDelete(fileToDelete)) {
+            throw new IOException("Deletion failed: " + fileToDelete);
+        }
+    }
 
-       public String toString() {
-           return "FileDeleteStrategy[" + this.name + "]";
-                }
+    protected boolean doDelete(File fileToDelete) throws IOException {
+        return fileToDelete.delete();
+    }
 
-       static class ForceFileDeleteStrategy extends FileDeleteStrategy {
-           ForceFileDeleteStrategy() {
-               super("Force");
-                    }
+    public String toString() {
+        return "FileDeleteStrategy[" + this.name + "]";
+    }
 
-                    @Override 
-           protected boolean doDelete(File fileToDelete) throws IOException {
-               FileUtils.forceDelete(fileToDelete);
-               return true;
-                    }
-                }
-            }
+    static class ForceFileDeleteStrategy extends FileDeleteStrategy {
+        ForceFileDeleteStrategy() {
+            super("Force");
+        }
+
+        @Override
+        protected boolean doDelete(File fileToDelete) throws IOException {
+            FileUtils.forceDelete(fileToDelete);
+            return true;
+        }
+    }
+}

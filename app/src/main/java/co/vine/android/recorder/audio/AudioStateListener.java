@@ -1,14 +1,13 @@
-            package co.vine.android.recorder.audio;
+package co.vine.android.recorder.audio;
 
-            import co.vine.android.recorder.RecordSession;
-            
-            
-            public interface AudioStateListener {
-                int getCurrentTimestampUs();
+import co.vine.android.recorder.RecordSession;
 
-                void onExternalClipAdded(int i);
+public interface AudioStateListener {
+    int getCurrentTimestampUs();
 
-                void onSessionTimestampChanged(RecordSession recordSession);
+    void onExternalClipAdded(int i);
 
-                void setAudioTrim(boolean z);
-            }
+    void onSessionTimestampChanged(RecordSession recordSession);
+
+    void setAudioTrim(boolean z);
+}

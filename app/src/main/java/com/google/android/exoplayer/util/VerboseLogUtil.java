@@ -1,39 +1,38 @@
-            package com.google.android.exoplayer.util;
-            
-            
-    public class VerboseLogUtil {
-                private static volatile boolean enableAllTags;
-                private static volatile String[] enabledTags;
+package com.google.android.exoplayer.util;
 
-        private VerboseLogUtil() {
-                }
+public class VerboseLogUtil {
+    private static volatile boolean enableAllTags;
+    private static volatile String[] enabledTags;
 
-        public static void setEnabledTags(String... tags) {
-            enabledTags = tags;
-            enableAllTags = false;
-                }
+    private VerboseLogUtil() {
+    }
 
-        public static void setEnableAllTags(boolean enable) {
-            enableAllTags = enable;
-                }
+    public static void setEnabledTags(String... tags) {
+        enabledTags = tags;
+        enableAllTags = false;
+    }
 
-        public static boolean isTagEnabled(String tag) {
-            if (enableAllTags) {
-                        return true;
-                    }
-            String[] tags = enabledTags;
-            if (tags == null || tags.length == 0) {
-                        return false;
-                    }
-                    for (String tag1 : tags) {
-                if (tag1.equals(tag)) {
-                            return true;
-                        }
-                    }
-                    return false;
-                }
+    public static void setEnableAllTags(boolean enable) {
+        enableAllTags = enable;
+    }
 
-        public static boolean areAllTagsEnabled() {
-            return enableAllTags;
-                }
+    public static boolean isTagEnabled(String tag) {
+        if (enableAllTags) {
+            return true;
+        }
+        String[] tags = enabledTags;
+        if (tags == null || tags.length == 0) {
+            return false;
+        }
+        for (String tag1 : tags) {
+            if (tag1.equals(tag)) {
+                return true;
             }
+        }
+        return false;
+    }
+
+    public static boolean areAllTagsEnabled() {
+        return enableAllTags;
+    }
+}

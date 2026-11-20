@@ -1,36 +1,34 @@
-            package com.google.android.gms.games.multiplayer;
+package com.google.android.gms.games.multiplayer;
 
-            import android.database.CharArrayBuffer;
-            import android.net.Uri;
-            import android.os.Parcelable;
-            import com.google.android.gms.common.data.Freezable;
-            import com.google.android.gms.games.Player;
-            
-            
-            public interface Participant extends Parcelable, Freezable<Participant> {
-                public static final int STATUS_DECLINED = 3;
-                public static final int STATUS_INVITED = 1;
-                public static final int STATUS_JOINED = 2;
-                public static final int STATUS_LEFT = 4;
+import android.database.CharArrayBuffer;
+import android.net.Uri;
+import android.os.Parcelable;
+import com.google.android.gms.common.data.Freezable;
+import com.google.android.gms.games.Player;
 
-                
-                String mo1206ci();
+public interface Participant extends Parcelable, Freezable<Participant> {
+    public static final int STATUS_DECLINED = 3;
+    public static final int STATUS_INVITED = 1;
+    public static final int STATUS_JOINED = 2;
+    public static final int STATUS_LEFT = 4;
 
-                int getCapabilities();
+    String mo1206ci();
 
-                String getDisplayName();
+    int getCapabilities();
 
-                void getDisplayName(CharArrayBuffer charArrayBuffer);
+    String getDisplayName();
 
-                Uri getHiResImageUri();
+    void getDisplayName(CharArrayBuffer charArrayBuffer);
 
-                Uri getIconImageUri();
+    Uri getHiResImageUri();
 
-                String getParticipantId();
+    Uri getIconImageUri();
 
-                Player getPlayer();
+    String getParticipantId();
 
-                int getStatus();
+    Player getPlayer();
 
-                boolean isConnectedToRoom();
-            }
+    int getStatus();
+
+    boolean isConnectedToRoom();
+}

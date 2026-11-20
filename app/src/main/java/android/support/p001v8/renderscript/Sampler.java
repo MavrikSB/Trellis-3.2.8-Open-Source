@@ -1,225 +1,224 @@
-            package android.support.p001v8.renderscript;
-            
-            
-    public class Sampler extends BaseObj {
-                float mAniso;
-                Value mMag;
-                Value mMin;
-                Value mWrapR;
-                Value mWrapS;
-                Value mWrapT;
+package android.support.p001v8.renderscript;
 
-        public enum Value {
-                    NEAREST(0),
-                    LINEAR(1),
-                    LINEAR_MIP_LINEAR(2),
-                    LINEAR_MIP_NEAREST(5),
-                    WRAP(3),
-                    CLAMP(4),
-                    MIRRORED_REPEAT(6);
+public class Sampler extends BaseObj {
+    float mAniso;
+    Value mMag;
+    Value mMin;
+    Value mWrapR;
+    Value mWrapS;
+    Value mWrapT;
 
-                    int mID;
+    public enum Value {
+        NEAREST(0),
+        LINEAR(1),
+        LINEAR_MIP_LINEAR(2),
+        LINEAR_MIP_NEAREST(5),
+        WRAP(3),
+        CLAMP(4),
+        MIRRORED_REPEAT(6);
 
-            Value(int id) {
-                this.mID = id;
-                    }
-                }
+        int mID;
 
-        Sampler(int id, RenderScript rs) {
-            super(id, rs);
-                }
+        Value(int id) {
+            this.mID = id;
+        }
+    }
 
-        public Value getMinification() {
-            return this.mMin;
-                }
+    Sampler(int id, RenderScript rs) {
+        super(id, rs);
+    }
 
-        public Value getMagnification() {
-            return this.mMag;
-                }
+    public Value getMinification() {
+        return this.mMin;
+    }
 
-        public Value getWrapS() {
-            return this.mWrapS;
-                }
+    public Value getMagnification() {
+        return this.mMag;
+    }
 
-        public Value getWrapT() {
-            return this.mWrapT;
-                }
+    public Value getWrapS() {
+        return this.mWrapS;
+    }
 
-       public float getAnisotropy() {
-           return this.mAniso;
-                }
+    public Value getWrapT() {
+        return this.mWrapT;
+    }
 
-       public static Sampler CLAMP_NEAREST(RenderScript rs) {
-           if (rs.mSampler_CLAMP_NEAREST == null) {
-               Builder b = new Builder(rs);
-               b.setMinification(Value.NEAREST);
-               b.setMagnification(Value.NEAREST);
-               b.setWrapS(Value.CLAMP);
-               b.setWrapT(Value.CLAMP);
-               rs.mSampler_CLAMP_NEAREST = b.create();
-                    }
-           return rs.mSampler_CLAMP_NEAREST;
-                }
+    public float getAnisotropy() {
+        return this.mAniso;
+    }
 
-       public static Sampler CLAMP_LINEAR(RenderScript rs) {
-           if (rs.mSampler_CLAMP_LINEAR == null) {
-               Builder b = new Builder(rs);
-               b.setMinification(Value.LINEAR);
-               b.setMagnification(Value.LINEAR);
-               b.setWrapS(Value.CLAMP);
-               b.setWrapT(Value.CLAMP);
-               rs.mSampler_CLAMP_LINEAR = b.create();
-                    }
-           return rs.mSampler_CLAMP_LINEAR;
-                }
+    public static Sampler CLAMP_NEAREST(RenderScript rs) {
+        if (rs.mSampler_CLAMP_NEAREST == null) {
+            Builder b = new Builder(rs);
+            b.setMinification(Value.NEAREST);
+            b.setMagnification(Value.NEAREST);
+            b.setWrapS(Value.CLAMP);
+            b.setWrapT(Value.CLAMP);
+            rs.mSampler_CLAMP_NEAREST = b.create();
+        }
+        return rs.mSampler_CLAMP_NEAREST;
+    }
 
-       public static Sampler CLAMP_LINEAR_MIP_LINEAR(RenderScript rs) {
-           if (rs.mSampler_CLAMP_LINEAR_MIP_LINEAR == null) {
-               Builder b = new Builder(rs);
-               b.setMinification(Value.LINEAR_MIP_LINEAR);
-               b.setMagnification(Value.LINEAR);
-               b.setWrapS(Value.CLAMP);
-               b.setWrapT(Value.CLAMP);
-               rs.mSampler_CLAMP_LINEAR_MIP_LINEAR = b.create();
-                    }
-           return rs.mSampler_CLAMP_LINEAR_MIP_LINEAR;
-                }
+    public static Sampler CLAMP_LINEAR(RenderScript rs) {
+        if (rs.mSampler_CLAMP_LINEAR == null) {
+            Builder b = new Builder(rs);
+            b.setMinification(Value.LINEAR);
+            b.setMagnification(Value.LINEAR);
+            b.setWrapS(Value.CLAMP);
+            b.setWrapT(Value.CLAMP);
+            rs.mSampler_CLAMP_LINEAR = b.create();
+        }
+        return rs.mSampler_CLAMP_LINEAR;
+    }
 
-       public static Sampler WRAP_NEAREST(RenderScript rs) {
-           if (rs.mSampler_WRAP_NEAREST == null) {
-               Builder b = new Builder(rs);
-               b.setMinification(Value.NEAREST);
-               b.setMagnification(Value.NEAREST);
-               b.setWrapS(Value.WRAP);
-               b.setWrapT(Value.WRAP);
-               rs.mSampler_WRAP_NEAREST = b.create();
-                    }
-           return rs.mSampler_WRAP_NEAREST;
-                }
+    public static Sampler CLAMP_LINEAR_MIP_LINEAR(RenderScript rs) {
+        if (rs.mSampler_CLAMP_LINEAR_MIP_LINEAR == null) {
+            Builder b = new Builder(rs);
+            b.setMinification(Value.LINEAR_MIP_LINEAR);
+            b.setMagnification(Value.LINEAR);
+            b.setWrapS(Value.CLAMP);
+            b.setWrapT(Value.CLAMP);
+            rs.mSampler_CLAMP_LINEAR_MIP_LINEAR = b.create();
+        }
+        return rs.mSampler_CLAMP_LINEAR_MIP_LINEAR;
+    }
 
-       public static Sampler WRAP_LINEAR(RenderScript rs) {
-           if (rs.mSampler_WRAP_LINEAR == null) {
-               Builder b = new Builder(rs);
-               b.setMinification(Value.LINEAR);
-               b.setMagnification(Value.LINEAR);
-               b.setWrapS(Value.WRAP);
-               b.setWrapT(Value.WRAP);
-               rs.mSampler_WRAP_LINEAR = b.create();
-                    }
-           return rs.mSampler_WRAP_LINEAR;
-                }
+    public static Sampler WRAP_NEAREST(RenderScript rs) {
+        if (rs.mSampler_WRAP_NEAREST == null) {
+            Builder b = new Builder(rs);
+            b.setMinification(Value.NEAREST);
+            b.setMagnification(Value.NEAREST);
+            b.setWrapS(Value.WRAP);
+            b.setWrapT(Value.WRAP);
+            rs.mSampler_WRAP_NEAREST = b.create();
+        }
+        return rs.mSampler_WRAP_NEAREST;
+    }
 
-       public static Sampler WRAP_LINEAR_MIP_LINEAR(RenderScript rs) {
-           if (rs.mSampler_WRAP_LINEAR_MIP_LINEAR == null) {
-               Builder b = new Builder(rs);
-               b.setMinification(Value.LINEAR_MIP_LINEAR);
-               b.setMagnification(Value.LINEAR);
-               b.setWrapS(Value.WRAP);
-               b.setWrapT(Value.WRAP);
-               rs.mSampler_WRAP_LINEAR_MIP_LINEAR = b.create();
-                    }
-           return rs.mSampler_WRAP_LINEAR_MIP_LINEAR;
-                }
+    public static Sampler WRAP_LINEAR(RenderScript rs) {
+        if (rs.mSampler_WRAP_LINEAR == null) {
+            Builder b = new Builder(rs);
+            b.setMinification(Value.LINEAR);
+            b.setMagnification(Value.LINEAR);
+            b.setWrapS(Value.WRAP);
+            b.setWrapT(Value.WRAP);
+            rs.mSampler_WRAP_LINEAR = b.create();
+        }
+        return rs.mSampler_WRAP_LINEAR;
+    }
 
-       public static Sampler MIRRORED_REPEAT_NEAREST(RenderScript rs) {
-           if (rs.mSampler_MIRRORED_REPEAT_NEAREST == null) {
-               Builder b = new Builder(rs);
-               b.setMinification(Value.NEAREST);
-               b.setMagnification(Value.NEAREST);
-               b.setWrapS(Value.MIRRORED_REPEAT);
-               b.setWrapT(Value.MIRRORED_REPEAT);
-               rs.mSampler_MIRRORED_REPEAT_NEAREST = b.create();
-                    }
-           return rs.mSampler_MIRRORED_REPEAT_NEAREST;
-                }
+    public static Sampler WRAP_LINEAR_MIP_LINEAR(RenderScript rs) {
+        if (rs.mSampler_WRAP_LINEAR_MIP_LINEAR == null) {
+            Builder b = new Builder(rs);
+            b.setMinification(Value.LINEAR_MIP_LINEAR);
+            b.setMagnification(Value.LINEAR);
+            b.setWrapS(Value.WRAP);
+            b.setWrapT(Value.WRAP);
+            rs.mSampler_WRAP_LINEAR_MIP_LINEAR = b.create();
+        }
+        return rs.mSampler_WRAP_LINEAR_MIP_LINEAR;
+    }
 
-       public static Sampler MIRRORED_REPEAT_LINEAR(RenderScript rs) {
-           if (rs.mSampler_MIRRORED_REPEAT_LINEAR == null) {
-               Builder b = new Builder(rs);
-               b.setMinification(Value.LINEAR);
-               b.setMagnification(Value.LINEAR);
-               b.setWrapS(Value.MIRRORED_REPEAT);
-               b.setWrapT(Value.MIRRORED_REPEAT);
-               rs.mSampler_MIRRORED_REPEAT_LINEAR = b.create();
-                    }
-           return rs.mSampler_MIRRORED_REPEAT_LINEAR;
-                }
+    public static Sampler MIRRORED_REPEAT_NEAREST(RenderScript rs) {
+        if (rs.mSampler_MIRRORED_REPEAT_NEAREST == null) {
+            Builder b = new Builder(rs);
+            b.setMinification(Value.NEAREST);
+            b.setMagnification(Value.NEAREST);
+            b.setWrapS(Value.MIRRORED_REPEAT);
+            b.setWrapT(Value.MIRRORED_REPEAT);
+            rs.mSampler_MIRRORED_REPEAT_NEAREST = b.create();
+        }
+        return rs.mSampler_MIRRORED_REPEAT_NEAREST;
+    }
 
-       public static class Builder {
-                    RenderScript mRS;
-                    Value mMin = Value.NEAREST;
-                    Value mMag = Value.NEAREST;
-                    Value mWrapS = Value.WRAP;
-                    Value mWrapT = Value.WRAP;
-                    Value mWrapR = Value.WRAP;
-                    float mAniso = 1.0f;
+    public static Sampler MIRRORED_REPEAT_LINEAR(RenderScript rs) {
+        if (rs.mSampler_MIRRORED_REPEAT_LINEAR == null) {
+            Builder b = new Builder(rs);
+            b.setMinification(Value.LINEAR);
+            b.setMagnification(Value.LINEAR);
+            b.setWrapS(Value.MIRRORED_REPEAT);
+            b.setWrapT(Value.MIRRORED_REPEAT);
+            rs.mSampler_MIRRORED_REPEAT_LINEAR = b.create();
+        }
+        return rs.mSampler_MIRRORED_REPEAT_LINEAR;
+    }
 
-           public Builder(RenderScript rs) {
-               this.mRS = rs;
-                    }
+    public static class Builder {
+        RenderScript mRS;
+        Value mMin = Value.NEAREST;
+        Value mMag = Value.NEAREST;
+        Value mWrapS = Value.WRAP;
+        Value mWrapT = Value.WRAP;
+        Value mWrapR = Value.WRAP;
+        float mAniso = 1.0f;
 
-           public void setMinification(Value v) {
-               if (v == Value.NEAREST || v == Value.LINEAR || v == Value.LINEAR_MIP_LINEAR || v == Value.LINEAR_MIP_NEAREST) {
-                   this.mMin = v;
-                   return;
-                        }
-               throw new IllegalArgumentException("Invalid value");
-                    }
+        public Builder(RenderScript rs) {
+            this.mRS = rs;
+        }
 
-           public void setMagnification(Value v) {
-               if (v == Value.NEAREST || v == Value.LINEAR) {
-                   this.mMag = v;
-                   return;
-                        }
-               throw new IllegalArgumentException("Invalid value");
-                    }
-
-           public void setWrapS(Value v) {
-               if (v == Value.WRAP || v == Value.CLAMP || v == Value.MIRRORED_REPEAT) {
-                   this.mWrapS = v;
-                   return;
-                        }
-               throw new IllegalArgumentException("Invalid value");
-                    }
-
-           public void setWrapT(Value v) {
-               if (v == Value.WRAP || v == Value.CLAMP || v == Value.MIRRORED_REPEAT) {
-                   this.mWrapT = v;
-                   return;
-                        }
-               throw new IllegalArgumentException("Invalid value");
-                    }
-
-           public void setAnisotropy(float v) {
-                        if (v >= 0.0f) {
-                   this.mAniso = v;
-                   return;
-                        }
-               throw new IllegalArgumentException("Invalid value");
-                    }
-
-           public Sampler create() {
-               RenderScript renderScript = this.mRS;
-                        if (RenderScript.isNative) {
-                   RenderScriptThunker rst = (RenderScriptThunker) this.mRS;
-                   SamplerThunker.Builder b = new SamplerThunker.Builder(rst);
-                   b.setMinification(this.mMin);
-                   b.setMagnification(this.mMag);
-                   b.setWrapS(this.mWrapS);
-                   b.setWrapT(this.mWrapT);
-                   b.setAnisotropy(this.mAniso);
-                   return b.create();
-                        }
-               this.mRS.validate();
-               int id = this.mRS.nSamplerCreate(this.mMag.mID, this.mMin.mID, this.mWrapS.mID, this.mWrapT.mID, this.mWrapR.mID, this.mAniso);
-               Sampler sampler = new Sampler(id, this.mRS);
-               sampler.mMin = this.mMin;
-               sampler.mMag = this.mMag;
-               sampler.mWrapS = this.mWrapS;
-               sampler.mWrapT = this.mWrapT;
-               sampler.mWrapR = this.mWrapR;
-               sampler.mAniso = this.mAniso;
-               return sampler;
-                    }
-                }
+        public void setMinification(Value v) {
+            if (v == Value.NEAREST || v == Value.LINEAR || v == Value.LINEAR_MIP_LINEAR || v == Value.LINEAR_MIP_NEAREST) {
+                this.mMin = v;
+                return;
             }
+            throw new IllegalArgumentException("Invalid value");
+        }
+
+        public void setMagnification(Value v) {
+            if (v == Value.NEAREST || v == Value.LINEAR) {
+                this.mMag = v;
+                return;
+            }
+            throw new IllegalArgumentException("Invalid value");
+        }
+
+        public void setWrapS(Value v) {
+            if (v == Value.WRAP || v == Value.CLAMP || v == Value.MIRRORED_REPEAT) {
+                this.mWrapS = v;
+                return;
+            }
+            throw new IllegalArgumentException("Invalid value");
+        }
+
+        public void setWrapT(Value v) {
+            if (v == Value.WRAP || v == Value.CLAMP || v == Value.MIRRORED_REPEAT) {
+                this.mWrapT = v;
+                return;
+            }
+            throw new IllegalArgumentException("Invalid value");
+        }
+
+        public void setAnisotropy(float v) {
+            if (v >= 0.0f) {
+                this.mAniso = v;
+                return;
+            }
+            throw new IllegalArgumentException("Invalid value");
+        }
+
+        public Sampler create() {
+            RenderScript renderScript = this.mRS;
+            if (RenderScript.isNative) {
+                RenderScriptThunker rst = (RenderScriptThunker) this.mRS;
+                SamplerThunker.Builder b = new SamplerThunker.Builder(rst);
+                b.setMinification(this.mMin);
+                b.setMagnification(this.mMag);
+                b.setWrapS(this.mWrapS);
+                b.setWrapT(this.mWrapT);
+                b.setAnisotropy(this.mAniso);
+                return b.create();
+            }
+            this.mRS.validate();
+            int id = this.mRS.nSamplerCreate(this.mMag.mID, this.mMin.mID, this.mWrapS.mID, this.mWrapT.mID, this.mWrapR.mID, this.mAniso);
+            Sampler sampler = new Sampler(id, this.mRS);
+            sampler.mMin = this.mMin;
+            sampler.mMag = this.mMag;
+            sampler.mWrapS = this.mWrapS;
+            sampler.mWrapT = this.mWrapT;
+            sampler.mWrapR = this.mWrapR;
+            sampler.mAniso = this.mAniso;
+            return sampler;
+        }
+    }
+}

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 import java.util.Map;
 
-
 public final class FlurryAgent {
     private static final String TAG = "VineAnalytics";
     private FlurryAgent() { }

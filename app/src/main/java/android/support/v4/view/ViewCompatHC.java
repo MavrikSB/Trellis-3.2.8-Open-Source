@@ -1,43 +1,42 @@
-            package android.support.v4.view;
+package android.support.v4.view;
 
-            import android.animation.ValueAnimator;
-            import android.graphics.Paint;
-            import android.view.View;
-            
-            
-    class ViewCompatHC {
-        ViewCompatHC() {
-                }
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import android.view.View;
 
-        static long getFrameTime() {
-            return ValueAnimator.getFrameDelay();
-                }
+class ViewCompatHC {
+    ViewCompatHC() {
+    }
 
-        public static float getAlpha(View view) {
-            return view.getAlpha();
-                }
+    static long getFrameTime() {
+        return ValueAnimator.getFrameDelay();
+    }
 
-        public static void setLayerType(View view, int layerType, Paint paint) {
-            view.setLayerType(layerType, paint);
-                }
+    public static float getAlpha(View view) {
+        return view.getAlpha();
+    }
 
-        public static int getLayerType(View view) {
-            return view.getLayerType();
-                }
+    public static void setLayerType(View view, int layerType, Paint paint) {
+        view.setLayerType(layerType, paint);
+    }
 
-        public static int resolveSizeAndState(int size, int measureSpec, int childMeasuredState) {
-            return View.resolveSizeAndState(size, measureSpec, childMeasuredState);
-                }
+    public static int getLayerType(View view) {
+        return view.getLayerType();
+    }
 
-        public static int getMeasuredWidthAndState(View view) {
-            return view.getMeasuredWidthAndState();
-                }
+    public static int resolveSizeAndState(int size, int measureSpec, int childMeasuredState) {
+        return View.resolveSizeAndState(size, measureSpec, childMeasuredState);
+    }
 
-        public static int getMeasuredHeightAndState(View view) {
-            return view.getMeasuredHeightAndState();
-                }
+    public static int getMeasuredWidthAndState(View view) {
+        return view.getMeasuredWidthAndState();
+    }
 
-        public static int getMeasuredState(View view) {
-            return view.getMeasuredState();
-                }
-            }
+    public static int getMeasuredHeightAndState(View view) {
+        return view.getMeasuredHeightAndState();
+    }
+
+    public static int getMeasuredState(View view) {
+        return view.getMeasuredState();
+    }
+}

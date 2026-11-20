@@ -1,15 +1,14 @@
-            package co.vine.android;
-            
-            
-     public class VineLoggingException extends Exception {
-         public VineLoggingException() {
-                }
+package co.vine.android;
 
-        public VineLoggingException(Throwable e) {
-            super(e);
-                }
+public class VineLoggingException extends Exception {
+    public VineLoggingException() {
+    }
 
-        public VineLoggingException(String message) {
-            super(message);
-                }
-            }
+    public VineLoggingException(Throwable e) {
+        super(e);
+    }
+
+    public VineLoggingException(String message) {
+        super(message);
+    }
+}

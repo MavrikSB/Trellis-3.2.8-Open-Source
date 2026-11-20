@@ -1,37 +1,35 @@
-            package com.google.android.gms.common;
+package com.google.android.gms.common;
 
-            import android.os.Bundle;
-            
-            
-            public interface GooglePlayServicesClient {
+import android.os.Bundle;
 
-                public interface ConnectionCallbacks {
-                    void onConnected(Bundle bundle);
+public interface GooglePlayServicesClient {
+    public interface ConnectionCallbacks {
+        void onConnected(Bundle bundle);
 
-                    void onDisconnected();
-                }
+        void onDisconnected();
+    }
 
-                public interface OnConnectionFailedListener {
-                    void onConnectionFailed(ConnectionResult connectionResult);
-                }
+    public interface OnConnectionFailedListener {
+        void onConnectionFailed(ConnectionResult connectionResult);
+    }
 
-                void connect();
+    void connect();
 
-                void disconnect();
+    void disconnect();
 
-                boolean isConnected();
+    boolean isConnected();
 
-                boolean isConnecting();
+    boolean isConnecting();
 
-                boolean isConnectionCallbacksRegistered(ConnectionCallbacks connectionCallbacks);
+    boolean isConnectionCallbacksRegistered(ConnectionCallbacks connectionCallbacks);
 
-                boolean isConnectionFailedListenerRegistered(OnConnectionFailedListener onConnectionFailedListener);
+    boolean isConnectionFailedListenerRegistered(OnConnectionFailedListener onConnectionFailedListener);
 
-                void registerConnectionCallbacks(ConnectionCallbacks connectionCallbacks);
+    void registerConnectionCallbacks(ConnectionCallbacks connectionCallbacks);
 
-                void registerConnectionFailedListener(OnConnectionFailedListener onConnectionFailedListener);
+    void registerConnectionFailedListener(OnConnectionFailedListener onConnectionFailedListener);
 
-                void unregisterConnectionCallbacks(ConnectionCallbacks connectionCallbacks);
+    void unregisterConnectionCallbacks(ConnectionCallbacks connectionCallbacks);
 
-                void unregisterConnectionFailedListener(OnConnectionFailedListener onConnectionFailedListener);
-            }
+    void unregisterConnectionFailedListener(OnConnectionFailedListener onConnectionFailedListener);
+}

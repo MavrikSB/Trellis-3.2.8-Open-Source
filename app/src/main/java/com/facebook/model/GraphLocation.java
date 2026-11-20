@@ -1,32 +1,31 @@
-            package com.facebook.model;
-            
-            
-            public interface GraphLocation extends GraphObject {
-                String getCity();
+package com.facebook.model;
 
-                String getCountry();
+public interface GraphLocation extends GraphObject {
+    String getCity();
 
-                double getLatitude();
+    String getCountry();
 
-                double getLongitude();
+    double getLatitude();
 
-                String getState();
+    double getLongitude();
 
-                String getStreet();
+    String getState();
 
-                String getZip();
+    String getStreet();
 
-                void setCity(String str);
+    String getZip();
 
-                void setCountry(String str);
+    void setCity(String str);
 
-                void setLatitude(double d);
+    void setCountry(String str);
 
-                void setLongitude(double d);
+    void setLatitude(double d);
 
-                void setState(String str);
+    void setLongitude(double d);
 
-                void setStreet(String str);
+    void setState(String str);
 
-                void setZip(String str);
-            }
+    void setStreet(String str);
+
+    void setZip(String str);
+}

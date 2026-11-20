@@ -1,115 +1,114 @@
-            package android.support.v4.view;
+package android.support.v4.view;
 
-            import android.os.Build;
-            import android.view.View;
-            import android.view.ViewGroup;
-            import android.view.accessibility.AccessibilityEvent;
-            
-            
-    public class ViewGroupCompat {
-                static final ViewGroupCompatImpl IMPL;
-                public static final int LAYOUT_MODE_CLIP_BOUNDS = 0;
-                public static final int LAYOUT_MODE_OPTICAL_BOUNDS = 1;
+import android.os.Build;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
 
-                interface ViewGroupCompatImpl {
-                    int getLayoutMode(ViewGroup viewGroup);
+public class ViewGroupCompat {
+    static final ViewGroupCompatImpl IMPL;
+    public static final int LAYOUT_MODE_CLIP_BOUNDS = 0;
+    public static final int LAYOUT_MODE_OPTICAL_BOUNDS = 1;
 
-                    boolean onRequestSendAccessibilityEvent(ViewGroup viewGroup, View view, AccessibilityEvent accessibilityEvent);
+    interface ViewGroupCompatImpl {
+        int getLayoutMode(ViewGroup viewGroup);
 
-                    void setLayoutMode(ViewGroup viewGroup, int i);
+        boolean onRequestSendAccessibilityEvent(ViewGroup viewGroup, View view, AccessibilityEvent accessibilityEvent);
 
-                    void setMotionEventSplittingEnabled(ViewGroup viewGroup, boolean z);
-                }
+        void setLayoutMode(ViewGroup viewGroup, int i);
 
-        static class ViewGroupCompatStubImpl implements ViewGroupCompatImpl {
-            ViewGroupCompatStubImpl() {
-                    }
+        void setMotionEventSplittingEnabled(ViewGroup viewGroup, boolean z);
+    }
 
-                    @Override 
-            public boolean onRequestSendAccessibilityEvent(ViewGroup group, View child, AccessibilityEvent event) {
-                return true;
-                    }
+    static class ViewGroupCompatStubImpl implements ViewGroupCompatImpl {
+        ViewGroupCompatStubImpl() {
+        }
 
-                    @Override 
-            public void setMotionEventSplittingEnabled(ViewGroup group, boolean split) {
-                    }
+        @Override
+        public boolean onRequestSendAccessibilityEvent(ViewGroup group, View child, AccessibilityEvent event) {
+            return true;
+        }
 
-                    @Override 
-            public int getLayoutMode(ViewGroup group) {
-                return 0;
-                    }
+        @Override
+        public void setMotionEventSplittingEnabled(ViewGroup group, boolean split) {
+        }
 
-                    @Override 
-            public void setLayoutMode(ViewGroup group, int mode) {
-                    }
-                }
+        @Override
+        public int getLayoutMode(ViewGroup group) {
+            return 0;
+        }
 
-        static class ViewGroupCompatHCImpl extends ViewGroupCompatStubImpl {
-            ViewGroupCompatHCImpl() {
-                    }
+        @Override
+        public void setLayoutMode(ViewGroup group, int mode) {
+        }
+    }
 
-                    @Override 
-            public void setMotionEventSplittingEnabled(ViewGroup group, boolean split) {
-                ViewGroupCompatHC.setMotionEventSplittingEnabled(group, split);
-                    }
-                }
+    static class ViewGroupCompatHCImpl extends ViewGroupCompatStubImpl {
+        ViewGroupCompatHCImpl() {
+        }
 
-        static class ViewGroupCompatIcsImpl extends ViewGroupCompatHCImpl {
-            ViewGroupCompatIcsImpl() {
-                    }
+        @Override
+        public void setMotionEventSplittingEnabled(ViewGroup group, boolean split) {
+            ViewGroupCompatHC.setMotionEventSplittingEnabled(group, split);
+        }
+    }
 
-                    @Override 
-            public boolean onRequestSendAccessibilityEvent(ViewGroup group, View child, AccessibilityEvent event) {
-                return ViewGroupCompatIcs.onRequestSendAccessibilityEvent(group, child, event);
-                    }
-                }
+    static class ViewGroupCompatIcsImpl extends ViewGroupCompatHCImpl {
+        ViewGroupCompatIcsImpl() {
+        }
 
-        static class ViewGroupCompatJellybeanMR2Impl extends ViewGroupCompatIcsImpl {
-            ViewGroupCompatJellybeanMR2Impl() {
-                    }
+        @Override
+        public boolean onRequestSendAccessibilityEvent(ViewGroup group, View child, AccessibilityEvent event) {
+            return ViewGroupCompatIcs.onRequestSendAccessibilityEvent(group, child, event);
+        }
+    }
 
-                    @Override 
-            public int getLayoutMode(ViewGroup group) {
-                return ViewGroupCompatJellybeanMR2.getLayoutMode(group);
-                    }
+    static class ViewGroupCompatJellybeanMR2Impl extends ViewGroupCompatIcsImpl {
+        ViewGroupCompatJellybeanMR2Impl() {
+        }
 
-                    @Override 
-            public void setLayoutMode(ViewGroup group, int mode) {
-                ViewGroupCompatJellybeanMR2.setLayoutMode(group, mode);
-                    }
-                }
+        @Override
+        public int getLayoutMode(ViewGroup group) {
+            return ViewGroupCompatJellybeanMR2.getLayoutMode(group);
+        }
 
-                static {
-           int version = Build.VERSION.SDK_INT;
-           if (version >= 18) {
-               IMPL = new ViewGroupCompatJellybeanMR2Impl();
-               return;
-                    }
-           if (version >= 14) {
-               IMPL = new ViewGroupCompatIcsImpl();
-                    } else if (version >= 11) {
-               IMPL = new ViewGroupCompatHCImpl();
-                    } else {
-               IMPL = new ViewGroupCompatStubImpl();
-                    }
-                }
+        @Override
+        public void setLayoutMode(ViewGroup group, int mode) {
+            ViewGroupCompatJellybeanMR2.setLayoutMode(group, mode);
+        }
+    }
 
-       private ViewGroupCompat() {
-                }
+    static {
+        int version = Build.VERSION.SDK_INT;
+        if (version >= 18) {
+            IMPL = new ViewGroupCompatJellybeanMR2Impl();
+            return;
+        }
+        if (version >= 14) {
+            IMPL = new ViewGroupCompatIcsImpl();
+        } else if (version >= 11) {
+            IMPL = new ViewGroupCompatHCImpl();
+        } else {
+            IMPL = new ViewGroupCompatStubImpl();
+        }
+    }
 
-       public static boolean onRequestSendAccessibilityEvent(ViewGroup group, View child, AccessibilityEvent event) {
-           return IMPL.onRequestSendAccessibilityEvent(group, child, event);
-                }
+    private ViewGroupCompat() {
+    }
 
-       public static void setMotionEventSplittingEnabled(ViewGroup group, boolean split) {
-           IMPL.setMotionEventSplittingEnabled(group, split);
-                }
+    public static boolean onRequestSendAccessibilityEvent(ViewGroup group, View child, AccessibilityEvent event) {
+        return IMPL.onRequestSendAccessibilityEvent(group, child, event);
+    }
 
-       public static int getLayoutMode(ViewGroup group) {
-           return IMPL.getLayoutMode(group);
-                }
+    public static void setMotionEventSplittingEnabled(ViewGroup group, boolean split) {
+        IMPL.setMotionEventSplittingEnabled(group, split);
+    }
 
-       public static void setLayoutMode(ViewGroup group, int mode) {
-           IMPL.setLayoutMode(group, mode);
-                }
-            }
+    public static int getLayoutMode(ViewGroup group) {
+        return IMPL.getLayoutMode(group);
+    }
+
+    public static void setLayoutMode(ViewGroup group, int mode) {
+        IMPL.setLayoutMode(group, mode);
+    }
+}

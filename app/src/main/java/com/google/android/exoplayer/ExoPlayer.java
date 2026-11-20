@@ -1,84 +1,83 @@
-            package com.google.android.exoplayer;
+package com.google.android.exoplayer;
 
-            import android.os.Looper;
-            
-            
-   public interface ExoPlayer {
-                public static final int STATE_BUFFERING = 3;
-                public static final int STATE_ENDED = 5;
-                public static final int STATE_IDLE = 1;
-                public static final int STATE_PREPARING = 2;
-                public static final int STATE_READY = 4;
-                public static final int UNKNOWN_TIME = -1;
+import android.os.Looper;
 
-                public interface ExoPlayerComponent {
-                    void handleMessage(int i, Object obj) throws ExoPlaybackException;
-                }
+public interface ExoPlayer {
+    public static final int STATE_BUFFERING = 3;
+    public static final int STATE_ENDED = 5;
+    public static final int STATE_IDLE = 1;
+    public static final int STATE_PREPARING = 2;
+    public static final int STATE_READY = 4;
+    public static final int UNKNOWN_TIME = -1;
 
-                public interface Listener {
-                    void onPlayWhenReadyCommitted();
+    public interface ExoPlayerComponent {
+        void handleMessage(int i, Object obj) throws ExoPlaybackException;
+    }
 
-                    void onPlayerError(ExoPlaybackException exoPlaybackException);
+    public interface Listener {
+        void onPlayWhenReadyCommitted();
 
-                    void onPlayerStateChanged(boolean z, int i);
-                }
+        void onPlayerError(ExoPlaybackException exoPlaybackException);
 
-                void addListener(Listener listener);
+        void onPlayerStateChanged(boolean z, int i);
+    }
 
-                void blockingSendMessage(ExoPlayerComponent exoPlayerComponent, int i, Object obj);
+    void addListener(Listener listener);
 
-                int getBufferedPercentage();
+    void blockingSendMessage(ExoPlayerComponent exoPlayerComponent, int i, Object obj);
 
-                int getBufferedPosition();
+    int getBufferedPercentage();
 
-                int getCurrentPosition();
+    int getBufferedPosition();
 
-                int getDuration();
+    int getCurrentPosition();
 
-                boolean getPlayWhenReady();
+    int getDuration();
 
-                Looper getPlaybackLooper();
+    boolean getPlayWhenReady();
 
-                int getPlaybackState();
+    Looper getPlaybackLooper();
 
-                boolean getRendererEnabled(int i);
+    int getPlaybackState();
 
-                boolean isPlayWhenReadyCommitted();
+    boolean getRendererEnabled(int i);
 
-                void prepare(TrackRenderer... trackRendererArr);
+    boolean isPlayWhenReadyCommitted();
 
-                void release();
+    void prepare(TrackRenderer... trackRendererArr);
 
-                void removeListener(Listener listener);
+    void release();
 
-                void seekTo(int i);
+    void removeListener(Listener listener);
 
-                void sendMessage(ExoPlayerComponent exoPlayerComponent, int i, Object obj);
+    void seekTo(int i);
 
-                void setPlayWhenReady(boolean z);
+    void sendMessage(ExoPlayerComponent exoPlayerComponent, int i, Object obj);
 
-                void setRendererEnabled(int i, boolean z);
+    void setPlayWhenReady(boolean z);
 
-                void stop();
+    void setRendererEnabled(int i, boolean z);
 
-       public static final class Factory {
-                    public static final int DEFAULT_MIN_BUFFER_MS = 500;
-                    public static final int DEFAULT_MIN_REBUFFER_MS = 5000;
+    void stop();
 
-           private Factory() {
-                    }
+    public static final class Factory {
+        public static final int DEFAULT_MIN_BUFFER_MS = 500;
+        public static final int DEFAULT_MIN_REBUFFER_MS = 5000;
 
-           public static ExoPlayer newInstance(int rendererCount, int minBufferMs, int minRebufferMs) {
-               return new ExoPlayerImpl(rendererCount, minBufferMs, minRebufferMs);
-                    }
+        private Factory() {
+        }
 
-           public static ExoPlayer newInstance(int rendererCount) {
-               return new ExoPlayerImpl(rendererCount, 500, DEFAULT_MIN_REBUFFER_MS);
-                    }
+        public static ExoPlayer newInstance(int rendererCount, int minBufferMs, int minRebufferMs) {
+            return new ExoPlayerImpl(rendererCount, minBufferMs, minRebufferMs);
+        }
 
-                    @Deprecated
-           public static ExoPlayer newInstance(int rendererCount, int minRebufferMs) {
-               return new ExoPlayerImpl(rendererCount, 500, minRebufferMs);
-                    }
-                }
-            }
+        public static ExoPlayer newInstance(int rendererCount) {
+            return new ExoPlayerImpl(rendererCount, 500, DEFAULT_MIN_REBUFFER_MS);
+        }
+
+        @Deprecated
+        public static ExoPlayer newInstance(int rendererCount, int minRebufferMs) {
+            return new ExoPlayerImpl(rendererCount, 500, minRebufferMs);
+        }
+    }
+}

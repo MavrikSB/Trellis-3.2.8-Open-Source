@@ -1,63 +1,62 @@
-            package org.apache.commons.p005io.input;
+package org.apache.commons.p005io.input;
 
-            import java.io.IOException;
-            import java.io.InputStream;
-            import java.io.OutputStream;
-            
-            
-    public class TeeInputStream extends ProxyInputStream {
-                private final OutputStream branch;
-                private final boolean closeBranch;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
-        public TeeInputStream(InputStream input, OutputStream branch) {
-            this(input, branch, false);
-                }
+public class TeeInputStream extends ProxyInputStream {
+    private final OutputStream branch;
+    private final boolean closeBranch;
 
-        public TeeInputStream(InputStream input, OutputStream branch, boolean closeBranch) {
-            super(input);
-            this.branch = branch;
-            this.closeBranch = closeBranch;
-                }
+    public TeeInputStream(InputStream input, OutputStream branch) {
+        this(input, branch, false);
+    }
 
-                @Override 
-        public void close() throws IOException {
-                    try {
-                super.close();
-                if (this.closeBranch) {
-                    this.branch.close();
-                        }
-                    } catch (Throwable th) {
-                        if (this.closeBranch) {
-                    this.branch.close();
-                        }
-                        throw th;
-                    }
-                }
+    public TeeInputStream(InputStream input, OutputStream branch, boolean closeBranch) {
+        super(input);
+        this.branch = branch;
+        this.closeBranch = closeBranch;
+    }
 
-                @Override 
-       public int read() throws IOException {
-           int ch = super.read();
-           if (ch != -1) {
-               this.branch.write(ch);
-                    }
-           return ch;
-                }
-
-                @Override 
-       public int read(byte[] bts, int st, int end) throws IOException {
-           int n = super.read(bts, st, end);
-           if (n != -1) {
-               this.branch.write(bts, st, n);
-                    }
-           return n;
-                }
-
-                @Override 
-       public int read(byte[] bts) throws IOException {
-           int n = super.read(bts);
-           if (n != -1) {
-               this.branch.write(bts, 0, n);
-                    }
-           return n;
-                }
+    @Override
+    public void close() throws IOException {
+        try {
+            super.close();
+            if (this.closeBranch) {
+                this.branch.close();
             }
+        } catch (Throwable th) {
+            if (this.closeBranch) {
+                this.branch.close();
+            }
+            throw th;
+        }
+    }
+
+    @Override
+    public int read() throws IOException {
+        int ch = super.read();
+        if (ch != -1) {
+            this.branch.write(ch);
+        }
+        return ch;
+    }
+
+    @Override
+    public int read(byte[] bts, int st, int end) throws IOException {
+        int n = super.read(bts, st, end);
+        if (n != -1) {
+            this.branch.write(bts, st, n);
+        }
+        return n;
+    }
+
+    @Override
+    public int read(byte[] bts) throws IOException {
+        int n = super.read(bts);
+        if (n != -1) {
+            this.branch.write(bts, 0, n);
+        }
+        return n;
+    }
+}

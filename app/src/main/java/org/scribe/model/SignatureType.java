@@ -1,7 +1,6 @@
-            package org.scribe.model;
-            
-            
-            public enum SignatureType {
-                Header,
-                QueryString
-            }
+package org.scribe.model;
+
+public enum SignatureType {
+    Header,
+    QueryString
+        }

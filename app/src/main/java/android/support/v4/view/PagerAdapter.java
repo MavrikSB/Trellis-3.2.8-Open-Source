@@ -1,86 +1,85 @@
-            package android.support.v4.view;
+package android.support.v4.view;
 
-            import android.database.DataSetObservable;
-            import android.database.DataSetObserver;
-            import android.os.Parcelable;
-            import android.view.View;
-            import android.view.ViewGroup;
-            
-            
-    public abstract class PagerAdapter {
-                public static final int POSITION_NONE = -2;
-                public static final int POSITION_UNCHANGED = -1;
-                private DataSetObservable mObservable = new DataSetObservable();
+import android.database.DataSetObservable;
+import android.database.DataSetObserver;
+import android.os.Parcelable;
+import android.view.View;
+import android.view.ViewGroup;
 
-                public abstract int getCount();
+public abstract class PagerAdapter {
+    public static final int POSITION_NONE = -2;
+    public static final int POSITION_UNCHANGED = -1;
+    private DataSetObservable mObservable = new DataSetObservable();
 
-                public abstract boolean isViewFromObject(View view, Object obj);
+    public abstract int getCount();
 
-        public void startUpdate(ViewGroup container) {
-            startUpdate((View) container);
-                }
+    public abstract boolean isViewFromObject(View view, Object obj);
 
-       public Object instantiateItem(ViewGroup container, int position) {
-           return instantiateItem((View) container, position);
-                }
+    public void startUpdate(ViewGroup container) {
+        startUpdate((View) container);
+    }
 
-       public void destroyItem(ViewGroup container, int position, Object object) {
-           destroyItem((View) container, position, object);
-                }
+    public Object instantiateItem(ViewGroup container, int position) {
+        return instantiateItem((View) container, position);
+    }
 
-       public void setPrimaryItem(ViewGroup container, int position, Object object) {
-           setPrimaryItem((View) container, position, object);
-                }
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        destroyItem((View) container, position, object);
+    }
 
-       public void finishUpdate(ViewGroup container) {
-           finishUpdate((View) container);
-                }
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+        setPrimaryItem((View) container, position, object);
+    }
 
-       public void startUpdate(View container) {
-                }
+    public void finishUpdate(ViewGroup container) {
+        finishUpdate((View) container);
+    }
 
-       public Object instantiateItem(View container, int position) {
-           throw new UnsupportedOperationException("Required method instantiateItem was not overridden");
-                }
+    public void startUpdate(View container) {
+    }
 
-       public void destroyItem(View container, int position, Object object) {
-           throw new UnsupportedOperationException("Required method destroyItem was not overridden");
-                }
+    public Object instantiateItem(View container, int position) {
+        throw new UnsupportedOperationException("Required method instantiateItem was not overridden");
+    }
 
-       public void setPrimaryItem(View container, int position, Object object) {
-                }
+    public void destroyItem(View container, int position, Object object) {
+        throw new UnsupportedOperationException("Required method destroyItem was not overridden");
+    }
 
-       public void finishUpdate(View container) {
-                }
+    public void setPrimaryItem(View container, int position, Object object) {
+    }
 
-       public Parcelable saveState() {
-           return null;
-                }
+    public void finishUpdate(View container) {
+    }
 
-       public void restoreState(Parcelable state, ClassLoader loader) {
-                }
+    public Parcelable saveState() {
+        return null;
+    }
 
-       public int getItemPosition(Object object) {
-           return -1;
-                }
+    public void restoreState(Parcelable state, ClassLoader loader) {
+    }
 
-       public void notifyDataSetChanged() {
-           this.mObservable.notifyChanged();
-                }
+    public int getItemPosition(Object object) {
+        return -1;
+    }
 
-       public void registerDataSetObserver(DataSetObserver observer) {
-           this.mObservable.registerObserver(observer);
-                }
+    public void notifyDataSetChanged() {
+        this.mObservable.notifyChanged();
+    }
 
-       public void unregisterDataSetObserver(DataSetObserver observer) {
-           this.mObservable.unregisterObserver(observer);
-                }
+    public void registerDataSetObserver(DataSetObserver observer) {
+        this.mObservable.registerObserver(observer);
+    }
 
-       public CharSequence getPageTitle(int position) {
-           return null;
-                }
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+        this.mObservable.unregisterObserver(observer);
+    }
 
-       public float getPageWidth(int position) {
-           return 1.0f;
-                }
-            }
+    public CharSequence getPageTitle(int position) {
+        return null;
+    }
+
+    public float getPageWidth(int position) {
+        return 1.0f;
+    }
+}

@@ -1,52 +1,51 @@
-            package twitter4j.internal.http;
+package twitter4j.internal.http;
 
-            import android.util.Log;
-            import com.edisonwang.android.slog.SLog;
-            import java.io.DataOutputStream;
-            import java.io.IOException;
-            import java.io.Serializable;
-            
-            
-    public abstract class HttpClientBase implements HttpClient, Serializable {
-                private static final String TAG = "t4jHttpClientBase";
-                private static final long serialVersionUID = 6944924907755685265L;
-                protected final HttpClientConfiguration CONF;
+import android.util.Log;
+import com.edisonwang.android.slog.SLog;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
 
-        public HttpClientBase(HttpClientConfiguration conf) {
-            this.CONF = conf;
-                }
+public abstract class HttpClientBase implements HttpClient, Serializable {
+    private static final String TAG = "t4jHttpClientBase";
+    private static final long serialVersionUID = 6944924907755685265L;
+    protected final HttpClientConfiguration CONF;
 
-                @Override 
-        public void shutdown() {
-                }
+    public HttpClientBase(HttpClientConfiguration conf) {
+        this.CONF = conf;
+    }
 
-        protected boolean isProxyConfigured() {
-                    return (this.CONF.getHttpProxyHost() == null || this.CONF.getHttpProxyHost().equals("")) ? false : true;
-                }
+    @Override
+    public void shutdown() {
+    }
 
-        public void write(DataOutputStream out, String outStr) throws IOException {
-            out.writeBytes(outStr);
-            if (SLog.sLogsOn) {
-                Log.v(TAG, outStr);
-                    }
-                }
+    protected boolean isProxyConfigured() {
+        return (this.CONF.getHttpProxyHost() == null || this.CONF.getHttpProxyHost().equals("")) ? false : true;
+    }
 
-        public boolean equals(Object o) {
-            if (this == o) {
-                        return true;
-                    }
-            if (!(o instanceof HttpClientBase)) {
-                        return false;
-                    }
-            HttpClientBase that = (HttpClientBase) o;
-                    return this.CONF.equals(that.CONF);
-                }
+    public void write(DataOutputStream out, String outStr) throws IOException {
+        out.writeBytes(outStr);
+        if (SLog.sLogsOn) {
+            Log.v(TAG, outStr);
+        }
+    }
 
-        public int hashCode() {
-            return this.CONF.hashCode();
-                }
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof HttpClientBase)) {
+            return false;
+        }
+        HttpClientBase that = (HttpClientBase) o;
+        return this.CONF.equals(that.CONF);
+    }
 
-        public String toString() {
-            return "HttpClientBase{CONF=" + this.CONF + '}';
-                }
-            }
+    public int hashCode() {
+        return this.CONF.hashCode();
+    }
+
+    public String toString() {
+        return "HttpClientBase{CONF=" + this.CONF + '}';
+    }
+}

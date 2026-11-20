@@ -1,21 +1,20 @@
-            package com.facebook;
-            
-            
-    public class FacebookAuthorizationException extends FacebookException {
-                static final long serialVersionUID = 1;
+package com.facebook;
 
-        public FacebookAuthorizationException() {
-                }
+public class FacebookAuthorizationException extends FacebookException {
+    static final long serialVersionUID = 1;
 
-        public FacebookAuthorizationException(String message) {
-            super(message);
-                }
+    public FacebookAuthorizationException() {
+    }
 
-        public FacebookAuthorizationException(String message, Throwable throwable) {
-            super(message, throwable);
-                }
+    public FacebookAuthorizationException(String message) {
+        super(message);
+    }
 
-        public FacebookAuthorizationException(Throwable throwable) {
-            super(throwable);
-                }
-            }
+    public FacebookAuthorizationException(String message, Throwable throwable) {
+        super(message, throwable);
+    }
+
+    public FacebookAuthorizationException(Throwable throwable) {
+        super(throwable);
+    }
+}

@@ -1,39 +1,37 @@
-            package android.support.v7.internal.view.menu;
+package android.support.v7.internal.view.menu;
 
-            import android.content.Context;
-            import android.os.Parcelable;
-            import android.view.ViewGroup;
-            
-            
-            public interface MenuPresenter {
+import android.content.Context;
+import android.os.Parcelable;
+import android.view.ViewGroup;
 
-                public interface Callback {
-                    void onCloseMenu(MenuBuilder menuBuilder, boolean z);
+public interface MenuPresenter {
+    public interface Callback {
+        void onCloseMenu(MenuBuilder menuBuilder, boolean z);
 
-                    boolean onOpenSubMenu(MenuBuilder menuBuilder);
-                }
+        boolean onOpenSubMenu(MenuBuilder menuBuilder);
+    }
 
-                boolean collapseItemActionView(MenuBuilder menuBuilder, MenuItemImpl menuItemImpl);
+    boolean collapseItemActionView(MenuBuilder menuBuilder, MenuItemImpl menuItemImpl);
 
-                boolean expandItemActionView(MenuBuilder menuBuilder, MenuItemImpl menuItemImpl);
+    boolean expandItemActionView(MenuBuilder menuBuilder, MenuItemImpl menuItemImpl);
 
-                boolean flagActionItems();
+    boolean flagActionItems();
 
-                int getId();
+    int getId();
 
-                MenuView getMenuView(ViewGroup viewGroup);
+    MenuView getMenuView(ViewGroup viewGroup);
 
-                void initForMenu(Context context, MenuBuilder menuBuilder);
+    void initForMenu(Context context, MenuBuilder menuBuilder);
 
-                void onCloseMenu(MenuBuilder menuBuilder, boolean z);
+    void onCloseMenu(MenuBuilder menuBuilder, boolean z);
 
-                void onRestoreInstanceState(Parcelable parcelable);
+    void onRestoreInstanceState(Parcelable parcelable);
 
-                Parcelable onSaveInstanceState();
+    Parcelable onSaveInstanceState();
 
-                boolean onSubMenuSelected(SubMenuBuilder subMenuBuilder);
+    boolean onSubMenuSelected(SubMenuBuilder subMenuBuilder);
 
-                void setCallback(Callback callback);
+    void setCallback(Callback callback);
 
-                void updateMenuView(boolean z);
-            }
+    void updateMenuView(boolean z);
+}

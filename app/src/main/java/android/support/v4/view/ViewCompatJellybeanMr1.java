@@ -1,30 +1,29 @@
-            package android.support.v4.view;
+package android.support.v4.view;
 
-            import android.graphics.Paint;
-            import android.view.View;
-            
-            
-    class ViewCompatJellybeanMr1 {
-        ViewCompatJellybeanMr1() {
-                }
+import android.graphics.Paint;
+import android.view.View;
 
-        public static int getLabelFor(View view) {
-            return view.getLabelFor();
-                }
+class ViewCompatJellybeanMr1 {
+    ViewCompatJellybeanMr1() {
+    }
 
-        public static void setLabelFor(View view, int id) {
-            view.setLabelFor(id);
-                }
+    public static int getLabelFor(View view) {
+        return view.getLabelFor();
+    }
 
-        public static void setLayerPaint(View view, Paint paint) {
-            view.setLayerPaint(paint);
-                }
+    public static void setLabelFor(View view, int id) {
+        view.setLabelFor(id);
+    }
 
-        public static int getLayoutDirection(View view) {
-            return view.getLayoutDirection();
-                }
+    public static void setLayerPaint(View view, Paint paint) {
+        view.setLayerPaint(paint);
+    }
 
-        public static void setLayoutDirection(View view, int layoutDirection) {
-            view.setLayoutDirection(layoutDirection);
-                }
-            }
+    public static int getLayoutDirection(View view) {
+        return view.getLayoutDirection();
+    }
+
+    public static void setLayoutDirection(View view, int layoutDirection) {
+        view.setLayoutDirection(layoutDirection);
+    }
+}

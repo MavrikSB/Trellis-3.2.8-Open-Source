@@ -1,17 +1,16 @@
-            package com.google.ads.mediation;
+package com.google.ads.mediation;
 
-            import com.google.ads.AdRequest;
-            
-            
-            @Deprecated
-            public interface MediationInterstitialListener {
-                void onDismissScreen(MediationInterstitialAdapter<?, ?> mediationInterstitialAdapter);
+import com.google.ads.AdRequest;
 
-                void onFailedToReceiveAd(MediationInterstitialAdapter<?, ?> mediationInterstitialAdapter, AdRequest.ErrorCode errorCode);
+@Deprecated
+public interface MediationInterstitialListener {
+    void onDismissScreen(MediationInterstitialAdapter<?, ?> mediationInterstitialAdapter);
 
-                void onLeaveApplication(MediationInterstitialAdapter<?, ?> mediationInterstitialAdapter);
+    void onFailedToReceiveAd(MediationInterstitialAdapter<?, ?> mediationInterstitialAdapter, AdRequest.ErrorCode errorCode);
 
-                void onPresentScreen(MediationInterstitialAdapter<?, ?> mediationInterstitialAdapter);
+    void onLeaveApplication(MediationInterstitialAdapter<?, ?> mediationInterstitialAdapter);
 
-                void onReceivedAd(MediationInterstitialAdapter<?, ?> mediationInterstitialAdapter);
-            }
+    void onPresentScreen(MediationInterstitialAdapter<?, ?> mediationInterstitialAdapter);
+
+    void onReceivedAd(MediationInterstitialAdapter<?, ?> mediationInterstitialAdapter);
+}

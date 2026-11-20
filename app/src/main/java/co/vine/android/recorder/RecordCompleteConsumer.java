@@ -1,17 +1,16 @@
-            package co.vine.android.recorder;
-            
-            
-            public interface RecordCompleteConsumer extends Runnable {
-                boolean isComplete();
+package co.vine.android.recorder;
 
-                void onComplete(RecordingFile recordingFile, RecordCompleteConsumer recordCompleteConsumer);
+public interface RecordCompleteConsumer extends Runnable {
+    boolean isComplete();
 
-                void onError(RecordingFile recordingFile, Exception exc, RecordCompleteConsumer recordCompleteConsumer);
+    void onComplete(RecordingFile recordingFile, RecordCompleteConsumer recordCompleteConsumer);
 
-                void reset();
+    void onError(RecordingFile recordingFile, Exception exc, RecordCompleteConsumer recordCompleteConsumer);
 
-                void resumeAll();
+    void reset();
 
-                @Override 
-                void run();
-            }
+    void resumeAll();
+
+    @Override
+    void run();
+}

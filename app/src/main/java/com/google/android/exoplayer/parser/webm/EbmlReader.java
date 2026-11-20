@@ -1,33 +1,32 @@
-            package com.google.android.exoplayer.parser.webm;
+package com.google.android.exoplayer.parser.webm;
 
-            import com.google.android.exoplayer.upstream.NonBlockingInputStream;
-            import java.nio.ByteBuffer;
-            
-            
-            interface EbmlReader {
-                public static final int READ_RESULT_CONTINUE = 0;
-                public static final int READ_RESULT_END_OF_STREAM = 2;
-                public static final int READ_RESULT_NEED_MORE_DATA = 1;
-                public static final int TYPE_BINARY = 4;
-                public static final int TYPE_FLOAT = 5;
-                public static final int TYPE_MASTER = 1;
-                public static final int TYPE_STRING = 3;
-                public static final int TYPE_UNKNOWN = 0;
-                public static final int TYPE_UNSIGNED_INT = 2;
+import com.google.android.exoplayer.upstream.NonBlockingInputStream;
+import java.nio.ByteBuffer;
 
-                long getBytesRead();
+interface EbmlReader {
+    public static final int READ_RESULT_CONTINUE = 0;
+    public static final int READ_RESULT_END_OF_STREAM = 2;
+    public static final int READ_RESULT_NEED_MORE_DATA = 1;
+    public static final int TYPE_BINARY = 4;
+    public static final int TYPE_FLOAT = 5;
+    public static final int TYPE_MASTER = 1;
+    public static final int TYPE_STRING = 3;
+    public static final int TYPE_UNKNOWN = 0;
+    public static final int TYPE_UNSIGNED_INT = 2;
 
-                int read(NonBlockingInputStream nonBlockingInputStream);
+    long getBytesRead();
 
-                void readBytes(NonBlockingInputStream nonBlockingInputStream, ByteBuffer byteBuffer, int i);
+    int read(NonBlockingInputStream nonBlockingInputStream);
 
-                void readBytes(NonBlockingInputStream nonBlockingInputStream, byte[] bArr, int i);
+    void readBytes(NonBlockingInputStream nonBlockingInputStream, ByteBuffer byteBuffer, int i);
 
-                long readVarint(NonBlockingInputStream nonBlockingInputStream);
+    void readBytes(NonBlockingInputStream nonBlockingInputStream, byte[] bArr, int i);
 
-                void reset();
+    long readVarint(NonBlockingInputStream nonBlockingInputStream);
 
-                void setEventHandler(EbmlEventHandler ebmlEventHandler);
+    void reset();
 
-                void skipBytes(NonBlockingInputStream nonBlockingInputStream, int i);
-            }
+    void setEventHandler(EbmlEventHandler ebmlEventHandler);
+
+    void skipBytes(NonBlockingInputStream nonBlockingInputStream, int i);
+}

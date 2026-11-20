@@ -1,88 +1,83 @@
-            package co.vine.android;
+package co.vine.android;
 
-            import android.annotation.TargetApi;
-            import android.app.Activity;
-            import android.app.Fragment;
-            import android.content.Context;
-            import android.content.res.Resources;
-            import android.graphics.Bitmap;
-            import android.net.Uri;
-            import android.os.AsyncTask;
-            import co.vine.android.util.ImageUtils;
-            import java.lang.ref.WeakReference;
-            
-            
-    public class SetThumbnailTask extends AsyncTask<Uri, Void, Bitmap> {
-                private final WeakReference<Fragment> mFragmentRef;
-                private final WeakReference<android.support.v4.app.Fragment> mSupportFragmentRef;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.AsyncTask;
+import co.vine.android.util.ImageUtils;
+import java.lang.ref.WeakReference;
 
-                public interface SetThumbnailListener {
-                    void setThumbnailImage(Bitmap bitmap);
-                }
+public class SetThumbnailTask extends AsyncTask<Uri, Void, Bitmap> {
+    private final WeakReference<Fragment> mFragmentRef;
+    private final WeakReference<android.support.v4.app.Fragment> mSupportFragmentRef;
 
+    public interface SetThumbnailListener {
+        void setThumbnailImage(Bitmap bitmap);
+    }
 
+    public SetThumbnailTask(android.support.v4.app.Fragment fragment) {
+        this.mSupportFragmentRef = new WeakReference<>(fragment);
+        this.mFragmentRef = null;
+    }
 
-        public SetThumbnailTask(android.support.v4.app.Fragment fragment) {
-            this.mSupportFragmentRef = new WeakReference<>(fragment);
-            this.mFragmentRef = null;
-                }
+    public SetThumbnailTask(Fragment f) {
+        this.mFragmentRef = new WeakReference<>(f);
+        this.mSupportFragmentRef = null;
+    }
 
-        public SetThumbnailTask(Fragment f) {
-            this.mFragmentRef = new WeakReference<>(f);
-            this.mSupportFragmentRef = null;
-                }
+    @TargetApi(11)
+    protected Activity getFragmentActivity() {
+        Fragment f = this.mFragmentRef.get();
+        if (f == null) {
+            return null;
+        }
+        return f.getActivity();
+    }
 
-                @TargetApi(11)
-        protected Activity getFragmentActivity() {
-            Fragment f = this.mFragmentRef.get();
-            if (f == null) {
-                return null;
-                    }
-                    return f.getActivity();
-                }
+    protected Activity getSupportFragmentActivity() {
+        android.support.v4.app.Fragment f = this.mSupportFragmentRef.get();
+        if (f == null) {
+            return null;
+        }
+        return f.getActivity();
+    }
 
-        protected Activity getSupportFragmentActivity() {
-            android.support.v4.app.Fragment f = this.mSupportFragmentRef.get();
-            if (f == null) {
-                return null;
-                    }
-                    return f.getActivity();
-                }
+    protected Bitmap doInBackground(Uri... params) {
+        Context context = null;
+        if (this.mSupportFragmentRef != null) {
+            context = getSupportFragmentActivity();
+        } else if (this.mFragmentRef != null) {
+            context = getFragmentActivity();
+        }
+        if (context == null) {
+            return null;
+        }
+        Uri photoUri = params[0];
+        Resources resources = context.getResources();
+        float size = resources.getDimensionPixelSize(R.dimen.user_image_size) * resources.getDisplayMetrics().density;
+        Bitmap resizedBitmap = ImageUtils.resizeBitmap(context, photoUri, size, size, 0);
+        if (resizedBitmap != null) {
+            resizedBitmap = ImageUtils.getCroppedBitmap(resizedBitmap, (int) size);
+        }
+        if (resizedBitmap != null) {
+            return ImageUtils.adjustRotation(context, photoUri, resizedBitmap);
+        }
+        return null;
+    }
 
-                
-        protected Bitmap doInBackground(Uri... params) {
-            Context context = null;
-            if (this.mSupportFragmentRef != null) {
-                context = getSupportFragmentActivity();
-                    } else if (this.mFragmentRef != null) {
-                context = getFragmentActivity();
-                    }
-            if (context == null) {
-                        return null;
-                    }
-            Uri photoUri = params[0];
-            Resources resources = context.getResources();
-            float size = resources.getDimensionPixelSize(R.dimen.user_image_size) * resources.getDisplayMetrics().density;
-            Bitmap resizedBitmap = ImageUtils.resizeBitmap(context, photoUri, size, size, 0);
-            if (resizedBitmap != null) {
-                resizedBitmap = ImageUtils.getCroppedBitmap(resizedBitmap, (int) size);
-                    }
-            if (resizedBitmap != null) {
-                return ImageUtils.adjustRotation(context, photoUri, resizedBitmap);
-                    }
-                    return null;
-                }
-
-                
-        protected void onPostExecute(Bitmap bitmap) {
-            Object fragment = null;
-            if (this.mSupportFragmentRef != null) {
-                fragment = this.mSupportFragmentRef.get();
-                    } else if (this.mFragmentRef != null) {
-                fragment = this.mFragmentRef.get();
-                    }
-            if (fragment != null) {
-                ((SetThumbnailListener) fragment).setThumbnailImage(bitmap);
-                    }
-                }
-            }
+    protected void onPostExecute(Bitmap bitmap) {
+        Object fragment = null;
+        if (this.mSupportFragmentRef != null) {
+            fragment = this.mSupportFragmentRef.get();
+        } else if (this.mFragmentRef != null) {
+            fragment = this.mFragmentRef.get();
+        }
+        if (fragment != null) {
+            ((SetThumbnailListener) fragment).setThumbnailImage(bitmap);
+        }
+    }
+}

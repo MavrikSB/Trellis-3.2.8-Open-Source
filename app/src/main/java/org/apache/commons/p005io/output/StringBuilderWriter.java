@@ -1,73 +1,69 @@
-            package org.apache.commons.p005io.output;
+package org.apache.commons.p005io.output;
 
-            import java.io.IOException;
-            import java.io.Serializable;
-            import java.io.Writer;
-            
-            
-    public class StringBuilderWriter extends Writer implements Serializable {
-                private final StringBuilder builder;
+import java.io.IOException;
+import java.io.Serializable;
+import java.io.Writer;
 
+public class StringBuilderWriter extends Writer implements Serializable {
+    private final StringBuilder builder;
 
+    public StringBuilderWriter() {
+        this.builder = new StringBuilder();
+    }
 
+    public StringBuilderWriter(int capacity) {
+        this.builder = new StringBuilder(capacity);
+    }
 
-        public StringBuilderWriter() {
-            this.builder = new StringBuilder();
-                }
+    public StringBuilderWriter(StringBuilder builder) {
+        this.builder = builder == null ? new StringBuilder() : builder;
+    }
 
-        public StringBuilderWriter(int capacity) {
-            this.builder = new StringBuilder(capacity);
-                }
+    @Override
+    public Writer append(char value) {
+        this.builder.append(value);
+        return this;
+    }
 
-        public StringBuilderWriter(StringBuilder builder) {
-            this.builder = builder == null ? new StringBuilder() : builder;
-                }
+    @Override
+    public Writer append(CharSequence value) {
+        this.builder.append(value);
+        return this;
+    }
 
-                @Override 
-        public Writer append(char value) {
+    @Override
+    public Writer append(CharSequence value, int start, int end) {
+        this.builder.append(value, start, end);
+        return this;
+    }
+
+    @Override
+    public void close() {
+    }
+
+    @Override
+    public void flush() {
+    }
+
+    @Override
+    public void write(String value) {
+        if (value != null) {
             this.builder.append(value);
-            return this;
-                }
+        }
+    }
 
-                @Override 
-        public Writer append(CharSequence value) {
-            this.builder.append(value);
-            return this;
-                }
+    @Override
+    public void write(char[] value, int offset, int length) {
+        if (value != null) {
+            this.builder.append(value, offset, length);
+        }
+    }
 
-                @Override 
-        public Writer append(CharSequence value, int start, int end) {
-            this.builder.append(value, start, end);
-            return this;
-                }
+    public StringBuilder getBuilder() {
+        return this.builder;
+    }
 
-                @Override 
-       public void close() {
-                }
-
-                @Override 
-       public void flush() {
-                }
-
-                @Override 
-       public void write(String value) {
-           if (value != null) {
-               this.builder.append(value);
-                    }
-                }
-
-                @Override 
-       public void write(char[] value, int offset, int length) {
-           if (value != null) {
-               this.builder.append(value, offset, length);
-                    }
-                }
-
-       public StringBuilder getBuilder() {
-           return this.builder;
-                }
-
-       public String toString() {
-           return this.builder.toString();
-                }
-            }
+    public String toString() {
+        return this.builder.toString();
+    }
+}

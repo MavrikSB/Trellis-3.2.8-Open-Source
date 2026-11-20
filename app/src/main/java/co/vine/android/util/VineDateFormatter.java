@@ -1,101 +1,100 @@
-            package co.vine.android.util;
+package co.vine.android.util;
 
-            import android.content.res.Resources;
-            import android.text.SpannableStringBuilder;
-            import android.text.style.TypefaceSpan;
-            import co.vine.android.R;
-            import java.text.SimpleDateFormat;
-            import java.util.Calendar;
-            import java.util.Date;
-            import java.util.HashSet;
-            
-            
-    public class VineDateFormatter {
-                private final SimpleDateFormat mDateFormatLong;
-                private final SimpleDateFormat mDateFormatShort;
-                private final HashSet<TypefaceSpan> mDateSectionSpans;
-                private final String mDateTimePlacerPart1;
-                private final boolean mIsDateBeforeTime;
-                private Calendar mStartOfToday;
-                private long mStartOfYesterday;
-                private final SimpleDateFormat mTimeFormat;
-                private final HashSet<TypefaceSpan> mTimeSectionSpans;
-                private final String mYesterday;
+import android.content.res.Resources;
+import android.text.SpannableStringBuilder;
+import android.text.style.TypefaceSpan;
+import co.vine.android.R;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
 
-        public VineDateFormatter(Resources res) {
-            this.mTimeFormat = new SimpleDateFormat(res.getString(R.string.vm_time_format));
-            String dateTimePlacer = res.getString(R.string.vm_date_format);
-            int dateTimePlacerStart1 = dateTimePlacer.indexOf("%1$s");
-            int dateTimePlacerStart2 = dateTimePlacer.indexOf("%2$s");
-            this.mIsDateBeforeTime = dateTimePlacerStart1 < dateTimePlacerStart2;
-            if (this.mIsDateBeforeTime) {
-                this.mDateTimePlacerPart1 = dateTimePlacer.substring(dateTimePlacerStart1, dateTimePlacerStart2);
-                    } else {
-                this.mDateTimePlacerPart1 = dateTimePlacer.substring(dateTimePlacerStart1);
-                    }
-            this.mDateFormatLong = new SimpleDateFormat(res.getString(R.string.date_format_long));
-            this.mDateFormatShort = new SimpleDateFormat(res.getString(R.string.date_format_short));
-            this.mDateSectionSpans = new HashSet<>();
-            this.mTimeSectionSpans = new HashSet<>();
-            this.mYesterday = res.getString(R.string.yesterday);
-                }
+public class VineDateFormatter {
+    private final SimpleDateFormat mDateFormatLong;
+    private final SimpleDateFormat mDateFormatShort;
+    private final HashSet<TypefaceSpan> mDateSectionSpans;
+    private final String mDateTimePlacerPart1;
+    private final boolean mIsDateBeforeTime;
+    private Calendar mStartOfToday;
+    private long mStartOfYesterday;
+    private final SimpleDateFormat mTimeFormat;
+    private final HashSet<TypefaceSpan> mTimeSectionSpans;
+    private final String mYesterday;
 
-        public void refreshDates() {
-            this.mStartOfToday = DateTimeUtil.getStartOfDay();
-            this.mStartOfYesterday = this.mStartOfToday.getTimeInMillis() - 86400000;
-                }
+    public VineDateFormatter(Resources res) {
+        this.mTimeFormat = new SimpleDateFormat(res.getString(R.string.vm_time_format));
+        String dateTimePlacer = res.getString(R.string.vm_date_format);
+        int dateTimePlacerStart1 = dateTimePlacer.indexOf("%1$s");
+        int dateTimePlacerStart2 = dateTimePlacer.indexOf("%2$s");
+        this.mIsDateBeforeTime = dateTimePlacerStart1 < dateTimePlacerStart2;
+        if (this.mIsDateBeforeTime) {
+            this.mDateTimePlacerPart1 = dateTimePlacer.substring(dateTimePlacerStart1, dateTimePlacerStart2);
+        } else {
+            this.mDateTimePlacerPart1 = dateTimePlacer.substring(dateTimePlacerStart1);
+        }
+        this.mDateFormatLong = new SimpleDateFormat(res.getString(R.string.date_format_long));
+        this.mDateFormatShort = new SimpleDateFormat(res.getString(R.string.date_format_short));
+        this.mDateSectionSpans = new HashSet<>();
+        this.mTimeSectionSpans = new HashSet<>();
+        this.mYesterday = res.getString(R.string.yesterday);
+    }
 
-        public CharSequence format(long time) {
-            Date createdDate = new Date(time);
-            Calendar createdCal = Calendar.getInstance();
-            createdCal.setTimeInMillis(time);
-                    if (time > this.mStartOfToday.getTimeInMillis()) {
-                return this.mTimeFormat.format(createdDate);
-                    }
-            SpannableStringBuilder ssb = new SpannableStringBuilder();
-            if (this.mIsDateBeforeTime) {
-                        if (time > this.mStartOfYesterday) {
-                    ssb.append((CharSequence) this.mDateTimePlacerPart1.replace("%1$s", this.mYesterday));
-                        } else if (createdCal.get(1) == this.mStartOfToday.get(1)) {
-                    ssb.append((CharSequence) this.mDateTimePlacerPart1.replace("%1$s", this.mDateFormatShort.format(createdDate)));
-                        } else {
-                    ssb.append((CharSequence) this.mDateTimePlacerPart1.replace("%1$s", this.mDateFormatLong.format(createdDate)));
-                        }
-                int end1 = ssb.length();
-                ssb.append((CharSequence) this.mTimeFormat.format(createdDate));
-                int end2 = ssb.length();
-                        for (TypefaceSpan span : this.mDateSectionSpans) {
-                    Util.safeSetSpan(ssb, span, 0, end1, 33);
-                        }
-                        for (TypefaceSpan span2 : this.mTimeSectionSpans) {
-                    Util.safeSetSpan(ssb, span2, end1, end2, 33);
-                        }
-               return ssb;
-                    }
-            ssb.append((CharSequence) this.mTimeFormat.format(createdDate));
-            int start = ssb.length();
-                    if (time > this.mStartOfYesterday) {
+    public void refreshDates() {
+        this.mStartOfToday = DateTimeUtil.getStartOfDay();
+        this.mStartOfYesterday = this.mStartOfToday.getTimeInMillis() - 86400000;
+    }
+
+    public CharSequence format(long time) {
+        Date createdDate = new Date(time);
+        Calendar createdCal = Calendar.getInstance();
+        createdCal.setTimeInMillis(time);
+        if (time > this.mStartOfToday.getTimeInMillis()) {
+            return this.mTimeFormat.format(createdDate);
+        }
+        SpannableStringBuilder ssb = new SpannableStringBuilder();
+        if (this.mIsDateBeforeTime) {
+            if (time > this.mStartOfYesterday) {
                 ssb.append((CharSequence) this.mDateTimePlacerPart1.replace("%1$s", this.mYesterday));
-                    } else if (createdCal.get(1) == this.mStartOfToday.get(1)) {
+            } else if (createdCal.get(1) == this.mStartOfToday.get(1)) {
                 ssb.append((CharSequence) this.mDateTimePlacerPart1.replace("%1$s", this.mDateFormatShort.format(createdDate)));
-                    } else {
+            } else {
                 ssb.append((CharSequence) this.mDateTimePlacerPart1.replace("%1$s", this.mDateFormatLong.format(createdDate)));
-                    }
-           int end = ssb.length();
-                    for (TypefaceSpan span3 : this.mDateSectionSpans) {
-               Util.safeSetSpan(ssb, span3, start, end, 33);
-                    }
-                    for (TypefaceSpan span4 : this.mTimeSectionSpans) {
-               Util.safeSetSpan(ssb, span4, 0, start, 33);
-                    }
-           return ssb;
-                }
-
-       public void addSpanForDateSection(TypefaceSpan span) {
-           this.mDateSectionSpans.add(span);
-                }
-
-       public void addSpanForTimeSection(TypefaceSpan span) {
-           this.mTimeSectionSpans.add(span);
-                }
             }
+            int end1 = ssb.length();
+            ssb.append((CharSequence) this.mTimeFormat.format(createdDate));
+            int end2 = ssb.length();
+            for (TypefaceSpan span : this.mDateSectionSpans) {
+                Util.safeSetSpan(ssb, span, 0, end1, 33);
+            }
+            for (TypefaceSpan span2 : this.mTimeSectionSpans) {
+                Util.safeSetSpan(ssb, span2, end1, end2, 33);
+            }
+            return ssb;
+        }
+        ssb.append((CharSequence) this.mTimeFormat.format(createdDate));
+        int start = ssb.length();
+        if (time > this.mStartOfYesterday) {
+            ssb.append((CharSequence) this.mDateTimePlacerPart1.replace("%1$s", this.mYesterday));
+        } else if (createdCal.get(1) == this.mStartOfToday.get(1)) {
+            ssb.append((CharSequence) this.mDateTimePlacerPart1.replace("%1$s", this.mDateFormatShort.format(createdDate)));
+        } else {
+            ssb.append((CharSequence) this.mDateTimePlacerPart1.replace("%1$s", this.mDateFormatLong.format(createdDate)));
+        }
+        int end = ssb.length();
+        for (TypefaceSpan span3 : this.mDateSectionSpans) {
+            Util.safeSetSpan(ssb, span3, start, end, 33);
+        }
+        for (TypefaceSpan span4 : this.mTimeSectionSpans) {
+            Util.safeSetSpan(ssb, span4, 0, start, 33);
+        }
+        return ssb;
+    }
+
+    public void addSpanForDateSection(TypefaceSpan span) {
+        this.mDateSectionSpans.add(span);
+    }
+
+    public void addSpanForTimeSection(TypefaceSpan span) {
+        this.mTimeSectionSpans.add(span);
+    }
+}

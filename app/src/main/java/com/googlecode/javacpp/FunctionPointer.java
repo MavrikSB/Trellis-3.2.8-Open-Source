@@ -1,11 +1,10 @@
-            package com.googlecode.javacpp;
-            
-            
-    public abstract class FunctionPointer extends Pointer {
-        protected FunctionPointer() {
-                }
+package com.googlecode.javacpp;
 
-        protected FunctionPointer(Pointer p) {
-            super(p);
-                }
-            }
+public abstract class FunctionPointer extends Pointer {
+    protected FunctionPointer() {
+    }
+
+    protected FunctionPointer(Pointer p) {
+        super(p);
+    }
+}

@@ -1,224 +1,209 @@
-            package com.google.android.gms.maps.model;
+package com.google.android.gms.maps.model;
 
-            import android.os.IBinder;
-            import android.os.Parcel;
-            import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-            import com.google.android.gms.dynamic.InterfaceC0904b;
-            import com.google.android.gms.maps.internal.C1174r;
-            
-            
-            public final class MarkerOptions implements SafeParcelable {
-                public static final MarkerOptionsCreator CREATOR = new MarkerOptionsCreator();
+import android.os.IBinder;
+import android.os.Parcel;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import com.google.android.gms.dynamic.InterfaceC0904b;
+import com.google.android.gms.maps.internal.C1174r;
 
-                
-                private final int f2318iM;
-                private float mAlpha;
+public final class MarkerOptions implements SafeParcelable {
+    public static final MarkerOptionsCreator CREATOR = new MarkerOptionsCreator();
 
-                
-                private LatLng f2319qA;
+    private final int f2318iM;
+    private float mAlpha;
 
-                
-                private String f2320qB;
+    private LatLng f2319qA;
 
-                
-                private String f2321qC;
+    private String f2320qB;
 
-                
-                private BitmapDescriptor f2322qD;
+    private String f2321qC;
 
-                
-                private boolean f2323qE;
+    private BitmapDescriptor f2322qD;
 
-                
-                private boolean f2324qF;
+    private boolean f2323qE;
 
-                
-                private float f2325qG;
+    private boolean f2324qF;
 
-                
-                private float f2326qH;
+    private float f2325qG;
 
-                
-                private float f2327qI;
+    private float f2326qH;
 
-                
-                private boolean f2328ql;
+    private float f2327qI;
 
-                
-                private float f2329qt;
+    private boolean f2328ql;
 
-                
-                private float f2330qu;
+    private float f2329qt;
 
-                public MarkerOptions() {
-                    this.f2329qt = 0.5f;
-                    this.f2330qu = 1.0f;
-                    this.f2328ql = true;
-                    this.f2324qF = false;
-                    this.f2325qG = 0.0f;
-                    this.f2326qH = 0.5f;
-                    this.f2327qI = 0.0f;
-                    this.mAlpha = 1.0f;
-                    this.f2318iM = 1;
-                }
+    private float f2330qu;
 
-                MarkerOptions(int versionCode, LatLng position, String title, String snippet, IBinder wrappedIcon, float anchorU, float anchorV, boolean draggable, boolean visible, boolean flat, float rotation, float infoWindowAnchorU, float infoWindowAnchorV, float alpha) {
-                    this.f2329qt = 0.5f;
-                    this.f2330qu = 1.0f;
-                    this.f2328ql = true;
-                    this.f2324qF = false;
-                    this.f2325qG = 0.0f;
-                    this.f2326qH = 0.5f;
-                    this.f2327qI = 0.0f;
-                    this.mAlpha = 1.0f;
-                    this.f2318iM = versionCode;
-                    this.f2319qA = position;
-                    this.f2320qB = title;
-                    this.f2321qC = snippet;
-                    this.f2322qD = wrappedIcon == null ? null : new BitmapDescriptor(InterfaceC0904b.a.m1164z(wrappedIcon));
-                    this.f2329qt = anchorU;
-                    this.f2330qu = anchorV;
-                    this.f2323qE = draggable;
-                    this.f2328ql = visible;
-                    this.f2324qF = flat;
-                    this.f2325qG = rotation;
-                    this.f2326qH = infoWindowAnchorU;
-                    this.f2327qI = infoWindowAnchorV;
-                    this.mAlpha = alpha;
-                }
+    public MarkerOptions() {
+        this.f2329qt = 0.5f;
+        this.f2330qu = 1.0f;
+        this.f2328ql = true;
+        this.f2324qF = false;
+        this.f2325qG = 0.0f;
+        this.f2326qH = 0.5f;
+        this.f2327qI = 0.0f;
+        this.mAlpha = 1.0f;
+        this.f2318iM = 1;
+    }
 
-                public MarkerOptions alpha(float alpha) {
-                    this.mAlpha = alpha;
-                    return this;
-                }
+    MarkerOptions(int versionCode, LatLng position, String title, String snippet, IBinder wrappedIcon, float anchorU, float anchorV, boolean draggable, boolean visible, boolean flat, float rotation, float infoWindowAnchorU, float infoWindowAnchorV, float alpha) {
+        this.f2329qt = 0.5f;
+        this.f2330qu = 1.0f;
+        this.f2328ql = true;
+        this.f2324qF = false;
+        this.f2325qG = 0.0f;
+        this.f2326qH = 0.5f;
+        this.f2327qI = 0.0f;
+        this.mAlpha = 1.0f;
+        this.f2318iM = versionCode;
+        this.f2319qA = position;
+        this.f2320qB = title;
+        this.f2321qC = snippet;
+        this.f2322qD = wrappedIcon == null ? null : new BitmapDescriptor(InterfaceC0904b.a.m1164z(wrappedIcon));
+        this.f2329qt = anchorU;
+        this.f2330qu = anchorV;
+        this.f2323qE = draggable;
+        this.f2328ql = visible;
+        this.f2324qF = flat;
+        this.f2325qG = rotation;
+        this.f2326qH = infoWindowAnchorU;
+        this.f2327qI = infoWindowAnchorV;
+        this.mAlpha = alpha;
+    }
 
-                public MarkerOptions anchor(float u, float v) {
-                    this.f2329qt = u;
-                    this.f2330qu = v;
-                    return this;
-                }
+    public MarkerOptions alpha(float alpha) {
+        this.mAlpha = alpha;
+        return this;
+    }
 
-                
-                IBinder m2283cN() {
-                    if (this.f2322qD == null) {
-                        return null;
-                    }
-                    return this.f2322qD.m2266cs().asBinder();
-                }
+    public MarkerOptions anchor(float u, float v) {
+        this.f2329qt = u;
+        this.f2330qu = v;
+        return this;
+    }
 
-                @Override 
-                public int describeContents() {
-                    return 0;
-                }
+    IBinder m2283cN() {
+        if (this.f2322qD == null) {
+            return null;
+        }
+        return this.f2322qD.m2266cs().asBinder();
+    }
 
-                public MarkerOptions draggable(boolean draggable) {
-                    this.f2323qE = draggable;
-                    return this;
-                }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-                public MarkerOptions flat(boolean flat) {
-                    this.f2324qF = flat;
-                    return this;
-                }
+    public MarkerOptions draggable(boolean draggable) {
+        this.f2323qE = draggable;
+        return this;
+    }
 
-                public float getAlpha() {
-                    return this.mAlpha;
-                }
+    public MarkerOptions flat(boolean flat) {
+        this.f2324qF = flat;
+        return this;
+    }
 
-                public float getAnchorU() {
-                    return this.f2329qt;
-                }
+    public float getAlpha() {
+        return this.mAlpha;
+    }
 
-                public float getAnchorV() {
-                    return this.f2330qu;
-                }
+    public float getAnchorU() {
+        return this.f2329qt;
+    }
 
-                public BitmapDescriptor getIcon() {
-                    return this.f2322qD;
-                }
+    public float getAnchorV() {
+        return this.f2330qu;
+    }
 
-                public float getInfoWindowAnchorU() {
-                    return this.f2326qH;
-                }
+    public BitmapDescriptor getIcon() {
+        return this.f2322qD;
+    }
 
-                public float getInfoWindowAnchorV() {
-                    return this.f2327qI;
-                }
+    public float getInfoWindowAnchorU() {
+        return this.f2326qH;
+    }
 
-                public LatLng getPosition() {
-                    return this.f2319qA;
-                }
+    public float getInfoWindowAnchorV() {
+        return this.f2327qI;
+    }
 
-                public float getRotation() {
-                    return this.f2325qG;
-                }
+    public LatLng getPosition() {
+        return this.f2319qA;
+    }
 
-                public String getSnippet() {
-                    return this.f2321qC;
-                }
+    public float getRotation() {
+        return this.f2325qG;
+    }
 
-                public String getTitle() {
-                    return this.f2320qB;
-                }
+    public String getSnippet() {
+        return this.f2321qC;
+    }
 
-                int getVersionCode() {
-                    return this.f2318iM;
-                }
+    public String getTitle() {
+        return this.f2320qB;
+    }
 
-                public MarkerOptions icon(BitmapDescriptor icon) {
-                    this.f2322qD = icon;
-                    return this;
-                }
+    int getVersionCode() {
+        return this.f2318iM;
+    }
 
-                public MarkerOptions infoWindowAnchor(float u, float v) {
-                    this.f2326qH = u;
-                    this.f2327qI = v;
-                    return this;
-                }
+    public MarkerOptions icon(BitmapDescriptor icon) {
+        this.f2322qD = icon;
+        return this;
+    }
 
-                public boolean isDraggable() {
-                    return this.f2323qE;
-                }
+    public MarkerOptions infoWindowAnchor(float u, float v) {
+        this.f2326qH = u;
+        this.f2327qI = v;
+        return this;
+    }
 
-                public boolean isFlat() {
-                    return this.f2324qF;
-                }
+    public boolean isDraggable() {
+        return this.f2323qE;
+    }
 
-                public boolean isVisible() {
-                    return this.f2328ql;
-                }
+    public boolean isFlat() {
+        return this.f2324qF;
+    }
 
-                public MarkerOptions position(LatLng position) {
-                    this.f2319qA = position;
-                    return this;
-                }
+    public boolean isVisible() {
+        return this.f2328ql;
+    }
 
-                public MarkerOptions rotation(float rotation) {
-                    this.f2325qG = rotation;
-                    return this;
-                }
+    public MarkerOptions position(LatLng position) {
+        this.f2319qA = position;
+        return this;
+    }
 
-                public MarkerOptions snippet(String snippet) {
-                    this.f2321qC = snippet;
-                    return this;
-                }
+    public MarkerOptions rotation(float rotation) {
+        this.f2325qG = rotation;
+        return this;
+    }
 
-                public MarkerOptions title(String title) {
-                    this.f2320qB = title;
-                    return this;
-                }
+    public MarkerOptions snippet(String snippet) {
+        this.f2321qC = snippet;
+        return this;
+    }
 
-                public MarkerOptions visible(boolean visible) {
-                    this.f2328ql = visible;
-                    return this;
-                }
+    public MarkerOptions title(String title) {
+        this.f2320qB = title;
+        return this;
+    }
 
-                @Override 
-                public void writeToParcel(Parcel out, int flags) {
-                    if (C1174r.m2265cK()) {
-                        C1182f.m2300a(this, out, flags);
-                    } else {
-                        MarkerOptionsCreator.m2284a(this, out, flags);
-                    }
-                }
-            }
+    public MarkerOptions visible(boolean visible) {
+        this.f2328ql = visible;
+        return this;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        if (C1174r.m2265cK()) {
+            C1182f.m2300a(this, out, flags);
+        } else {
+            MarkerOptionsCreator.m2284a(this, out, flags);
+        }
+    }
+}

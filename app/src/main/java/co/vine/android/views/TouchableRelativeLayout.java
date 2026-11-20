@@ -1,39 +1,38 @@
-            package co.vine.android.views;
+package co.vine.android.views;
 
-            import android.content.Context;
-            import android.util.AttributeSet;
-            import android.view.MotionEvent;
-            import android.widget.RelativeLayout;
-            
-            
-    public class TouchableRelativeLayout extends RelativeLayout {
-                public TouchListener mTouchListener;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.widget.RelativeLayout;
 
-                public interface TouchListener {
-                    boolean onInterceptTouchEvent(MotionEvent motionEvent);
+public class TouchableRelativeLayout extends RelativeLayout {
+    public TouchListener mTouchListener;
 
-                    boolean onTouchEvent(MotionEvent motionEvent);
-                }
+    public interface TouchListener {
+        boolean onInterceptTouchEvent(MotionEvent motionEvent);
 
-        public TouchableRelativeLayout(Context context) {
-            super(context);
-                }
+        boolean onTouchEvent(MotionEvent motionEvent);
+    }
 
-        public TouchableRelativeLayout(Context context, AttributeSet attrs) {
-            super(context, attrs);
-                }
+    public TouchableRelativeLayout(Context context) {
+        super(context);
+    }
 
-        public void setTouchListener(TouchListener listener) {
-            this.mTouchListener = listener;
-                }
+    public TouchableRelativeLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-                @Override 
-        public boolean onInterceptTouchEvent(MotionEvent ev) {
-                    return this.mTouchListener != null ? this.mTouchListener.onInterceptTouchEvent(ev) : super.onInterceptTouchEvent(ev);
-                }
+    public void setTouchListener(TouchListener listener) {
+        this.mTouchListener = listener;
+    }
 
-                @Override 
-        public boolean onTouchEvent(MotionEvent ev) {
-                    return this.mTouchListener != null ? this.mTouchListener.onTouchEvent(ev) : super.onTouchEvent(ev);
-                }
-            }
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return this.mTouchListener != null ? this.mTouchListener.onInterceptTouchEvent(ev) : super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        return this.mTouchListener != null ? this.mTouchListener.onTouchEvent(ev) : super.onTouchEvent(ev);
+    }
+}

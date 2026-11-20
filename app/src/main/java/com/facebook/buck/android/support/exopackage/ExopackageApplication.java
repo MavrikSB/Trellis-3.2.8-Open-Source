@@ -1,98 +1,93 @@
-            package com.facebook.buck.android.support.exopackage;
+package com.facebook.buck.android.support.exopackage;
 
-            import android.annotation.TargetApi;
-            import android.app.Application;
-            import android.content.Context;
-            import android.content.res.Configuration;
-            import com.facebook.buck.android.support.exopackage.ApplicationLike;
-            
-            
-    public abstract class ExopackageApplication<T extends ApplicationLike> extends Application {
-                private T delegate;
-                private final String delegateClassName;
-                private final boolean isExopackage;
+import android.annotation.TargetApi;
+import android.app.Application;
+import android.content.Context;
+import android.content.res.Configuration;
+import com.facebook.buck.android.support.exopackage.ApplicationLike;
 
-        protected ExopackageApplication(boolean isExopackage) {
-            this(DefaultApplicationLike.class.getName(), isExopackage);
-                }
+public abstract class ExopackageApplication<T extends ApplicationLike> extends Application {
+    private T delegate;
+    private final String delegateClassName;
+    private final boolean isExopackage;
 
-        protected ExopackageApplication(String delegateClassName, boolean isExopackage) {
-            this.delegateClassName = delegateClassName;
-            this.isExopackage = isExopackage;
-                }
+    protected ExopackageApplication(boolean isExopackage) {
+        this(DefaultApplicationLike.class.getName(), isExopackage);
+    }
 
-        private T createDelegate() {
-            if (this.isExopackage) {
-                ExopackageDexLoader.loadExopackageJars(this);
-                    }
-                    try {
-                        return (T) Class.forName(this.delegateClassName).getConstructor(Application.class).newInstance(this);
-                    } catch (Exception e) {
-                throw new RuntimeException(e);
-                    }
-                }
+    protected ExopackageApplication(String delegateClassName, boolean isExopackage) {
+        this.delegateClassName = delegateClassName;
+        this.isExopackage = isExopackage;
+    }
 
-        private synchronized void ensureDelegate() {
-                    try {
-                        if (this.delegate == null) {
-                    this.delegate = (T) createDelegate();
-                        }
-                    } catch (Throwable th) {
-                        throw th;
-                    }
-                }
+    private T createDelegate() {
+        if (this.isExopackage) {
+            ExopackageDexLoader.loadExopackageJars(this);
+        }
+        try {
+            return (T) Class.forName(this.delegateClassName).getConstructor(Application.class).newInstance(this);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-        protected void onBaseContextAttached() {
-                }
+    private synchronized void ensureDelegate() {
+        if (this.delegate == null) {
+            this.delegate = (T) createDelegate();
+        }
+    }
 
-        public final T getDelegateIfPresent() {
-            return this.delegate;
-                }
+    protected void onBaseContextAttached() {
+    }
 
-                @Override 
-        protected final void attachBaseContext(Context base) {
-            super.attachBaseContext(base);
-            onBaseContextAttached();
-            ensureDelegate();
-                }
+    public final T getDelegateIfPresent() {
+        return this.delegate;
+    }
 
-                @Override 
-       public final void onCreate() {
-           super.onCreate();
-           ensureDelegate();
-           this.delegate.onCreate();
-                }
+    @Override
+    protected final void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        onBaseContextAttached();
+        ensureDelegate();
+    }
 
-                @Override 
-       public final void onTerminate() {
-           super.onTerminate();
-           if (this.delegate != null) {
-               this.delegate.onTerminate();
-                    }
-                }
+    @Override
+    public final void onCreate() {
+        super.onCreate();
+        ensureDelegate();
+        this.delegate.onCreate();
+    }
 
-                @Override 
-       public final void onLowMemory() {
-           super.onLowMemory();
-           if (this.delegate != null) {
-               this.delegate.onLowMemory();
-                    }
-                }
+    @Override
+    public final void onTerminate() {
+        super.onTerminate();
+        if (this.delegate != null) {
+            this.delegate.onTerminate();
+        }
+    }
 
-                @Override 
-                @TargetApi(14)
-       public final void onTrimMemory(int level) {
-           super.onTrimMemory(level);
-           if (this.delegate != null) {
-               this.delegate.onTrimMemory(level);
-                    }
-                }
+    @Override
+    public final void onLowMemory() {
+        super.onLowMemory();
+        if (this.delegate != null) {
+            this.delegate.onLowMemory();
+        }
+    }
 
-                @Override 
-       public void onConfigurationChanged(Configuration newConfig) {
-           super.onConfigurationChanged(newConfig);
-           if (this.delegate != null) {
-               this.delegate.onConfigurationChanged(newConfig);
-                    }
-                }
-            }
+    @Override
+    @TargetApi(14)
+    public final void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        if (this.delegate != null) {
+            this.delegate.onTrimMemory(level);
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (this.delegate != null) {
+            this.delegate.onConfigurationChanged(newConfig);
+        }
+    }
+}

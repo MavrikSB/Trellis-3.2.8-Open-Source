@@ -1,20 +1,19 @@
-            package com.twitter.android.widget;
-            
-            
-            public interface RefreshListener {
-                ItemPosition getFirstItemPosition();
+package com.twitter.android.widget;
 
-                int getPositionForItemId(long j);
+public interface RefreshListener {
+    ItemPosition getFirstItemPosition();
 
-                void onRefreshCancelled();
+    int getPositionForItemId(long j);
 
-                void onRefreshFinished();
+    void onRefreshCancelled();
 
-                void onRefreshFinishedNewData();
+    void onRefreshFinished();
 
-                void onRefreshFinishedNoChange();
+    void onRefreshFinishedNewData();
 
-                void onRefreshPulled();
+    void onRefreshFinishedNoChange();
 
-                void onRefreshReleased(boolean z);
-            }
+    void onRefreshPulled();
+
+    void onRefreshReleased(boolean z);
+}

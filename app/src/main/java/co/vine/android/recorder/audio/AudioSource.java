@@ -1,10 +1,9 @@
-            package co.vine.android.recorder.audio;
-            
-            
-            public interface AudioSource {
-                boolean isInitialized();
+package co.vine.android.recorder.audio;
 
-                void start(AudioReceiver audioReceiver);
+public interface AudioSource {
+    boolean isInitialized();
 
-                void stop();
-            }
+    void start(AudioReceiver audioReceiver);
+
+    void stop();
+}

@@ -1,20 +1,19 @@
-            package twitter4j.internal.http;
+package twitter4j.internal.http;
 
-            import java.io.IOException;
-            import java.io.InputStream;
-            import java.util.zip.GZIPInputStream;
-            
-            
-    final class StreamingGZIPInputStream extends GZIPInputStream {
-                private final InputStream wrapped;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.zip.GZIPInputStream;
 
-        public StreamingGZIPInputStream(InputStream is) throws IOException {
-            super(is);
-            this.wrapped = is;
-                }
+final class StreamingGZIPInputStream extends GZIPInputStream {
+    private final InputStream wrapped;
 
-                @Override 
-        public int available() throws IOException {
-            return this.wrapped.available();
-                }
-            }
+    public StreamingGZIPInputStream(InputStream is) throws IOException {
+        super(is);
+        this.wrapped = is;
+    }
+
+    @Override
+    public int available() throws IOException {
+        return this.wrapped.available();
+    }
+}

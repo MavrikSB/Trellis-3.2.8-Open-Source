@@ -1,24 +1,23 @@
-            package twitter4j.conf;
-            
-            
-    class PropertyConfigurationFactory implements ConfigurationFactory {
-                private static final PropertyConfiguration ROOT_CONFIGURATION = new PropertyConfiguration();
+package twitter4j.conf;
 
-        PropertyConfigurationFactory() {
-                }
+class PropertyConfigurationFactory implements ConfigurationFactory {
+    private static final PropertyConfiguration ROOT_CONFIGURATION = new PropertyConfiguration();
 
-                @Override 
-        public Configuration getInstance() {
-            return ROOT_CONFIGURATION;
-                }
+    PropertyConfigurationFactory() {
+    }
 
-                @Override 
-        public Configuration getInstance(String configTreePath) {
-            PropertyConfiguration conf = new PropertyConfiguration(configTreePath);
-            return conf;
-                }
+    @Override
+    public Configuration getInstance() {
+        return ROOT_CONFIGURATION;
+    }
 
-                @Override 
-        public void dispose() {
-                }
-            }
+    @Override
+    public Configuration getInstance(String configTreePath) {
+        PropertyConfiguration conf = new PropertyConfiguration(configTreePath);
+        return conf;
+    }
+
+    @Override
+    public void dispose() {
+    }
+}

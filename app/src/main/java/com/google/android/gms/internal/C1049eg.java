@@ -1,17 +1,14 @@
-            package com.google.android.gms.internal;
+package com.google.android.gms.internal;
 
-            import android.database.CharArrayBuffer;
-            
-            
-            
-            public final class C1049eg {
-                
-                public static void m1731b(String str, CharArrayBuffer charArrayBuffer) {
-                    if (charArrayBuffer.data == null || charArrayBuffer.data.length < str.length()) {
-                        charArrayBuffer.data = str.toCharArray();
-                    } else {
-                        str.getChars(0, str.length(), charArrayBuffer.data, 0);
-                    }
-                    charArrayBuffer.sizeCopied = str.length();
-                }
-            }
+import android.database.CharArrayBuffer;
+
+public final class C1049eg {
+    public static void m1731b(String str, CharArrayBuffer charArrayBuffer) {
+        if (charArrayBuffer.data == null || charArrayBuffer.data.length < str.length()) {
+            charArrayBuffer.data = str.toCharArray();
+        } else {
+            str.getChars(0, str.length(), charArrayBuffer.data, 0);
+        }
+        charArrayBuffer.sizeCopied = str.length();
+    }
+}

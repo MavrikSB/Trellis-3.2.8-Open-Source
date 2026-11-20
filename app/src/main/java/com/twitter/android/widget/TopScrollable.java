@@ -1,6 +1,5 @@
-            package com.twitter.android.widget;
-            
-            
-            public interface TopScrollable {
-                boolean scrollTop();
-            }
+package com.twitter.android.widget;
+
+public interface TopScrollable {
+    boolean scrollTop();
+}

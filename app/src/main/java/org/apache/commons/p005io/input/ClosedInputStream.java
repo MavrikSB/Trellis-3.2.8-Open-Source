@@ -1,13 +1,12 @@
-            package org.apache.commons.p005io.input;
+package org.apache.commons.p005io.input;
 
-            import java.io.InputStream;
-            
-            
-    public class ClosedInputStream extends InputStream {
-                public static final ClosedInputStream CLOSED_INPUT_STREAM = new ClosedInputStream();
+import java.io.InputStream;
 
-                @Override 
-        public int read() {
-            return -1;
-                }
-            }
+public class ClosedInputStream extends InputStream {
+    public static final ClosedInputStream CLOSED_INPUT_STREAM = new ClosedInputStream();
+
+    @Override
+    public int read() {
+        return -1;
+    }
+}

@@ -1,17 +1,16 @@
-            package android.support.v4.view;
+package android.support.v4.view;
 
-            import android.view.VelocityTracker;
-            
-            
-    class VelocityTrackerCompatHoneycomb {
-        VelocityTrackerCompatHoneycomb() {
-                }
+import android.view.VelocityTracker;
 
-        public static float getXVelocity(VelocityTracker tracker, int pointerId) {
-            return tracker.getXVelocity(pointerId);
-                }
+class VelocityTrackerCompatHoneycomb {
+    VelocityTrackerCompatHoneycomb() {
+    }
 
-        public static float getYVelocity(VelocityTracker tracker, int pointerId) {
-            return tracker.getYVelocity(pointerId);
-                }
-            }
+    public static float getXVelocity(VelocityTracker tracker, int pointerId) {
+        return tracker.getXVelocity(pointerId);
+    }
+
+    public static float getYVelocity(VelocityTracker tracker, int pointerId) {
+        return tracker.getYVelocity(pointerId);
+    }
+}

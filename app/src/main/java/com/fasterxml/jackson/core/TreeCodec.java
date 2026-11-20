@@ -1,16 +1,15 @@
-            package com.fasterxml.jackson.core;
+package com.fasterxml.jackson.core;
 
-            import java.io.IOException;
-            
-            
-            public abstract class TreeCodec {
-                public abstract TreeNode createArrayNode();
+import java.io.IOException;
 
-                public abstract TreeNode createObjectNode();
+public abstract class TreeCodec {
+    public abstract TreeNode createArrayNode();
 
-                public abstract <T extends TreeNode> T readTree(JsonParser jsonParser) throws IOException;
+    public abstract TreeNode createObjectNode();
 
-                public abstract JsonParser treeAsTokens(TreeNode treeNode);
+    public abstract <T extends TreeNode> T readTree(JsonParser jsonParser) throws IOException;
 
-                public abstract void writeTree(JsonGenerator jsonGenerator, TreeNode treeNode) throws IOException;
-            }
+    public abstract JsonParser treeAsTokens(TreeNode treeNode);
+
+    public abstract void writeTree(JsonGenerator jsonGenerator, TreeNode treeNode) throws IOException;
+}

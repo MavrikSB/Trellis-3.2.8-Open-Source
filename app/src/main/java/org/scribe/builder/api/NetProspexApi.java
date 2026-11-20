@@ -1,25 +1,24 @@
-            package org.scribe.builder.api;
+package org.scribe.builder.api;
 
-            import org.scribe.model.Token;
-            
-            
-    public class NetProspexApi extends DefaultApi10a {
-                private static final String ACCESS_TOKEN_URL = "https://api.netprospex.com/1.0/oauth/access-token";
-                private static final String AUTHORIZE_URL = "https://api.netprospex.com/1.0/oauth/authorize?oauth_token=%s";
-                private static final String REQUEST_TOKEN_URL = "https://api.netprospex.com/1.0/oauth/request-token";
+import org.scribe.model.Token;
 
-                @Override 
-        public String getRequestTokenEndpoint() {
-            return REQUEST_TOKEN_URL;
-                }
+public class NetProspexApi extends DefaultApi10a {
+    private static final String ACCESS_TOKEN_URL = "https://api.netprospex.com/1.0/oauth/access-token";
+    private static final String AUTHORIZE_URL = "https://api.netprospex.com/1.0/oauth/authorize?oauth_token=%s";
+    private static final String REQUEST_TOKEN_URL = "https://api.netprospex.com/1.0/oauth/request-token";
 
-                @Override 
-        public String getAccessTokenEndpoint() {
-            return ACCESS_TOKEN_URL;
-                }
+    @Override
+    public String getRequestTokenEndpoint() {
+        return REQUEST_TOKEN_URL;
+    }
 
-                @Override 
-        public String getAuthorizationUrl(Token requestToken) {
-            return String.format(AUTHORIZE_URL, requestToken.getToken());
-                }
-            }
+    @Override
+    public String getAccessTokenEndpoint() {
+        return ACCESS_TOKEN_URL;
+    }
+
+    @Override
+    public String getAuthorizationUrl(Token requestToken) {
+        return String.format(AUTHORIZE_URL, requestToken.getToken());
+    }
+}

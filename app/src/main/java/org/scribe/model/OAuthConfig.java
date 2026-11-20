@@ -1,61 +1,60 @@
-            package org.scribe.model;
+package org.scribe.model;
 
-            import java.io.OutputStream;
-            import org.apache.commons.io.IOUtils;
-            
-            
-    public class OAuthConfig {
-                private final String apiKey;
-                private final String apiSecret;
-                private final String callback;
-                private final OutputStream debugStream;
-                private final String scope;
-                private final SignatureType signatureType;
+import java.io.OutputStream;
+import org.apache.commons.io.IOUtils;
 
-        public OAuthConfig(String key, String secret) {
-            this(key, secret, null, null, null, null);
-                }
+public class OAuthConfig {
+    private final String apiKey;
+    private final String apiSecret;
+    private final String callback;
+    private final OutputStream debugStream;
+    private final String scope;
+    private final SignatureType signatureType;
 
-        public OAuthConfig(String key, String secret, String callback, SignatureType type, String scope, OutputStream stream) {
-            this.apiKey = key;
-            this.apiSecret = secret;
-            this.callback = callback;
-            this.signatureType = type;
-            this.scope = scope;
-            this.debugStream = stream;
-                }
+    public OAuthConfig(String key, String secret) {
+        this(key, secret, null, null, null, null);
+    }
 
-        public String getApiKey() {
-            return this.apiKey;
-                }
+    public OAuthConfig(String key, String secret, String callback, SignatureType type, String scope, OutputStream stream) {
+        this.apiKey = key;
+        this.apiSecret = secret;
+        this.callback = callback;
+        this.signatureType = type;
+        this.scope = scope;
+        this.debugStream = stream;
+    }
 
-        public String getApiSecret() {
-            return this.apiSecret;
-                }
+    public String getApiKey() {
+        return this.apiKey;
+    }
 
-        public String getCallback() {
-            return this.callback;
-                }
+    public String getApiSecret() {
+        return this.apiSecret;
+    }
 
-        public SignatureType getSignatureType() {
-            return this.signatureType;
-                }
+    public String getCallback() {
+        return this.callback;
+    }
 
-        public String getScope() {
-            return this.scope;
-                }
+    public SignatureType getSignatureType() {
+        return this.signatureType;
+    }
 
-        public boolean hasScope() {
-                    return this.scope != null;
-                }
+    public String getScope() {
+        return this.scope;
+    }
 
-        public void log(String message) {
-            if (this.debugStream != null) {
-                        try {
-                    this.debugStream.write((message + IOUtils.LINE_SEPARATOR_UNIX).getBytes("UTF8"));
-                        } catch (Exception e) {
-                    throw new RuntimeException("there were problems while writting to the debug stream", e);
-                        }
-                    }
-                }
+    public boolean hasScope() {
+        return this.scope != null;
+    }
+
+    public void log(String message) {
+        if (this.debugStream != null) {
+            try {
+                this.debugStream.write((message + IOUtils.LINE_SEPARATOR_UNIX).getBytes("UTF8"));
+            } catch (Exception e) {
+                throw new RuntimeException("there were problems while writting to the debug stream", e);
             }
+        }
+    }
+}

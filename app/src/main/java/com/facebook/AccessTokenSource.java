@@ -1,22 +1,21 @@
-            package com.facebook;
-            
-            
-    public enum AccessTokenSource {
-                NONE(false),
-                FACEBOOK_APPLICATION_WEB(true),
-                FACEBOOK_APPLICATION_NATIVE(true),
-                FACEBOOK_APPLICATION_SERVICE(true),
-                WEB_VIEW(false),
-                TEST_USER(true),
-                CLIENT_TOKEN(true);
+package com.facebook;
 
-                private final boolean canExtendToken;
+public enum AccessTokenSource {
+    NONE(false),
+    FACEBOOK_APPLICATION_WEB(true),
+    FACEBOOK_APPLICATION_NATIVE(true),
+    FACEBOOK_APPLICATION_SERVICE(true),
+    WEB_VIEW(false),
+    TEST_USER(true),
+    CLIENT_TOKEN(true);
 
-        AccessTokenSource(boolean canExtendToken) {
-            this.canExtendToken = canExtendToken;
-                }
+    private final boolean canExtendToken;
 
-        boolean canExtendToken() {
-            return this.canExtendToken;
-                }
-            }
+    AccessTokenSource(boolean canExtendToken) {
+        this.canExtendToken = canExtendToken;
+    }
+
+    boolean canExtendToken() {
+        return this.canExtendToken;
+    }
+}

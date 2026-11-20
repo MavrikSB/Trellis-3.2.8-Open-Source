@@ -1,13 +1,12 @@
-            package com.google.ads.mediation.customevent;
-            
-            
-            @Deprecated
-            public interface CustomEventListener {
-                void onDismissScreen();
+package com.google.ads.mediation.customevent;
 
-                void onFailedToReceiveAd();
+@Deprecated
+public interface CustomEventListener {
+    void onDismissScreen();
 
-                void onLeaveApplication();
+    void onFailedToReceiveAd();
 
-                void onPresentScreen();
-            }
+    void onLeaveApplication();
+
+    void onPresentScreen();
+}

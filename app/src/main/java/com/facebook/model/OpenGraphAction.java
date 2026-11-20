@@ -1,68 +1,67 @@
-            package com.facebook.model;
+package com.facebook.model;
 
-            import java.util.Date;
-            import java.util.List;
-            import org.json.JSONObject;
-            
-            
-            public interface OpenGraphAction extends GraphObject {
-                GraphObject getApplication();
+import java.util.Date;
+import java.util.List;
+import org.json.JSONObject;
 
-                JSONObject getComments();
+public interface OpenGraphAction extends GraphObject {
+    GraphObject getApplication();
 
-                Date getCreatedTime();
+    JSONObject getComments();
 
-                Date getEndTime();
+    Date getCreatedTime();
 
-                Date getExpiresTime();
+    Date getEndTime();
 
-                GraphUser getFrom();
+    Date getExpiresTime();
 
-                String getId();
+    GraphUser getFrom();
 
-                List<JSONObject> getImage();
+    String getId();
 
-                JSONObject getLikes();
+    List<JSONObject> getImage();
 
-                String getMessage();
+    JSONObject getLikes();
 
-                GraphPlace getPlace();
+    String getMessage();
 
-                Date getPublishTime();
+    GraphPlace getPlace();
 
-                String getRef();
+    Date getPublishTime();
 
-                Date getStartTime();
+    String getRef();
 
-                List<GraphObject> getTags();
+    Date getStartTime();
 
-                void setApplication(GraphObject graphObject);
+    List<GraphObject> getTags();
 
-                void setComments(JSONObject jSONObject);
+    void setApplication(GraphObject graphObject);
 
-                void setCreatedTime(Date date);
+    void setComments(JSONObject jSONObject);
 
-                void setEndTime(Date date);
+    void setCreatedTime(Date date);
 
-                void setExpiresTime(Date date);
+    void setEndTime(Date date);
 
-                void setFrom(GraphUser graphUser);
+    void setExpiresTime(Date date);
 
-                void setId(String str);
+    void setFrom(GraphUser graphUser);
 
-                void setImage(List<JSONObject> list);
+    void setId(String str);
 
-                void setLikes(JSONObject jSONObject);
+    void setImage(List<JSONObject> list);
 
-                void setMessage(String str);
+    void setLikes(JSONObject jSONObject);
 
-                void setPlace(GraphPlace graphPlace);
+    void setMessage(String str);
 
-                void setPublishTime(Date date);
+    void setPlace(GraphPlace graphPlace);
 
-                void setRef(String str);
+    void setPublishTime(Date date);
 
-                void setStartTime(Date date);
+    void setRef(String str);
 
-                void setTags(List<? extends GraphObject> list);
-            }
+    void setStartTime(Date date);
+
+    void setTags(List<? extends GraphObject> list);
+}

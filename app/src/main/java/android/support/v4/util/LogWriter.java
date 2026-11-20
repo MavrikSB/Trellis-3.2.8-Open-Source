@@ -1,43 +1,42 @@
-            package android.support.v4.util;
+package android.support.v4.util;
 
-            import android.util.Log;
-            import java.io.Writer;
-            
-            
-    public class LogWriter extends Writer {
-                private StringBuilder mBuilder = new StringBuilder(128);
-                private final String mTag;
+import android.util.Log;
+import java.io.Writer;
 
-        public LogWriter(String tag) {
-            this.mTag = tag;
-                }
+public class LogWriter extends Writer {
+    private StringBuilder mBuilder = new StringBuilder(128);
+    private final String mTag;
 
-                @Override 
-        public void close() {
-            flushBuilder();
-                }
+    public LogWriter(String tag) {
+        this.mTag = tag;
+    }
 
-                @Override 
-        public void flush() {
-            flushBuilder();
-                }
+    @Override
+    public void close() {
+        flushBuilder();
+    }
 
-                @Override 
-        public void write(char[] buf, int offset, int count) {
-                    for (int i = 0; i < count; i++) {
-                char c = buf[offset + i];
-                if (c == '\n') {
-                    flushBuilder();
-                        } else {
-                    this.mBuilder.append(c);
-                        }
-                    }
-                }
+    @Override
+    public void flush() {
+        flushBuilder();
+    }
 
-        private void flushBuilder() {
-            if (this.mBuilder.length() > 0) {
-                Log.d(this.mTag, this.mBuilder.toString());
-                this.mBuilder.delete(0, this.mBuilder.length());
-                    }
-                }
+    @Override
+    public void write(char[] buf, int offset, int count) {
+        for (int i = 0; i < count; i++) {
+            char c = buf[offset + i];
+            if (c == '\n') {
+                flushBuilder();
+            } else {
+                this.mBuilder.append(c);
             }
+        }
+    }
+
+    private void flushBuilder() {
+        if (this.mBuilder.length() > 0) {
+            Log.d(this.mTag, this.mBuilder.toString());
+            this.mBuilder.delete(0, this.mBuilder.length());
+        }
+    }
+}

@@ -1,18 +1,17 @@
-            package android.support.v4.content;
+package android.support.v4.content;
 
-            import android.content.Context;
-            import java.io.File;
-            
-            
-    class ContextCompatFroyo {
-        ContextCompatFroyo() {
-                }
+import android.content.Context;
+import java.io.File;
 
-        public static File getExternalCacheDir(Context context) {
-            return context.getExternalCacheDir();
-                }
+class ContextCompatFroyo {
+    ContextCompatFroyo() {
+    }
 
-        public static File getExternalFilesDir(Context context, String type) {
-            return context.getExternalFilesDir(type);
-                }
-            }
+    public static File getExternalCacheDir(Context context) {
+        return context.getExternalCacheDir();
+    }
+
+    public static File getExternalFilesDir(Context context, String type) {
+        return context.getExternalFilesDir(type);
+    }
+}

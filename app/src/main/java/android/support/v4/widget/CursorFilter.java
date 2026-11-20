@@ -1,50 +1,49 @@
-            package android.support.v4.widget;
+package android.support.v4.widget;
 
-            import android.database.Cursor;
-            import android.widget.Filter;
-            
-            
-    class CursorFilter extends Filter {
-                CursorFilterClient mClient;
+import android.database.Cursor;
+import android.widget.Filter;
 
-                interface CursorFilterClient {
-                    void changeCursor(Cursor cursor);
+class CursorFilter extends Filter {
+    CursorFilterClient mClient;
 
-                    CharSequence convertToString(Cursor cursor);
+    interface CursorFilterClient {
+        void changeCursor(Cursor cursor);
 
-                    Cursor getCursor();
+        CharSequence convertToString(Cursor cursor);
 
-                    Cursor runQueryOnBackgroundThread(CharSequence charSequence);
-                }
+        Cursor getCursor();
 
-        CursorFilter(CursorFilterClient client) {
-            this.mClient = client;
-                }
+        Cursor runQueryOnBackgroundThread(CharSequence charSequence);
+    }
 
-                @Override 
-        public CharSequence convertResultToString(Object resultValue) {
-            return this.mClient.convertToString((Cursor) resultValue);
-                }
+    CursorFilter(CursorFilterClient client) {
+        this.mClient = client;
+    }
 
-                @Override 
-        protected Filter.FilterResults performFiltering(CharSequence constraint) {
-            Cursor cursor = this.mClient.runQueryOnBackgroundThread(constraint);
-            Filter.FilterResults results = new Filter.FilterResults();
-            if (cursor != null) {
-                results.count = cursor.getCount();
-                results.values = cursor;
-                    } else {
-                results.count = 0;
-                results.values = null;
-                    }
-            return results;
-                }
+    @Override
+    public CharSequence convertResultToString(Object resultValue) {
+        return this.mClient.convertToString((Cursor) resultValue);
+    }
 
-                @Override 
-        protected void publishResults(CharSequence constraint, Filter.FilterResults results) {
-            Cursor oldCursor = this.mClient.getCursor();
-            if (results.values != null && results.values != oldCursor) {
-                this.mClient.changeCursor((Cursor) results.values);
-                    }
-                }
-            }
+    @Override
+    protected Filter.FilterResults performFiltering(CharSequence constraint) {
+        Cursor cursor = this.mClient.runQueryOnBackgroundThread(constraint);
+        Filter.FilterResults results = new Filter.FilterResults();
+        if (cursor != null) {
+            results.count = cursor.getCount();
+            results.values = cursor;
+        } else {
+            results.count = 0;
+            results.values = null;
+        }
+        return results;
+    }
+
+    @Override
+    protected void publishResults(CharSequence constraint, Filter.FilterResults results) {
+        Cursor oldCursor = this.mClient.getCursor();
+        if (results.values != null && results.values != oldCursor) {
+            this.mClient.changeCursor((Cursor) results.values);
+        }
+    }
+}

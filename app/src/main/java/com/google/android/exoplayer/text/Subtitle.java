@@ -1,16 +1,15 @@
-            package com.google.android.exoplayer.text;
-            
-            
-            public interface Subtitle {
-                long getEventTime(int i);
+package com.google.android.exoplayer.text;
 
-                int getEventTimeCount();
+public interface Subtitle {
+    long getEventTime(int i);
 
-                long getLastEventTime();
+    int getEventTimeCount();
 
-                int getNextEventTimeIndex(long j);
+    long getLastEventTime();
 
-                long getStartTime();
+    int getNextEventTimeIndex(long j);
 
-                String getText(long j);
-            }
+    long getStartTime();
+
+    String getText(long j);
+}

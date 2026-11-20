@@ -1,24 +1,23 @@
-            package com.facebook;
-            
-            
-    public enum SessionLoginBehavior {
-                SSO_WITH_FALLBACK(true, true),
-                SSO_ONLY(true, false),
-                SUPPRESS_SSO(false, true);
+package com.facebook;
 
-                private final boolean allowsKatanaAuth;
-                private final boolean allowsWebViewAuth;
+public enum SessionLoginBehavior {
+    SSO_WITH_FALLBACK(true, true),
+    SSO_ONLY(true, false),
+    SUPPRESS_SSO(false, true);
 
-        SessionLoginBehavior(boolean allowsKatanaAuth, boolean allowsWebViewAuth) {
-            this.allowsKatanaAuth = allowsKatanaAuth;
-            this.allowsWebViewAuth = allowsWebViewAuth;
-                }
+    private final boolean allowsKatanaAuth;
+    private final boolean allowsWebViewAuth;
 
-        boolean allowsKatanaAuth() {
-            return this.allowsKatanaAuth;
-                }
+    SessionLoginBehavior(boolean allowsKatanaAuth, boolean allowsWebViewAuth) {
+        this.allowsKatanaAuth = allowsKatanaAuth;
+        this.allowsWebViewAuth = allowsWebViewAuth;
+    }
 
-        boolean allowsWebViewAuth() {
-            return this.allowsWebViewAuth;
-                }
-            }
+    boolean allowsKatanaAuth() {
+        return this.allowsKatanaAuth;
+    }
+
+    boolean allowsWebViewAuth() {
+        return this.allowsWebViewAuth;
+    }
+}

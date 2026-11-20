@@ -1,52 +1,47 @@
-            package twitter4j.internal.http;
+package twitter4j.internal.http;
 
-            import java.io.Serializable;
-            import twitter4j.auth.Authorization;
-            import twitter4j.auth.BasicAuthorization;
-            
-            
-    public class XAuthAuthorization implements Authorization, Serializable {
-                private static final long serialVersionUID = -6082451214083464902L;
-                private BasicAuthorization basic;
-                private String consumerKey;
-                private String consumerSecret;
+import java.io.Serializable;
+import twitter4j.auth.Authorization;
+import twitter4j.auth.BasicAuthorization;
 
-        public XAuthAuthorization(BasicAuthorization basic) {
-            this.basic = basic;
-                }
+public class XAuthAuthorization implements Authorization, Serializable {
+    private static final long serialVersionUID = -6082451214083464902L;
+    private BasicAuthorization basic;
+    private String consumerKey;
+    private String consumerSecret;
 
-                @Override 
-        public String getAuthorizationHeader(HttpRequest req) {
-            return this.basic.getAuthorizationHeader(req);
-                }
+    public XAuthAuthorization(BasicAuthorization basic) {
+        this.basic = basic;
+    }
 
-        public String getUserId() {
-            return this.basic.getUserId();
-                }
+    @Override
+    public String getAuthorizationHeader(HttpRequest req) {
+        return this.basic.getAuthorizationHeader(req);
+    }
 
-        public String getPassword() {
-            return this.basic.getPassword();
-                }
+    public String getUserId() {
+        return this.basic.getUserId();
+    }
 
-        public String getConsumerKey() {
-            return this.consumerKey;
-                }
+    public String getPassword() {
+        return this.basic.getPassword();
+    }
 
-        public String getConsumerSecret() {
-            return this.consumerSecret;
-                }
+    public String getConsumerKey() {
+        return this.consumerKey;
+    }
 
-        public synchronized void setOAuthConsumer(String consumerKey, String consumerSecret) {
-                    try {
-                        this.consumerKey = consumerKey;
-                this.consumerSecret = consumerSecret;
-                    } catch (Throwable th) {
-                        throw th;
-                    }
-                }
+    public String getConsumerSecret() {
+        return this.consumerSecret;
+    }
 
-                @Override 
-        public boolean isEnabled() {
-            return this.basic.isEnabled();
-                }
-            }
+    public synchronized void setOAuthConsumer(String consumerKey, String consumerSecret) {
+        this.consumerKey = consumerKey;
+        this.consumerSecret = consumerSecret;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.basic.isEnabled();
+    }
+}

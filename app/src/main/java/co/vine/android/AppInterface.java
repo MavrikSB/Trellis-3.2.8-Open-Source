@@ -1,37 +1,36 @@
-            package co.vine.android;
+package co.vine.android;
 
-            import android.accounts.Account;
-            import android.accounts.AccountManager;
-            import android.app.Activity;
-            import android.content.Context;
-            import android.content.Intent;
-            import org.json.JSONObject;
-            
-            
-            public interface AppInterface {
-                void appendDebugInfo(Context context, StringBuilder sb, boolean z);
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import org.json.JSONObject;
 
-                void clearUploadCaptchas(Context context);
+public interface AppInterface {
+    void appendDebugInfo(Context context, StringBuilder sb, boolean z);
 
-                boolean doAddWidget(Context context, AccountManager accountManager, Account account);
+    void clearUploadCaptchas(Context context);
 
-                Intent getClearNotificationsIntent(Context context);
+    boolean doAddWidget(Context context, AccountManager accountManager, Account account);
 
-                Intent getDiscardAllIntent(Context context);
+    Intent getClearNotificationsIntent(Context context);
 
-                Intent getNotifyFailedIntent(Context context);
+    Intent getDiscardAllIntent(Context context);
 
-                Intent getRecordingIntent(Activity activity, int i, String str);
+    Intent getNotifyFailedIntent(Context context);
 
-                void setupWidget(Activity activity);
+    Intent getRecordingIntent(Activity activity, int i, String str);
 
-                void startCameraService(Activity activity);
+    void setupWidget(Activity activity);
 
-                void startCapture(Activity activity);
+    void startCameraService(Activity activity);
 
-                void startConversationActivity(Activity activity, long j, String str, long j2, boolean z, boolean z2);
+    void startCapture(Activity activity);
 
-                void startUploadsListActivity(Activity activity);
+    void startConversationActivity(Activity activity, long j, String str, long j2, boolean z, boolean z2);
 
-                void updateRecordConfigs(Context context, JSONObject jSONObject);
-            }
+    void startUploadsListActivity(Activity activity);
+
+    void updateRecordConfigs(Context context, JSONObject jSONObject);
+}

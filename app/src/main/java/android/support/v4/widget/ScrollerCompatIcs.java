@@ -1,13 +1,12 @@
-            package android.support.v4.widget;
+package android.support.v4.widget;
 
-            import android.widget.OverScroller;
-            
-            
-    class ScrollerCompatIcs {
-        ScrollerCompatIcs() {
-                }
+import android.widget.OverScroller;
 
-        public static float getCurrVelocity(Object scroller) {
-            return ((OverScroller) scroller).getCurrVelocity();
-                }
-            }
+class ScrollerCompatIcs {
+    ScrollerCompatIcs() {
+    }
+
+    public static float getCurrVelocity(Object scroller) {
+        return ((OverScroller) scroller).getCurrVelocity();
+    }
+}

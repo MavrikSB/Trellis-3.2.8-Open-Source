@@ -1,64 +1,62 @@
-            package co.vine.android.recorder;
+package co.vine.android.recorder;
 
-            import android.app.Activity;
-            import android.hardware.Camera;
-            import co.vine.android.recorder.audio.AudioArray;
-            import co.vine.android.recorder.audio.AudioReceiver;
-            import co.vine.android.recorder.camera.CameraSetting;
-            import co.vine.android.recorder.camera.PreviewManagerCallback;
-            import co.vine.android.util.MediaUtil;
-            import java.util.ArrayList;
-            
-            
-            public interface RecordProcessor {
+import android.app.Activity;
+import android.hardware.Camera;
+import co.vine.android.recorder.audio.AudioArray;
+import co.vine.android.recorder.audio.AudioReceiver;
+import co.vine.android.recorder.camera.CameraSetting;
+import co.vine.android.recorder.camera.PreviewManagerCallback;
+import co.vine.android.util.MediaUtil;
+import java.util.ArrayList;
 
-                public interface ProcessingErrorHandler {
-                    void onNotEnoughSpaceLeft(Exception exc);
-                }
+public interface RecordProcessor {
+    public interface ProcessingErrorHandler {
+        void onNotEnoughSpaceLeft(Exception exc);
+    }
 
-                void finishLastIfNeeded();
+    void finishLastIfNeeded();
 
-                Camera.PreviewCallback getCameraPreviewCallback();
+    Camera.PreviewCallback getCameraPreviewCallback();
 
-                BaseFinishProcessTask getFinishProcessTask();
+    BaseFinishProcessTask getFinishProcessTask();
 
-                PreviewManagerCallback getPreviewManagerCallback();
+    PreviewManagerCallback getPreviewManagerCallback();
 
-                SurfaceController.SurfaceListener getSurfaceListener(RecordController recordController);
+    SurfaceController.SurfaceListener getSurfaceListener(RecordController recordController);
 
-                void makePreview(RecordingFile recordingFile, RecordSegment recordSegment, boolean z, boolean z2);
+    void makePreview(RecordingFile recordingFile, RecordSegment recordSegment, boolean z, boolean z2);
 
-                void onEndRelativeTime(RecordSegment recordSegment);
+    void onEndRelativeTime(RecordSegment recordSegment);
 
-                void onExternalClipAdded(int i);
+    void onExternalClipAdded(int i);
 
-                void onNewSegmentStart();
+    void onNewSegmentStart();
 
-                void onSessionTimestampChanged(RecordSession recordSession);
+    void onSessionTimestampChanged(RecordSession recordSession);
 
-                void onStopped(boolean z);
+    void onStopped(boolean z);
 
-                AudioReceiver prepareAudioReceiver(RecordSession recordSession);
+    AudioReceiver prepareAudioReceiver(RecordSession recordSession);
 
-                void prepareImageReceiver(RecordSession recordSession);
+    void prepareImageReceiver(RecordSession recordSession);
 
-                void releaseResources();
+    void releaseResources();
 
-                void setAudioTrim(boolean z);
+    void setAudioTrim(boolean z);
 
-                void setFinishProcessTask(BaseFinishProcessTask baseFinishProcessTask);
+    void setFinishProcessTask(BaseFinishProcessTask baseFinishProcessTask);
 
-                void setVideoTimeStampUs(long j);
+    void setVideoTimeStampUs(long j);
 
-                boolean start(BasicVineRecorder basicVineRecorder, String str, Activity activity, CameraSetting cameraSetting, ProcessingErrorHandler processingErrorHandler);
+    boolean start(BasicVineRecorder basicVineRecorder, String str, Activity activity, CameraSetting cameraSetting, ProcessingErrorHandler processingErrorHandler);
 
-                MediaUtil.GenerateThumbnailsRunnable stop();
+    MediaUtil.GenerateThumbnailsRunnable stop();
 
-                void stopProcessing();
+    void stopProcessing();
 
-                void swapSession(RecordSession recordSession);
+    void swapSession(RecordSession recordSession);
 
-                boolean wasProcessing();
+    boolean wasProcessing();
 
-                MediaUtil.GenerateThumbnailsRunnable writeToFile(RecordingFile recordingFile, ArrayList<RecordSegment> arrayList, byte[] bArr, AudioArray audioArray, boolean z);
-            }
+    MediaUtil.GenerateThumbnailsRunnable writeToFile(RecordingFile recordingFile, ArrayList<RecordSegment> arrayList, byte[] bArr, AudioArray audioArray, boolean z);
+}

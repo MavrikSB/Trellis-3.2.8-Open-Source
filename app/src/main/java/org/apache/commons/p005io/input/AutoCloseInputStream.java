@@ -1,29 +1,28 @@
-            package org.apache.commons.p005io.input;
+package org.apache.commons.p005io.input;
 
-            import java.io.IOException;
-            import java.io.InputStream;
-            
-            
-    public class AutoCloseInputStream extends ProxyInputStream {
-        public AutoCloseInputStream(InputStream in) {
-            super(in);
-                }
+import java.io.IOException;
+import java.io.InputStream;
 
-                @Override 
-        public void close() throws IOException {
-            this.in.close();
-            this.in = new ClosedInputStream();
-                }
+public class AutoCloseInputStream extends ProxyInputStream {
+    public AutoCloseInputStream(InputStream in) {
+        super(in);
+    }
 
-                @Override 
-        protected void afterRead(int n) throws IOException {
-            if (n == -1) {
-                close();
-                    }
-                }
+    @Override
+    public void close() throws IOException {
+        this.in.close();
+        this.in = new ClosedInputStream();
+    }
 
-        protected void finalize() throws Throwable {
+    @Override
+    protected void afterRead(int n) throws IOException {
+        if (n == -1) {
             close();
-            super.finalize();
-                }
-            }
+        }
+    }
+
+    protected void finalize() throws Throwable {
+        close();
+        super.finalize();
+    }
+}

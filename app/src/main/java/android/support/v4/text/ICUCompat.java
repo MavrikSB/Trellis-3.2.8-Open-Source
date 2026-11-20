@@ -1,61 +1,60 @@
-            package android.support.v4.text;
+package android.support.v4.text;
 
-            import android.os.Build;
-            
-            
-    public class ICUCompat {
-                private static final ICUCompatImpl IMPL;
+import android.os.Build;
 
-                interface ICUCompatImpl {
-                    String addLikelySubtags(String str);
+public class ICUCompat {
+    private static final ICUCompatImpl IMPL;
 
-                    String getScript(String str);
-                }
+    interface ICUCompatImpl {
+        String addLikelySubtags(String str);
 
-        static class ICUCompatImplBase implements ICUCompatImpl {
-            ICUCompatImplBase() {
-                    }
+        String getScript(String str);
+    }
 
-                    @Override 
-            public String getScript(String locale) {
-                return null;
-                    }
+    static class ICUCompatImplBase implements ICUCompatImpl {
+        ICUCompatImplBase() {
+        }
 
-                    @Override 
-            public String addLikelySubtags(String locale) {
-                return locale;
-                    }
-                }
+        @Override
+        public String getScript(String locale) {
+            return null;
+        }
 
-        static class ICUCompatImplIcs implements ICUCompatImpl {
-            ICUCompatImplIcs() {
-                    }
+        @Override
+        public String addLikelySubtags(String locale) {
+            return locale;
+        }
+    }
 
-                    @Override 
-            public String getScript(String locale) {
-                return ICUCompatIcs.getScript(locale);
-                    }
+    static class ICUCompatImplIcs implements ICUCompatImpl {
+        ICUCompatImplIcs() {
+        }
 
-                    @Override 
-            public String addLikelySubtags(String locale) {
-                return ICUCompatIcs.addLikelySubtags(locale);
-                    }
-                }
+        @Override
+        public String getScript(String locale) {
+            return ICUCompatIcs.getScript(locale);
+        }
 
-                static {
-            int version = Build.VERSION.SDK_INT;
-            if (version >= 14) {
-                IMPL = new ICUCompatImplIcs();
-                    } else {
-                IMPL = new ICUCompatImplBase();
-                    }
-                }
+        @Override
+        public String addLikelySubtags(String locale) {
+            return ICUCompatIcs.addLikelySubtags(locale);
+        }
+    }
 
-        public static String getScript(String locale) {
-            return IMPL.getScript(locale);
-                }
+    static {
+        int version = Build.VERSION.SDK_INT;
+        if (version >= 14) {
+            IMPL = new ICUCompatImplIcs();
+        } else {
+            IMPL = new ICUCompatImplBase();
+        }
+    }
 
-        public static String addLikelySubtags(String locale) {
-            return IMPL.addLikelySubtags(locale);
-                }
-            }
+    public static String getScript(String locale) {
+        return IMPL.getScript(locale);
+    }
+
+    public static String addLikelySubtags(String locale) {
+        return IMPL.addLikelySubtags(locale);
+    }
+}

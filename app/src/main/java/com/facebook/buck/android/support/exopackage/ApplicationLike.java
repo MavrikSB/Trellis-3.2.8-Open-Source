@@ -1,16 +1,15 @@
-            package com.facebook.buck.android.support.exopackage;
+package com.facebook.buck.android.support.exopackage;
 
-            import android.content.res.Configuration;
-            
-            
-            public interface ApplicationLike {
-                void onConfigurationChanged(Configuration configuration);
+import android.content.res.Configuration;
 
-                void onCreate();
+public interface ApplicationLike {
+    void onConfigurationChanged(Configuration configuration);
 
-                void onLowMemory();
+    void onCreate();
 
-                void onTerminate();
+    void onLowMemory();
 
-                void onTrimMemory(int i);
-            }
+    void onTerminate();
+
+    void onTrimMemory(int i);
+}

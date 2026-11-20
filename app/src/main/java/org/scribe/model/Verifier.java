@@ -1,17 +1,16 @@
-            package org.scribe.model;
+package org.scribe.model;
 
-            import org.scribe.utils.Preconditions;
-            
-            
-    public class Verifier {
-                private final String value;
+import org.scribe.utils.Preconditions;
 
-        public Verifier(String value) {
-            Preconditions.checkNotNull(value, "Must provide a valid string as verifier");
-            this.value = value;
-                }
+public class Verifier {
+    private final String value;
 
-        public String getValue() {
-            return this.value;
-                }
-            }
+    public Verifier(String value) {
+        Preconditions.checkNotNull(value, "Must provide a valid string as verifier");
+        this.value = value;
+    }
+
+    public String getValue() {
+        return this.value;
+    }
+}

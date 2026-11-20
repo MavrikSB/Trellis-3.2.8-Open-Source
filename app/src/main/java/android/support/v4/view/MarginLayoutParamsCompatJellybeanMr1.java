@@ -1,41 +1,40 @@
-            package android.support.v4.view;
+package android.support.v4.view;
 
-            import android.view.ViewGroup;
-            
-            
-    class MarginLayoutParamsCompatJellybeanMr1 {
-        MarginLayoutParamsCompatJellybeanMr1() {
-                }
+import android.view.ViewGroup;
 
-        public static int getMarginStart(ViewGroup.MarginLayoutParams lp) {
-            return lp.getMarginStart();
-                }
+class MarginLayoutParamsCompatJellybeanMr1 {
+    MarginLayoutParamsCompatJellybeanMr1() {
+    }
 
-        public static int getMarginEnd(ViewGroup.MarginLayoutParams lp) {
-            return lp.getMarginEnd();
-                }
+    public static int getMarginStart(ViewGroup.MarginLayoutParams lp) {
+        return lp.getMarginStart();
+    }
 
-        public static void setMarginStart(ViewGroup.MarginLayoutParams lp, int marginStart) {
-            lp.setMarginStart(marginStart);
-                }
+    public static int getMarginEnd(ViewGroup.MarginLayoutParams lp) {
+        return lp.getMarginEnd();
+    }
 
-        public static void setMarginEnd(ViewGroup.MarginLayoutParams lp, int marginEnd) {
-            lp.setMarginEnd(marginEnd);
-                }
+    public static void setMarginStart(ViewGroup.MarginLayoutParams lp, int marginStart) {
+        lp.setMarginStart(marginStart);
+    }
 
-        public static boolean isMarginRelative(ViewGroup.MarginLayoutParams lp) {
-            return lp.isMarginRelative();
-                }
+    public static void setMarginEnd(ViewGroup.MarginLayoutParams lp, int marginEnd) {
+        lp.setMarginEnd(marginEnd);
+    }
 
-        public static int getLayoutDirection(ViewGroup.MarginLayoutParams lp) {
-            return lp.getLayoutDirection();
-                }
+    public static boolean isMarginRelative(ViewGroup.MarginLayoutParams lp) {
+        return lp.isMarginRelative();
+    }
 
-        public static void setLayoutDirection(ViewGroup.MarginLayoutParams lp, int layoutDirection) {
-            lp.setLayoutDirection(layoutDirection);
-                }
+    public static int getLayoutDirection(ViewGroup.MarginLayoutParams lp) {
+        return lp.getLayoutDirection();
+    }
 
-        public static void resolveLayoutDirection(ViewGroup.MarginLayoutParams lp, int layoutDirection) {
-            lp.resolveLayoutDirection(layoutDirection);
-                }
-            }
+    public static void setLayoutDirection(ViewGroup.MarginLayoutParams lp, int layoutDirection) {
+        lp.setLayoutDirection(layoutDirection);
+    }
+
+    public static void resolveLayoutDirection(ViewGroup.MarginLayoutParams lp, int layoutDirection) {
+        lp.resolveLayoutDirection(layoutDirection);
+    }
+}

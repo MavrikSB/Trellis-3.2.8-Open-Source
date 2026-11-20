@@ -1,32 +1,31 @@
-            package com.google.android.exoplayer;
+package com.google.android.exoplayer;
 
-            import java.io.IOException;
-            
-            
-            public interface SampleSource {
-                public static final int DISCONTINUITY_READ = -5;
-                public static final int END_OF_STREAM = -1;
-                public static final int FORMAT_READ = -4;
-                public static final int NOTHING_READ = -2;
-                public static final int SAMPLE_READ = -3;
+import java.io.IOException;
 
-                boolean continueBuffering(long j) throws IOException;
+public interface SampleSource {
+    public static final int DISCONTINUITY_READ = -5;
+    public static final int END_OF_STREAM = -1;
+    public static final int FORMAT_READ = -4;
+    public static final int NOTHING_READ = -2;
+    public static final int SAMPLE_READ = -3;
 
-                void disable(int i);
+    boolean continueBuffering(long j) throws IOException;
 
-                void enable(int i, long j);
+    void disable(int i);
 
-                long getBufferedPositionUs();
+    void enable(int i, long j);
 
-                int getTrackCount();
+    long getBufferedPositionUs();
 
-                TrackInfo getTrackInfo(int i);
+    int getTrackCount();
 
-                boolean prepare() throws IOException;
+    TrackInfo getTrackInfo(int i);
 
-                int readData(int i, long j, MediaFormatHolder mediaFormatHolder, SampleHolder sampleHolder, boolean z) throws IOException;
+    boolean prepare() throws IOException;
 
-                void release();
+    int readData(int i, long j, MediaFormatHolder mediaFormatHolder, SampleHolder sampleHolder, boolean z) throws IOException;
 
-                void seekToUs(long j);
-            }
+    void release();
+
+    void seekToUs(long j);
+}

@@ -1,70 +1,68 @@
-            package co.vine.android.player;
+package co.vine.android.player;
 
-            import android.content.Context;
-            import co.vine.android.cache.CacheKey;
-            
-            
-            public interface VideoViewInterface {
+import android.content.Context;
+import co.vine.android.cache.CacheKey;
 
-                public interface OnCompletionListener {
-                    void onCompletion(VideoViewInterface videoViewInterface);
-                }
+public interface VideoViewInterface {
+    public interface OnCompletionListener {
+        void onCompletion(VideoViewInterface videoViewInterface);
+    }
 
-                public interface OnErrorListener {
-                    boolean onError(VideoViewInterface videoViewInterface, int i, int i2);
-                }
+    public interface OnErrorListener {
+        boolean onError(VideoViewInterface videoViewInterface, int i, int i2);
+    }
 
-                public interface OnPreparedListener {
-                    void onPrepared(VideoViewInterface videoViewInterface);
-                }
+    public interface OnPreparedListener {
+        void onPrepared(VideoViewInterface videoViewInterface);
+    }
 
-                CacheKey getCacheKey();
+    CacheKey getCacheKey();
 
-                Context getContext();
+    Context getContext();
 
-                int getCurrentPosition();
+    int getCurrentPosition();
 
-                int getDuration();
+    int getDuration();
 
-                int getPlayingPosition();
+    int getPlayingPosition();
 
-                Object getTag();
+    Object getTag();
 
-                boolean hasStarted();
+    boolean hasStarted();
 
-                boolean isInPlaybackState();
+    boolean isInPlaybackState();
 
-                boolean isPaused();
+    boolean isPaused();
 
-                boolean isPlaying();
+    boolean isPlaying();
 
-                void pause();
+    void pause();
 
-                void resume();
+    void resume();
 
-                void seekTo(int i);
+    void seekTo(int i);
 
-                void setAutoPlayOnPrepared(boolean z);
+    void setAutoPlayOnPrepared(boolean z);
 
-                void setCacheKey(CacheKey cacheKey);
+    void setCacheKey(CacheKey cacheKey);
 
-                void setKeepScreenOn(boolean z);
+    void setKeepScreenOn(boolean z);
 
-                void setLooping(boolean z);
+    void setLooping(boolean z);
 
-                void setOnCompletionListener(OnCompletionListener onCompletionListener);
+    void setOnCompletionListener(OnCompletionListener onCompletionListener);
 
-                void setOnErrorListener(OnErrorListener onErrorListener);
+    void setOnErrorListener(OnErrorListener onErrorListener);
 
-                void setOnPreparedListener(OnPreparedListener onPreparedListener);
+    void setOnPreparedListener(OnPreparedListener onPreparedListener);
 
-                void setVideoPath(String str);
+    void setVideoPath(String str);
 
-                void setVideoPathDirect(String str);
+    void setVideoPathDirect(String str);
 
-                void start();
+    void start();
 
-                void stopPlayback();
+    void stopPlayback();
 
-                void suspend();
-            }
+    void suspend();
+}

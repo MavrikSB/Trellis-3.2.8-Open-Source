@@ -1,134 +1,133 @@
-            package twitter4j.conf;
+package twitter4j.conf;
 
-            import java.io.Serializable;
-            import java.util.Map;
-            import java.util.Properties;
-            import twitter4j.auth.AuthorizationConfiguration;
-            import twitter4j.internal.http.HttpClientConfiguration;
-            import twitter4j.internal.http.HttpClientWrapperConfiguration;
-            
-            
-            public interface Configuration extends HttpClientConfiguration, HttpClientWrapperConfiguration, AuthorizationConfiguration, Serializable {
-                int getAsyncNumThreads();
+import java.io.Serializable;
+import java.util.Map;
+import java.util.Properties;
+import twitter4j.auth.AuthorizationConfiguration;
+import twitter4j.internal.http.HttpClientConfiguration;
+import twitter4j.internal.http.HttpClientWrapperConfiguration;
 
-                String getClientURL();
+public interface Configuration extends HttpClientConfiguration, HttpClientWrapperConfiguration, AuthorizationConfiguration, Serializable {
+    int getAsyncNumThreads();
 
-                String getClientVersion();
+    String getClientURL();
 
-                long getContributingTo();
+    String getClientVersion();
 
-                String getDispatcherImpl();
+    long getContributingTo();
 
-                @Override 
-                int getHttpConnectionTimeout();
+    String getDispatcherImpl();
 
-                @Override 
-                int getHttpDefaultMaxPerRoute();
+    @Override
+    int getHttpConnectionTimeout();
 
-                @Override 
-                int getHttpMaxTotalConnections();
+    @Override
+    int getHttpDefaultMaxPerRoute();
 
-                @Override 
-                String getHttpProxyHost();
+    @Override
+    int getHttpMaxTotalConnections();
 
-                @Override 
-                String getHttpProxyPassword();
+    @Override
+    String getHttpProxyHost();
 
-                @Override 
-                int getHttpProxyPort();
+    @Override
+    String getHttpProxyPassword();
 
-                @Override 
-                String getHttpProxyUser();
+    @Override
+    int getHttpProxyPort();
 
-                @Override 
-                int getHttpReadTimeout();
+    @Override
+    String getHttpProxyUser();
 
-                @Override 
-                int getHttpRetryCount();
+    @Override
+    int getHttpReadTimeout();
 
-                @Override 
-                int getHttpRetryIntervalSeconds();
+    @Override
+    int getHttpRetryCount();
 
-                int getHttpStreamingReadTimeout();
+    @Override
+    int getHttpRetryIntervalSeconds();
 
-                String getLoggerFactory();
+    int getHttpStreamingReadTimeout();
 
-                String getMediaProvider();
+    String getLoggerFactory();
 
-                String getMediaProviderAPIKey();
+    String getMediaProvider();
 
-                Properties getMediaProviderParameters();
+    String getMediaProviderAPIKey();
 
-                @Override 
-                String getOAuth2AccessToken();
+    Properties getMediaProviderParameters();
 
-                String getOAuth2InvalidateTokenURL();
+    @Override
+    String getOAuth2AccessToken();
 
-                @Override 
-                String getOAuth2TokenType();
+    String getOAuth2InvalidateTokenURL();
 
-                String getOAuth2TokenURL();
+    @Override
+    String getOAuth2TokenType();
 
-                @Override 
-                String getOAuthAccessToken();
+    String getOAuth2TokenURL();
 
-                @Override 
-                String getOAuthAccessTokenSecret();
+    @Override
+    String getOAuthAccessToken();
 
-                String getOAuthAccessTokenURL();
+    @Override
+    String getOAuthAccessTokenSecret();
 
-                String getOAuthAuthenticationURL();
+    String getOAuthAccessTokenURL();
 
-                String getOAuthAuthorizationURL();
+    String getOAuthAuthenticationURL();
 
-                @Override 
-                String getOAuthConsumerKey();
+    String getOAuthAuthorizationURL();
 
-                @Override 
-                String getOAuthConsumerSecret();
+    @Override
+    String getOAuthConsumerKey();
 
-                String getOAuthRequestTokenURL();
+    @Override
+    String getOAuthConsumerSecret();
 
-                @Override 
-                String getPassword();
+    String getOAuthRequestTokenURL();
 
-                @Override 
-                Map<String, String> getRequestHeaders();
+    @Override
+    String getPassword();
 
-                String getRestBaseURL();
+    @Override
+    Map<String, String> getRequestHeaders();
 
-                String getSiteStreamBaseURL();
+    String getRestBaseURL();
 
-                String getStreamBaseURL();
+    String getSiteStreamBaseURL();
 
-                @Override 
-                String getUser();
+    String getStreamBaseURL();
 
-                String getUserAgent();
+    @Override
+    String getUser();
 
-                String getUserStreamBaseURL();
+    String getUserAgent();
 
-                boolean isApplicationOnlyAuthEnabled();
+    String getUserStreamBaseURL();
 
-                boolean isDalvik();
+    boolean isApplicationOnlyAuthEnabled();
 
-                boolean isDebugEnabled();
+    boolean isDalvik();
 
-                boolean isGAE();
+    boolean isDebugEnabled();
 
-                boolean isIncludeEntitiesEnabled();
+    boolean isGAE();
 
-                boolean isIncludeMyRetweetEnabled();
+    boolean isIncludeEntitiesEnabled();
 
-                boolean isIncludeRTsEnabled();
+    boolean isIncludeMyRetweetEnabled();
 
-                boolean isJSONStoreEnabled();
+    boolean isIncludeRTsEnabled();
 
-                boolean isMBeanEnabled();
+    boolean isJSONStoreEnabled();
 
-                boolean isStallWarningsEnabled();
+    boolean isMBeanEnabled();
 
-                boolean isTrimUserEnabled();
+    boolean isStallWarningsEnabled();
 
-                boolean isUserStreamRepliesAllEnabled();
-            }
+    boolean isTrimUserEnabled();
+
+    boolean isUserStreamRepliesAllEnabled();
+}

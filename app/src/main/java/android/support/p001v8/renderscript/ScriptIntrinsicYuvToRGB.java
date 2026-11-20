@@ -1,35 +1,34 @@
-            package android.support.p001v8.renderscript;
-            
-            
-    public class ScriptIntrinsicYuvToRGB extends ScriptIntrinsic {
-                private Allocation mInput;
+package android.support.p001v8.renderscript;
 
-        ScriptIntrinsicYuvToRGB(int id, RenderScript rs) {
-            super(id, rs);
-                }
+public class ScriptIntrinsicYuvToRGB extends ScriptIntrinsic {
+    private Allocation mInput;
 
-        public static ScriptIntrinsicYuvToRGB create(RenderScript rs, Element e) {
-            if (RenderScript.isNative) {
-                return ScriptIntrinsicYuvToRGBThunker.create(rs, e);
-                    }
-            int id = rs.nScriptIntrinsicCreate(6, e.getID(rs));
-            return new ScriptIntrinsicYuvToRGB(id, rs);
-                }
+    ScriptIntrinsicYuvToRGB(int id, RenderScript rs) {
+        super(id, rs);
+    }
 
-        public void setInput(Allocation ain) {
-            this.mInput = ain;
-            setVar(0, ain);
-                }
+    public static ScriptIntrinsicYuvToRGB create(RenderScript rs, Element e) {
+        if (RenderScript.isNative) {
+            return ScriptIntrinsicYuvToRGBThunker.create(rs, e);
+        }
+        int id = rs.nScriptIntrinsicCreate(6, e.getID(rs));
+        return new ScriptIntrinsicYuvToRGB(id, rs);
+    }
 
-        public void forEach(Allocation aout) {
-            forEach(0, null, aout, null);
-                }
+    public void setInput(Allocation ain) {
+        this.mInput = ain;
+        setVar(0, ain);
+    }
 
-        public Script.KernelID getKernelID() {
-            return createKernelID(0, 2, null, null);
-                }
+    public void forEach(Allocation aout) {
+        forEach(0, null, aout, null);
+    }
 
-        public Script.FieldID getFieldID_Input() {
-            return createFieldID(0, null);
-                }
-            }
+    public Script.KernelID getKernelID() {
+        return createKernelID(0, 2, null, null);
+    }
+
+    public Script.FieldID getFieldID_Input() {
+        return createFieldID(0, null);
+    }
+}

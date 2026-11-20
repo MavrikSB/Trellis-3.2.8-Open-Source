@@ -1,38 +1,37 @@
-            package org.apache.commons.p005io.monitor;
+package org.apache.commons.p005io.monitor;
 
-            import java.io.File;
-            
-            
-    public class FileAlterationListenerAdaptor implements FileAlterationListener {
-                @Override 
-        public void onStart(FileAlterationObserver observer) {
-                }
+import java.io.File;
 
-                @Override 
-        public void onDirectoryCreate(File directory) {
-                }
+public class FileAlterationListenerAdaptor implements FileAlterationListener {
+    @Override
+    public void onStart(FileAlterationObserver observer) {
+    }
 
-                @Override 
-        public void onDirectoryChange(File directory) {
-                }
+    @Override
+    public void onDirectoryCreate(File directory) {
+    }
 
-                @Override 
-        public void onDirectoryDelete(File directory) {
-                }
+    @Override
+    public void onDirectoryChange(File directory) {
+    }
 
-                @Override 
-        public void onFileCreate(File file) {
-                }
+    @Override
+    public void onDirectoryDelete(File directory) {
+    }
 
-                @Override 
-        public void onFileChange(File file) {
-                }
+    @Override
+    public void onFileCreate(File file) {
+    }
 
-                @Override 
-        public void onFileDelete(File file) {
-                }
+    @Override
+    public void onFileChange(File file) {
+    }
 
-                @Override 
-        public void onStop(FileAlterationObserver observer) {
-                }
-            }
+    @Override
+    public void onFileDelete(File file) {
+    }
+
+    @Override
+    public void onStop(FileAlterationObserver observer) {
+    }
+}

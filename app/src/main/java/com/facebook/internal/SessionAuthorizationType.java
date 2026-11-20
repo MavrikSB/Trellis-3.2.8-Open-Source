@@ -1,7 +1,6 @@
-            package com.facebook.internal;
-            
-            
-            public enum SessionAuthorizationType {
-                READ,
-                PUBLISH
-            }
+package com.facebook.internal;
+
+public enum SessionAuthorizationType {
+    READ,
+    PUBLISH
+        }

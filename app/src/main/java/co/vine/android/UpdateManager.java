@@ -37,13 +37,7 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
-
-
-
-
 public final class UpdateManager {
-
     public interface UpdateCallback {
         void onResult(UpdateInfo info);
 
@@ -97,7 +91,6 @@ public final class UpdateManager {
         }
     }
 
-    
     public static int currentBuild(Context context) {
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
@@ -108,7 +101,6 @@ public final class UpdateManager {
         }
     }
 
-    
     public static void checkOnStartup(final Activity activity) {
         cleanupFinishedDownload(activity.getApplicationContext());
         ensureDownloadReceiver(activity.getApplicationContext());
@@ -117,48 +109,48 @@ public final class UpdateManager {
         }
         sStartupChecked = true;
         checkForUpdate(activity.getApplicationContext(), new UpdateCallback() {
-            @Override
-            public void onResult(final UpdateInfo info) {
-                if (info == null || !info.newer || info.apkUrl == null) {
-                    return;
-                }
-                MAIN.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            if (!activity.isFinishing()) {
-                                handleNewerFound(activity, info);
-                            }
-                        } catch (Exception e) {
-                            CrashUtil.logException(e);
-                        }
+                @Override
+                public void onResult(final UpdateInfo info) {
+                    if (info == null || !info.newer || info.apkUrl == null) {
+                        return;
                     }
-                });
-            }
+                    MAIN.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    if (!activity.isFinishing()) {
+                                        handleNewerFound(activity, info);
+                                    }
+                                } catch (Exception e) {
+                                    CrashUtil.logException(e);
+                                }
+                            }
+                    });
+                }
 
-            @Override
-            public void onError() {
-            }
+                @Override
+                public void onError() {
+                }
         });
     }
 
     public static void checkForUpdate(final Context context, final UpdateCallback callback) {
         final Handler caller = new Handler(Looper.getMainLooper());
         new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final UpdateInfo info = fetchLatest(context);
-                caller.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (info != null) {
-                            callback.onResult(info);
-                        } else {
-                            callback.onError();
-                        }
-                    }
-                });
-            }
+                @Override
+                public void run() {
+                    final UpdateInfo info = fetchLatest(context);
+                    caller.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (info != null) {
+                                    callback.onResult(info);
+                                } else {
+                                    callback.onError();
+                                }
+                            }
+                    });
+                }
         }).start();
     }
 
@@ -207,7 +199,6 @@ public final class UpdateManager {
             if (tagBuild >= 0) {
                 newer = tagBuild > currentBuild(context);
             } else {
-                
                 newer = isNewer(currentVersion(context), tag);
                 tagBuild = 0;
             }
@@ -242,20 +233,20 @@ public final class UpdateManager {
     public static void fetchAllReleaseNotes(final Context context, final ReleasesCallback callback) {
         final Handler caller = new Handler(Looper.getMainLooper());
         new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final List<ReleaseNotes> notes = fetchReleases();
-                caller.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (notes != null) {
-                            callback.onResult(notes);
-                        } else {
-                            callback.onError();
-                        }
-                    }
-                });
-            }
+                @Override
+                public void run() {
+                    final List<ReleaseNotes> notes = fetchReleases();
+                    caller.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (notes != null) {
+                                    callback.onResult(notes);
+                                } else {
+                                    callback.onError();
+                                }
+                            }
+                    });
+                }
         }).start();
     }
 
@@ -294,15 +285,15 @@ public final class UpdateManager {
                 out.add(new ReleaseNotes(tag, tagBuild, release.optString("body", "")));
             }
             Collections.sort(out, new Comparator<ReleaseNotes>() {
-                @Override
-                public int compare(ReleaseNotes a, ReleaseNotes b) {
-                    if (a.build < b.build) {
-                        return 1;
-                    } else if (a.build > b.build) {
-                        return -1;
+                    @Override
+                    public int compare(ReleaseNotes a, ReleaseNotes b) {
+                        if (a.build < b.build) {
+                            return 1;
+                        } else if (a.build > b.build) {
+                            return -1;
+                        }
+                        return 0;
                     }
-                    return 0;
-                }
             });
             return out;
         } catch (Exception e) {
@@ -328,58 +319,57 @@ public final class UpdateManager {
                 return;
             }
             fetchAllReleaseNotes(app, new ReleasesCallback() {
-                @Override
-                public void onResult(List<ReleaseNotes> releases) {
-                    String body = null;
-                    if (releases != null) {
-                        for (ReleaseNotes notes : releases) {
-                            if (notes != null && notes.build == current && notes.body.length() > 0) {
-                                body = notes.body;
-                                break;
+                    @Override
+                    public void onResult(List<ReleaseNotes> releases) {
+                        String body = null;
+                        if (releases != null) {
+                            for (ReleaseNotes notes : releases) {
+                                if (notes != null && notes.build == current && notes.body.length() > 0) {
+                                    body = notes.body;
+                                    break;
+                                }
                             }
                         }
-                    }
-                    final String message = body;
-                    if (message == null) {
-                        prefs.edit().putInt(UpdateConfig.PREF_LAST_CHANGELOG_BUILD, current).apply();
-                        return;
-                    }
-                    MAIN.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                if (activity.isFinishing()) {
-                                    return;
-                                }
-                                new AlertDialog.Builder(activity)
+                        final String message = body;
+                        if (message == null) {
+                            prefs.edit().putInt(UpdateConfig.PREF_LAST_CHANGELOG_BUILD, current).apply();
+                            return;
+                        }
+                        MAIN.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        if (activity.isFinishing()) {
+                                            return;
+                                        }
+                                        new AlertDialog.Builder(activity)
                                         .setTitle(R.string.updates_changelog_popup_title)
                                         .setMessage(message)
                                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                dialog.dismiss();
-                                            }
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
                                         })
                                         .setCancelable(true)
                                         .show();
-                                prefs.edit().putInt(UpdateConfig.PREF_LAST_CHANGELOG_BUILD, current).apply();
-                            } catch (Exception e) {
-                                CrashUtil.logException(e);
-                            }
-                        }
-                    });
-                }
+                                        prefs.edit().putInt(UpdateConfig.PREF_LAST_CHANGELOG_BUILD, current).apply();
+                                    } catch (Exception e) {
+                                        CrashUtil.logException(e);
+                                    }
+                                }
+                        });
+                    }
 
-                @Override
-                public void onError() {
-                }
+                    @Override
+                    public void onError() {
+                    }
             });
         } catch (Exception e) {
             CrashUtil.logException(e);
         }
     }
 
-    
     static int parseBuildNumber(String tag) {
         if (tag == null) {
             return -1;
@@ -395,7 +385,6 @@ public final class UpdateManager {
         return -1;
     }
 
-    
     static boolean isNewer(String current, String latest) {
         int[] c = splitVersion(current);
         int[] l = splitVersion(latest);
@@ -430,7 +419,6 @@ public final class UpdateManager {
         return out;
     }
 
-    
     static void handleNewerFound(Activity activity, UpdateInfo info) {
         if (isDownloadReady(activity) && readyBuild(activity) == info.build) {
             showInstallDialog(activity);
@@ -447,17 +435,17 @@ public final class UpdateManager {
                     .setTitle(R.string.updates_available_title)
                     .setMessage(activity.getString(R.string.updates_available_msg) + " (build " + info.build + ")")
                     .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            downloadAndInstall(activity, info.apkUrl, info.build);
-                        }
-                    })
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        downloadAndInstall(activity, info.apkUrl, info.build);
+                    }
+            })
                     .setNegativeButton(R.string.later, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+            })
                     .setCancelable(true)
                     .show();
         } catch (Exception e) {
@@ -471,17 +459,17 @@ public final class UpdateManager {
                     .setTitle(R.string.updates_install_title)
                     .setMessage(activity.getString(R.string.updates_install_msg))
                     .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            tryInstallThenDownloads(activity);
-                        }
-                    })
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        tryInstallThenDownloads(activity);
+                    }
+            })
                     .setNegativeButton(R.string.later, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+            })
                     .setCancelable(true)
                     .show();
         } catch (Exception e) {
@@ -489,7 +477,6 @@ public final class UpdateManager {
         }
     }
 
-    
     static void tryInstallThenDownloads(Activity activity) {
         try {
             installApk(activity, UpdateConfig.APK_FILE_NAME);
@@ -499,7 +486,6 @@ public final class UpdateManager {
         }
     }
 
-    
     public static void openReleasesPage(Activity activity) {
         try {
             String url = "https://github.com/" + UpdateConfig.GITHUB_OWNER + "/" + UpdateConfig.GITHUB_REPO + "/releases/latest";
@@ -510,7 +496,6 @@ public final class UpdateManager {
         }
     }
 
-    
     static void openSystemDownloads(Context context) {
         try {
             Intent intent = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS);
@@ -539,7 +524,6 @@ public final class UpdateManager {
         }
     }
 
-    
     static boolean isDownloadReady(Context context) {
         try {
             if (!Util.getDefaultSharedPrefs(context).getBoolean(UpdateConfig.PREF_UPDATE_READY, false)) {
@@ -567,7 +551,6 @@ public final class UpdateManager {
         }
     }
 
-    
     static void deleteStaleApks(Context context) {
         try {
             File dir = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
@@ -603,10 +586,6 @@ public final class UpdateManager {
         }
     }
 
-    
-
-
-
     static void cleanupFinishedDownload(Context context) {
         try {
             SharedPreferences prefs = Util.getDefaultSharedPrefs(context);
@@ -635,7 +614,6 @@ public final class UpdateManager {
         }
     }
 
-    
     public static void downloadAndInstall(final Activity activity, String apkUrl, final int build) {
         final Context app = activity.getApplicationContext();
         synchronized (UpdateManager.class) {
@@ -673,35 +651,35 @@ public final class UpdateManager {
                     .setView(bar)
                     .setCancelable(false)
                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface d, int which) {
-                            try {
-                                DownloadManager dm = (DownloadManager) app.getSystemService(Context.DOWNLOAD_SERVICE);
-                                if (dm != null) {
-                                    dm.remove(id);
-                                }
-                            } catch (Exception ignored) {
+                    @Override
+                    public void onClick(DialogInterface d, int which) {
+                        try {
+                            DownloadManager dm = (DownloadManager) app.getSystemService(Context.DOWNLOAD_SERVICE);
+                            if (dm != null) {
+                                dm.remove(id);
                             }
-                            cancelled[0] = true;
-                            synchronized (PENDING_NAMES) {
-                                PENDING_NAMES.remove(Long.valueOf(id));
-                            }
-                            synchronized (PENDING_BUILDS) {
-                                PENDING_BUILDS.remove(Long.valueOf(id));
-                            }
-                            try {
-                                d.dismiss();
-                            } catch (Exception ignored) {
-                            }
+                        } catch (Exception ignored) {
                         }
-                    })
+                        cancelled[0] = true;
+                        synchronized (PENDING_NAMES) {
+                            PENDING_NAMES.remove(Long.valueOf(id));
+                        }
+                        synchronized (PENDING_BUILDS) {
+                            PENDING_BUILDS.remove(Long.valueOf(id));
+                        }
+                        try {
+                            d.dismiss();
+                        } catch (Exception ignored) {
+                        }
+                    }
+            })
                     .show();
             final DownloadManager dm = (DownloadManager) app.getSystemService(Context.DOWNLOAD_SERVICE);
             new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    pollDownloadProgress(app, activity, dm, trackId, build, downloadUrl, cancelled, bar, dialog);
-                }
+                    @Override
+                    public void run() {
+                        pollDownloadProgress(app, activity, dm, trackId, build, downloadUrl, cancelled, bar, dialog);
+                    }
             }).start();
         } catch (Exception e) {
             CrashUtil.logException(e);
@@ -717,181 +695,177 @@ public final class UpdateManager {
             long lastProgressBytes = 0;
             int restarts = 0;
             try {
-            while (!done && !cancelled[0]) {
-                long id = trackId[0];
-                int status = -1;
-                long soFar = 0;
-                long total = -1;
-                if (dm != null) {
-                    DownloadManager.Query query = new DownloadManager.Query();
-                    query.setFilterById(id);
-                    Cursor cursor = null;
-                    try {
-                        cursor = dm.query(query);
-                        if (cursor != null && cursor.moveToFirst()) {
-                            status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
-                            soFar = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
-                            total = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
-                        }
-                    } catch (Exception ignored) {
-                    } finally {
-                        if (cursor != null) {
-                            try {
-                                cursor.close();
-                            } catch (Exception ignored) {
-                            }
-                        }
-                    }
-                }
-                final int fStatus = status;
-                final long fSoFar = soFar;
-                final long fTotal = total;
-                long now = System.currentTimeMillis();
-                
-                
-                final double fMbps = Math.max((soFar / 1048576.0) / Math.max((now - startedAt[0]) / 1000.0, 0.001), 0.0);
-                MAIN.post(new Runnable() {
-                    @Override
-                    public void run() {
+                while (!done && !cancelled[0]) {
+                    long id = trackId[0];
+                    int status = -1;
+                    long soFar = 0;
+                    long total = -1;
+                    if (dm != null) {
+                        DownloadManager.Query query = new DownloadManager.Query();
+                        query.setFilterById(id);
+                        Cursor cursor = null;
                         try {
-                            if (!activity.isFinishing()) {
-                                if (fTotal > 0) {
-                                    int pct = (int) ((fSoFar * 100L) / fTotal);
-                                    bar.setProgress(pct);
-                                    dialog.setMessage(String.format(java.util.Locale.US, "%.1f/%.1f MB (%d%%)\n%.1f MB/s",
-                                            fSoFar / 1048576.0, fTotal / 1048576.0, pct, fMbps));
-                                } else {
-                                    bar.setIndeterminate(true);
-                                    dialog.setMessage(String.format(java.util.Locale.US, "%.1f MB\n%.1f MB/s",
-                                            fSoFar / 1048576.0, fMbps));
-                                }
+                            cursor = dm.query(query);
+                            if (cursor != null && cursor.moveToFirst()) {
+                                status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
+                                soFar = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
+                                total = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
                             }
                         } catch (Exception ignored) {
-                        }
-                    }
-                });
-                if (fStatus == DownloadManager.STATUS_SUCCESSFUL || fStatus == DownloadManager.STATUS_FAILED) {
-                    done = true;
-                    MAIN.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                dialog.dismiss();
-                            } catch (Exception ignored) {
-                            }
-                        }
-                    });
-                    if (fStatus == DownloadManager.STATUS_SUCCESSFUL) {
-                        File apk = downloadedApkFile(appCtx);
-                        final boolean valid = apk != null && apk.exists() && apk.length() > 0
-                                && (fTotal <= 0 || apk.length() >= fTotal);
-                        if (valid) {
-                            markDownloadReady(appCtx, build);
-                        } else {
-                            clearReadyState(appCtx);
-                            CrashUtil.logException(new java.io.IOException("Update download finished but APK file is missing or truncated"));
-                        }
-                        forgetDownload(id);
-                        if (valid) {
-                            MAIN.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        if (!activity.isFinishing()) {
-                                            showInstallDialog(activity);
-                                        }
-                                    } catch (Exception ignored) {
-                                    }
-                                }
-                            });
-                        } else {
-                            MAIN.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        Toast.makeText(appCtx, R.string.updates_error, Toast.LENGTH_LONG).show();
-                                    } catch (Exception ignored) {
-                                    }
-                                }
-                            });
-                        }
-                    } else {
-                        forgetDownload(id);
-                        MAIN.post(new Runnable() {
-                            @Override
-                            public void run() {
+                        } finally {
+                            if (cursor != null) {
                                 try {
-                                    Toast.makeText(appCtx, R.string.updates_error, Toast.LENGTH_LONG).show();
+                                    cursor.close();
                                 } catch (Exception ignored) {
                                 }
                             }
-                        });
+                        }
                     }
-                } else if (cancelled[0]) {
-                    done = true;
-                } else if (fStatus != DownloadManager.STATUS_RUNNING && fStatus != DownloadManager.STATUS_SUCCESSFUL && fStatus != DownloadManager.STATUS_FAILED) {
-                    lastProgressAt = now;
-                    try {
-                        Thread.sleep(400);
-                    } catch (InterruptedException ignored) {
+                    final int fStatus = status;
+                    final long fSoFar = soFar;
+                    final long fTotal = total;
+                    long now = System.currentTimeMillis();
+
+                    final double fMbps = Math.max((soFar / 1048576.0) / Math.max((now - startedAt[0]) / 1000.0, 0.001), 0.0);
+                    MAIN.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    if (!activity.isFinishing()) {
+                                        if (fTotal > 0) {
+                                            int pct = (int) ((fSoFar * 100L) / fTotal);
+                                            bar.setProgress(pct);
+                                            dialog.setMessage(String.format(java.util.Locale.US, "%.1f/%.1f MB (%d%%)\n%.1f MB/s",
+                                                    fSoFar / 1048576.0, fTotal / 1048576.0, pct, fMbps));
+                                        } else {
+                                            bar.setIndeterminate(true);
+                                            dialog.setMessage(String.format(java.util.Locale.US, "%.1f MB\n%.1f MB/s",
+                                                    fSoFar / 1048576.0, fMbps));
+                                        }
+                                    }
+                                } catch (Exception ignored) {
+                                }
+                            }
+                    });
+                    if (fStatus == DownloadManager.STATUS_SUCCESSFUL || fStatus == DownloadManager.STATUS_FAILED) {
                         done = true;
-                    }
-                } else if (soFar > 0 && soFar == lastProgressBytes && now - lastProgressAt > 45000) {
-                    
-                    
-                    
-                    if (restarts < 1) {
-                        restarts++;
-                        long freshId = restartStalledDownload(appCtx, dm, trackId, build, apkUrl);
-                        if (freshId >= 0) {
-                            startedAt[0] = System.currentTimeMillis();
-                            lastProgressAt = startedAt[0];
-                        } else {
-                            done = true;
-                            forgetDownload(trackId[0]);
-                            MAIN.post(new Runnable() {
+                        MAIN.post(new Runnable() {
                                 @Override
                                 public void run() {
                                     try {
                                         dialog.dismiss();
                                     } catch (Exception ignored) {
                                     }
-                                    try {
-                                        Toast.makeText(appCtx, R.string.updates_error, Toast.LENGTH_LONG).show();
-                                    } catch (Exception ignored) {
-                                    }
                                 }
+                        });
+                        if (fStatus == DownloadManager.STATUS_SUCCESSFUL) {
+                            File apk = downloadedApkFile(appCtx);
+                            final boolean valid = apk != null && apk.exists() && apk.length() > 0
+                                    && (fTotal <= 0 || apk.length() >= fTotal);
+                            if (valid) {
+                                markDownloadReady(appCtx, build);
+                            } else {
+                                clearReadyState(appCtx);
+                                CrashUtil.logException(new java.io.IOException("Update download finished but APK file is missing or truncated"));
+                            }
+                            forgetDownload(id);
+                            if (valid) {
+                                MAIN.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            try {
+                                                if (!activity.isFinishing()) {
+                                                    showInstallDialog(activity);
+                                                }
+                                            } catch (Exception ignored) {
+                                            }
+                                        }
+                                });
+                            } else {
+                                MAIN.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            try {
+                                                Toast.makeText(appCtx, R.string.updates_error, Toast.LENGTH_LONG).show();
+                                            } catch (Exception ignored) {
+                                            }
+                                        }
+                                });
+                            }
+                        } else {
+                            forgetDownload(id);
+                            MAIN.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            Toast.makeText(appCtx, R.string.updates_error, Toast.LENGTH_LONG).show();
+                                        } catch (Exception ignored) {
+                                        }
+                                    }
+                            });
+                        }
+                    } else if (cancelled[0]) {
+                        done = true;
+                    } else if (fStatus != DownloadManager.STATUS_RUNNING && fStatus != DownloadManager.STATUS_SUCCESSFUL && fStatus != DownloadManager.STATUS_FAILED) {
+                        lastProgressAt = now;
+                        try {
+                            Thread.sleep(400);
+                        } catch (InterruptedException ignored) {
+                            done = true;
+                        }
+                    } else if (soFar > 0 && soFar == lastProgressBytes && now - lastProgressAt > 45000) {
+                        if (restarts < 1) {
+                            restarts++;
+                            long freshId = restartStalledDownload(appCtx, dm, trackId, build, apkUrl);
+                            if (freshId >= 0) {
+                                startedAt[0] = System.currentTimeMillis();
+                                lastProgressAt = startedAt[0];
+                            } else {
+                                done = true;
+                                forgetDownload(trackId[0]);
+                                MAIN.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            try {
+                                                dialog.dismiss();
+                                            } catch (Exception ignored) {
+                                            }
+                                            try {
+                                                Toast.makeText(appCtx, R.string.updates_error, Toast.LENGTH_LONG).show();
+                                            } catch (Exception ignored) {
+                                            }
+                                        }
+                                });
+                            }
+                        } else {
+                            done = true;
+                            forgetDownload(trackId[0]);
+                            MAIN.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            dialog.dismiss();
+                                        } catch (Exception ignored) {
+                                        }
+                                        try {
+                                            Toast.makeText(appCtx, R.string.updates_error, Toast.LENGTH_LONG).show();
+                                        } catch (Exception ignored) {
+                                        }
+                                    }
                             });
                         }
                     } else {
-                        done = true;
-                        forgetDownload(trackId[0]);
-                        MAIN.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    dialog.dismiss();
-                                } catch (Exception ignored) {
-                                }
-                                try {
-                                    Toast.makeText(appCtx, R.string.updates_error, Toast.LENGTH_LONG).show();
-                                } catch (Exception ignored) {
-                                }
-                            }
-                        });
-                    }
-                } else {
-                    if (soFar != lastProgressBytes) {
-                        lastProgressBytes = soFar;
-                        lastProgressAt = now;
-                    }
-                    try {
-                        Thread.sleep(400);
-                    } catch (InterruptedException ignored) {
-                        done = true;
+                        if (soFar != lastProgressBytes) {
+                            lastProgressBytes = soFar;
+                            lastProgressAt = now;
+                        }
+                        try {
+                            Thread.sleep(400);
+                        } catch (InterruptedException ignored) {
+                            done = true;
+                        }
                     }
                 }
-            }
             } finally {
                 synchronized (UpdateManager.class) {
                     sDownloadActive = false;
@@ -910,10 +884,6 @@ public final class UpdateManager {
             PENDING_BUILDS.remove(Long.valueOf(id));
         }
     }
-
-    
-
-
 
     private static long restartStalledDownload(Context appCtx, DownloadManager dm, long[] trackId, int build, String apkUrl) {
         try {
@@ -1043,5 +1013,4 @@ public final class UpdateManager {
         }
         context.startActivity(intent);
     }
-
 }

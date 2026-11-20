@@ -1,55 +1,51 @@
-            package org.apache.commons.p005io.output;
+package org.apache.commons.p005io.output;
 
-            import java.io.IOException;
-            import java.io.Writer;
-            
-            
-    public class NullWriter extends Writer {
-                public static final NullWriter NULL_WRITER = new NullWriter();
+import java.io.IOException;
+import java.io.Writer;
 
+public class NullWriter extends Writer {
+    public static final NullWriter NULL_WRITER = new NullWriter();
 
+    @Override
+    public Writer append(char c) {
+        return this;
+    }
 
+    @Override
+    public Writer append(CharSequence csq, int start, int end) {
+        return this;
+    }
 
-                @Override 
-        public Writer append(char c) {
-            return this;
-                }
+    @Override
+    public Writer append(CharSequence csq) {
+        return this;
+    }
 
-                @Override 
-        public Writer append(CharSequence csq, int start, int end) {
-            return this;
-                }
+    @Override
+    public void write(int idx) {
+    }
 
-                @Override 
-        public Writer append(CharSequence csq) {
-            return this;
-                }
+    @Override
+    public void write(char[] chr) {
+    }
 
-                @Override 
-        public void write(int idx) {
-                }
+    @Override
+    public void write(char[] chr, int st, int end) {
+    }
 
-                @Override 
-        public void write(char[] chr) {
-                }
+    @Override
+    public void write(String str) {
+    }
 
-                @Override 
-       public void write(char[] chr, int st, int end) {
-                }
+    @Override
+    public void write(String str, int st, int end) {
+    }
 
-                @Override 
-       public void write(String str) {
-                }
+    @Override
+    public void flush() {
+    }
 
-                @Override 
-       public void write(String str, int st, int end) {
-                }
-
-                @Override 
-       public void flush() {
-                }
-
-                @Override 
-       public void close() {
-                }
-            }
+    @Override
+    public void close() {
+    }
+}

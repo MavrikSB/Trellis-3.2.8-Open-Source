@@ -1,39 +1,38 @@
-            package co.vine.android;
+package co.vine.android;
 
-            import android.support.multidex.MultiDex;
-            import android.util.Log;
-            import com.facebook.buck.android.support.exopackage.ExopackageApplication;
-            
-            
-    public class AppShell extends ExopackageApplication {
-                private static final String APP_CLASS = "co.vine.android.VineApplication";
-                private static final String TAG = "AppShell";
+import android.support.multidex.MultiDex;
+import android.util.Log;
+import com.facebook.buck.android.support.exopackage.ExopackageApplication;
 
-        public AppShell() {
-            super(APP_CLASS, false);
-            Log.d(TAG, "Exo: false with co.vine.android.VineApplication");
-                }
+public class AppShell extends ExopackageApplication {
+    private static final String APP_CLASS = "co.vine.android.VineApplication";
+    private static final String TAG = "AppShell";
 
-                @Override 
-        protected void onBaseContextAttached() {
-            super.onBaseContextAttached();
-            Log.d(TAG, "Android MultiDex : On");
-                    try {
-                MultiDex.install(getBaseContext());
-                    } catch (RuntimeException multiDexException) {
-                if (!isDoingRobolectricTest()) {
-                    throw multiDexException;
-                        }
-                    }
-            Log.d(TAG, "Android MultiDex : Installed.");
-                }
+    public AppShell() {
+        super(APP_CLASS, false);
+        Log.d(TAG, "Exo: false with co.vine.android.VineApplication");
+    }
 
-        public static boolean isDoingRobolectricTest() {
-                    try {
-                Class<?> robolectric = Class.forName("org.robolectric.Robolectric");
-                        return robolectric != null;
-                    } catch (ClassNotFoundException e) {
-                return false;
-                    }
-                }
+    @Override
+    protected void onBaseContextAttached() {
+        super.onBaseContextAttached();
+        Log.d(TAG, "Android MultiDex : On");
+        try {
+            MultiDex.install(getBaseContext());
+        } catch (RuntimeException multiDexException) {
+            if (!isDoingRobolectricTest()) {
+                throw multiDexException;
             }
+        }
+        Log.d(TAG, "Android MultiDex : Installed.");
+    }
+
+    public static boolean isDoingRobolectricTest() {
+        try {
+            Class<?> robolectric = Class.forName("org.robolectric.Robolectric");
+            return robolectric != null;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
+}

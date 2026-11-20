@@ -1,19 +1,18 @@
-            package com.facebook;
-            
-            
-    public enum SessionDefaultAudience {
-                NONE(null),
-                ONLY_ME("SELF"),
-                FRIENDS("ALL_FRIENDS"),
-                EVERYONE("EVERYONE");
+package com.facebook;
 
-                private final String nativeProtocolAudience;
+public enum SessionDefaultAudience {
+    NONE(null),
+    ONLY_ME("SELF"),
+    FRIENDS("ALL_FRIENDS"),
+    EVERYONE("EVERYONE");
 
-        SessionDefaultAudience(String protocol) {
-            this.nativeProtocolAudience = protocol;
-                }
+    private final String nativeProtocolAudience;
 
-        String getNativeProtocolAudience() {
-            return this.nativeProtocolAudience;
-                }
-            }
+    SessionDefaultAudience(String protocol) {
+        this.nativeProtocolAudience = protocol;
+    }
+
+    String getNativeProtocolAudience() {
+        return this.nativeProtocolAudience;
+    }
+}

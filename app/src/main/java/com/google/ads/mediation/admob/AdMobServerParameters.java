@@ -1,14 +1,12 @@
-            package com.google.ads.mediation.admob;
+package com.google.ads.mediation.admob;
 
-            import com.google.ads.mediation.MediationServerParameters;
-            
-            
-            public final class AdMobServerParameters extends MediationServerParameters {
+import com.google.ads.mediation.MediationServerParameters;
 
-                @MediationServerParameters.Parameter(name = "pubid")
-                public String adUnitId;
+public final class AdMobServerParameters extends MediationServerParameters {
+    @MediationServerParameters.Parameter(name = "pubid")
+    public String adUnitId;
 
-                @MediationServerParameters.Parameter(name = "mad_hac", required = false)
-                public String allowHouseAds = null;
-                public int tagForChildDirectedTreatment = -1;
-            }
+    @MediationServerParameters.Parameter(name = "mad_hac", required = false)
+    public String allowHouseAds = null;
+    public int tagForChildDirectedTreatment = -1;
+}

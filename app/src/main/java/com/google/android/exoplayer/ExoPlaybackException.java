@@ -1,16 +1,15 @@
-            package com.google.android.exoplayer;
-            
-            
-    public class ExoPlaybackException extends Exception {
-        public ExoPlaybackException(String message) {
-            super(message);
-                }
+package com.google.android.exoplayer;
 
-        public ExoPlaybackException(Throwable cause) {
-            super(cause);
-                }
+public class ExoPlaybackException extends Exception {
+    public ExoPlaybackException(String message) {
+        super(message);
+    }
 
-        public ExoPlaybackException(String message, Throwable cause) {
-            super(message, cause);
-                }
-            }
+    public ExoPlaybackException(Throwable cause) {
+        super(cause);
+    }
+
+    public ExoPlaybackException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}

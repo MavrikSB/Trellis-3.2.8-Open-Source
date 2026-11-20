@@ -1,16 +1,15 @@
-            package twitter4j;
+package twitter4j;
 
-            import java.io.Serializable;
-            
-            
-            public interface RateLimitStatus extends Serializable {
-                int getLimit();
+import java.io.Serializable;
 
-                int getRemaining();
+public interface RateLimitStatus extends Serializable {
+    int getLimit();
 
-                int getRemainingHits();
+    int getRemaining();
 
-                int getResetTimeInSeconds();
+    int getRemainingHits();
 
-                int getSecondsUntilReset();
-            }
+    int getResetTimeInSeconds();
+
+    int getSecondsUntilReset();
+}

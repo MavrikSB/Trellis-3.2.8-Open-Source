@@ -1,14 +1,13 @@
-            package com.squareup.okhttp.internal.spdy;
+package com.squareup.okhttp.internal.spdy;
 
-            import com.squareup.okhttp.Protocol;
-            import okio.BufferedSink;
-            import okio.BufferedSource;
-            
-            
-            public interface Variant {
-                Protocol getProtocol();
+import com.squareup.okhttp.Protocol;
+import okio.BufferedSink;
+import okio.BufferedSource;
 
-                FrameReader newReader(BufferedSource bufferedSource, boolean z);
+public interface Variant {
+    Protocol getProtocol();
 
-                FrameWriter newWriter(BufferedSink bufferedSink, boolean z);
-            }
+    FrameReader newReader(BufferedSource bufferedSource, boolean z);
+
+    FrameWriter newWriter(BufferedSink bufferedSink, boolean z);
+}

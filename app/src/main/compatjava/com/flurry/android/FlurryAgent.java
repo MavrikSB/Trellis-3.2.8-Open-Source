@@ -4,13 +4,6 @@ import android.content.Context;
 import android.util.Log;
 import java.util.Map;
 
-
-
-
-
-
-
-
 public final class FlurryAgent {
     private static final String TAG = "VineAnalytics";
 
@@ -30,7 +23,6 @@ public final class FlurryAgent {
     }
 
     public static void setUseHttps(boolean useHttps) {
-        
     }
 
     public static void setUserId(String userId) {

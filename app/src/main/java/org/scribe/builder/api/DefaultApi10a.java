@@ -1,64 +1,63 @@
-            package org.scribe.builder.api;
+package org.scribe.builder.api;
 
-            import org.scribe.extractors.AccessTokenExtractor;
-            import org.scribe.extractors.BaseStringExtractor;
-            import org.scribe.extractors.BaseStringExtractorImpl;
-            import org.scribe.extractors.HeaderExtractor;
-            import org.scribe.extractors.HeaderExtractorImpl;
-            import org.scribe.extractors.RequestTokenExtractor;
-            import org.scribe.extractors.TokenExtractorImpl;
-            import org.scribe.model.OAuthConfig;
-            import org.scribe.model.Token;
-            import org.scribe.model.Verb;
-            import org.scribe.oauth.OAuth10aServiceImpl;
-            import org.scribe.oauth.OAuthService;
-            import org.scribe.services.HMACSha1SignatureService;
-            import org.scribe.services.SignatureService;
-            import org.scribe.services.TimestampService;
-            import org.scribe.services.TimestampServiceImpl;
-            
-            
-    public abstract class DefaultApi10a implements Api {
-                public abstract String getAccessTokenEndpoint();
+import org.scribe.extractors.AccessTokenExtractor;
+import org.scribe.extractors.BaseStringExtractor;
+import org.scribe.extractors.BaseStringExtractorImpl;
+import org.scribe.extractors.HeaderExtractor;
+import org.scribe.extractors.HeaderExtractorImpl;
+import org.scribe.extractors.RequestTokenExtractor;
+import org.scribe.extractors.TokenExtractorImpl;
+import org.scribe.model.OAuthConfig;
+import org.scribe.model.Token;
+import org.scribe.model.Verb;
+import org.scribe.oauth.OAuth10aServiceImpl;
+import org.scribe.oauth.OAuthService;
+import org.scribe.services.HMACSha1SignatureService;
+import org.scribe.services.SignatureService;
+import org.scribe.services.TimestampService;
+import org.scribe.services.TimestampServiceImpl;
 
-                public abstract String getAuthorizationUrl(Token token);
+public abstract class DefaultApi10a implements Api {
+    public abstract String getAccessTokenEndpoint();
 
-                public abstract String getRequestTokenEndpoint();
+    public abstract String getAuthorizationUrl(Token token);
 
-        public AccessTokenExtractor getAccessTokenExtractor() {
-            return new TokenExtractorImpl();
-                }
+    public abstract String getRequestTokenEndpoint();
 
-        public BaseStringExtractor getBaseStringExtractor() {
-            return new BaseStringExtractorImpl();
-                }
+    public AccessTokenExtractor getAccessTokenExtractor() {
+        return new TokenExtractorImpl();
+    }
 
-        public HeaderExtractor getHeaderExtractor() {
-            return new HeaderExtractorImpl();
-                }
+    public BaseStringExtractor getBaseStringExtractor() {
+        return new BaseStringExtractorImpl();
+    }
 
-        public RequestTokenExtractor getRequestTokenExtractor() {
-            return new TokenExtractorImpl();
-                }
+    public HeaderExtractor getHeaderExtractor() {
+        return new HeaderExtractorImpl();
+    }
 
-        public SignatureService getSignatureService() {
-            return new HMACSha1SignatureService();
-                }
+    public RequestTokenExtractor getRequestTokenExtractor() {
+        return new TokenExtractorImpl();
+    }
 
-        public TimestampService getTimestampService() {
-            return new TimestampServiceImpl();
-                }
+    public SignatureService getSignatureService() {
+        return new HMACSha1SignatureService();
+    }
 
-        public Verb getAccessTokenVerb() {
-            return Verb.POST;
-                }
+    public TimestampService getTimestampService() {
+        return new TimestampServiceImpl();
+    }
 
-       public Verb getRequestTokenVerb() {
-           return Verb.POST;
-                }
+    public Verb getAccessTokenVerb() {
+        return Verb.POST;
+    }
 
-                @Override 
-       public OAuthService createService(OAuthConfig config) {
-           return new OAuth10aServiceImpl(this, config);
-                }
-            }
+    public Verb getRequestTokenVerb() {
+        return Verb.POST;
+    }
+
+    @Override
+    public OAuthService createService(OAuthConfig config) {
+        return new OAuth10aServiceImpl(this, config);
+    }
+}

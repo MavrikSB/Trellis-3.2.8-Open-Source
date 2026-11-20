@@ -1,40 +1,39 @@
-            package com.facebook.model;
-            
-            
-            public interface GraphUser extends GraphObject {
-                String getBirthday();
+package com.facebook.model;
 
-                String getFirstName();
+public interface GraphUser extends GraphObject {
+    String getBirthday();
 
-                String getId();
+    String getFirstName();
 
-                String getLastName();
+    String getId();
 
-                String getLink();
+    String getLastName();
 
-                GraphLocation getLocation();
+    String getLink();
 
-                String getMiddleName();
+    GraphLocation getLocation();
 
-                String getName();
+    String getMiddleName();
 
-                String getUsername();
+    String getName();
 
-                void setBirthday(String str);
+    String getUsername();
 
-                void setFirstName(String str);
+    void setBirthday(String str);
 
-                void setId(String str);
+    void setFirstName(String str);
 
-                void setLastName(String str);
+    void setId(String str);
 
-                void setLink(String str);
+    void setLastName(String str);
 
-                void setLocation(GraphLocation graphLocation);
+    void setLink(String str);
 
-                void setMiddleName(String str);
+    void setLocation(GraphLocation graphLocation);
 
-                void setName(String str);
+    void setMiddleName(String str);
 
-                void setUsername(String str);
-            }
+    void setName(String str);
+
+    void setUsername(String str);
+}

@@ -1,16 +1,13 @@
-            package com.crashlytics.android.internal;
+package com.crashlytics.android.internal;
 
-            import android.os.Process;
-            
-            
-            
-    public abstract class AbstractRunnableC0680aa implements Runnable {
-                
-                protected abstract void mo38a();
+import android.os.Process;
 
-                @Override 
-        public final void run() {
-            Process.setThreadPriority(10);
-            mo38a();
-                }
-            }
+public abstract class AbstractRunnableC0680aa implements Runnable {
+    protected abstract void mo38a();
+
+    @Override
+    public final void run() {
+        Process.setThreadPriority(10);
+        mo38a();
+    }
+}

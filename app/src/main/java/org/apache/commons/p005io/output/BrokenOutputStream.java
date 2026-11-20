@@ -1,32 +1,31 @@
-            package org.apache.commons.p005io.output;
+package org.apache.commons.p005io.output;
 
-            import java.io.IOException;
-            import java.io.OutputStream;
-            
-            
-    public class BrokenOutputStream extends OutputStream {
-                private final IOException exception;
+import java.io.IOException;
+import java.io.OutputStream;
 
-        public BrokenOutputStream(IOException exception) {
-            this.exception = exception;
-                }
+public class BrokenOutputStream extends OutputStream {
+    private final IOException exception;
 
-        public BrokenOutputStream() {
-            this(new IOException("Broken output stream"));
-                }
+    public BrokenOutputStream(IOException exception) {
+        this.exception = exception;
+    }
 
-                @Override 
-        public void write(int b) throws IOException {
-            throw this.exception;
-                }
+    public BrokenOutputStream() {
+        this(new IOException("Broken output stream"));
+    }
 
-                @Override 
-        public void flush() throws IOException {
-            throw this.exception;
-                }
+    @Override
+    public void write(int b) throws IOException {
+        throw this.exception;
+    }
 
-                @Override 
-        public void close() throws IOException {
-            throw this.exception;
-                }
-            }
+    @Override
+    public void flush() throws IOException {
+        throw this.exception;
+    }
+
+    @Override
+    public void close() throws IOException {
+        throw this.exception;
+    }
+}

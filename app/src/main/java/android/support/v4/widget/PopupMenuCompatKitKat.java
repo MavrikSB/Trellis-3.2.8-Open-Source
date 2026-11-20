@@ -1,14 +1,13 @@
-            package android.support.v4.widget;
+package android.support.v4.widget;
 
-            import android.view.View;
-            import android.widget.PopupMenu;
-            
-            
-    class PopupMenuCompatKitKat {
-        PopupMenuCompatKitKat() {
-                }
+import android.view.View;
+import android.widget.PopupMenu;
 
-        public static View.OnTouchListener getDragToOpenListener(Object popupMenu) {
-            return ((PopupMenu) popupMenu).getDragToOpenListener();
-                }
-            }
+class PopupMenuCompatKitKat {
+    PopupMenuCompatKitKat() {
+    }
+
+    public static View.OnTouchListener getDragToOpenListener(Object popupMenu) {
+        return ((PopupMenu) popupMenu).getDragToOpenListener();
+    }
+}

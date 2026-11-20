@@ -1,21 +1,20 @@
-            package com.facebook;
-            
-            
-    public class FacebookOperationCanceledException extends FacebookException {
-                static final long serialVersionUID = 1;
+package com.facebook;
 
-        public FacebookOperationCanceledException() {
-                }
+public class FacebookOperationCanceledException extends FacebookException {
+    static final long serialVersionUID = 1;
 
-        public FacebookOperationCanceledException(String message) {
-            super(message);
-                }
+    public FacebookOperationCanceledException() {
+    }
 
-        public FacebookOperationCanceledException(String message, Throwable throwable) {
-            super(message, throwable);
-                }
+    public FacebookOperationCanceledException(String message) {
+        super(message);
+    }
 
-        public FacebookOperationCanceledException(Throwable throwable) {
-            super(throwable);
-                }
-            }
+    public FacebookOperationCanceledException(String message, Throwable throwable) {
+        super(message, throwable);
+    }
+
+    public FacebookOperationCanceledException(Throwable throwable) {
+        super(throwable);
+    }
+}

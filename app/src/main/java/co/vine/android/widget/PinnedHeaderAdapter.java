@@ -1,26 +1,25 @@
-            package co.vine.android.widget;
+package co.vine.android.widget;
 
-            import android.view.View;
-            
-            
-    public interface PinnedHeaderAdapter {
-                int getPinnedHeaderHeight();
+import android.view.View;
 
-                PinnedHeaderStatus getPinnedHeaderStatus(int i);
+public interface PinnedHeaderAdapter {
+    int getPinnedHeaderHeight();
 
-                View getPinnedHeaderView(View view);
+    PinnedHeaderStatus getPinnedHeaderStatus(int i);
 
-                void layoutPinnedHeader(View view, int i, int i2, int i3, int i4);
+    View getPinnedHeaderView(View view);
 
-        public static class PinnedHeaderStatus {
-                    public boolean pinnedHeaderIsVisible;
-                    public int pinnedHeaderOffset;
-                    public boolean shouldRequestNewView;
+    void layoutPinnedHeader(View view, int i, int i2, int i3, int i4);
 
-            public PinnedHeaderStatus(int offset, boolean newView, boolean isVisible) {
-                this.pinnedHeaderOffset = offset;
-                this.shouldRequestNewView = newView;
-                this.pinnedHeaderIsVisible = isVisible;
-                    }
-                }
-            }
+    public static class PinnedHeaderStatus {
+        public boolean pinnedHeaderIsVisible;
+        public int pinnedHeaderOffset;
+        public boolean shouldRequestNewView;
+
+        public PinnedHeaderStatus(int offset, boolean newView, boolean isVisible) {
+            this.pinnedHeaderOffset = offset;
+            this.shouldRequestNewView = newView;
+            this.pinnedHeaderIsVisible = isVisible;
+        }
+    }
+}

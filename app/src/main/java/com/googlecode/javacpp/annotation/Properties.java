@@ -1,17 +1,16 @@
-            package com.googlecode.javacpp.annotation;
+package com.googlecode.javacpp.annotation;
 
-            import java.lang.annotation.ElementType;
-            import java.lang.annotation.Retention;
-            import java.lang.annotation.RetentionPolicy;
-            import java.lang.annotation.Target;
-            
-            
-            @Target({ElementType.TYPE})
-            @Retention(RetentionPolicy.RUNTIME)
-            public @interface Properties {
-                Class[] inherit() default {};
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-                String target() default "";
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Properties {
+    Class[] inherit() default {};
 
-                Platform[] value() default {};
-            }
+    String target() default "";
+
+    Platform[] value() default {};
+}

@@ -1,40 +1,39 @@
-            package com.google.android.exoplayer;
+package com.google.android.exoplayer;
 
-            import android.os.SystemClock;
-            
-            
-    class MediaClock {
-                private long deltaUs;
-                private boolean started;
-                private long timeUs;
+import android.os.SystemClock;
 
-        MediaClock() {
-                }
+class MediaClock {
+    private long deltaUs;
+    private boolean started;
+    private long timeUs;
 
-        public void start() {
-            if (!this.started) {
-                this.started = true;
-                this.deltaUs = elapsedRealtimeMinus(this.timeUs);
-                    }
-                }
+    MediaClock() {
+    }
 
-        public void stop() {
-            if (this.started) {
-                this.timeUs = elapsedRealtimeMinus(this.deltaUs);
-                this.started = false;
-                    }
-                }
+    public void start() {
+        if (!this.started) {
+            this.started = true;
+            this.deltaUs = elapsedRealtimeMinus(this.timeUs);
+        }
+    }
 
-        public void setTimeUs(long timeUs) {
-            this.timeUs = timeUs;
-            this.deltaUs = elapsedRealtimeMinus(timeUs);
-                }
+    public void stop() {
+        if (this.started) {
+            this.timeUs = elapsedRealtimeMinus(this.deltaUs);
+            this.started = false;
+        }
+    }
 
-        public long getTimeUs() {
-                    return this.started ? elapsedRealtimeMinus(this.deltaUs) : this.timeUs;
-                }
+    public void setTimeUs(long timeUs) {
+        this.timeUs = timeUs;
+        this.deltaUs = elapsedRealtimeMinus(timeUs);
+    }
 
-        private long elapsedRealtimeMinus(long microSeconds) {
-            return (SystemClock.elapsedRealtime() * 1000) - microSeconds;
-                }
-            }
+    public long getTimeUs() {
+        return this.started ? elapsedRealtimeMinus(this.deltaUs) : this.timeUs;
+    }
+
+    private long elapsedRealtimeMinus(long microSeconds) {
+        return (SystemClock.elapsedRealtime() * 1000) - microSeconds;
+    }
+}

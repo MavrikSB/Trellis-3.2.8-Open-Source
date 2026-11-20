@@ -1,8 +1,7 @@
-            package com.google.gdata.util.common.base;
-            
-            
-            public interface Escaper {
-                Appendable escape(Appendable appendable);
+package com.google.gdata.util.common.base;
 
-                String escape(String str);
-            }
+public interface Escaper {
+    Appendable escape(Appendable appendable);
+
+    String escape(String str);
+}

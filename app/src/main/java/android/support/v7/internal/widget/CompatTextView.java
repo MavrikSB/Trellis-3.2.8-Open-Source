@@ -1,52 +1,51 @@
-            package android.support.v7.internal.widget;
+package android.support.v7.internal.widget;
 
-            import android.content.Context;
-            import android.content.res.TypedArray;
-            import android.graphics.Rect;
-            import android.support.v7.appcompat.C0084R;
-            import android.text.method.TransformationMethod;
-            import android.util.AttributeSet;
-            import android.view.View;
-            import android.widget.TextView;
-            import java.util.Locale;
-            
-            
-    public class CompatTextView extends TextView {
-        public CompatTextView(Context context) {
-            this(context, null);
-                }
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Rect;
+import android.support.v7.appcompat.C0084R;
+import android.text.method.TransformationMethod;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.TextView;
+import java.util.Locale;
 
-        public CompatTextView(Context context, AttributeSet attrs) {
-            this(context, attrs, 0);
-                }
+public class CompatTextView extends TextView {
+    public CompatTextView(Context context) {
+        this(context, null);
+    }
 
-        public CompatTextView(Context context, AttributeSet attrs, int defStyle) {
-            super(context, attrs, defStyle);
-            TypedArray style = context.obtainStyledAttributes(attrs, C0084R.styleable.CompatTextView, defStyle, 0);
-            boolean allCaps = style.getBoolean(0, false);
-            style.recycle();
-            if (allCaps) {
-                setTransformationMethod(new AllCapsTransformationMethod(context));
-                    }
-                }
+    public CompatTextView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
 
-        private static class AllCapsTransformationMethod implements TransformationMethod {
-                    private final Locale mLocale;
+    public CompatTextView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        TypedArray style = context.obtainStyledAttributes(attrs, C0084R.styleable.CompatTextView, defStyle, 0);
+        boolean allCaps = style.getBoolean(0, false);
+        style.recycle();
+        if (allCaps) {
+            setTransformationMethod(new AllCapsTransformationMethod(context));
+        }
+    }
 
-            public AllCapsTransformationMethod(Context context) {
-                this.mLocale = context.getResources().getConfiguration().locale;
-                    }
+    private static class AllCapsTransformationMethod implements TransformationMethod {
+        private final Locale mLocale;
 
-                    @Override 
-            public CharSequence getTransformation(CharSequence source, View view) {
-                if (source != null) {
-                            return source.toString().toUpperCase(this.mLocale);
-                        }
-                        return null;
-                    }
+        public AllCapsTransformationMethod(Context context) {
+            this.mLocale = context.getResources().getConfiguration().locale;
+        }
 
-                    @Override 
-            public void onFocusChanged(View view, CharSequence charSequence, boolean b, int i, Rect rect) {
-                    }
-                }
+        @Override
+        public CharSequence getTransformation(CharSequence source, View view) {
+            if (source != null) {
+                return source.toString().toUpperCase(this.mLocale);
             }
+            return null;
+        }
+
+        @Override
+        public void onFocusChanged(View view, CharSequence charSequence, boolean b, int i, Rect rect) {
+        }
+    }
+}

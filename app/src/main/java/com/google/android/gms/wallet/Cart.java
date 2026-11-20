@@ -1,102 +1,97 @@
-            package com.google.android.gms.wallet;
+package com.google.android.gms.wallet;
 
-            import android.os.Parcel;
-            import android.os.Parcelable;
-            import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-            import java.util.ArrayList;
-            import java.util.List;
-            
-            
-            public class Cart implements SafeParcelable {
-                public static final Parcelable.Creator<Cart> CREATOR = new C1208b();
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import java.util.ArrayList;
+import java.util.List;
 
-                
-                private final int f2463iM;
+public class Cart implements SafeParcelable {
+    public static final Parcelable.Creator<Cart> CREATOR = new C1208b();
 
-                
-                String f2464tD;
+    private final int f2463iM;
 
-                
-                String f2465tE;
+    String f2464tD;
 
-                
-                ArrayList<LineItem> f2466tF;
+    String f2465tE;
 
-                public final class Builder {
-                    private Builder() {
-                    }
+    ArrayList<LineItem> f2466tF;
 
-                     Builder(Cart x0, Object x1) {
-                        this();
-                    }
+    public final class Builder {
+        private Builder() {
+        }
 
-                    public Builder addLineItem(LineItem lineItem) {
-                        Cart.this.f2466tF.add(lineItem);
-                        return this;
-                    }
+        Builder(Cart x0, Object x1) {
+            this();
+        }
 
-                    public Cart build() {
-                        return Cart.this;
-                    }
+        public Builder addLineItem(LineItem lineItem) {
+            Cart.this.f2466tF.add(lineItem);
+            return this;
+        }
 
-                    public Builder setCurrencyCode(String currencyCode) {
-                        Cart.this.f2465tE = currencyCode;
-                        return this;
-                    }
+        public Cart build() {
+            return Cart.this;
+        }
 
-                    public Builder setLineItems(List<LineItem> lineItems) {
-                        Cart.this.f2466tF.clear();
-                        Cart.this.f2466tF.addAll(lineItems);
-                        return this;
-                    }
+        public Builder setCurrencyCode(String currencyCode) {
+            Cart.this.f2465tE = currencyCode;
+            return this;
+        }
 
-                    public Builder setTotalPrice(String totalPrice) {
-                        Cart.this.f2464tD = totalPrice;
-                        return this;
-                    }
-                }
+        public Builder setLineItems(List<LineItem> lineItems) {
+            Cart.this.f2466tF.clear();
+            Cart.this.f2466tF.addAll(lineItems);
+            return this;
+        }
 
-                public Cart() {
-                    this.f2463iM = 1;
-                    this.f2466tF = new ArrayList<>();
-                }
+        public Builder setTotalPrice(String totalPrice) {
+            Cart.this.f2464tD = totalPrice;
+            return this;
+        }
+    }
 
-                Cart(int versionCode, String totalPrice, String currencyCode, ArrayList<LineItem> lineItems) {
-                    this.f2463iM = versionCode;
-                    this.f2464tD = totalPrice;
-                    this.f2465tE = currencyCode;
-                    this.f2466tF = lineItems;
-                }
+    public Cart() {
+        this.f2463iM = 1;
+        this.f2466tF = new ArrayList<>();
+    }
 
-                public static Builder newBuilder() {
-                    Cart cart = new Cart();
-                    cart.getClass();
-                    return new Builder(cart, null);
-                }
+    Cart(int versionCode, String totalPrice, String currencyCode, ArrayList<LineItem> lineItems) {
+        this.f2463iM = versionCode;
+        this.f2464tD = totalPrice;
+        this.f2465tE = currencyCode;
+        this.f2466tF = lineItems;
+    }
 
-                @Override 
-                public int describeContents() {
-                    return 0;
-                }
+    public static Builder newBuilder() {
+        Cart cart = new Cart();
+        cart.getClass();
+        return new Builder(cart, null);
+    }
 
-                public String getCurrencyCode() {
-                    return this.f2465tE;
-                }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-                public ArrayList<LineItem> getLineItems() {
-                    return this.f2466tF;
-                }
+    public String getCurrencyCode() {
+        return this.f2465tE;
+    }
 
-                public String getTotalPrice() {
-                    return this.f2464tD;
-                }
+    public ArrayList<LineItem> getLineItems() {
+        return this.f2466tF;
+    }
 
-                public int getVersionCode() {
-                    return this.f2463iM;
-                }
+    public String getTotalPrice() {
+        return this.f2464tD;
+    }
 
-                @Override 
-                public void writeToParcel(Parcel dest, int flags) {
-                    C1208b.m2345a(this, dest, flags);
-                }
-            }
+    public int getVersionCode() {
+        return this.f2463iM;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        C1208b.m2345a(this, dest, flags);
+    }
+}

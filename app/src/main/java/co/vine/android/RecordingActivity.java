@@ -1,5 +1,4 @@
-            package co.vine.android;
-            
-            
-            public class RecordingActivity extends AbstractRecordingActivity {
-            }
+package co.vine.android;
+
+public class RecordingActivity extends AbstractRecordingActivity {
+}

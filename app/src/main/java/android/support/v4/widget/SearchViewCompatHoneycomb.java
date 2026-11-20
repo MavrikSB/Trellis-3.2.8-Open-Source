@@ -1,123 +1,119 @@
-            package android.support.v4.widget;
+package android.support.v4.widget;
 
-            import android.app.SearchManager;
-            import android.content.ComponentName;
-            import android.content.Context;
-            import android.view.View;
-            import android.widget.SearchView;
-            
-            
-    class SearchViewCompatHoneycomb {
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.view.View;
+import android.widget.SearchView;
 
-                interface OnCloseListenerCompatBridge {
-                    boolean onClose();
-                }
+class SearchViewCompatHoneycomb {
+    interface OnCloseListenerCompatBridge {
+        boolean onClose();
+    }
 
-                interface OnQueryTextListenerCompatBridge {
-                    boolean onQueryTextChange(String str);
+    interface OnQueryTextListenerCompatBridge {
+        boolean onQueryTextChange(String str);
 
-                    boolean onQueryTextSubmit(String str);
-                }
+        boolean onQueryTextSubmit(String str);
+    }
 
-        SearchViewCompatHoneycomb() {
-                }
+    SearchViewCompatHoneycomb() {
+    }
 
-        public static View newSearchView(Context context) {
-            return new SearchView(context);
-                }
+    public static View newSearchView(Context context) {
+        return new SearchView(context);
+    }
 
-        public static void setSearchableInfo(View searchView, ComponentName searchableComponent) {
-            SearchView sv = (SearchView) searchView;
-            SearchManager searchManager = (SearchManager) sv.getContext().getSystemService("search");
-            sv.setSearchableInfo(searchManager.getSearchableInfo(searchableComponent));
-                }
+    public static void setSearchableInfo(View searchView, ComponentName searchableComponent) {
+        SearchView sv = (SearchView) searchView;
+        SearchManager searchManager = (SearchManager) sv.getContext().getSystemService("search");
+        sv.setSearchableInfo(searchManager.getSearchableInfo(searchableComponent));
+    }
 
-                
-        static class C00701 implements SearchView.OnQueryTextListener {
-                    final  OnQueryTextListenerCompatBridge val$listener;
+    static class C00701 implements SearchView.OnQueryTextListener {
+        final  OnQueryTextListenerCompatBridge val$listener;
 
-            C00701(OnQueryTextListenerCompatBridge onQueryTextListenerCompatBridge) {
-                this.val$listener = onQueryTextListenerCompatBridge;
-                    }
+        C00701(OnQueryTextListenerCompatBridge onQueryTextListenerCompatBridge) {
+            this.val$listener = onQueryTextListenerCompatBridge;
+        }
 
-                    @Override 
-            public boolean onQueryTextSubmit(String query) {
-                return this.val$listener.onQueryTextSubmit(query);
-                    }
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+            return this.val$listener.onQueryTextSubmit(query);
+        }
 
-                    @Override 
-            public boolean onQueryTextChange(String newText) {
-                return this.val$listener.onQueryTextChange(newText);
-                    }
-                }
+        @Override
+        public boolean onQueryTextChange(String newText) {
+            return this.val$listener.onQueryTextChange(newText);
+        }
+    }
 
-        public static Object newOnQueryTextListener(OnQueryTextListenerCompatBridge listener) {
-            return new C00701(listener);
-                }
+    public static Object newOnQueryTextListener(OnQueryTextListenerCompatBridge listener) {
+        return new C00701(listener);
+    }
 
-        public static void setOnQueryTextListener(Object searchView, Object listener) {
-            ((SearchView) searchView).setOnQueryTextListener((SearchView.OnQueryTextListener) listener);
-                }
+    public static void setOnQueryTextListener(Object searchView, Object listener) {
+        ((SearchView) searchView).setOnQueryTextListener((SearchView.OnQueryTextListener) listener);
+    }
 
-                
-        static class C00712 implements SearchView.OnCloseListener {
-                    final  OnCloseListenerCompatBridge val$listener;
+    static class C00712 implements SearchView.OnCloseListener {
+        final  OnCloseListenerCompatBridge val$listener;
 
-            C00712(OnCloseListenerCompatBridge onCloseListenerCompatBridge) {
-                this.val$listener = onCloseListenerCompatBridge;
-                    }
+        C00712(OnCloseListenerCompatBridge onCloseListenerCompatBridge) {
+            this.val$listener = onCloseListenerCompatBridge;
+        }
 
-                    @Override 
-            public boolean onClose() {
-                return this.val$listener.onClose();
-                    }
-                }
+        @Override
+        public boolean onClose() {
+            return this.val$listener.onClose();
+        }
+    }
 
-        public static Object newOnCloseListener(OnCloseListenerCompatBridge listener) {
-            return new C00712(listener);
-                }
+    public static Object newOnCloseListener(OnCloseListenerCompatBridge listener) {
+        return new C00712(listener);
+    }
 
-        public static void setOnCloseListener(Object searchView, Object listener) {
-            ((SearchView) searchView).setOnCloseListener((SearchView.OnCloseListener) listener);
-                }
+    public static void setOnCloseListener(Object searchView, Object listener) {
+        ((SearchView) searchView).setOnCloseListener((SearchView.OnCloseListener) listener);
+    }
 
-        public static CharSequence getQuery(View searchView) {
-            return ((SearchView) searchView).getQuery();
-                }
+    public static CharSequence getQuery(View searchView) {
+        return ((SearchView) searchView).getQuery();
+    }
 
-        public static void setQuery(View searchView, CharSequence query, boolean submit) {
-            ((SearchView) searchView).setQuery(query, submit);
-                }
+    public static void setQuery(View searchView, CharSequence query, boolean submit) {
+        ((SearchView) searchView).setQuery(query, submit);
+    }
 
-        public static void setQueryHint(View searchView, CharSequence hint) {
-            ((SearchView) searchView).setQueryHint(hint);
-                }
+    public static void setQueryHint(View searchView, CharSequence hint) {
+        ((SearchView) searchView).setQueryHint(hint);
+    }
 
-        public static void setIconified(View searchView, boolean iconify) {
-            ((SearchView) searchView).setIconified(iconify);
-                }
+    public static void setIconified(View searchView, boolean iconify) {
+        ((SearchView) searchView).setIconified(iconify);
+    }
 
-        public static boolean isIconified(View searchView) {
-           return ((SearchView) searchView).isIconified();
-                }
+    public static boolean isIconified(View searchView) {
+        return ((SearchView) searchView).isIconified();
+    }
 
-       public static void setSubmitButtonEnabled(View searchView, boolean enabled) {
-           ((SearchView) searchView).setSubmitButtonEnabled(enabled);
-                }
+    public static void setSubmitButtonEnabled(View searchView, boolean enabled) {
+        ((SearchView) searchView).setSubmitButtonEnabled(enabled);
+    }
 
-       public static boolean isSubmitButtonEnabled(View searchView) {
-           return ((SearchView) searchView).isSubmitButtonEnabled();
-                }
+    public static boolean isSubmitButtonEnabled(View searchView) {
+        return ((SearchView) searchView).isSubmitButtonEnabled();
+    }
 
-       public static void setQueryRefinementEnabled(View searchView, boolean enable) {
-           ((SearchView) searchView).setQueryRefinementEnabled(enable);
-                }
+    public static void setQueryRefinementEnabled(View searchView, boolean enable) {
+        ((SearchView) searchView).setQueryRefinementEnabled(enable);
+    }
 
-       public static boolean isQueryRefinementEnabled(View searchView) {
-           return ((SearchView) searchView).isQueryRefinementEnabled();
-                }
+    public static boolean isQueryRefinementEnabled(View searchView) {
+        return ((SearchView) searchView).isQueryRefinementEnabled();
+    }
 
-       public static void setMaxWidth(View searchView, int maxpixels) {
-           ((SearchView) searchView).setMaxWidth(maxpixels);
-                }
-            }
+    public static void setMaxWidth(View searchView, int maxpixels) {
+        ((SearchView) searchView).setMaxWidth(maxpixels);
+    }
+}

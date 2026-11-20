@@ -1,56 +1,50 @@
-            package co.vine.android.api;
+package co.vine.android.api;
 
-            import android.os.Parcel;
-            import android.os.Parcelable;
-            import java.io.Serializable;
-            
-            
-    public class VineTag implements Parcelable, Serializable {
-                public static final Parcelable.Creator<VineTag> CREATOR = new C03591();
-                public long tagId;
-                public String tagName;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.io.Serializable;
 
-        public VineTag() {
-                }
+public class VineTag implements Parcelable, Serializable {
+    public static final Parcelable.Creator<VineTag> CREATOR = new C03591();
+    public long tagId;
+    public String tagName;
 
-        public VineTag(String tagName, long tagId) {
-            this.tagName = tagName;
-            this.tagId = tagId;
-                }
+    public VineTag() {
+    }
 
-        public VineTag(Parcel in) {
-            this.tagName = in.readString();
-            this.tagId = in.readLong();
-                }
+    public VineTag(String tagName, long tagId) {
+        this.tagName = tagName;
+        this.tagId = tagId;
+    }
 
-                @Override 
-        public int describeContents() {
-            return 0;
-                }
+    public VineTag(Parcel in) {
+        this.tagName = in.readString();
+        this.tagId = in.readLong();
+    }
 
-                @Override 
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(this.tagName);
-            dest.writeLong(this.tagId);
-                }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-                
-        static class C03591 implements Parcelable.Creator<VineTag> {
-            C03591() {
-                    }
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.tagName);
+        dest.writeLong(this.tagId);
+    }
 
+    static class C03591 implements Parcelable.Creator<VineTag> {
+        C03591() {
+        }
 
+        @Override
+        public VineTag createFromParcel(Parcel in) {
+            return new VineTag(in);
+        }
 
-                    
-                    @Override 
-            public VineTag createFromParcel(Parcel in) {
-                return new VineTag(in);
-                    }
-
-                    
-                    @Override 
-            public VineTag[] newArray(int size) {
-                return new VineTag[size];
-                    }
-                }
-            }
+        @Override
+        public VineTag[] newArray(int size) {
+            return new VineTag[size];
+        }
+    }
+}

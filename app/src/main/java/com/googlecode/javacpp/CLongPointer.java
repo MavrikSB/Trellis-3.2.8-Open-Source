@@ -1,53 +1,49 @@
-            package com.googlecode.javacpp;
+package com.googlecode.javacpp;
 
-            import com.googlecode.javacpp.annotation.Cast;
-            import com.googlecode.javacpp.annotation.Name;
-            
-            
-            @Name({"long"})
-    public class CLongPointer extends Pointer {
-                private native void allocateArray(int i);
+import com.googlecode.javacpp.annotation.Cast;
+import com.googlecode.javacpp.annotation.Name;
 
-                @Cast({"long"})
-                public native long get(int i);
+@Name({"long"})
+public class CLongPointer extends Pointer {
+    private native void allocateArray(int i);
 
-                public native CLongPointer put(int i, long j);
+    @Cast({"long"})
+    public native long get(int i);
 
+    public native CLongPointer put(int i, long j);
 
+    public CLongPointer(int size) {
+        try {
+            allocateArray(size);
+        } catch (UnsatisfiedLinkError e) {
+            throw new RuntimeException("No native JavaCPP library in memory. (Has Loader.load() been called?)", e);
+        }
+    }
 
+    public CLongPointer(Pointer p) {
+        super(p);
+    }
 
-        public CLongPointer(int size) {
-                    try {
-                allocateArray(size);
-                    } catch (UnsatisfiedLinkError e) {
-                throw new RuntimeException("No native JavaCPP library in memory. (Has Loader.load() been called?)", e);
-                    }
-                }
+    @Override
+    public CLongPointer position(int position) {
+        return (CLongPointer) super.position(position);
+    }
 
-        public CLongPointer(Pointer p) {
-            super(p);
-                }
+    @Override
+    public CLongPointer limit(int limit) {
+        return (CLongPointer) super.limit(limit);
+    }
 
-                @Override 
-        public CLongPointer position(int position) {
-            return (CLongPointer) super.position(position);
-                }
+    @Override
+    public CLongPointer capacity(int capacity) {
+        return (CLongPointer) super.capacity(capacity);
+    }
 
-                @Override 
-        public CLongPointer limit(int limit) {
-            return (CLongPointer) super.limit(limit);
-                }
+    public long get() {
+        return get(0);
+    }
 
-                @Override 
-        public CLongPointer capacity(int capacity) {
-            return (CLongPointer) super.capacity(capacity);
-                }
-
-        public long get() {
-            return get(0);
-                }
-
-        public CLongPointer put(long l) {
-            return put(0, l);
-                }
-            }
+    public CLongPointer put(long l) {
+        return put(0, l);
+    }
+}

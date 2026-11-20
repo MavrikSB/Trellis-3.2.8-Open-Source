@@ -1,9 +1,5 @@
 package com.google.android.gms.plus;
 
-
-
-
-
 public final class PlusShare {
     private PlusShare() {
     }

@@ -1,18 +1,17 @@
-            package com.google.android.gms.appstate;
+package com.google.android.gms.appstate;
 
-            import com.google.android.gms.common.data.Freezable;
-            
-            
-            public interface AppState extends Freezable<AppState> {
-                byte[] getConflictData();
+import com.google.android.gms.common.data.Freezable;
 
-                String getConflictVersion();
+public interface AppState extends Freezable<AppState> {
+    byte[] getConflictData();
 
-                int getKey();
+    String getConflictVersion();
 
-                byte[] getLocalData();
+    int getKey();
 
-                String getLocalVersion();
+    byte[] getLocalData();
 
-                boolean hasConflict();
-            }
+    String getLocalVersion();
+
+    boolean hasConflict();
+}

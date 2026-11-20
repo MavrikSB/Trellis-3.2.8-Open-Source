@@ -1,102 +1,96 @@
-            package co.vine.android.network;
+package co.vine.android.network;
 
-            import android.os.Parcel;
-            import android.os.Parcelable;
-            
-            
-     public class UrlCachePolicy implements Parcelable {
-                public final boolean mCacheTakesPriority;
-                public final boolean mCachedResponseAllowed;
-                public final long mIfReachableFetchMaxStaleTimeMs;
-                public final boolean mNetworkDataAllowed;
-                public final boolean mShouldCacheResponse;
-                public final boolean mUseExpiredDataAllowedIfNetworkIsDown;
-                public static final UrlCachePolicy CACHE_THEN_NETWORK = new UrlCachePolicy(true, true, true, true, -1, true);
-                public static final UrlCachePolicy NETWORK_THEN_CACHE = new UrlCachePolicy(true, true, false, true, -1, true);
-                public static final UrlCachePolicy NOT_CACHABLE = new UrlCachePolicy(false, false, false, false, -1, true);
-                public static final UrlCachePolicy NETWORK_ONLY = new UrlCachePolicy(true, false, false, false, -1, true);
-                public static final UrlCachePolicy FORCE_REFRESH = new UrlCachePolicy(true, true, false, false, -1, true);
-                public static final UrlCachePolicy CACHE_ONLY = new UrlCachePolicy(true, true, true, true, -1, false);
-                public static final Parcelable.Creator<UrlCachePolicy> CREATOR = new C03881();
+import android.os.Parcel;
+import android.os.Parcelable;
 
-          UrlCachePolicy(Parcel x0, C03881 x1) {
-             this(x0);
-                }
+public class UrlCachePolicy implements Parcelable {
+    public final boolean mCacheTakesPriority;
+    public final boolean mCachedResponseAllowed;
+    public final long mIfReachableFetchMaxStaleTimeMs;
+    public final boolean mNetworkDataAllowed;
+    public final boolean mShouldCacheResponse;
+    public final boolean mUseExpiredDataAllowedIfNetworkIsDown;
+    public static final UrlCachePolicy CACHE_THEN_NETWORK = new UrlCachePolicy(true, true, true, true, -1, true);
+    public static final UrlCachePolicy NETWORK_THEN_CACHE = new UrlCachePolicy(true, true, false, true, -1, true);
+    public static final UrlCachePolicy NOT_CACHABLE = new UrlCachePolicy(false, false, false, false, -1, true);
+    public static final UrlCachePolicy NETWORK_ONLY = new UrlCachePolicy(true, false, false, false, -1, true);
+    public static final UrlCachePolicy FORCE_REFRESH = new UrlCachePolicy(true, true, false, false, -1, true);
+    public static final UrlCachePolicy CACHE_ONLY = new UrlCachePolicy(true, true, true, true, -1, false);
+    public static final Parcelable.Creator<UrlCachePolicy> CREATOR = new C03881();
 
-        private UrlCachePolicy(Parcel in) {
-            this.mShouldCacheResponse = in.readInt() != 0;
-            this.mCacheTakesPriority = in.readInt() != 0;
-            this.mCachedResponseAllowed = in.readInt() != 0;
-            this.mUseExpiredDataAllowedIfNetworkIsDown = in.readInt() != 0;
-            this.mNetworkDataAllowed = in.readInt() != 0;
-            this.mIfReachableFetchMaxStaleTimeMs = in.readLong();
-                }
+    UrlCachePolicy(Parcel x0, C03881 x1) {
+        this(x0);
+    }
 
-        private UrlCachePolicy(boolean shouldCacheResponse, boolean cachedResponseAllowed, boolean cacheTakesPriority, boolean useExpiredDataAllowedIfNetworkIsDown, long ifReachableFetchMaxStaleTimeMs, boolean networkDataAllowed) {
-            if (cacheTakesPriority && !cachedResponseAllowed) {
-                throw new IllegalArgumentException("Cache can't take priority if cache reponses are not allowed.");
-                    }
-            this.mNetworkDataAllowed = networkDataAllowed;
-            this.mShouldCacheResponse = shouldCacheResponse;
-            this.mCachedResponseAllowed = cachedResponseAllowed;
-            this.mUseExpiredDataAllowedIfNetworkIsDown = useExpiredDataAllowedIfNetworkIsDown;
-            this.mIfReachableFetchMaxStaleTimeMs = ifReachableFetchMaxStaleTimeMs;
-            this.mCacheTakesPriority = cacheTakesPriority;
-                }
+    private UrlCachePolicy(Parcel in) {
+        this.mShouldCacheResponse = in.readInt() != 0;
+        this.mCacheTakesPriority = in.readInt() != 0;
+        this.mCachedResponseAllowed = in.readInt() != 0;
+        this.mUseExpiredDataAllowedIfNetworkIsDown = in.readInt() != 0;
+        this.mNetworkDataAllowed = in.readInt() != 0;
+        this.mIfReachableFetchMaxStaleTimeMs = in.readLong();
+    }
 
-       public static UrlCachePolicy cacheAllowedPolicy(boolean expiredDataAllowedIfNetworkIsDown, long ifReachableFetchMaxStaleTimeMs) {
-           return new UrlCachePolicy(true, true, true, expiredDataAllowedIfNetworkIsDown, ifReachableFetchMaxStaleTimeMs, true);
-                }
+    private UrlCachePolicy(boolean shouldCacheResponse, boolean cachedResponseAllowed, boolean cacheTakesPriority, boolean useExpiredDataAllowedIfNetworkIsDown, long ifReachableFetchMaxStaleTimeMs, boolean networkDataAllowed) {
+        if (cacheTakesPriority && !cachedResponseAllowed) {
+            throw new IllegalArgumentException("Cache can't take priority if cache reponses are not allowed.");
+        }
+        this.mNetworkDataAllowed = networkDataAllowed;
+        this.mShouldCacheResponse = shouldCacheResponse;
+        this.mCachedResponseAllowed = cachedResponseAllowed;
+        this.mUseExpiredDataAllowedIfNetworkIsDown = useExpiredDataAllowedIfNetworkIsDown;
+        this.mIfReachableFetchMaxStaleTimeMs = ifReachableFetchMaxStaleTimeMs;
+        this.mCacheTakesPriority = cacheTakesPriority;
+    }
 
-                @Override 
-       public int describeContents() {
-           return 0;
-                }
+    public static UrlCachePolicy cacheAllowedPolicy(boolean expiredDataAllowedIfNetworkIsDown, long ifReachableFetchMaxStaleTimeMs) {
+        return new UrlCachePolicy(true, true, true, expiredDataAllowedIfNetworkIsDown, ifReachableFetchMaxStaleTimeMs, true);
+    }
 
-                @Override 
-       public void writeToParcel(Parcel dest, int flags) {
-           dest.writeInt(this.mShouldCacheResponse ? 1 : 0);
-           dest.writeInt(this.mCacheTakesPriority ? 1 : 0);
-           dest.writeInt(this.mCachedResponseAllowed ? 1 : 0);
-           dest.writeInt(this.mUseExpiredDataAllowedIfNetworkIsDown ? 1 : 0);
-           dest.writeInt(this.mNetworkDataAllowed ? 1 : 0);
-           dest.writeLong(this.mIfReachableFetchMaxStaleTimeMs);
-                }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-       public boolean equals(Object o) {
-           if (!(o instanceof UrlCachePolicy)) {
-                        return false;
-                    }
-           UrlCachePolicy other = (UrlCachePolicy) o;
-                    return this.mShouldCacheResponse == other.mShouldCacheResponse && this.mCacheTakesPriority == other.mCacheTakesPriority && this.mIfReachableFetchMaxStaleTimeMs == other.mIfReachableFetchMaxStaleTimeMs && this.mNetworkDataAllowed == other.mNetworkDataAllowed && this.mCachedResponseAllowed == other.mCachedResponseAllowed && this.mUseExpiredDataAllowedIfNetworkIsDown == other.mUseExpiredDataAllowedIfNetworkIsDown;
-                }
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.mShouldCacheResponse ? 1 : 0);
+        dest.writeInt(this.mCacheTakesPriority ? 1 : 0);
+        dest.writeInt(this.mCachedResponseAllowed ? 1 : 0);
+        dest.writeInt(this.mUseExpiredDataAllowedIfNetworkIsDown ? 1 : 0);
+        dest.writeInt(this.mNetworkDataAllowed ? 1 : 0);
+        dest.writeLong(this.mIfReachableFetchMaxStaleTimeMs);
+    }
 
-       public int hashCode() {
-           int r = (this.mShouldCacheResponse ? 1 : 0) * 31;
-                    int r2 = r + ((this.mCacheTakesPriority ? 1 : 0) * 31) + r;
-                    int r3 = r2 + ((this.mNetworkDataAllowed ? 1 : 0) * 31) + r2;
-                    int r4 = r3 + ((this.mCachedResponseAllowed ? 1 : 0) * 31) + r3;
-                    int r5 = r4 + ((this.mUseExpiredDataAllowedIfNetworkIsDown ? 1 : 0) * 31) + r4;
-           return r5 + (((int) ((this.mIfReachableFetchMaxStaleTimeMs >> 32) ^ this.mIfReachableFetchMaxStaleTimeMs)) * 31) + r5;
-                }
+    public boolean equals(Object o) {
+        if (!(o instanceof UrlCachePolicy)) {
+            return false;
+        }
+        UrlCachePolicy other = (UrlCachePolicy) o;
+        return this.mShouldCacheResponse == other.mShouldCacheResponse && this.mCacheTakesPriority == other.mCacheTakesPriority && this.mIfReachableFetchMaxStaleTimeMs == other.mIfReachableFetchMaxStaleTimeMs && this.mNetworkDataAllowed == other.mNetworkDataAllowed && this.mCachedResponseAllowed == other.mCachedResponseAllowed && this.mUseExpiredDataAllowedIfNetworkIsDown == other.mUseExpiredDataAllowedIfNetworkIsDown;
+    }
 
-                
-       static class C03881 implements Parcelable.Creator<UrlCachePolicy> {
-           C03881() {
-                    }
+    public int hashCode() {
+        int r = (this.mShouldCacheResponse ? 1 : 0) * 31;
+        int r2 = r + ((this.mCacheTakesPriority ? 1 : 0) * 31) + r;
+        int r3 = r2 + ((this.mNetworkDataAllowed ? 1 : 0) * 31) + r2;
+        int r4 = r3 + ((this.mCachedResponseAllowed ? 1 : 0) * 31) + r3;
+        int r5 = r4 + ((this.mUseExpiredDataAllowedIfNetworkIsDown ? 1 : 0) * 31) + r4;
+        return r5 + (((int) ((this.mIfReachableFetchMaxStaleTimeMs >> 32) ^ this.mIfReachableFetchMaxStaleTimeMs)) * 31) + r5;
+    }
 
+    static class C03881 implements Parcelable.Creator<UrlCachePolicy> {
+        C03881() {
+        }
 
+        @Override
+        public UrlCachePolicy createFromParcel(Parcel in) {
+            return new UrlCachePolicy(in, null);
+        }
 
-                    
-                    @Override 
-           public UrlCachePolicy createFromParcel(Parcel in) {
-               return new UrlCachePolicy(in, null);
-                    }
-
-                    
-                    @Override 
-           public UrlCachePolicy[] newArray(int size) {
-               return new UrlCachePolicy[size];
-                    }
-                }
-            }
+        @Override
+        public UrlCachePolicy[] newArray(int size) {
+            return new UrlCachePolicy[size];
+        }
+    }
+}

@@ -1,30 +1,29 @@
-            package com.google.android.exoplayer.parser;
+package com.google.android.exoplayer.parser;
 
-            import com.google.android.exoplayer.MediaFormat;
-            import com.google.android.exoplayer.ParserException;
-            import com.google.android.exoplayer.SampleHolder;
-            import com.google.android.exoplayer.upstream.NonBlockingInputStream;
-            import java.util.Map;
-            import java.util.UUID;
-            
-            
-            public interface Extractor {
-                public static final int RESULT_END_OF_STREAM = 2;
-                public static final int RESULT_NEED_MORE_DATA = 1;
-                public static final int RESULT_NEED_SAMPLE_HOLDER = 32;
-                public static final int RESULT_READ_INDEX = 16;
-                public static final int RESULT_READ_INIT = 8;
-                public static final int RESULT_READ_SAMPLE = 4;
+import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.ParserException;
+import com.google.android.exoplayer.SampleHolder;
+import com.google.android.exoplayer.upstream.NonBlockingInputStream;
+import java.util.Map;
+import java.util.UUID;
 
-                MediaFormat getFormat();
+public interface Extractor {
+    public static final int RESULT_END_OF_STREAM = 2;
+    public static final int RESULT_NEED_MORE_DATA = 1;
+    public static final int RESULT_NEED_SAMPLE_HOLDER = 32;
+    public static final int RESULT_READ_INDEX = 16;
+    public static final int RESULT_READ_INIT = 8;
+    public static final int RESULT_READ_SAMPLE = 4;
 
-                SegmentIndex getIndex();
+    MediaFormat getFormat();
 
-                Map<UUID, byte[]> getPsshInfo();
+    SegmentIndex getIndex();
 
-                boolean hasRelativeIndexOffsets();
+    Map<UUID, byte[]> getPsshInfo();
 
-                int read(NonBlockingInputStream nonBlockingInputStream, SampleHolder sampleHolder) throws ParserException;
+    boolean hasRelativeIndexOffsets();
 
-                boolean seekTo(long j, boolean z);
-            }
+    int read(NonBlockingInputStream nonBlockingInputStream, SampleHolder sampleHolder) throws ParserException;
+
+    boolean seekTo(long j, boolean z);
+}

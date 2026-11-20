@@ -1,62 +1,61 @@
-            package twitter4j.auth;
+package twitter4j.auth;
 
-            import java.io.Serializable;
-            import twitter4j.internal.http.BASE64Encoder;
-            import twitter4j.internal.http.HttpRequest;
-            
-            
-    public class BasicAuthorization implements Authorization, Serializable {
-                private static final long serialVersionUID = -5861104407848415060L;
-                private String basic = encodeBasicAuthenticationString();
-                private String password;
-                private String userId;
+import java.io.Serializable;
+import twitter4j.internal.http.BASE64Encoder;
+import twitter4j.internal.http.HttpRequest;
 
-        public BasicAuthorization(String userId, String password) {
-            this.userId = userId;
-            this.password = password;
-                }
+public class BasicAuthorization implements Authorization, Serializable {
+    private static final long serialVersionUID = -5861104407848415060L;
+    private String basic = encodeBasicAuthenticationString();
+    private String password;
+    private String userId;
 
-        public String getUserId() {
-            return this.userId;
-                }
+    public BasicAuthorization(String userId, String password) {
+        this.userId = userId;
+        this.password = password;
+    }
 
-        public String getPassword() {
-            return this.password;
-                }
+    public String getUserId() {
+        return this.userId;
+    }
 
-        private String encodeBasicAuthenticationString() {
-            if (this.userId == null || this.password == null) {
-                        return null;
-                    }
-            return "Basic " + BASE64Encoder.encode((this.userId + ":" + this.password).getBytes());
-                }
+    public String getPassword() {
+        return this.password;
+    }
 
-                @Override 
-        public String getAuthorizationHeader(HttpRequest req) {
-            return this.basic;
-                }
+    private String encodeBasicAuthenticationString() {
+        if (this.userId == null || this.password == null) {
+            return null;
+        }
+        return "Basic " + BASE64Encoder.encode((this.userId + ":" + this.password).getBytes());
+    }
 
-                @Override 
-        public boolean isEnabled() {
+    @Override
+    public String getAuthorizationHeader(HttpRequest req) {
+        return this.basic;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
-                }
+        }
+        if (!(o instanceof BasicAuthorization)) {
+            return false;
+        }
+        BasicAuthorization that = (BasicAuthorization) o;
+        return this.basic.equals(that.basic);
+    }
 
-        public boolean equals(Object o) {
-            if (this == o) {
-                        return true;
-                    }
-            if (!(o instanceof BasicAuthorization)) {
-                        return false;
-                    }
-            BasicAuthorization that = (BasicAuthorization) o;
-            return this.basic.equals(that.basic);
-                }
+    public int hashCode() {
+        return this.basic.hashCode();
+    }
 
-        public int hashCode() {
-            return this.basic.hashCode();
-                }
-
-        public String toString() {
-            return "BasicAuthorization{userId='" + this.userId + "', password='**********''}";
-                }
-            }
+    public String toString() {
+        return "BasicAuthorization{userId='" + this.userId + "', password='**********''}";
+    }
+}

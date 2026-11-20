@@ -1,11 +1,10 @@
-            package co.vine.android.cache.text;
+package co.vine.android.cache.text;
 
-            import co.vine.android.network.HttpResult;
-            import java.util.HashMap;
-            
-            
-            public interface TextListener {
-                void onPathError(TextCache textCache, TextKey textKey, HttpResult httpResult);
+import co.vine.android.network.HttpResult;
+import java.util.HashMap;
 
-                void onPathObtained(TextCache textCache, HashMap<TextKey, UrlText> map);
-            }
+public interface TextListener {
+    void onPathError(TextCache textCache, TextKey textKey, HttpResult httpResult);
+
+    void onPathObtained(TextCache textCache, HashMap<TextKey, UrlText> map);
+}

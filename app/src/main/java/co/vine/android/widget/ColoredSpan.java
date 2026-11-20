@@ -1,28 +1,27 @@
-            package co.vine.android.widget;
+package co.vine.android.widget;
 
-            import android.support.annotation.NonNull;
-            import android.text.TextPaint;
-            import android.text.style.CharacterStyle;
-            
-            
-    public class ColoredSpan extends CharacterStyle {
-                private int mColor;
+import android.support.annotation.NonNull;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
 
-        public ColoredSpan(int color) {
-            this.mColor = color;
-                }
+public class ColoredSpan extends CharacterStyle {
+    private int mColor;
 
-        public void setColor(int color) {
-            this.mColor = color;
-                }
+    public ColoredSpan(int color) {
+        this.mColor = color;
+    }
 
-                @Override 
-        public void updateDrawState(@NonNull TextPaint ds) {
-            ds.setColor(this.mColor);
-            ds.setUnderlineText(false);
-                }
+    public void setColor(int color) {
+        this.mColor = color;
+    }
 
-        public int getColor() {
-            return this.mColor;
-                }
-            }
+    @Override
+    public void updateDrawState(@NonNull TextPaint ds) {
+        ds.setColor(this.mColor);
+        ds.setUnderlineText(false);
+    }
+
+    public int getColor() {
+        return this.mColor;
+    }
+}

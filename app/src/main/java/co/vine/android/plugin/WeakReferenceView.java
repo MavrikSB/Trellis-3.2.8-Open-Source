@@ -1,43 +1,42 @@
-            package co.vine.android.plugin;
+package co.vine.android.plugin;
 
-            import android.view.View;
-            import android.view.ViewGroup;
-            import android.view.animation.Animation;
-            import java.lang.ref.WeakReference;
-            
-            
-    public class WeakReferenceView extends WeakReference<View> {
-        public WeakReferenceView(View r) {
-            super(r);
-                }
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import java.lang.ref.WeakReference;
 
-        public void setVisibility(int visibility) {
-            View grid = (View) get();
-            if (grid != null) {
-                grid.setVisibility(visibility);
-                    }
-                }
+public class WeakReferenceView extends WeakReference<View> {
+    public WeakReferenceView(View r) {
+        super(r);
+    }
 
-        public void startAnimation(Animation animation) {
-            View grid = (View) get();
-            if (grid != null) {
-                grid.startAnimation(animation);
-                    }
-                }
+    public void setVisibility(int visibility) {
+        View grid = (View) get();
+        if (grid != null) {
+            grid.setVisibility(visibility);
+        }
+    }
 
-        public int getVisibility() {
-            View grid = (View) get();
-            if (grid != null) {
-                return grid.getVisibility();
-                    }
-                    return -1;
-                }
+    public void startAnimation(Animation animation) {
+        View grid = (View) get();
+        if (grid != null) {
+            grid.startAnimation(animation);
+        }
+    }
 
-        public ViewGroup.LayoutParams getLayoutParams() {
-            View grid = (View) get();
-            if (grid != null) {
-                return grid.getLayoutParams();
-                    }
-                    return null;
-                }
-            }
+    public int getVisibility() {
+        View grid = (View) get();
+        if (grid != null) {
+            return grid.getVisibility();
+        }
+        return -1;
+    }
+
+    public ViewGroup.LayoutParams getLayoutParams() {
+        View grid = (View) get();
+        if (grid != null) {
+            return grid.getLayoutParams();
+        }
+        return null;
+    }
+}

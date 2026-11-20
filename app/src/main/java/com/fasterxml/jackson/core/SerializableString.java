@@ -1,34 +1,33 @@
-            package com.fasterxml.jackson.core;
+package com.fasterxml.jackson.core;
 
-            import java.io.IOException;
-            import java.io.OutputStream;
-            import java.nio.ByteBuffer;
-            
-            
-            public interface SerializableString {
-                int appendQuoted(char[] cArr, int i);
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
 
-                int appendQuotedUTF8(byte[] bArr, int i);
+public interface SerializableString {
+    int appendQuoted(char[] cArr, int i);
 
-                int appendUnquoted(char[] cArr, int i);
+    int appendQuotedUTF8(byte[] bArr, int i);
 
-                int appendUnquotedUTF8(byte[] bArr, int i);
+    int appendUnquoted(char[] cArr, int i);
 
-                char[] asQuotedChars();
+    int appendUnquotedUTF8(byte[] bArr, int i);
 
-                byte[] asQuotedUTF8();
+    char[] asQuotedChars();
 
-                byte[] asUnquotedUTF8();
+    byte[] asQuotedUTF8();
 
-                int charLength();
+    byte[] asUnquotedUTF8();
 
-                String getValue();
+    int charLength();
 
-                int putQuotedUTF8(ByteBuffer byteBuffer) throws IOException;
+    String getValue();
 
-                int putUnquotedUTF8(ByteBuffer byteBuffer) throws IOException;
+    int putQuotedUTF8(ByteBuffer byteBuffer) throws IOException;
 
-                int writeQuotedUTF8(OutputStream outputStream) throws IOException;
+    int putUnquotedUTF8(ByteBuffer byteBuffer) throws IOException;
 
-                int writeUnquotedUTF8(OutputStream outputStream) throws IOException;
-            }
+    int writeQuotedUTF8(OutputStream outputStream) throws IOException;
+
+    int writeUnquotedUTF8(OutputStream outputStream) throws IOException;
+}

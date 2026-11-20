@@ -1,19 +1,18 @@
-            package com.google.android.gms.games.multiplayer.realtime;
+package com.google.android.gms.games.multiplayer.realtime;
 
-            import android.os.ParcelFileDescriptor;
-            import java.io.IOException;
-            import java.io.InputStream;
-            import java.io.OutputStream;
-            
-            
-            public interface RealTimeSocket {
-                void close() throws IOException;
+import android.os.ParcelFileDescriptor;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
-                InputStream getInputStream() throws IOException;
+public interface RealTimeSocket {
+    void close() throws IOException;
 
-                OutputStream getOutputStream() throws IOException;
+    InputStream getInputStream() throws IOException;
 
-                ParcelFileDescriptor getParcelFileDescriptor() throws IOException;
+    OutputStream getOutputStream() throws IOException;
 
-                boolean isClosed();
-            }
+    ParcelFileDescriptor getParcelFileDescriptor() throws IOException;
+
+    boolean isClosed();
+}

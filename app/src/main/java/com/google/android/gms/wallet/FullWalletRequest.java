@@ -1,93 +1,88 @@
-            package com.google.android.gms.wallet;
+package com.google.android.gms.wallet;
 
-            import android.os.Parcel;
-            import android.os.Parcelable;
-            import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-            
-            
-            public class FullWalletRequest implements SafeParcelable {
-                public static final Parcelable.Creator<FullWalletRequest> CREATOR = new C1210d();
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-                
-                private final int f2476iM;
+public class FullWalletRequest implements SafeParcelable {
+    public static final Parcelable.Creator<FullWalletRequest> CREATOR = new C1210d();
 
-                
-                String f2477tH;
+    private final int f2476iM;
 
-                
-                String f2478tI;
+    String f2477tH;
 
-                
-                Cart f2479tO;
+    String f2478tI;
 
-                public final class Builder {
-                    private Builder() {
-                    }
+    Cart f2479tO;
 
-                     Builder(FullWalletRequest x0, Object x1) {
-                        this();
-                    }
+    public final class Builder {
+        private Builder() {
+        }
 
-                    public FullWalletRequest build() {
-                        return FullWalletRequest.this;
-                    }
+        Builder(FullWalletRequest x0, Object x1) {
+            this();
+        }
 
-                    public Builder setCart(Cart cart) {
-                        FullWalletRequest.this.f2479tO = cart;
-                        return this;
-                    }
+        public FullWalletRequest build() {
+            return FullWalletRequest.this;
+        }
 
-                    public Builder setGoogleTransactionId(String googleTransactionId) {
-                        FullWalletRequest.this.f2477tH = googleTransactionId;
-                        return this;
-                    }
+        public Builder setCart(Cart cart) {
+            FullWalletRequest.this.f2479tO = cart;
+            return this;
+        }
 
-                    public Builder setMerchantTransactionId(String merchantTransactionId) {
-                        FullWalletRequest.this.f2478tI = merchantTransactionId;
-                        return this;
-                    }
-                }
+        public Builder setGoogleTransactionId(String googleTransactionId) {
+            FullWalletRequest.this.f2477tH = googleTransactionId;
+            return this;
+        }
 
-                public FullWalletRequest() {
-                    this.f2476iM = 1;
-                }
+        public Builder setMerchantTransactionId(String merchantTransactionId) {
+            FullWalletRequest.this.f2478tI = merchantTransactionId;
+            return this;
+        }
+    }
 
-                FullWalletRequest(int versionCode, String googleTransactionId, String merchantTransactionId, Cart cart) {
-                    this.f2476iM = versionCode;
-                    this.f2477tH = googleTransactionId;
-                    this.f2478tI = merchantTransactionId;
-                    this.f2479tO = cart;
-                }
+    public FullWalletRequest() {
+        this.f2476iM = 1;
+    }
 
-                public static Builder newBuilder() {
-                    FullWalletRequest fullWalletRequest = new FullWalletRequest();
-                    fullWalletRequest.getClass();
-                    return new Builder(fullWalletRequest, null);
-                }
+    FullWalletRequest(int versionCode, String googleTransactionId, String merchantTransactionId, Cart cart) {
+        this.f2476iM = versionCode;
+        this.f2477tH = googleTransactionId;
+        this.f2478tI = merchantTransactionId;
+        this.f2479tO = cart;
+    }
 
-                @Override 
-                public int describeContents() {
-                    return 0;
-                }
+    public static Builder newBuilder() {
+        FullWalletRequest fullWalletRequest = new FullWalletRequest();
+        fullWalletRequest.getClass();
+        return new Builder(fullWalletRequest, null);
+    }
 
-                public Cart getCart() {
-                    return this.f2479tO;
-                }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-                public String getGoogleTransactionId() {
-                    return this.f2477tH;
-                }
+    public Cart getCart() {
+        return this.f2479tO;
+    }
 
-                public String getMerchantTransactionId() {
-                    return this.f2478tI;
-                }
+    public String getGoogleTransactionId() {
+        return this.f2477tH;
+    }
 
-                public int getVersionCode() {
-                    return this.f2476iM;
-                }
+    public String getMerchantTransactionId() {
+        return this.f2478tI;
+    }
 
-                @Override 
-                public void writeToParcel(Parcel dest, int flags) {
-                    C1210d.m2351a(this, dest, flags);
-                }
-            }
+    public int getVersionCode() {
+        return this.f2476iM;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        C1210d.m2351a(this, dest, flags);
+    }
+}

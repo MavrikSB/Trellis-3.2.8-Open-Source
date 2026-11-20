@@ -1,21 +1,19 @@
-            package com.squareup.okhttp.internal.spdy;
+package com.squareup.okhttp.internal.spdy;
 
-            import java.io.IOException;
-            
-            
-    public interface IncomingStreamHandler {
-                public static final IncomingStreamHandler REFUSE_INCOMING_STREAMS = new C12791();
+import java.io.IOException;
 
-                void receive(SpdyStream spdyStream) throws IOException;
+public interface IncomingStreamHandler {
+    public static final IncomingStreamHandler REFUSE_INCOMING_STREAMS = new C12791();
 
-                
-        static class C12791 implements IncomingStreamHandler {
-            C12791() {
-                    }
+    void receive(SpdyStream spdyStream) throws IOException;
 
-                    @Override 
-            public void receive(SpdyStream stream) throws IOException {
-                stream.close(ErrorCode.REFUSED_STREAM);
-                    }
-                }
-            }
+    static class C12791 implements IncomingStreamHandler {
+        C12791() {
+        }
+
+        @Override
+        public void receive(SpdyStream stream) throws IOException {
+            stream.close(ErrorCode.REFUSED_STREAM);
+        }
+    }
+}

@@ -1,91 +1,82 @@
-            package com.google.android.gms.wallet;
+package com.google.android.gms.wallet;
 
-            import android.os.Parcel;
-            import android.os.Parcelable;
-            import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-            
-            
-            public final class FullWallet implements SafeParcelable {
-                public static final Parcelable.Creator<FullWallet> CREATOR = new C1209c();
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-                
-                private final int f2468iM;
+public final class FullWallet implements SafeParcelable {
+    public static final Parcelable.Creator<FullWallet> CREATOR = new C1209c();
 
-                
-                String f2469tH;
+    private final int f2468iM;
 
-                
-                String f2470tI;
+    String f2469tH;
 
-                
-                ProxyCard f2471tJ;
+    String f2470tI;
 
-                
-                String f2472tK;
+    ProxyCard f2471tJ;
 
-                
-                Address f2473tL;
+    String f2472tK;
 
-                
-                Address f2474tM;
+    Address f2473tL;
 
-                
-                String[] f2475tN;
+    Address f2474tM;
 
-                public FullWallet() {
-                    this.f2468iM = 1;
-                }
+    String[] f2475tN;
 
-                FullWallet(int versionCode, String googleTransactionId, String merchantTransactionId, ProxyCard proxyCard, String email, Address billingAddress, Address shippingAddress, String[] paymentDescriptions) {
-                    this.f2468iM = versionCode;
-                    this.f2469tH = googleTransactionId;
-                    this.f2470tI = merchantTransactionId;
-                    this.f2471tJ = proxyCard;
-                    this.f2472tK = email;
-                    this.f2473tL = billingAddress;
-                    this.f2474tM = shippingAddress;
-                    this.f2475tN = paymentDescriptions;
-                }
+    public FullWallet() {
+        this.f2468iM = 1;
+    }
 
-                @Override 
-                public int describeContents() {
-                    return 0;
-                }
+    FullWallet(int versionCode, String googleTransactionId, String merchantTransactionId, ProxyCard proxyCard, String email, Address billingAddress, Address shippingAddress, String[] paymentDescriptions) {
+        this.f2468iM = versionCode;
+        this.f2469tH = googleTransactionId;
+        this.f2470tI = merchantTransactionId;
+        this.f2471tJ = proxyCard;
+        this.f2472tK = email;
+        this.f2473tL = billingAddress;
+        this.f2474tM = shippingAddress;
+        this.f2475tN = paymentDescriptions;
+    }
 
-                public Address getBillingAddress() {
-                    return this.f2473tL;
-                }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-                public String getEmail() {
-                    return this.f2472tK;
-                }
+    public Address getBillingAddress() {
+        return this.f2473tL;
+    }
 
-                public String getGoogleTransactionId() {
-                    return this.f2469tH;
-                }
+    public String getEmail() {
+        return this.f2472tK;
+    }
 
-                public String getMerchantTransactionId() {
-                    return this.f2470tI;
-                }
+    public String getGoogleTransactionId() {
+        return this.f2469tH;
+    }
 
-                public String[] getPaymentDescriptions() {
-                    return this.f2475tN;
-                }
+    public String getMerchantTransactionId() {
+        return this.f2470tI;
+    }
 
-                public ProxyCard getProxyCard() {
-                    return this.f2471tJ;
-                }
+    public String[] getPaymentDescriptions() {
+        return this.f2475tN;
+    }
 
-                public Address getShippingAddress() {
-                    return this.f2474tM;
-                }
+    public ProxyCard getProxyCard() {
+        return this.f2471tJ;
+    }
 
-                public int getVersionCode() {
-                    return this.f2468iM;
-                }
+    public Address getShippingAddress() {
+        return this.f2474tM;
+    }
 
-                @Override 
-                public void writeToParcel(Parcel out, int flags) {
-                    C1209c.m2348a(this, out, flags);
-                }
-            }
+    public int getVersionCode() {
+        return this.f2468iM;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        C1209c.m2348a(this, out, flags);
+    }
+}

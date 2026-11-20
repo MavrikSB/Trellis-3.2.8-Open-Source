@@ -1,5 +1,4 @@
-            package com.google.android.gms.ads.mediation;
-            
-            
-            public interface NetworkExtras {
-            }
+package com.google.android.gms.ads.mediation;
+
+public interface NetworkExtras {
+}

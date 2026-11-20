@@ -16,7 +16,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.message.ParserCursor;
 import org.apache.http.util.CharArrayBuffer;
 
-
 public class HttpEntityParserReader implements NetworkOperationReader {
     public static final String TAG = "VineParserReader";
     public static final boolean LOGGABLE = Log.isLoggable(TAG, 3);

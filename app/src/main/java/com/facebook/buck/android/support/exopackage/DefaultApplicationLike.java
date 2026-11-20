@@ -1,33 +1,32 @@
-            package com.facebook.buck.android.support.exopackage;
+package com.facebook.buck.android.support.exopackage;
 
-            import android.app.Application;
-            import android.content.res.Configuration;
-            
-            
-    public class DefaultApplicationLike implements ApplicationLike {
-        public DefaultApplicationLike() {
-                }
+import android.app.Application;
+import android.content.res.Configuration;
 
-        public DefaultApplicationLike(Application application) {
-                }
+public class DefaultApplicationLike implements ApplicationLike {
+    public DefaultApplicationLike() {
+    }
 
-                @Override 
-        public void onCreate() {
-                }
+    public DefaultApplicationLike(Application application) {
+    }
 
-                @Override 
-        public void onLowMemory() {
-                }
+    @Override
+    public void onCreate() {
+    }
 
-                @Override 
-        public void onTrimMemory(int level) {
-                }
+    @Override
+    public void onLowMemory() {
+    }
 
-                @Override 
-        public void onTerminate() {
-                }
+    @Override
+    public void onTrimMemory(int level) {
+    }
 
-                @Override 
-        public void onConfigurationChanged(Configuration newConfig) {
-                }
-            }
+    @Override
+    public void onTerminate() {
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+    }
+}

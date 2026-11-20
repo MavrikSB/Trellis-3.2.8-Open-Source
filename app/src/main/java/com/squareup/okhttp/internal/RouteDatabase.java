@@ -1,42 +1,25 @@
-            package com.squareup.okhttp.internal;
+package com.squareup.okhttp.internal;
 
-            import com.squareup.okhttp.Route;
-            import java.util.LinkedHashSet;
-            import java.util.Set;
-            
-            
-    public final class RouteDatabase {
-                private final Set<Route> failedRoutes = new LinkedHashSet();
+import com.squareup.okhttp.Route;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-        public synchronized void failed(Route failedRoute) {
-                    try {
-                        this.failedRoutes.add(failedRoute);
-                    } catch (Throwable th) {
-                        throw th;
-                    }
-                }
+public final class RouteDatabase {
+    private final Set<Route> failedRoutes = new LinkedHashSet();
 
-        public synchronized void connected(Route route) {
-                    try {
-                        this.failedRoutes.remove(route);
-                    } catch (Throwable th) {
-                        throw th;
-                    }
-                }
+    public synchronized void failed(Route failedRoute) {
+        this.failedRoutes.add(failedRoute);
+    }
 
-        public synchronized boolean shouldPostpone(Route route) {
-                    try {
-                    } catch (Throwable th) {
-                        throw th;
-                    }
-                    return this.failedRoutes.contains(route);
-                }
+    public synchronized void connected(Route route) {
+        this.failedRoutes.remove(route);
+    }
 
-        public synchronized int failedRoutesCount() {
-                    try {
-                    } catch (Throwable th) {
-                        throw th;
-                    }
-                    return this.failedRoutes.size();
-                }
-            }
+    public synchronized boolean shouldPostpone(Route route) {
+        return this.failedRoutes.contains(route);
+    }
+
+    public synchronized int failedRoutesCount() {
+        return this.failedRoutes.size();
+    }
+}

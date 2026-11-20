@@ -1,13 +1,9 @@
-            package com.google.android.gms.internal;
+package com.google.android.gms.internal;
 
-            import android.os.IInterface;
-            
-            
-            
-            public interface InterfaceC1072fc<T extends IInterface> {
-                
-                void mo1913bc();
+import android.os.IInterface;
 
-                
-                T mo1914bd();
-            }
+public interface InterfaceC1072fc<T extends IInterface> {
+    void mo1913bc();
+
+    T mo1914bd();
+}

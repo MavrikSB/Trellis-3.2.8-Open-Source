@@ -1,31 +1,30 @@
-            package com.fasterxml.jackson.core.sym;
-            
-            
-    public final class Name1 extends Name {
-                static final Name1 sEmptyName = new Name1("", 0, 0);
-                final int mQuad;
+package com.fasterxml.jackson.core.sym;
 
-        Name1(String str, int i, int i2) {
-            super(str, i);
-            this.mQuad = i2;
-                }
+public final class Name1 extends Name {
+    static final Name1 sEmptyName = new Name1("", 0, 0);
+    final int mQuad;
 
-        static Name1 getEmptyName() {
-            return sEmptyName;
-                }
+    Name1(String str, int i, int i2) {
+        super(str, i);
+        this.mQuad = i2;
+    }
 
-                @Override 
-        public boolean equals(int i) {
-                    return i == this.mQuad;
-                }
+    static Name1 getEmptyName() {
+        return sEmptyName;
+    }
 
-                @Override 
-        public boolean equals(int i, int i2) {
-                    return i == this.mQuad && i2 == 0;
-                }
+    @Override
+    public boolean equals(int i) {
+        return i == this.mQuad;
+    }
 
-                @Override 
-        public boolean equals(int[] iArr, int i) {
-                    return i == 1 && iArr[0] == this.mQuad;
-                }
-            }
+    @Override
+    public boolean equals(int i, int i2) {
+        return i == this.mQuad && i2 == 0;
+    }
+
+    @Override
+    public boolean equals(int[] iArr, int i) {
+        return i == 1 && iArr[0] == this.mQuad;
+    }
+}

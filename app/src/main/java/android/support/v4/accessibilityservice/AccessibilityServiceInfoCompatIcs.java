@@ -1,30 +1,29 @@
-            package android.support.v4.accessibilityservice;
+package android.support.v4.accessibilityservice;
 
-            import android.accessibilityservice.AccessibilityServiceInfo;
-            import android.content.pm.ResolveInfo;
-            
-            
-    class AccessibilityServiceInfoCompatIcs {
-        AccessibilityServiceInfoCompatIcs() {
-                }
+import android.accessibilityservice.AccessibilityServiceInfo;
+import android.content.pm.ResolveInfo;
 
-        public static boolean getCanRetrieveWindowContent(AccessibilityServiceInfo info) {
-            return info.getCanRetrieveWindowContent();
-                }
+class AccessibilityServiceInfoCompatIcs {
+    AccessibilityServiceInfoCompatIcs() {
+    }
 
-        public static String getDescription(AccessibilityServiceInfo info) {
-            return info.getDescription();
-                }
+    public static boolean getCanRetrieveWindowContent(AccessibilityServiceInfo info) {
+        return info.getCanRetrieveWindowContent();
+    }
 
-        public static String getId(AccessibilityServiceInfo info) {
-            return info.getId();
-                }
+    public static String getDescription(AccessibilityServiceInfo info) {
+        return info.getDescription();
+    }
 
-        public static ResolveInfo getResolveInfo(AccessibilityServiceInfo info) {
-            return info.getResolveInfo();
-                }
+    public static String getId(AccessibilityServiceInfo info) {
+        return info.getId();
+    }
 
-        public static String getSettingsActivityName(AccessibilityServiceInfo info) {
-            return info.getSettingsActivityName();
-                }
-            }
+    public static ResolveInfo getResolveInfo(AccessibilityServiceInfo info) {
+        return info.getResolveInfo();
+    }
+
+    public static String getSettingsActivityName(AccessibilityServiceInfo info) {
+        return info.getSettingsActivityName();
+    }
+}

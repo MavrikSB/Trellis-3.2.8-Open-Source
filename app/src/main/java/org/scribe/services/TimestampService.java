@@ -1,8 +1,7 @@
-            package org.scribe.services;
-            
-            
-            public interface TimestampService {
-                String getNonce();
+package org.scribe.services;
 
-                String getTimestampInSeconds();
-            }
+public interface TimestampService {
+    String getNonce();
+
+    String getTimestampInSeconds();
+}

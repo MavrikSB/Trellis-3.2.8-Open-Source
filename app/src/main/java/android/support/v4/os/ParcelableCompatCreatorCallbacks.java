@@ -1,10 +1,9 @@
-            package android.support.v4.os;
+package android.support.v4.os;
 
-            import android.os.Parcel;
-            
-            
-            public interface ParcelableCompatCreatorCallbacks<T> {
-                T createFromParcel(Parcel parcel, ClassLoader classLoader);
+import android.os.Parcel;
 
-                T[] newArray(int i);
-            }
+public interface ParcelableCompatCreatorCallbacks<T> {
+    T createFromParcel(Parcel parcel, ClassLoader classLoader);
+
+    T[] newArray(int i);
+}

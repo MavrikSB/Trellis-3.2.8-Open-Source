@@ -1,14 +1,13 @@
-            package org.apache.commons.p005io.input;
-            
-            
-            public interface TailerListener {
-                void fileNotFound();
+package org.apache.commons.p005io.input;
 
-                void fileRotated();
+public interface TailerListener {
+    void fileNotFound();
 
-                void handle(Exception exc);
+    void fileRotated();
 
-                void handle(String str);
+    void handle(Exception exc);
 
-                void init(Tailer tailer);
-            }
+    void handle(String str);
+
+    void init(Tailer tailer);
+}

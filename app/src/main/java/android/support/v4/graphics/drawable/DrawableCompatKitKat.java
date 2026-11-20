@@ -1,17 +1,16 @@
-            package android.support.v4.graphics.drawable;
+package android.support.v4.graphics.drawable;
 
-            import android.graphics.drawable.Drawable;
-            
-            
-    class DrawableCompatKitKat {
-        DrawableCompatKitKat() {
-                }
+import android.graphics.drawable.Drawable;
 
-        public static void setAutoMirrored(Drawable drawable, boolean mirrored) {
-            drawable.setAutoMirrored(mirrored);
-                }
+class DrawableCompatKitKat {
+    DrawableCompatKitKat() {
+    }
 
-        public static boolean isAutoMirrored(Drawable drawable) {
-            return drawable.isAutoMirrored();
-                }
-            }
+    public static void setAutoMirrored(Drawable drawable, boolean mirrored) {
+        drawable.setAutoMirrored(mirrored);
+    }
+
+    public static boolean isAutoMirrored(Drawable drawable) {
+        return drawable.isAutoMirrored();
+    }
+}

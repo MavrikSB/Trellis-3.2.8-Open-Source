@@ -1,78 +1,77 @@
-            package android.support.v4.app;
+package android.support.v4.app;
 
-            import android.os.Bundle;
-            import java.io.FileDescriptor;
-            import java.io.PrintWriter;
-            import java.util.List;
-            
-            
-   public abstract class FragmentManager {
-                public static final int POP_BACK_STACK_INCLUSIVE = 1;
+import android.os.Bundle;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.List;
 
-                public interface BackStackEntry {
-                    CharSequence getBreadCrumbShortTitle();
+public abstract class FragmentManager {
+    public static final int POP_BACK_STACK_INCLUSIVE = 1;
 
-                    int getBreadCrumbShortTitleRes();
+    public interface BackStackEntry {
+        CharSequence getBreadCrumbShortTitle();
 
-                    CharSequence getBreadCrumbTitle();
+        int getBreadCrumbShortTitleRes();
 
-                    int getBreadCrumbTitleRes();
+        CharSequence getBreadCrumbTitle();
 
-                    int getId();
+        int getBreadCrumbTitleRes();
 
-                    String getName();
-                }
+        int getId();
 
-                public interface OnBackStackChangedListener {
-                    void onBackStackChanged();
-                }
+        String getName();
+    }
 
-                public abstract void addOnBackStackChangedListener(OnBackStackChangedListener onBackStackChangedListener);
+    public interface OnBackStackChangedListener {
+        void onBackStackChanged();
+    }
 
-                public abstract FragmentTransaction beginTransaction();
+    public abstract void addOnBackStackChangedListener(OnBackStackChangedListener onBackStackChangedListener);
 
-                public abstract void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr);
+    public abstract FragmentTransaction beginTransaction();
 
-                public abstract boolean executePendingTransactions();
+    public abstract void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr);
 
-                public abstract Fragment findFragmentById(int i);
+    public abstract boolean executePendingTransactions();
 
-                public abstract Fragment findFragmentByTag(String str);
+    public abstract Fragment findFragmentById(int i);
 
-                public abstract BackStackEntry getBackStackEntryAt(int i);
+    public abstract Fragment findFragmentByTag(String str);
 
-                public abstract int getBackStackEntryCount();
+    public abstract BackStackEntry getBackStackEntryAt(int i);
 
-                public abstract Fragment getFragment(Bundle bundle, String str);
+    public abstract int getBackStackEntryCount();
 
-                public abstract List<Fragment> getFragments();
+    public abstract Fragment getFragment(Bundle bundle, String str);
 
-                public abstract boolean isDestroyed();
+    public abstract List<Fragment> getFragments();
 
-                public abstract void popBackStack();
+    public abstract boolean isDestroyed();
 
-                public abstract void popBackStack(int i, int i2);
+    public abstract void popBackStack();
 
-                public abstract void popBackStack(String str, int i);
+    public abstract void popBackStack(int i, int i2);
 
-                public abstract boolean popBackStackImmediate();
+    public abstract void popBackStack(String str, int i);
 
-                public abstract boolean popBackStackImmediate(int i, int i2);
+    public abstract boolean popBackStackImmediate();
 
-                public abstract boolean popBackStackImmediate(String str, int i);
+    public abstract boolean popBackStackImmediate(int i, int i2);
 
-                public abstract void putFragment(Bundle bundle, String str, Fragment fragment);
+    public abstract boolean popBackStackImmediate(String str, int i);
 
-                public abstract void removeOnBackStackChangedListener(OnBackStackChangedListener onBackStackChangedListener);
+    public abstract void putFragment(Bundle bundle, String str, Fragment fragment);
 
-                public abstract Fragment.SavedState saveFragmentInstanceState(Fragment fragment);
+    public abstract void removeOnBackStackChangedListener(OnBackStackChangedListener onBackStackChangedListener);
 
-                @Deprecated
-       public FragmentTransaction openTransaction() {
-           return beginTransaction();
-                }
+    public abstract Fragment.SavedState saveFragmentInstanceState(Fragment fragment);
 
-       public static void enableDebugLogging(boolean enabled) {
-           FragmentManagerImpl.DEBUG = enabled;
-                }
-            }
+    @Deprecated
+    public FragmentTransaction openTransaction() {
+        return beginTransaction();
+    }
+
+    public static void enableDebugLogging(boolean enabled) {
+        FragmentManagerImpl.DEBUG = enabled;
+    }
+}

@@ -1,5 +1,4 @@
-            package co.vine.android;
-            
-            
-            public class StartImplActivity {
-            }
+package co.vine.android;
+
+public class StartImplActivity {
+}

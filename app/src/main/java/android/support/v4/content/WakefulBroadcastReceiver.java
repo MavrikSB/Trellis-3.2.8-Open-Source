@@ -1,66 +1,65 @@
-            package android.support.v4.content;
+package android.support.v4.content;
 
-            import android.content.BroadcastReceiver;
-            import android.content.ComponentName;
-            import android.content.Context;
-            import android.content.Intent;
-            import android.os.PowerManager;
-            import android.util.Log;
-            import android.util.SparseArray;
-            import co.vine.android.util.CommonUtil;
-            
-            
-    public abstract class WakefulBroadcastReceiver extends BroadcastReceiver {
-                private static final String EXTRA_WAKE_LOCK_ID = "android.support.content.wakelockid";
-                private static final SparseArray<PowerManager.WakeLock> mActiveWakeLocks = new SparseArray<>();
-                private static int mNextId = 1;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.os.PowerManager;
+import android.util.Log;
+import android.util.SparseArray;
+import co.vine.android.util.CommonUtil;
 
-        public static ComponentName startWakefulService(Context context, Intent intent) {
-                    ComponentName comp;
-                    synchronized (mActiveWakeLocks) {
-                        try {
-                    int id = mNextId;
-                    mNextId++;
-                    if (mNextId <= 0) {
-                        mNextId = 1;
-                            }
-                    intent.putExtra(EXTRA_WAKE_LOCK_ID, id);
-                    comp = context.startService(intent);
-                    if (comp == null) {
-                        comp = null;
-                            } else {
-                        PowerManager pm = (PowerManager) context.getSystemService("power");
-                        PowerManager.WakeLock wl = pm.newWakeLock(1, "wake:" + comp.flattenToShortString());
-                        wl.setReferenceCounted(false);
-                        wl.acquire(CommonUtil.MINUTE_MILLIS);
-                        mActiveWakeLocks.put(id, wl);
-                            }
-                        } catch (Throwable th) {
-                            throw th;
-                        }
-                    }
-           return comp;
+public abstract class WakefulBroadcastReceiver extends BroadcastReceiver {
+    private static final String EXTRA_WAKE_LOCK_ID = "android.support.content.wakelockid";
+    private static final SparseArray<PowerManager.WakeLock> mActiveWakeLocks = new SparseArray<>();
+    private static int mNextId = 1;
+
+    public static ComponentName startWakefulService(Context context, Intent intent) {
+        ComponentName comp;
+        synchronized (mActiveWakeLocks) {
+            try {
+                int id = mNextId;
+                mNextId++;
+                if (mNextId <= 0) {
+                    mNextId = 1;
                 }
+                intent.putExtra(EXTRA_WAKE_LOCK_ID, id);
+                comp = context.startService(intent);
+                if (comp == null) {
+                    comp = null;
+                } else {
+                    PowerManager pm = (PowerManager) context.getSystemService("power");
+                    PowerManager.WakeLock wl = pm.newWakeLock(1, "wake:" + comp.flattenToShortString());
+                    wl.setReferenceCounted(false);
+                    wl.acquire(CommonUtil.MINUTE_MILLIS);
+                    mActiveWakeLocks.put(id, wl);
+                }
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
+        return comp;
+    }
 
-       public static boolean completeWakefulIntent(Intent intent) {
-                    boolean z = true;
-                    z = false;
-           int id = intent.getIntExtra(EXTRA_WAKE_LOCK_ID, 0);
-           if (id != 0) {
-                        synchronized (mActiveWakeLocks) {
-                            try {
-                       PowerManager.WakeLock wl = mActiveWakeLocks.get(id);
-                       if (wl != null) {
-                           wl.release();
-                           mActiveWakeLocks.remove(id);
-                                } else {
-                           Log.w("WakefulBroadcastReceiver", "No active wake lock id #" + id);
-                                }
-                            } catch (Throwable th) {
-                                throw th;
-                            }
-                        }
+    public static boolean completeWakefulIntent(Intent intent) {
+        boolean z = true;
+        z = false;
+        int id = intent.getIntExtra(EXTRA_WAKE_LOCK_ID, 0);
+        if (id != 0) {
+            synchronized (mActiveWakeLocks) {
+                try {
+                    PowerManager.WakeLock wl = mActiveWakeLocks.get(id);
+                    if (wl != null) {
+                        wl.release();
+                        mActiveWakeLocks.remove(id);
+                    } else {
+                        Log.w("WakefulBroadcastReceiver", "No active wake lock id #" + id);
                     }
-           return z;
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
+        }
+        return z;
+    }
+}

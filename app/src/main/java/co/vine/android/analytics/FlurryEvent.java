@@ -1,42 +1,41 @@
-            package co.vine.android.analytics;
+package co.vine.android.analytics;
 
-            import com.flurry.android.FlurryAgent;
-            import java.util.HashMap;
-            
-            
-    public class FlurryEvent {
-                private final String mEventName;
-                public HashMap<String, String> mInfo;
+import com.flurry.android.FlurryAgent;
+import java.util.HashMap;
 
-        public static void log(String eventName, String key, Object value, String key2, Object value2) {
-            new FlurryEvent(eventName).add(key, value).add(key2, value2).log();
-                }
+public class FlurryEvent {
+    private final String mEventName;
+    public HashMap<String, String> mInfo;
 
-        public static void log(String eventName, String key, Object value) {
-            new FlurryEvent(eventName).add(key, value).log();
-                }
+    public static void log(String eventName, String key, Object value, String key2, Object value2) {
+        new FlurryEvent(eventName).add(key, value).add(key2, value2).log();
+    }
 
-        public static void log(String event) {
-            FlurryAgent.logEvent(event);
-                }
+    public static void log(String eventName, String key, Object value) {
+        new FlurryEvent(eventName).add(key, value).log();
+    }
 
-        public FlurryEvent add(String name, Object value) {
-            if (this.mInfo == null) {
-                this.mInfo = new HashMap<>();
-                    }
-            this.mInfo.put(name, String.valueOf(value));
-            return this;
-                }
+    public static void log(String event) {
+        FlurryAgent.logEvent(event);
+    }
 
-        public FlurryEvent(String eventName) {
-            this.mEventName = eventName;
-                }
+    public FlurryEvent add(String name, Object value) {
+        if (this.mInfo == null) {
+            this.mInfo = new HashMap<>();
+        }
+        this.mInfo.put(name, String.valueOf(value));
+        return this;
+    }
 
-        public void log() {
-            if (this.mInfo != null) {
-                FlurryAgent.logEvent(this.mEventName, this.mInfo);
-                    } else {
-                FlurryAgent.logEvent(this.mEventName);
-                    }
-                }
-            }
+    public FlurryEvent(String eventName) {
+        this.mEventName = eventName;
+    }
+
+    public void log() {
+        if (this.mInfo != null) {
+            FlurryAgent.logEvent(this.mEventName, this.mInfo);
+        } else {
+            FlurryAgent.logEvent(this.mEventName);
+        }
+    }
+}

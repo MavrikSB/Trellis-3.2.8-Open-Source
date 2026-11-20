@@ -1,27 +1,26 @@
-            package co.vine.android.recorder.camera;
+package co.vine.android.recorder.camera;
 
-            import android.hardware.Camera;
-            import co.vine.android.recorder.RecordConfigUtils;
-            
-            
-            public interface PreviewManagerCallback {
-                void cancelPendingPreviews();
+import android.hardware.Camera;
+import co.vine.android.recorder.RecordConfigUtils;
 
-                int getPreviewHeight();
+public interface PreviewManagerCallback {
+    void cancelPendingPreviews();
 
-                int getPreviewWidth();
+    int getPreviewHeight();
 
-                void onReleaseCameraAndPreview(String str, boolean z);
+    int getPreviewWidth();
 
-                void preReleaseCameraAndPreview();
+    void onReleaseCameraAndPreview(String str, boolean z);
 
-                void preparePreviewParameters(Camera.Parameters parameters, RecordConfigUtils.RecordConfig recordConfig) throws PreviewManager.InvalidPreviewSizeException;
+    void preReleaseCameraAndPreview();
 
-                void releaseResources();
+    void preparePreviewParameters(Camera.Parameters parameters, RecordConfigUtils.RecordConfig recordConfig) throws PreviewManager.InvalidPreviewSizeException;
 
-                void setPreviewSize(int i, int i2);
+    void releaseResources();
 
-                void startPreview(CameraManager.CameraManagerController cameraManagerController, int i, int i2, RecordConfigUtils.RecordConfig recordConfig);
+    void setPreviewSize(int i, int i2);
 
-                void waitForPreviewToStart();
-            }
+    void startPreview(CameraManager.CameraManagerController cameraManagerController, int i, int i2, RecordConfigUtils.RecordConfig recordConfig);
+
+    void waitForPreviewToStart();
+}

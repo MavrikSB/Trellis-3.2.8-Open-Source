@@ -1,16 +1,15 @@
-            package okio;
+package okio;
 
-            import java.io.Closeable;
-            import java.io.IOException;
-            
-            
-            public interface Sink extends Closeable {
-                @Override 
-                void close() throws IOException;
+import java.io.Closeable;
+import java.io.IOException;
 
-                void flush() throws IOException;
+public interface Sink extends Closeable {
+    @Override
+    void close() throws IOException;
 
-                Timeout timeout();
+    void flush() throws IOException;
 
-                void write(Buffer buffer, long j) throws IOException;
-            }
+    Timeout timeout();
+
+    void write(Buffer buffer, long j) throws IOException;
+}

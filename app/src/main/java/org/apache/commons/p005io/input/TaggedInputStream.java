@@ -1,30 +1,29 @@
-            package org.apache.commons.p005io.input;
+package org.apache.commons.p005io.input;
 
-            import java.io.IOException;
-            import java.io.InputStream;
-            import java.io.Serializable;
-            import java.util.UUID;
-            import org.apache.commons.p005io.TaggedIOException;
-            
-            
-    public class TaggedInputStream extends ProxyInputStream {
-                private final Serializable tag;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
+import java.util.UUID;
+import org.apache.commons.p005io.TaggedIOException;
 
-        public TaggedInputStream(InputStream proxy) {
-            super(proxy);
-            this.tag = UUID.randomUUID();
-                }
+public class TaggedInputStream extends ProxyInputStream {
+    private final Serializable tag;
 
-        public boolean isCauseOf(Throwable exception) {
-            return TaggedIOException.isTaggedWith(exception, this.tag);
-                }
+    public TaggedInputStream(InputStream proxy) {
+        super(proxy);
+        this.tag = UUID.randomUUID();
+    }
 
-       public void throwIfCauseOf(Throwable throwable) throws IOException {
-           TaggedIOException.throwCauseIfTaggedWith(throwable, this.tag);
-                }
+    public boolean isCauseOf(Throwable exception) {
+        return TaggedIOException.isTaggedWith(exception, this.tag);
+    }
 
-                @Override 
-       protected void handleIOException(IOException e) throws IOException {
-           throw new TaggedIOException(e, this.tag);
-                }
-            }
+    public void throwIfCauseOf(Throwable throwable) throws IOException {
+        TaggedIOException.throwCauseIfTaggedWith(throwable, this.tag);
+    }
+
+    @Override
+    protected void handleIOException(IOException e) throws IOException {
+        throw new TaggedIOException(e, this.tag);
+    }
+}

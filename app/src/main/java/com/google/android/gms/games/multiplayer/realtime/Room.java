@@ -1,41 +1,40 @@
-            package com.google.android.gms.games.multiplayer.realtime;
+package com.google.android.gms.games.multiplayer.realtime;
 
-            import android.database.CharArrayBuffer;
-            import android.os.Bundle;
-            import android.os.Parcelable;
-            import com.google.android.gms.common.data.Freezable;
-            import com.google.android.gms.games.multiplayer.Participatable;
-            import java.util.ArrayList;
-            
-            
-            public interface Room extends Parcelable, Freezable<Room>, Participatable {
-                public static final int ROOM_STATUS_ACTIVE = 3;
-                public static final int ROOM_STATUS_AUTO_MATCHING = 1;
-                public static final int ROOM_STATUS_CONNECTING = 2;
-                public static final int ROOM_STATUS_INVITING = 0;
-                public static final int ROOM_VARIANT_ANY = -1;
+import android.database.CharArrayBuffer;
+import android.os.Bundle;
+import android.os.Parcelable;
+import com.google.android.gms.common.data.Freezable;
+import com.google.android.gms.games.multiplayer.Participatable;
+import java.util.ArrayList;
 
-                Bundle getAutoMatchCriteria();
+public interface Room extends Parcelable, Freezable<Room>, Participatable {
+    public static final int ROOM_STATUS_ACTIVE = 3;
+    public static final int ROOM_STATUS_AUTO_MATCHING = 1;
+    public static final int ROOM_STATUS_CONNECTING = 2;
+    public static final int ROOM_STATUS_INVITING = 0;
+    public static final int ROOM_VARIANT_ANY = -1;
 
-                int getAutoMatchWaitEstimateSeconds();
+    Bundle getAutoMatchCriteria();
 
-                long getCreationTimestamp();
+    int getAutoMatchWaitEstimateSeconds();
 
-                String getCreatorId();
+    long getCreationTimestamp();
 
-                String getDescription();
+    String getCreatorId();
 
-                void getDescription(CharArrayBuffer charArrayBuffer);
+    String getDescription();
 
-                String getParticipantId(String str);
+    void getDescription(CharArrayBuffer charArrayBuffer);
 
-                ArrayList<String> getParticipantIds();
+    String getParticipantId(String str);
 
-                int getParticipantStatus(String str);
+    ArrayList<String> getParticipantIds();
 
-                String getRoomId();
+    int getParticipantStatus(String str);
 
-                int getStatus();
+    String getRoomId();
 
-                int getVariant();
-            }
+    int getStatus();
+
+    int getVariant();
+}

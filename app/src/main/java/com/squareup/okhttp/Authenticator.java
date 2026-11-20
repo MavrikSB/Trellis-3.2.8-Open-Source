@@ -1,11 +1,10 @@
-            package com.squareup.okhttp;
+package com.squareup.okhttp;
 
-            import java.io.IOException;
-            import java.net.Proxy;
-            
-            
-            public interface Authenticator {
-                Request authenticate(Proxy proxy, Response response) throws IOException;
+import java.io.IOException;
+import java.net.Proxy;
 
-                Request authenticateProxy(Proxy proxy, Response response) throws IOException;
-            }
+public interface Authenticator {
+    Request authenticate(Proxy proxy, Response response) throws IOException;
+
+    Request authenticateProxy(Proxy proxy, Response response) throws IOException;
+}

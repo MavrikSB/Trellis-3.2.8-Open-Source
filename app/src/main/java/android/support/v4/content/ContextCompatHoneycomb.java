@@ -1,19 +1,18 @@
-            package android.support.v4.content;
+package android.support.v4.content;
 
-            import android.content.Context;
-            import android.content.Intent;
-            import java.io.File;
-            
-            
-    class ContextCompatHoneycomb {
-        ContextCompatHoneycomb() {
-                }
+import android.content.Context;
+import android.content.Intent;
+import java.io.File;
 
-        static void startActivities(Context context, Intent[] intents) {
-            context.startActivities(intents);
-                }
+class ContextCompatHoneycomb {
+    ContextCompatHoneycomb() {
+    }
 
-        public static File getObbDir(Context context) {
-            return context.getObbDir();
-                }
-            }
+    static void startActivities(Context context, Intent[] intents) {
+        context.startActivities(intents);
+    }
+
+    public static File getObbDir(Context context) {
+        return context.getObbDir();
+    }
+}

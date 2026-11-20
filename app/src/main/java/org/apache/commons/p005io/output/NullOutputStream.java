@@ -1,21 +1,20 @@
-            package org.apache.commons.p005io.output;
+package org.apache.commons.p005io.output;
 
-            import java.io.IOException;
-            import java.io.OutputStream;
-            
-            
-    public class NullOutputStream extends OutputStream {
-                public static final NullOutputStream NULL_OUTPUT_STREAM = new NullOutputStream();
+import java.io.IOException;
+import java.io.OutputStream;
 
-                @Override 
-        public void write(byte[] b, int off, int len) {
-                }
+public class NullOutputStream extends OutputStream {
+    public static final NullOutputStream NULL_OUTPUT_STREAM = new NullOutputStream();
 
-                @Override 
-        public void write(int b) {
-                }
+    @Override
+    public void write(byte[] b, int off, int len) {
+    }
 
-                @Override 
-        public void write(byte[] b) throws IOException {
-                }
-            }
+    @Override
+    public void write(int b) {
+    }
+
+    @Override
+    public void write(byte[] b) throws IOException {
+    }
+}

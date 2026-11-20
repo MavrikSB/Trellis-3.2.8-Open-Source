@@ -1,13 +1,12 @@
-            package com.google.ads.mediation;
+package com.google.ads.mediation;
 
-            import com.google.ads.mediation.MediationServerParameters;
-            
-            
-            @Deprecated
-            public interface MediationAdapter<ADDITIONAL_PARAMETERS, SERVER_PARAMETERS extends MediationServerParameters> {
-                void destroy();
+import com.google.ads.mediation.MediationServerParameters;
 
-                Class<ADDITIONAL_PARAMETERS> getAdditionalParametersType();
+@Deprecated
+public interface MediationAdapter<ADDITIONAL_PARAMETERS, SERVER_PARAMETERS extends MediationServerParameters> {
+    void destroy();
 
-                Class<SERVER_PARAMETERS> getServerParametersType();
-            }
+    Class<ADDITIONAL_PARAMETERS> getAdditionalParametersType();
+
+    Class<SERVER_PARAMETERS> getServerParametersType();
+}

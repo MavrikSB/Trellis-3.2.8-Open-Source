@@ -1,16 +1,15 @@
-            package twitter4j;
+package twitter4j;
 
-            import java.util.EventObject;
-            
-            
-    public final class RateLimitStatusEvent extends EventObject {
-                private static final long serialVersionUID = -2332507741769177298L;
-                private boolean isAccountRateLimitStatus;
-                private RateLimitStatus rateLimitStatus;
+import java.util.EventObject;
 
-        RateLimitStatusEvent(Object source, RateLimitStatus rateLimitStatus, boolean isAccountRateLimitStatus) {
-            super(source);
-            this.rateLimitStatus = rateLimitStatus;
-            this.isAccountRateLimitStatus = isAccountRateLimitStatus;
-                }
-            }
+public final class RateLimitStatusEvent extends EventObject {
+    private static final long serialVersionUID = -2332507741769177298L;
+    private boolean isAccountRateLimitStatus;
+    private RateLimitStatus rateLimitStatus;
+
+    RateLimitStatusEvent(Object source, RateLimitStatus rateLimitStatus, boolean isAccountRateLimitStatus) {
+        super(source);
+        this.rateLimitStatus = rateLimitStatus;
+        this.isAccountRateLimitStatus = isAccountRateLimitStatus;
+    }
+}

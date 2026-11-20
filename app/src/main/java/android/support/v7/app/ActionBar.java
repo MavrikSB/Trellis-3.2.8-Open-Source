@@ -1,240 +1,239 @@
-            package android.support.v7.app;
+package android.support.v7.app;
 
-            import android.content.Context;
-            import android.content.res.TypedArray;
-            import android.graphics.drawable.Drawable;
-            import android.support.v4.app.FragmentManager;
-            import android.support.v4.app.FragmentTransaction;
-            import android.support.v7.appcompat.C0084R;
-            import android.util.AttributeSet;
-            import android.view.View;
-            import android.view.ViewGroup;
-            import android.widget.SpinnerAdapter;
-            
-            
-   public abstract class ActionBar {
-                public static final int DISPLAY_HOME_AS_UP = 4;
-                public static final int DISPLAY_SHOW_CUSTOM = 16;
-                public static final int DISPLAY_SHOW_HOME = 2;
-                public static final int DISPLAY_SHOW_TITLE = 8;
-                public static final int DISPLAY_USE_LOGO = 1;
-                public static final int NAVIGATION_MODE_LIST = 1;
-                public static final int NAVIGATION_MODE_STANDARD = 0;
-                public static final int NAVIGATION_MODE_TABS = 2;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.appcompat.C0084R;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.SpinnerAdapter;
 
-                interface Callback {
-                    FragmentManager getSupportFragmentManager();
-                }
+public abstract class ActionBar {
+    public static final int DISPLAY_HOME_AS_UP = 4;
+    public static final int DISPLAY_SHOW_CUSTOM = 16;
+    public static final int DISPLAY_SHOW_HOME = 2;
+    public static final int DISPLAY_SHOW_TITLE = 8;
+    public static final int DISPLAY_USE_LOGO = 1;
+    public static final int NAVIGATION_MODE_LIST = 1;
+    public static final int NAVIGATION_MODE_STANDARD = 0;
+    public static final int NAVIGATION_MODE_TABS = 2;
 
-                public interface OnMenuVisibilityListener {
-                    void onMenuVisibilityChanged(boolean z);
-                }
+    interface Callback {
+        FragmentManager getSupportFragmentManager();
+    }
 
-                public interface OnNavigationListener {
-                    boolean onNavigationItemSelected(int i, long j);
-                }
+    public interface OnMenuVisibilityListener {
+        void onMenuVisibilityChanged(boolean z);
+    }
 
-                public static abstract class Tab {
-                    public static final int INVALID_POSITION = -1;
+    public interface OnNavigationListener {
+        boolean onNavigationItemSelected(int i, long j);
+    }
 
-                    public abstract CharSequence getContentDescription();
+    public static abstract class Tab {
+        public static final int INVALID_POSITION = -1;
 
-                    public abstract View getCustomView();
+        public abstract CharSequence getContentDescription();
 
-                    public abstract Drawable getIcon();
+        public abstract View getCustomView();
 
-                    public abstract int getPosition();
+        public abstract Drawable getIcon();
 
-                    public abstract Object getTag();
+        public abstract int getPosition();
 
-                    public abstract CharSequence getText();
+        public abstract Object getTag();
 
-                    public abstract void select();
+        public abstract CharSequence getText();
 
-                    public abstract Tab setContentDescription(int i);
+        public abstract void select();
 
-                    public abstract Tab setContentDescription(CharSequence charSequence);
+        public abstract Tab setContentDescription(int i);
 
-                    public abstract Tab setCustomView(int i);
+        public abstract Tab setContentDescription(CharSequence charSequence);
 
-                    public abstract Tab setCustomView(View view);
+        public abstract Tab setCustomView(int i);
 
-                    public abstract Tab setIcon(int i);
+        public abstract Tab setCustomView(View view);
 
-                    public abstract Tab setIcon(Drawable drawable);
+        public abstract Tab setIcon(int i);
 
-                    public abstract Tab setTabListener(TabListener tabListener);
+        public abstract Tab setIcon(Drawable drawable);
 
-                    public abstract Tab setTag(Object obj);
+        public abstract Tab setTabListener(TabListener tabListener);
 
-                    public abstract Tab setText(int i);
+        public abstract Tab setTag(Object obj);
 
-                    public abstract Tab setText(CharSequence charSequence);
-                }
+        public abstract Tab setText(int i);
 
-                public interface TabListener {
-                    void onTabReselected(Tab tab, FragmentTransaction fragmentTransaction);
+        public abstract Tab setText(CharSequence charSequence);
+    }
 
-                    void onTabSelected(Tab tab, FragmentTransaction fragmentTransaction);
+    public interface TabListener {
+        void onTabReselected(Tab tab, FragmentTransaction fragmentTransaction);
 
-                    void onTabUnselected(Tab tab, FragmentTransaction fragmentTransaction);
-                }
+        void onTabSelected(Tab tab, FragmentTransaction fragmentTransaction);
 
-                public abstract void addOnMenuVisibilityListener(OnMenuVisibilityListener onMenuVisibilityListener);
+        void onTabUnselected(Tab tab, FragmentTransaction fragmentTransaction);
+    }
 
-                public abstract void addTab(Tab tab);
+    public abstract void addOnMenuVisibilityListener(OnMenuVisibilityListener onMenuVisibilityListener);
 
-                public abstract void addTab(Tab tab, int i);
+    public abstract void addTab(Tab tab);
 
-                public abstract void addTab(Tab tab, int i, boolean z);
+    public abstract void addTab(Tab tab, int i);
 
-                public abstract void addTab(Tab tab, boolean z);
+    public abstract void addTab(Tab tab, int i, boolean z);
 
-                public abstract View getCustomView();
+    public abstract void addTab(Tab tab, boolean z);
 
-                public abstract int getDisplayOptions();
+    public abstract View getCustomView();
 
-                public abstract int getHeight();
+    public abstract int getDisplayOptions();
 
-                public abstract int getNavigationItemCount();
+    public abstract int getHeight();
 
-                public abstract int getNavigationMode();
+    public abstract int getNavigationItemCount();
 
-                public abstract int getSelectedNavigationIndex();
+    public abstract int getNavigationMode();
 
-                public abstract Tab getSelectedTab();
+    public abstract int getSelectedNavigationIndex();
 
-                public abstract CharSequence getSubtitle();
+    public abstract Tab getSelectedTab();
 
-                public abstract Tab getTabAt(int i);
+    public abstract CharSequence getSubtitle();
 
-                public abstract int getTabCount();
+    public abstract Tab getTabAt(int i);
 
-                public abstract CharSequence getTitle();
+    public abstract int getTabCount();
 
-                public abstract void hide();
+    public abstract CharSequence getTitle();
 
-                public abstract boolean isShowing();
+    public abstract void hide();
 
-                public abstract Tab newTab();
+    public abstract boolean isShowing();
 
-                public abstract void removeAllTabs();
+    public abstract Tab newTab();
 
-                public abstract void removeOnMenuVisibilityListener(OnMenuVisibilityListener onMenuVisibilityListener);
+    public abstract void removeAllTabs();
 
-                public abstract void removeTab(Tab tab);
+    public abstract void removeOnMenuVisibilityListener(OnMenuVisibilityListener onMenuVisibilityListener);
 
-                public abstract void removeTabAt(int i);
+    public abstract void removeTab(Tab tab);
 
-                public abstract void selectTab(Tab tab);
+    public abstract void removeTabAt(int i);
 
-                public abstract void setBackgroundDrawable(Drawable drawable);
+    public abstract void selectTab(Tab tab);
 
-                public abstract void setCustomView(int i);
+    public abstract void setBackgroundDrawable(Drawable drawable);
 
-                public abstract void setCustomView(View view);
+    public abstract void setCustomView(int i);
 
-                public abstract void setCustomView(View view, LayoutParams layoutParams);
+    public abstract void setCustomView(View view);
 
-                public abstract void setDisplayHomeAsUpEnabled(boolean z);
+    public abstract void setCustomView(View view, LayoutParams layoutParams);
 
-                public abstract void setDisplayOptions(int i);
+    public abstract void setDisplayHomeAsUpEnabled(boolean z);
 
-                public abstract void setDisplayOptions(int i, int i2);
+    public abstract void setDisplayOptions(int i);
 
-                public abstract void setDisplayShowCustomEnabled(boolean z);
+    public abstract void setDisplayOptions(int i, int i2);
 
-                public abstract void setDisplayShowHomeEnabled(boolean z);
+    public abstract void setDisplayShowCustomEnabled(boolean z);
 
-                public abstract void setDisplayShowTitleEnabled(boolean z);
+    public abstract void setDisplayShowHomeEnabled(boolean z);
 
-                public abstract void setDisplayUseLogoEnabled(boolean z);
+    public abstract void setDisplayShowTitleEnabled(boolean z);
 
-                public abstract void setIcon(int i);
+    public abstract void setDisplayUseLogoEnabled(boolean z);
 
-                public abstract void setIcon(Drawable drawable);
+    public abstract void setIcon(int i);
 
-                public abstract void setListNavigationCallbacks(SpinnerAdapter spinnerAdapter, OnNavigationListener onNavigationListener);
+    public abstract void setIcon(Drawable drawable);
 
-                public abstract void setLogo(int i);
+    public abstract void setListNavigationCallbacks(SpinnerAdapter spinnerAdapter, OnNavigationListener onNavigationListener);
 
-                public abstract void setLogo(Drawable drawable);
+    public abstract void setLogo(int i);
 
-                public abstract void setNavigationMode(int i);
+    public abstract void setLogo(Drawable drawable);
 
-                public abstract void setSelectedNavigationItem(int i);
+    public abstract void setNavigationMode(int i);
 
-                public abstract void setSubtitle(int i);
+    public abstract void setSelectedNavigationItem(int i);
 
-                public abstract void setSubtitle(CharSequence charSequence);
+    public abstract void setSubtitle(int i);
 
-                public abstract void setTitle(int i);
+    public abstract void setSubtitle(CharSequence charSequence);
 
-                public abstract void setTitle(CharSequence charSequence);
+    public abstract void setTitle(int i);
 
-                public abstract void show();
+    public abstract void setTitle(CharSequence charSequence);
 
-       public void setStackedBackgroundDrawable(Drawable d) {
-                }
+    public abstract void show();
 
-       public void setSplitBackgroundDrawable(Drawable d) {
-                }
+    public void setStackedBackgroundDrawable(Drawable d) {
+    }
 
-       public void setHomeButtonEnabled(boolean enabled) {
-                }
+    public void setSplitBackgroundDrawable(Drawable d) {
+    }
 
-       public Context getThemedContext() {
-           return null;
-                }
+    public void setHomeButtonEnabled(boolean enabled) {
+    }
 
-       public void setHomeAsUpIndicator(Drawable indicator) {
-                }
+    public Context getThemedContext() {
+        return null;
+    }
 
-       public void setHomeAsUpIndicator(int resId) {
-                }
+    public void setHomeAsUpIndicator(Drawable indicator) {
+    }
 
-       public void setHomeActionContentDescription(CharSequence description) {
-                }
+    public void setHomeAsUpIndicator(int resId) {
+    }
 
-       public void setHomeActionContentDescription(int resId) {
-                }
+    public void setHomeActionContentDescription(CharSequence description) {
+    }
 
-      public static class LayoutParams extends ViewGroup.MarginLayoutParams {
-                    public int gravity;
+    public void setHomeActionContentDescription(int resId) {
+    }
 
-          public LayoutParams(Context c, AttributeSet attrs) {
-              super(c, attrs);
-              this.gravity = -1;
-              TypedArray a = c.obtainStyledAttributes(attrs, C0084R.styleable.ActionBarLayout);
-              this.gravity = a.getInt(0, -1);
-              a.recycle();
-                    }
+    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
+        public int gravity;
 
-          public LayoutParams(int width, int height) {
-              super(width, height);
-              this.gravity = -1;
-              this.gravity = 19;
-                    }
+        public LayoutParams(Context c, AttributeSet attrs) {
+            super(c, attrs);
+            this.gravity = -1;
+            TypedArray a = c.obtainStyledAttributes(attrs, C0084R.styleable.ActionBarLayout);
+            this.gravity = a.getInt(0, -1);
+            a.recycle();
+        }
 
-          public LayoutParams(int width, int height, int gravity) {
-              super(width, height);
-              this.gravity = -1;
-              this.gravity = gravity;
-                    }
+        public LayoutParams(int width, int height) {
+            super(width, height);
+            this.gravity = -1;
+            this.gravity = 19;
+        }
 
-          public LayoutParams(int gravity) {
-              this(-2, -1, gravity);
-                    }
+        public LayoutParams(int width, int height, int gravity) {
+            super(width, height);
+            this.gravity = -1;
+            this.gravity = gravity;
+        }
 
-          public LayoutParams(LayoutParams source) {
-              super((ViewGroup.MarginLayoutParams) source);
-              this.gravity = -1;
-              this.gravity = source.gravity;
-                    }
+        public LayoutParams(int gravity) {
+            this(-2, -1, gravity);
+        }
 
-          public LayoutParams(ViewGroup.LayoutParams source) {
-              super(source);
-              this.gravity = -1;
-                    }
-                }
-            }
+        public LayoutParams(LayoutParams source) {
+            super((ViewGroup.MarginLayoutParams) source);
+            this.gravity = -1;
+            this.gravity = source.gravity;
+        }
+
+        public LayoutParams(ViewGroup.LayoutParams source) {
+            super(source);
+            this.gravity = -1;
+        }
+    }
+}

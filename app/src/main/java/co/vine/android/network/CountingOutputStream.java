@@ -1,49 +1,48 @@
-            package co.vine.android.network;
+package co.vine.android.network;
 
-            import java.io.FilterOutputStream;
-            import java.io.IOException;
-            import java.io.OutputStream;
-            
-            
-    public class CountingOutputStream extends FilterOutputStream {
-                private final long mChunk;
-                private final long mLength;
-                private final ProgressListener mListener;
-                private long mNext;
-                private long mTransferred;
+import java.io.FilterOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
-        public CountingOutputStream(OutputStream out, long length, ProgressListener listener) {
-            super(out);
-            this.mListener = listener;
-            this.mLength = 2 * length;
-            this.mTransferred = 0L;
-            this.mChunk = this.mLength / 5;
-            this.mNext = this.mChunk;
-                }
+public class CountingOutputStream extends FilterOutputStream {
+    private final long mChunk;
+    private final long mLength;
+    private final ProgressListener mListener;
+    private long mNext;
+    private long mTransferred;
 
-                @Override 
-        public void write(byte[] b, int off, int len) throws IOException {
-            super.write(b, off, len);
-            this.mTransferred += (long) len;
-                    if (this.mTransferred >= this.mNext) {
-                super.flush();
-                if (this.mListener != null) {
-                    this.mListener.onProgress(this.mTransferred, this.mLength);
-                        }
-                this.mNext += this.mChunk;
-                    }
-                }
+    public CountingOutputStream(OutputStream out, long length, ProgressListener listener) {
+        super(out);
+        this.mListener = listener;
+        this.mLength = 2 * length;
+        this.mTransferred = 0L;
+        this.mChunk = this.mLength / 5;
+        this.mNext = this.mChunk;
+    }
 
-                @Override 
-        public void write(int b) throws IOException {
-            super.write(b);
-            this.mTransferred++;
-                    if (this.mTransferred >= this.mNext) {
-                super.flush();
-                if (this.mListener != null) {
-                    this.mListener.onProgress(this.mTransferred, this.mLength);
-                        }
-                this.mNext += this.mChunk;
-                    }
-                }
+    @Override
+    public void write(byte[] b, int off, int len) throws IOException {
+        super.write(b, off, len);
+        this.mTransferred += (long) len;
+        if (this.mTransferred >= this.mNext) {
+            super.flush();
+            if (this.mListener != null) {
+                this.mListener.onProgress(this.mTransferred, this.mLength);
             }
+            this.mNext += this.mChunk;
+        }
+    }
+
+    @Override
+    public void write(int b) throws IOException {
+        super.write(b);
+        this.mTransferred++;
+        if (this.mTransferred >= this.mNext) {
+            super.flush();
+            if (this.mListener != null) {
+                this.mListener.onProgress(this.mTransferred, this.mLength);
+            }
+            this.mNext += this.mChunk;
+        }
+    }
+}

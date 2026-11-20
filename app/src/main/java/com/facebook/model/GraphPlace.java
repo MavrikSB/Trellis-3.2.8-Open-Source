@@ -1,20 +1,19 @@
-            package com.facebook.model;
-            
-            
-            public interface GraphPlace extends GraphObject {
-                String getCategory();
+package com.facebook.model;
 
-                String getId();
+public interface GraphPlace extends GraphObject {
+    String getCategory();
 
-                GraphLocation getLocation();
+    String getId();
 
-                String getName();
+    GraphLocation getLocation();
 
-                void setCategory(String str);
+    String getName();
 
-                void setId(String str);
+    void setCategory(String str);
 
-                void setLocation(GraphLocation graphLocation);
+    void setId(String str);
 
-                void setName(String str);
-            }
+    void setLocation(GraphLocation graphLocation);
+
+    void setName(String str);
+}

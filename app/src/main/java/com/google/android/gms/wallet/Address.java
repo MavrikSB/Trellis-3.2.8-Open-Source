@@ -1,121 +1,109 @@
-            package com.google.android.gms.wallet;
+package com.google.android.gms.wallet;
 
-            import android.os.Parcel;
-            import android.os.Parcelable;
-            import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-            
-            
-            public final class Address implements SafeParcelable {
-                public static final Parcelable.Creator<Address> CREATOR = new C1207a();
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-                
-                String f2452hl;
+public final class Address implements SafeParcelable {
+    public static final Parcelable.Creator<Address> CREATOR = new C1207a();
 
-                
-                private final int f2453iM;
-                String name;
+    String f2452hl;
 
-                
-                String f2454tA;
+    private final int f2453iM;
+    String name;
 
-                
-                boolean f2455tB;
+    String f2454tA;
 
-                
-                String f2456tC;
+    boolean f2455tB;
 
-                
-                String f2457tu;
+    String f2456tC;
 
-                
-                String f2458tv;
+    String f2457tu;
 
-                
-                String f2459tw;
+    String f2458tv;
 
-                
-                String f2460tx;
+    String f2459tw;
 
-                
-                String f2461ty;
+    String f2460tx;
 
-                
-                String f2462tz;
+    String f2461ty;
 
-                public Address() {
-                    this.f2453iM = 1;
-                }
+    String f2462tz;
 
-                Address(int versionCode, String name, String address1, String address2, String address3, String countryCode, String city, String state, String postalCode, String phoneNumber, boolean isPostBox, String companyName) {
-                    this.f2453iM = versionCode;
-                    this.name = name;
-                    this.f2457tu = address1;
-                    this.f2458tv = address2;
-                    this.f2459tw = address3;
-                    this.f2452hl = countryCode;
-                    this.f2460tx = city;
-                    this.f2461ty = state;
-                    this.f2462tz = postalCode;
-                    this.f2454tA = phoneNumber;
-                    this.f2455tB = isPostBox;
-                    this.f2456tC = companyName;
-                }
+    public Address() {
+        this.f2453iM = 1;
+    }
 
-                @Override 
-                public int describeContents() {
-                    return 0;
-                }
+    Address(int versionCode, String name, String address1, String address2, String address3, String countryCode, String city, String state, String postalCode, String phoneNumber, boolean isPostBox, String companyName) {
+        this.f2453iM = versionCode;
+        this.name = name;
+        this.f2457tu = address1;
+        this.f2458tv = address2;
+        this.f2459tw = address3;
+        this.f2452hl = countryCode;
+        this.f2460tx = city;
+        this.f2461ty = state;
+        this.f2462tz = postalCode;
+        this.f2454tA = phoneNumber;
+        this.f2455tB = isPostBox;
+        this.f2456tC = companyName;
+    }
 
-                public String getAddress1() {
-                    return this.f2457tu;
-                }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-                public String getAddress2() {
-                    return this.f2458tv;
-                }
+    public String getAddress1() {
+        return this.f2457tu;
+    }
 
-                public String getAddress3() {
-                    return this.f2459tw;
-                }
+    public String getAddress2() {
+        return this.f2458tv;
+    }
 
-                public String getCity() {
-                    return this.f2460tx;
-                }
+    public String getAddress3() {
+        return this.f2459tw;
+    }
 
-                public String getCompanyName() {
-                    return this.f2456tC;
-                }
+    public String getCity() {
+        return this.f2460tx;
+    }
 
-                public String getCountryCode() {
-                    return this.f2452hl;
-                }
+    public String getCompanyName() {
+        return this.f2456tC;
+    }
 
-                public String getName() {
-                    return this.name;
-                }
+    public String getCountryCode() {
+        return this.f2452hl;
+    }
 
-                public String getPhoneNumber() {
-                    return this.f2454tA;
-                }
+    public String getName() {
+        return this.name;
+    }
 
-                public String getPostalCode() {
-                    return this.f2462tz;
-                }
+    public String getPhoneNumber() {
+        return this.f2454tA;
+    }
 
-                public String getState() {
-                    return this.f2461ty;
-                }
+    public String getPostalCode() {
+        return this.f2462tz;
+    }
 
-                public int getVersionCode() {
-                    return this.f2453iM;
-                }
+    public String getState() {
+        return this.f2461ty;
+    }
 
-                public boolean isPostBox() {
-                    return this.f2455tB;
-                }
+    public int getVersionCode() {
+        return this.f2453iM;
+    }
 
-                @Override 
-                public void writeToParcel(Parcel out, int flags) {
-                    C1207a.m2342a(this, out, flags);
-                }
-            }
+    public boolean isPostBox() {
+        return this.f2455tB;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        C1207a.m2342a(this, out, flags);
+    }
+}

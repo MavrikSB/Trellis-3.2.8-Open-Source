@@ -1,6 +1,5 @@
-            package co.vine.android;
-            
-            
-            public interface ScrollListener {
-                void onScroll(int i);
-            }
+package co.vine.android;
+
+public interface ScrollListener {
+    void onScroll(int i);
+}

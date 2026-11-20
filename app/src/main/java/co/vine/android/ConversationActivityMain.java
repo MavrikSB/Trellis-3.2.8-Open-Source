@@ -1,5 +1,4 @@
-            package co.vine.android;
-            
-            
-            public class ConversationActivityMain extends ConversationActivity {
-            }
+package co.vine.android;
+
+public class ConversationActivityMain extends ConversationActivity {
+}

@@ -1,163 +1,156 @@
-            package com.facebook;
+package com.facebook;
 
-            import android.os.Handler;
-            import java.util.AbstractList;
-            import java.util.ArrayList;
-            import java.util.Arrays;
-            import java.util.Collection;
-            import java.util.List;
-            import java.util.concurrent.atomic.AtomicInteger;
-            
-            
-    public class RequestBatch extends AbstractList<Request> {
-                private static AtomicInteger idGenerator = new AtomicInteger();
-                private String batchApplicationId;
-                private Handler callbackHandler;
-                private List<Callback> callbacks;
+import android.os.Handler;
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-                
-                private final String f525id;
-                private List<Request> requests;
-                private int timeoutInMilliseconds;
+public class RequestBatch extends AbstractList<Request> {
+    private static AtomicInteger idGenerator = new AtomicInteger();
+    private String batchApplicationId;
+    private Handler callbackHandler;
+    private List<Callback> callbacks;
 
-                public interface Callback {
-                    void onBatchCompleted(RequestBatch requestBatch);
-                }
+    private final String f525id;
+    private List<Request> requests;
+    private int timeoutInMilliseconds;
 
+    public interface Callback {
+        void onBatchCompleted(RequestBatch requestBatch);
+    }
 
+    public RequestBatch() {
+        this.requests = new ArrayList();
+        this.timeoutInMilliseconds = 0;
+        this.f525id = Integer.valueOf(idGenerator.incrementAndGet()).toString();
+        this.callbacks = new ArrayList();
+        this.requests = new ArrayList();
+    }
 
+    public RequestBatch(Collection<Request> requests) {
+        this.requests = new ArrayList();
+        this.timeoutInMilliseconds = 0;
+        this.f525id = Integer.valueOf(idGenerator.incrementAndGet()).toString();
+        this.callbacks = new ArrayList();
+        this.requests = new ArrayList(requests);
+    }
 
+    public RequestBatch(Request... requests) {
+        this.requests = new ArrayList();
+        this.timeoutInMilliseconds = 0;
+        this.f525id = Integer.valueOf(idGenerator.incrementAndGet()).toString();
+        this.callbacks = new ArrayList();
+        this.requests = Arrays.asList(requests);
+    }
 
+    public RequestBatch(RequestBatch requests) {
+        this.requests = new ArrayList();
+        this.timeoutInMilliseconds = 0;
+        this.f525id = Integer.valueOf(idGenerator.incrementAndGet()).toString();
+        this.callbacks = new ArrayList();
+        this.requests = new ArrayList(requests);
+        this.callbackHandler = requests.callbackHandler;
+        this.timeoutInMilliseconds = requests.timeoutInMilliseconds;
+        this.callbacks = new ArrayList(requests.callbacks);
+    }
 
-        public RequestBatch() {
-            this.requests = new ArrayList();
-            this.timeoutInMilliseconds = 0;
-            this.f525id = Integer.valueOf(idGenerator.incrementAndGet()).toString();
-            this.callbacks = new ArrayList();
-            this.requests = new ArrayList();
-                }
+    public int getTimeout() {
+        return this.timeoutInMilliseconds;
+    }
 
-        public RequestBatch(Collection<Request> requests) {
-            this.requests = new ArrayList();
-            this.timeoutInMilliseconds = 0;
-            this.f525id = Integer.valueOf(idGenerator.incrementAndGet()).toString();
-            this.callbacks = new ArrayList();
-            this.requests = new ArrayList(requests);
-                }
+    public void setTimeout(int timeoutInMilliseconds) {
+        if (timeoutInMilliseconds < 0) {
+            throw new IllegalArgumentException("Argument timeoutInMilliseconds must be >= 0.");
+        }
+        this.timeoutInMilliseconds = timeoutInMilliseconds;
+    }
 
-        public RequestBatch(Request... requests) {
-            this.requests = new ArrayList();
-            this.timeoutInMilliseconds = 0;
-            this.f525id = Integer.valueOf(idGenerator.incrementAndGet()).toString();
-            this.callbacks = new ArrayList();
-            this.requests = Arrays.asList(requests);
-                }
+    public void addCallback(Callback callback) {
+        if (!this.callbacks.contains(callback)) {
+            this.callbacks.add(callback);
+        }
+    }
 
-        public RequestBatch(RequestBatch requests) {
-            this.requests = new ArrayList();
-            this.timeoutInMilliseconds = 0;
-            this.f525id = Integer.valueOf(idGenerator.incrementAndGet()).toString();
-            this.callbacks = new ArrayList();
-            this.requests = new ArrayList(requests);
-            this.callbackHandler = requests.callbackHandler;
-            this.timeoutInMilliseconds = requests.timeoutInMilliseconds;
-            this.callbacks = new ArrayList(requests.callbacks);
-                }
+    public void removeCallback(Callback callback) {
+        this.callbacks.remove(callback);
+    }
 
-        public int getTimeout() {
-            return this.timeoutInMilliseconds;
-                }
+    public final boolean add(Request request) {
+        return this.requests.add(request);
+    }
 
-        public void setTimeout(int timeoutInMilliseconds) {
-            if (timeoutInMilliseconds < 0) {
-                throw new IllegalArgumentException("Argument timeoutInMilliseconds must be >= 0.");
-                    }
-            this.timeoutInMilliseconds = timeoutInMilliseconds;
-                }
+    public final void add(int location, Request request) {
+        this.requests.add(location, request);
+    }
 
-        public void addCallback(Callback callback) {
-            if (!this.callbacks.contains(callback)) {
-                this.callbacks.add(callback);
-                    }
-                }
+    @Override
+    public final void clear() {
+        this.requests.clear();
+    }
 
-       public void removeCallback(Callback callback) {
-           this.callbacks.remove(callback);
-                }
+    @Override
+    public final Request get(int i) {
+        return this.requests.get(i);
+    }
 
-       public final boolean add(Request request) {
-           return this.requests.add(request);
-                }
+    @Override
+    public final Request remove(int location) {
+        return this.requests.remove(location);
+    }
 
-       public final void add(int location, Request request) {
-           this.requests.add(location, request);
-                }
+    public final Request set(int location, Request request) {
+        return this.requests.set(location, request);
+    }
 
-                @Override 
-       public final void clear() {
-           this.requests.clear();
-                }
+    @Override
+    public final int size() {
+        return this.requests.size();
+    }
 
-                @Override 
-       public final Request get(int i) {
-           return this.requests.get(i);
-                }
+    final String getId() {
+        return this.f525id;
+    }
 
-                @Override 
-       public final Request remove(int location) {
-           return this.requests.remove(location);
-                }
+    final Handler getCallbackHandler() {
+        return this.callbackHandler;
+    }
 
-       public final Request set(int location, Request request) {
-           return this.requests.set(location, request);
-                }
+    final void setCallbackHandler(Handler callbackHandler) {
+        this.callbackHandler = callbackHandler;
+    }
 
-                @Override 
-       public final int size() {
-           return this.requests.size();
-                }
+    final List<Request> getRequests() {
+        return this.requests;
+    }
 
-       final String getId() {
-           return this.f525id;
-                }
+    final List<Callback> getCallbacks() {
+        return this.callbacks;
+    }
 
-       final Handler getCallbackHandler() {
-           return this.callbackHandler;
-                }
+    final String getBatchApplicationId() {
+        return this.batchApplicationId;
+    }
 
-       final void setCallbackHandler(Handler callbackHandler) {
-           this.callbackHandler = callbackHandler;
-                }
+    final void setBatchApplicationId(String batchApplicationId) {
+        this.batchApplicationId = batchApplicationId;
+    }
 
-       final List<Request> getRequests() {
-           return this.requests;
-                }
+    public final List<Response> executeAndWait() {
+        return executeAndWaitImpl();
+    }
 
-       final List<Callback> getCallbacks() {
-           return this.callbacks;
-                }
+    public final RequestAsyncTask executeAsync() {
+        return executeAsyncImpl();
+    }
 
-       final String getBatchApplicationId() {
-           return this.batchApplicationId;
-                }
+    List<Response> executeAndWaitImpl() {
+        return Request.executeBatchAndWait(this);
+    }
 
-       final void setBatchApplicationId(String batchApplicationId) {
-           this.batchApplicationId = batchApplicationId;
-                }
-
-       public final List<Response> executeAndWait() {
-           return executeAndWaitImpl();
-                }
-
-       public final RequestAsyncTask executeAsync() {
-           return executeAsyncImpl();
-                }
-
-       List<Response> executeAndWaitImpl() {
-           return Request.executeBatchAndWait(this);
-                }
-
-       RequestAsyncTask executeAsyncImpl() {
-           return Request.executeBatchAsync(this);
-                }
-            }
+    RequestAsyncTask executeAsyncImpl() {
+        return Request.executeBatchAsync(this);
+    }
+}

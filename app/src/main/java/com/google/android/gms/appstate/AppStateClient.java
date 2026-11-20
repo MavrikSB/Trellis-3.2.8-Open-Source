@@ -1,170 +1,162 @@
-            package com.google.android.gms.appstate;
+package com.google.android.gms.appstate;
 
-            import android.content.Context;
-            import com.google.android.gms.common.GooglePlayServicesClient;
-            import com.google.android.gms.common.Scopes;
-            import com.google.android.gms.internal.C1011cw;
-            import com.google.android.gms.internal.C1028dm;
-            
-            
-            public final class AppStateClient implements GooglePlayServicesClient {
-                public static final int STATUS_CLIENT_RECONNECT_REQUIRED = 2;
-                public static final int STATUS_DEVELOPER_ERROR = 7;
-                public static final int STATUS_INTERNAL_ERROR = 1;
-                public static final int STATUS_NETWORK_ERROR_NO_DATA = 4;
-                public static final int STATUS_NETWORK_ERROR_OPERATION_DEFERRED = 5;
-                public static final int STATUS_NETWORK_ERROR_OPERATION_FAILED = 6;
-                public static final int STATUS_NETWORK_ERROR_STALE_DATA = 3;
-                public static final int STATUS_OK = 0;
-                public static final int STATUS_STATE_KEY_LIMIT_EXCEEDED = 2003;
-                public static final int STATUS_STATE_KEY_NOT_FOUND = 2002;
-                public static final int STATUS_WRITE_OUT_OF_DATE_VERSION = 2000;
-                public static final int STATUS_WRITE_SIZE_EXCEEDED = 2001;
+import android.content.Context;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.internal.C1011cw;
+import com.google.android.gms.internal.C1028dm;
 
-                
-                private final C1011cw f910io;
+public final class AppStateClient implements GooglePlayServicesClient {
+    public static final int STATUS_CLIENT_RECONNECT_REQUIRED = 2;
+    public static final int STATUS_DEVELOPER_ERROR = 7;
+    public static final int STATUS_INTERNAL_ERROR = 1;
+    public static final int STATUS_NETWORK_ERROR_NO_DATA = 4;
+    public static final int STATUS_NETWORK_ERROR_OPERATION_DEFERRED = 5;
+    public static final int STATUS_NETWORK_ERROR_OPERATION_FAILED = 6;
+    public static final int STATUS_NETWORK_ERROR_STALE_DATA = 3;
+    public static final int STATUS_OK = 0;
+    public static final int STATUS_STATE_KEY_LIMIT_EXCEEDED = 2003;
+    public static final int STATUS_STATE_KEY_NOT_FOUND = 2002;
+    public static final int STATUS_WRITE_OUT_OF_DATE_VERSION = 2000;
+    public static final int STATUS_WRITE_SIZE_EXCEEDED = 2001;
 
-                public static final class Builder {
+    private final C1011cw f910io;
 
-                    
-                    private static final String[] f911ip = {Scopes.APP_STATE};
+    public static final class Builder {
+        private static final String[] f911ip = {Scopes.APP_STATE};
 
-                    
-                    private GooglePlayServicesClient.ConnectionCallbacks f912iq;
+        private GooglePlayServicesClient.ConnectionCallbacks f912iq;
 
-                    
-                    private GooglePlayServicesClient.OnConnectionFailedListener f913ir;
+        private GooglePlayServicesClient.OnConnectionFailedListener f913ir;
 
-                    
-                    private String[] f914is = f911ip;
+        private String[] f914is = f911ip;
 
-                    
-                    private String f915it = "<<default account>>";
-                    private Context mContext;
+        private String f915it = "<<default account>>";
+        private Context mContext;
 
-                    public Builder(Context context, GooglePlayServicesClient.ConnectionCallbacks connectedListener, GooglePlayServicesClient.OnConnectionFailedListener connectionFailedListener) {
-                        this.mContext = context;
-                        this.f912iq = connectedListener;
-                        this.f913ir = connectionFailedListener;
-                    }
+        public Builder(Context context, GooglePlayServicesClient.ConnectionCallbacks connectedListener, GooglePlayServicesClient.OnConnectionFailedListener connectionFailedListener) {
+            this.mContext = context;
+            this.f912iq = connectedListener;
+            this.f913ir = connectionFailedListener;
+        }
 
-                    public AppStateClient create() {
-                        return new AppStateClient(this.mContext, this.f912iq, this.f913ir, this.f915it, this.f914is, null);
-                    }
+        public AppStateClient create() {
+            return new AppStateClient(this.mContext, this.f912iq, this.f913ir, this.f915it, this.f914is, null);
+        }
 
-                    public Builder setAccountName(String accountName) {
-                        this.f915it = (String) C1028dm.m1605e(accountName);
-                        return this;
-                    }
+        public Builder setAccountName(String accountName) {
+            this.f915it = (String) C1028dm.m1605e(accountName);
+            return this;
+        }
 
-                    public Builder setScopes(String... scopes) {
-                        this.f914is = scopes;
-                        return this;
-                    }
-                }
+        public Builder setScopes(String... scopes) {
+            this.f914is = scopes;
+            return this;
+        }
+    }
 
-                private AppStateClient(Context context, GooglePlayServicesClient.ConnectionCallbacks connectedListener, GooglePlayServicesClient.OnConnectionFailedListener connectionFailedListener, String accountName, String[] scopes) {
-                    this.f910io = new C1011cw(context, connectedListener, connectionFailedListener, accountName, scopes);
-                }
+    private AppStateClient(Context context, GooglePlayServicesClient.ConnectionCallbacks connectedListener, GooglePlayServicesClient.OnConnectionFailedListener connectionFailedListener, String accountName, String[] scopes) {
+        this.f910io = new C1011cw(context, connectedListener, connectionFailedListener, accountName, scopes);
+    }
 
-                 AppStateClient(Context x0, GooglePlayServicesClient.ConnectionCallbacks x1, GooglePlayServicesClient.OnConnectionFailedListener x2, String x3, String[] x4, Object x5) {
-                    this(x0, x1, x2, x3, x4);
-                }
+    AppStateClient(Context x0, GooglePlayServicesClient.ConnectionCallbacks x1, GooglePlayServicesClient.OnConnectionFailedListener x2, String x3, String[] x4, Object x5) {
+        this(x0, x1, x2, x3, x4);
+    }
 
-                @Override 
-                public void connect() {
-                    this.f910io.connect();
-                }
+    @Override
+    public void connect() {
+        this.f910io.connect();
+    }
 
-                public void deleteState(OnStateDeletedListener listener, int stateKey) {
-                    this.f910io.deleteState(listener, stateKey);
-                }
+    public void deleteState(OnStateDeletedListener listener, int stateKey) {
+        this.f910io.deleteState(listener, stateKey);
+    }
 
-                @Override 
-                public void disconnect() {
-                    this.f910io.disconnect();
-                }
+    @Override
+    public void disconnect() {
+        this.f910io.disconnect();
+    }
 
-                public int getMaxNumKeys() {
-                    return this.f910io.getMaxNumKeys();
-                }
+    public int getMaxNumKeys() {
+        return this.f910io.getMaxNumKeys();
+    }
 
-                public int getMaxStateSize() {
-                    return this.f910io.getMaxStateSize();
-                }
+    public int getMaxStateSize() {
+        return this.f910io.getMaxStateSize();
+    }
 
-                @Override 
-                public boolean isConnected() {
-                    return this.f910io.isConnected();
-                }
+    @Override
+    public boolean isConnected() {
+        return this.f910io.isConnected();
+    }
 
-                @Override 
-                public boolean isConnecting() {
-                    return this.f910io.isConnecting();
-                }
+    @Override
+    public boolean isConnecting() {
+        return this.f910io.isConnecting();
+    }
 
-                @Override 
-                public boolean isConnectionCallbacksRegistered(GooglePlayServicesClient.ConnectionCallbacks listener) {
-                    return this.f910io.isConnectionCallbacksRegistered(listener);
-                }
+    @Override
+    public boolean isConnectionCallbacksRegistered(GooglePlayServicesClient.ConnectionCallbacks listener) {
+        return this.f910io.isConnectionCallbacksRegistered(listener);
+    }
 
-                @Override 
-                public boolean isConnectionFailedListenerRegistered(GooglePlayServicesClient.OnConnectionFailedListener listener) {
-                    return this.f910io.isConnectionFailedListenerRegistered(listener);
-                }
+    @Override
+    public boolean isConnectionFailedListenerRegistered(GooglePlayServicesClient.OnConnectionFailedListener listener) {
+        return this.f910io.isConnectionFailedListenerRegistered(listener);
+    }
 
-                public void listStates(OnStateListLoadedListener listener) {
-                    this.f910io.listStates(listener);
-                }
+    public void listStates(OnStateListLoadedListener listener) {
+        this.f910io.listStates(listener);
+    }
 
-                public void loadState(OnStateLoadedListener listener, int stateKey) {
-                    this.f910io.loadState(listener, stateKey);
-                }
+    public void loadState(OnStateLoadedListener listener, int stateKey) {
+        this.f910io.loadState(listener, stateKey);
+    }
 
-                public void reconnect() {
-                    this.f910io.disconnect();
-                    this.f910io.connect();
-                }
+    public void reconnect() {
+        this.f910io.disconnect();
+        this.f910io.connect();
+    }
 
-                @Override 
-                public void registerConnectionCallbacks(GooglePlayServicesClient.ConnectionCallbacks listener) {
-                    this.f910io.registerConnectionCallbacks(listener);
-                }
+    @Override
+    public void registerConnectionCallbacks(GooglePlayServicesClient.ConnectionCallbacks listener) {
+        this.f910io.registerConnectionCallbacks(listener);
+    }
 
-                @Override 
-                public void registerConnectionFailedListener(GooglePlayServicesClient.OnConnectionFailedListener listener) {
-                    this.f910io.registerConnectionFailedListener(listener);
-                }
+    @Override
+    public void registerConnectionFailedListener(GooglePlayServicesClient.OnConnectionFailedListener listener) {
+        this.f910io.registerConnectionFailedListener(listener);
+    }
 
-                public void resolveState(OnStateLoadedListener listener, int stateKey, String resolvedVersion, byte[] resolvedData) {
-                    this.f910io.resolveState(listener, stateKey, resolvedVersion, resolvedData);
-                }
+    public void resolveState(OnStateLoadedListener listener, int stateKey, String resolvedVersion, byte[] resolvedData) {
+        this.f910io.resolveState(listener, stateKey, resolvedVersion, resolvedData);
+    }
 
-                public void signOut() {
-                    this.f910io.signOut(null);
-                }
+    public void signOut() {
+        this.f910io.signOut(null);
+    }
 
-                public void signOut(OnSignOutCompleteListener listener) {
-                    C1028dm.m1601a(listener, "Must provide a valid listener");
-                    this.f910io.signOut(listener);
-                }
+    public void signOut(OnSignOutCompleteListener listener) {
+        C1028dm.m1601a(listener, "Must provide a valid listener");
+        this.f910io.signOut(listener);
+    }
 
-                @Override 
-                public void unregisterConnectionCallbacks(GooglePlayServicesClient.ConnectionCallbacks listener) {
-                    this.f910io.unregisterConnectionCallbacks(listener);
-                }
+    @Override
+    public void unregisterConnectionCallbacks(GooglePlayServicesClient.ConnectionCallbacks listener) {
+        this.f910io.unregisterConnectionCallbacks(listener);
+    }
 
-                @Override 
-                public void unregisterConnectionFailedListener(GooglePlayServicesClient.OnConnectionFailedListener listener) {
-                    this.f910io.unregisterConnectionFailedListener(listener);
-                }
+    @Override
+    public void unregisterConnectionFailedListener(GooglePlayServicesClient.OnConnectionFailedListener listener) {
+        this.f910io.unregisterConnectionFailedListener(listener);
+    }
 
-                public void updateState(int stateKey, byte[] data) {
-                    this.f910io.m1499a((OnStateLoadedListener) null, stateKey, data);
-                }
+    public void updateState(int stateKey, byte[] data) {
+        this.f910io.m1499a((OnStateLoadedListener) null, stateKey, data);
+    }
 
-                public void updateStateImmediate(OnStateLoadedListener listener, int stateKey, byte[] data) {
-                    C1028dm.m1601a(listener, "Must provide a valid listener");
-                    this.f910io.m1499a(listener, stateKey, data);
-                }
-            }
+    public void updateStateImmediate(OnStateLoadedListener listener, int stateKey, byte[] data) {
+        C1028dm.m1601a(listener, "Must provide a valid listener");
+        this.f910io.m1499a(listener, stateKey, data);
+    }
+}

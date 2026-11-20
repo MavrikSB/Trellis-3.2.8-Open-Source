@@ -1,10 +1,9 @@
-            package com.google.android.exoplayer.upstream;
-            
-            
-            public interface Allocator {
-                Allocation allocate(int i);
+package com.google.android.exoplayer.upstream;
 
-                int getAllocatedSize();
+public interface Allocator {
+    Allocation allocate(int i);
 
-                void trim(int i);
-            }
+    int getAllocatedSize();
+
+    void trim(int i);
+}

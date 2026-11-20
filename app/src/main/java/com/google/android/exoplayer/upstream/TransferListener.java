@@ -1,10 +1,9 @@
-            package com.google.android.exoplayer.upstream;
-            
-            
-            public interface TransferListener {
-                void onBytesTransferred(int i);
+package com.google.android.exoplayer.upstream;
 
-                void onTransferEnd();
+public interface TransferListener {
+    void onBytesTransferred(int i);
 
-                void onTransferStart();
-            }
+    void onTransferEnd();
+
+    void onTransferStart();
+}

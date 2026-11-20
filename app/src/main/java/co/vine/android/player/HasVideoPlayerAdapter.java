@@ -1,20 +1,19 @@
-            package co.vine.android.player;
-            
-            
-            public interface HasVideoPlayerAdapter {
-                SdkVideoView getLastPlayer();
+package co.vine.android.player;
 
-                SdkVideoView getPlayer(int i, boolean z);
+public interface HasVideoPlayerAdapter {
+    SdkVideoView getLastPlayer();
 
-                void getVideoPathAndPlayForPosition(int i, boolean z);
+    SdkVideoView getPlayer(int i, boolean z);
 
-                void pauseCurrentPlayer();
+    void getVideoPathAndPlayForPosition(int i, boolean z);
 
-                void pausePlayer(SdkVideoView sdkVideoView);
+    void pauseCurrentPlayer();
 
-                void playCurrentPosition();
+    void pausePlayer(SdkVideoView sdkVideoView);
 
-                void playFile(int i, boolean z);
+    void playCurrentPosition();
 
-                void resumePlayer(SdkVideoView sdkVideoView);
-            }
+    void playFile(int i, boolean z);
+
+    void resumePlayer(SdkVideoView sdkVideoView);
+}

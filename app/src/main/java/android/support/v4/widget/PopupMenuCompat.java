@@ -1,49 +1,48 @@
-            package android.support.v4.widget;
+package android.support.v4.widget;
 
-            import android.os.Build;
-            import android.view.View;
-            
-            
-    public class PopupMenuCompat {
-                static final PopupMenuImpl IMPL;
+import android.os.Build;
+import android.view.View;
 
-                interface PopupMenuImpl {
-                    View.OnTouchListener getDragToOpenListener(Object obj);
-                }
+public class PopupMenuCompat {
+    static final PopupMenuImpl IMPL;
 
-        static class BasePopupMenuImpl implements PopupMenuImpl {
-            BasePopupMenuImpl() {
-                    }
+    interface PopupMenuImpl {
+        View.OnTouchListener getDragToOpenListener(Object obj);
+    }
 
-                    @Override 
-            public View.OnTouchListener getDragToOpenListener(Object popupMenu) {
-                return null;
-                    }
-                }
+    static class BasePopupMenuImpl implements PopupMenuImpl {
+        BasePopupMenuImpl() {
+        }
 
-        static class KitKatPopupMenuImpl extends BasePopupMenuImpl {
-            KitKatPopupMenuImpl() {
-                    }
+        @Override
+        public View.OnTouchListener getDragToOpenListener(Object popupMenu) {
+            return null;
+        }
+    }
 
-                    @Override 
-            public View.OnTouchListener getDragToOpenListener(Object popupMenu) {
-                return PopupMenuCompatKitKat.getDragToOpenListener(popupMenu);
-                    }
-                }
+    static class KitKatPopupMenuImpl extends BasePopupMenuImpl {
+        KitKatPopupMenuImpl() {
+        }
 
-                static {
-            int version = Build.VERSION.SDK_INT;
-            if (version >= 19) {
-                IMPL = new KitKatPopupMenuImpl();
-                    } else {
-                IMPL = new BasePopupMenuImpl();
-                    }
-                }
+        @Override
+        public View.OnTouchListener getDragToOpenListener(Object popupMenu) {
+            return PopupMenuCompatKitKat.getDragToOpenListener(popupMenu);
+        }
+    }
 
-        private PopupMenuCompat() {
-                }
+    static {
+        int version = Build.VERSION.SDK_INT;
+        if (version >= 19) {
+            IMPL = new KitKatPopupMenuImpl();
+        } else {
+            IMPL = new BasePopupMenuImpl();
+        }
+    }
 
-        public static View.OnTouchListener getDragToOpenListener(Object popupMenu) {
-            return IMPL.getDragToOpenListener(popupMenu);
-                }
-            }
+    private PopupMenuCompat() {
+    }
+
+    public static View.OnTouchListener getDragToOpenListener(Object popupMenu) {
+        return IMPL.getDragToOpenListener(popupMenu);
+    }
+}

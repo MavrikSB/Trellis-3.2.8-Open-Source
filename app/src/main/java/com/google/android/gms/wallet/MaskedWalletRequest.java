@@ -1,184 +1,172 @@
-            package com.google.android.gms.wallet;
+package com.google.android.gms.wallet;
 
-            import android.os.Parcel;
-            import android.os.Parcelable;
-            import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-            
-            
-            public class MaskedWalletRequest implements SafeParcelable {
-                public static final Parcelable.Creator<MaskedWalletRequest> CREATOR = new C1214h();
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
-                
-                private final int f2503iM;
+public class MaskedWalletRequest implements SafeParcelable {
+    public static final Parcelable.Creator<MaskedWalletRequest> CREATOR = new C1214h();
 
-                
-                String f2504tE;
+    private final int f2503iM;
 
-                
-                String f2505tI;
+    String f2504tE;
 
-                
-                Cart f2506tO;
+    String f2505tI;
 
-                
-                boolean f2507ub;
+    Cart f2506tO;
 
-                
-                boolean f2508uc;
+    boolean f2507ub;
 
-                
-                boolean f2509ud;
+    boolean f2508uc;
 
-                
-                String f2510ue;
+    boolean f2509ud;
 
-                
-                String f2511uf;
+    String f2510ue;
 
-                
-                boolean f2512ug;
+    String f2511uf;
 
-                
-                boolean f2513uh;
+    boolean f2512ug;
 
-                public final class Builder {
-                    private Builder() {
-                    }
+    boolean f2513uh;
 
-                     Builder(MaskedWalletRequest x0, Object x1) {
-                        this();
-                    }
+    public final class Builder {
+        private Builder() {
+        }
 
-                    public MaskedWalletRequest build() {
-                        return MaskedWalletRequest.this;
-                    }
+        Builder(MaskedWalletRequest x0, Object x1) {
+            this();
+        }
 
-                    public Builder setCart(Cart cart) {
-                        MaskedWalletRequest.this.f2506tO = cart;
-                        return this;
-                    }
+        public MaskedWalletRequest build() {
+            return MaskedWalletRequest.this;
+        }
 
-                    public Builder setCurrencyCode(String currencyCode) {
-                        MaskedWalletRequest.this.f2504tE = currencyCode;
-                        return this;
-                    }
+        public Builder setCart(Cart cart) {
+            MaskedWalletRequest.this.f2506tO = cart;
+            return this;
+        }
 
-                    public Builder setEstimatedTotalPrice(String estimatedTotalPrice) {
-                        MaskedWalletRequest.this.f2510ue = estimatedTotalPrice;
-                        return this;
-                    }
+        public Builder setCurrencyCode(String currencyCode) {
+            MaskedWalletRequest.this.f2504tE = currencyCode;
+            return this;
+        }
 
-                    public Builder setIsBillingAgreement(boolean isBillingAgreement) {
-                        MaskedWalletRequest.this.f2513uh = isBillingAgreement;
-                        return this;
-                    }
+        public Builder setEstimatedTotalPrice(String estimatedTotalPrice) {
+            MaskedWalletRequest.this.f2510ue = estimatedTotalPrice;
+            return this;
+        }
 
-                    public Builder setMerchantName(String merchantName) {
-                        MaskedWalletRequest.this.f2511uf = merchantName;
-                        return this;
-                    }
+        public Builder setIsBillingAgreement(boolean isBillingAgreement) {
+            MaskedWalletRequest.this.f2513uh = isBillingAgreement;
+            return this;
+        }
 
-                    public Builder setMerchantTransactionId(String merchantTransactionId) {
-                        MaskedWalletRequest.this.f2505tI = merchantTransactionId;
-                        return this;
-                    }
+        public Builder setMerchantName(String merchantName) {
+            MaskedWalletRequest.this.f2511uf = merchantName;
+            return this;
+        }
 
-                    public Builder setPhoneNumberRequired(boolean phoneNumberRequired) {
-                        MaskedWalletRequest.this.f2507ub = phoneNumberRequired;
-                        return this;
-                    }
+        public Builder setMerchantTransactionId(String merchantTransactionId) {
+            MaskedWalletRequest.this.f2505tI = merchantTransactionId;
+            return this;
+        }
 
-                    public Builder setShippingAddressRequired(boolean shippingAddressRequired) {
-                        MaskedWalletRequest.this.f2508uc = shippingAddressRequired;
-                        return this;
-                    }
+        public Builder setPhoneNumberRequired(boolean phoneNumberRequired) {
+            MaskedWalletRequest.this.f2507ub = phoneNumberRequired;
+            return this;
+        }
 
-                    public Builder setShouldRetrieveWalletObjects(boolean shouldRetrieveWalletObjects) {
-                        MaskedWalletRequest.this.f2512ug = shouldRetrieveWalletObjects;
-                        return this;
-                    }
+        public Builder setShippingAddressRequired(boolean shippingAddressRequired) {
+            MaskedWalletRequest.this.f2508uc = shippingAddressRequired;
+            return this;
+        }
 
-                    public Builder setUseMinimalBillingAddress(boolean useMinimalBillingAddress) {
-                        MaskedWalletRequest.this.f2509ud = useMinimalBillingAddress;
-                        return this;
-                    }
-                }
+        public Builder setShouldRetrieveWalletObjects(boolean shouldRetrieveWalletObjects) {
+            MaskedWalletRequest.this.f2512ug = shouldRetrieveWalletObjects;
+            return this;
+        }
 
-                public MaskedWalletRequest() {
-                    this.f2503iM = 2;
-                }
+        public Builder setUseMinimalBillingAddress(boolean useMinimalBillingAddress) {
+            MaskedWalletRequest.this.f2509ud = useMinimalBillingAddress;
+            return this;
+        }
+    }
 
-                MaskedWalletRequest(int versionCode, String merchantTransactionId, boolean phoneNumberRequired, boolean shippingAddressRequired, boolean useMinimalBillingAddress, String estimatedTotalPrice, String currencyCode, String merchantName, Cart cart, boolean shouldRetrieveWalletObjects, boolean isBillingAgreement) {
-                    this.f2503iM = versionCode;
-                    this.f2505tI = merchantTransactionId;
-                    this.f2507ub = phoneNumberRequired;
-                    this.f2508uc = shippingAddressRequired;
-                    this.f2509ud = useMinimalBillingAddress;
-                    this.f2510ue = estimatedTotalPrice;
-                    this.f2504tE = currencyCode;
-                    this.f2511uf = merchantName;
-                    this.f2506tO = cart;
-                    this.f2512ug = shouldRetrieveWalletObjects;
-                    this.f2513uh = isBillingAgreement;
-                }
+    public MaskedWalletRequest() {
+        this.f2503iM = 2;
+    }
 
-                public static Builder newBuilder() {
-                    MaskedWalletRequest maskedWalletRequest = new MaskedWalletRequest();
-                    maskedWalletRequest.getClass();
-                    return new Builder(maskedWalletRequest, null);
-                }
+    MaskedWalletRequest(int versionCode, String merchantTransactionId, boolean phoneNumberRequired, boolean shippingAddressRequired, boolean useMinimalBillingAddress, String estimatedTotalPrice, String currencyCode, String merchantName, Cart cart, boolean shouldRetrieveWalletObjects, boolean isBillingAgreement) {
+        this.f2503iM = versionCode;
+        this.f2505tI = merchantTransactionId;
+        this.f2507ub = phoneNumberRequired;
+        this.f2508uc = shippingAddressRequired;
+        this.f2509ud = useMinimalBillingAddress;
+        this.f2510ue = estimatedTotalPrice;
+        this.f2504tE = currencyCode;
+        this.f2511uf = merchantName;
+        this.f2506tO = cart;
+        this.f2512ug = shouldRetrieveWalletObjects;
+        this.f2513uh = isBillingAgreement;
+    }
 
-                @Override 
-                public int describeContents() {
-                    return 0;
-                }
+    public static Builder newBuilder() {
+        MaskedWalletRequest maskedWalletRequest = new MaskedWalletRequest();
+        maskedWalletRequest.getClass();
+        return new Builder(maskedWalletRequest, null);
+    }
 
-                public Cart getCart() {
-                    return this.f2506tO;
-                }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-                public String getCurrencyCode() {
-                    return this.f2504tE;
-                }
+    public Cart getCart() {
+        return this.f2506tO;
+    }
 
-                public String getEstimatedTotalPrice() {
-                    return this.f2510ue;
-                }
+    public String getCurrencyCode() {
+        return this.f2504tE;
+    }
 
-                public String getMerchantName() {
-                    return this.f2511uf;
-                }
+    public String getEstimatedTotalPrice() {
+        return this.f2510ue;
+    }
 
-                public String getMerchantTransactionId() {
-                    return this.f2505tI;
-                }
+    public String getMerchantName() {
+        return this.f2511uf;
+    }
 
-                public int getVersionCode() {
-                    return this.f2503iM;
-                }
+    public String getMerchantTransactionId() {
+        return this.f2505tI;
+    }
 
-                public boolean isBillingAgreement() {
-                    return this.f2513uh;
-                }
+    public int getVersionCode() {
+        return this.f2503iM;
+    }
 
-                public boolean isPhoneNumberRequired() {
-                    return this.f2507ub;
-                }
+    public boolean isBillingAgreement() {
+        return this.f2513uh;
+    }
 
-                public boolean isShippingAddressRequired() {
-                    return this.f2508uc;
-                }
+    public boolean isPhoneNumberRequired() {
+        return this.f2507ub;
+    }
 
-                public boolean shouldRetrieveWalletObjects() {
-                    return this.f2512ug;
-                }
+    public boolean isShippingAddressRequired() {
+        return this.f2508uc;
+    }
 
-                public boolean useMinimalBillingAddress() {
-                    return this.f2509ud;
-                }
+    public boolean shouldRetrieveWalletObjects() {
+        return this.f2512ug;
+    }
 
-                @Override 
-                public void writeToParcel(Parcel dest, int flags) {
-                    C1214h.m2363a(this, dest, flags);
-                }
-            }
+    public boolean useMinimalBillingAddress() {
+        return this.f2509ud;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        C1214h.m2363a(this, dest, flags);
+    }
+}

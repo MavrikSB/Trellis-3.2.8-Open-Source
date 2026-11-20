@@ -1,18 +1,17 @@
-            package org.apache.commons.p005io.filefilter;
+package org.apache.commons.p005io.filefilter;
 
-            import java.io.File;
-            import java.io.Serializable;
-            
-            
-    public class HiddenFileFilter extends AbstractFileFilter implements Serializable {
-                public static final IOFileFilter HIDDEN = new HiddenFileFilter();
-                public static final IOFileFilter VISIBLE = new NotFileFilter(HIDDEN);
+import java.io.File;
+import java.io.Serializable;
 
-        protected HiddenFileFilter() {
-                }
+public class HiddenFileFilter extends AbstractFileFilter implements Serializable {
+    public static final IOFileFilter HIDDEN = new HiddenFileFilter();
+    public static final IOFileFilter VISIBLE = new NotFileFilter(HIDDEN);
 
-                @Override 
-        public boolean accept(File file) {
-            return file.isHidden();
-                }
-            }
+    protected HiddenFileFilter() {
+    }
+
+    @Override
+    public boolean accept(File file) {
+        return file.isHidden();
+    }
+}

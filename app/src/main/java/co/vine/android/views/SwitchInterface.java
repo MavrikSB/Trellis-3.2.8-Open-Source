@@ -1,14 +1,13 @@
-            package co.vine.android.views;
+package co.vine.android.views;
 
-            import android.widget.CompoundButton;
-            
-            
-            public interface SwitchInterface {
-                boolean isChecked();
+import android.widget.CompoundButton;
 
-                void setChecked(boolean z);
+public interface SwitchInterface {
+    boolean isChecked();
 
-                void setEnabled(boolean z);
+    void setChecked(boolean z);
 
-                void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener onCheckedChangeListener);
-            }
+    void setEnabled(boolean z);
+
+    void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener onCheckedChangeListener);
+}

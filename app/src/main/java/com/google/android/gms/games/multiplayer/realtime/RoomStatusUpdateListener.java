@@ -1,30 +1,29 @@
-            package com.google.android.gms.games.multiplayer.realtime;
+package com.google.android.gms.games.multiplayer.realtime;
 
-            import java.util.List;
-            
-            
-            public interface RoomStatusUpdateListener {
-                void onConnectedToRoom(Room room);
+import java.util.List;
 
-                void onDisconnectedFromRoom(Room room);
+public interface RoomStatusUpdateListener {
+    void onConnectedToRoom(Room room);
 
-                void onP2PConnected(String str);
+    void onDisconnectedFromRoom(Room room);
 
-                void onP2PDisconnected(String str);
+    void onP2PConnected(String str);
 
-                void onPeerDeclined(Room room, List<String> list);
+    void onP2PDisconnected(String str);
 
-                void onPeerInvitedToRoom(Room room, List<String> list);
+    void onPeerDeclined(Room room, List<String> list);
 
-                void onPeerJoined(Room room, List<String> list);
+    void onPeerInvitedToRoom(Room room, List<String> list);
 
-                void onPeerLeft(Room room, List<String> list);
+    void onPeerJoined(Room room, List<String> list);
 
-                void onPeersConnected(Room room, List<String> list);
+    void onPeerLeft(Room room, List<String> list);
 
-                void onPeersDisconnected(Room room, List<String> list);
+    void onPeersConnected(Room room, List<String> list);
 
-                void onRoomAutoMatching(Room room);
+    void onPeersDisconnected(Room room, List<String> list);
 
-                void onRoomConnecting(Room room);
-            }
+    void onRoomAutoMatching(Room room);
+
+    void onRoomConnecting(Room room);
+}

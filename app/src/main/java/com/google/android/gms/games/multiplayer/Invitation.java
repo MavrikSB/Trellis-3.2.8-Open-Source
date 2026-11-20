@@ -1,21 +1,19 @@
-            package com.google.android.gms.games.multiplayer;
+package com.google.android.gms.games.multiplayer;
 
-            import android.os.Parcelable;
-            import com.google.android.gms.common.data.Freezable;
-            import com.google.android.gms.games.Game;
-            
-            
-            public interface Invitation extends Parcelable, Freezable<Invitation>, Participatable {
-                
-                int mo1198ch();
+import android.os.Parcelable;
+import com.google.android.gms.common.data.Freezable;
+import com.google.android.gms.games.Game;
 
-                long getCreationTimestamp();
+public interface Invitation extends Parcelable, Freezable<Invitation>, Participatable {
+    int mo1198ch();
 
-                Game getGame();
+    long getCreationTimestamp();
 
-                String getInvitationId();
+    Game getGame();
 
-                Participant getInviter();
+    String getInvitationId();
 
-                int getVariant();
-            }
+    Participant getInviter();
+
+    int getVariant();
+}

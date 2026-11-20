@@ -1,25 +1,24 @@
-            package com.google.android.exoplayer.chunk;
+package com.google.android.exoplayer.chunk;
 
-            import com.google.android.exoplayer.MediaFormat;
-            import com.google.android.exoplayer.TrackInfo;
-            import java.io.IOException;
-            import java.util.List;
-            
-            
-            public interface ChunkSource {
-                void continueBuffering(long j);
+import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.TrackInfo;
+import java.io.IOException;
+import java.util.List;
 
-                void disable(List<? extends MediaChunk> list);
+public interface ChunkSource {
+    void continueBuffering(long j);
 
-                void enable();
+    void disable(List<? extends MediaChunk> list);
 
-                void getChunkOperation(List<? extends MediaChunk> list, long j, long j2, ChunkOperationHolder chunkOperationHolder);
+    void enable();
 
-                IOException getError();
+    void getChunkOperation(List<? extends MediaChunk> list, long j, long j2, ChunkOperationHolder chunkOperationHolder);
 
-                void getMaxVideoDimensions(MediaFormat mediaFormat);
+    IOException getError();
 
-                TrackInfo getTrackInfo();
+    void getMaxVideoDimensions(MediaFormat mediaFormat);
 
-                void onChunkLoadError(Chunk chunk, Exception exc);
-            }
+    TrackInfo getTrackInfo();
+
+    void onChunkLoadError(Chunk chunk, Exception exc);
+}

@@ -1,49 +1,48 @@
-            package android.support.v4.widget;
+package android.support.v4.widget;
 
-            import android.os.Build;
-            import android.view.View;
-            
-            
-    public class ListPopupWindowCompat {
-                static final ListPopupWindowImpl IMPL;
+import android.os.Build;
+import android.view.View;
 
-                interface ListPopupWindowImpl {
-                    View.OnTouchListener createDragToOpenListener(Object obj, View view);
-                }
+public class ListPopupWindowCompat {
+    static final ListPopupWindowImpl IMPL;
 
-        static class BaseListPopupWindowImpl implements ListPopupWindowImpl {
-            BaseListPopupWindowImpl() {
-                    }
+    interface ListPopupWindowImpl {
+        View.OnTouchListener createDragToOpenListener(Object obj, View view);
+    }
 
-                    @Override 
-            public View.OnTouchListener createDragToOpenListener(Object listPopupWindow, View src) {
-                return null;
-                    }
-                }
+    static class BaseListPopupWindowImpl implements ListPopupWindowImpl {
+        BaseListPopupWindowImpl() {
+        }
 
-        static class KitKatListPopupWindowImpl extends BaseListPopupWindowImpl {
-            KitKatListPopupWindowImpl() {
-                    }
+        @Override
+        public View.OnTouchListener createDragToOpenListener(Object listPopupWindow, View src) {
+            return null;
+        }
+    }
 
-                    @Override 
-            public View.OnTouchListener createDragToOpenListener(Object listPopupWindow, View src) {
-                return ListPopupWindowCompatKitKat.createDragToOpenListener(listPopupWindow, src);
-                    }
-                }
+    static class KitKatListPopupWindowImpl extends BaseListPopupWindowImpl {
+        KitKatListPopupWindowImpl() {
+        }
 
-                static {
-            int version = Build.VERSION.SDK_INT;
-            if (version >= 19) {
-                IMPL = new KitKatListPopupWindowImpl();
-                    } else {
-                IMPL = new BaseListPopupWindowImpl();
-                    }
-                }
+        @Override
+        public View.OnTouchListener createDragToOpenListener(Object listPopupWindow, View src) {
+            return ListPopupWindowCompatKitKat.createDragToOpenListener(listPopupWindow, src);
+        }
+    }
 
-        private ListPopupWindowCompat() {
-                }
+    static {
+        int version = Build.VERSION.SDK_INT;
+        if (version >= 19) {
+            IMPL = new KitKatListPopupWindowImpl();
+        } else {
+            IMPL = new BaseListPopupWindowImpl();
+        }
+    }
 
-        public static View.OnTouchListener createDragToOpenListener(Object listPopupWindow, View src) {
-            return IMPL.createDragToOpenListener(listPopupWindow, src);
-                }
-            }
+    private ListPopupWindowCompat() {
+    }
+
+    public static View.OnTouchListener createDragToOpenListener(Object listPopupWindow, View src) {
+        return IMPL.createDragToOpenListener(listPopupWindow, src);
+    }
+}

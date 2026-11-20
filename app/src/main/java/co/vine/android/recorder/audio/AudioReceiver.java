@@ -1,17 +1,16 @@
-            package co.vine.android.recorder.audio;
+package co.vine.android.recorder.audio;
 
-            import android.support.annotation.NonNull;
-            
-            
-            public interface AudioReceiver {
-                void beforeDataCollection();
+import android.support.annotation.NonNull;
 
-                @NonNull
-                AudioArrays.AudioArrayType getType();
+public interface AudioReceiver {
+    void beforeDataCollection();
 
-                boolean needsMoreData();
+    @NonNull
+    AudioArrays.AudioArrayType getType();
 
-                boolean onAudioDataReceived(int i, @NonNull AudioArray audioArray);
+    boolean needsMoreData();
 
-                void onAudioSourceStopped();
-            }
+    boolean onAudioDataReceived(int i, @NonNull AudioArray audioArray);
+
+    void onAudioSourceStopped();
+}

@@ -1,11 +1,5 @@
 package com.flurry.android;
 
-
-
-
-
-
-
 public final class Constants {
     private Constants() {
     }

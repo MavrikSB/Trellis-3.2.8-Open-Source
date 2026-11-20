@@ -1,8 +1,7 @@
-            package android.support.v7.view;
-            
-            
-            public interface CollapsibleActionView {
-                void onActionViewCollapsed();
+package android.support.v7.view;
 
-                void onActionViewExpanded();
-            }
+public interface CollapsibleActionView {
+    void onActionViewCollapsed();
+
+    void onActionViewExpanded();
+}

@@ -1,5 +1,4 @@
-            package co.vine.android.plugin;
-            
-            
-            public class PluginUtil {
-            }
+package co.vine.android.plugin;
+
+public class PluginUtil {
+}

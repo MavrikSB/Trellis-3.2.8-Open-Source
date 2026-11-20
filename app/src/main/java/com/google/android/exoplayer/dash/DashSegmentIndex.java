@@ -1,18 +1,17 @@
-            package com.google.android.exoplayer.dash;
+package com.google.android.exoplayer.dash;
 
-            import com.google.android.exoplayer.dash.mpd.RangedUri;
-            
-            
-            public interface DashSegmentIndex {
-                long getDurationUs(int i);
+import com.google.android.exoplayer.dash.mpd.RangedUri;
 
-                int getFirstSegmentNum();
+public interface DashSegmentIndex {
+    long getDurationUs(int i);
 
-                int getLastSegmentNum();
+    int getFirstSegmentNum();
 
-                int getSegmentNum(long j);
+    int getLastSegmentNum();
 
-                RangedUri getSegmentUrl(int i);
+    int getSegmentNum(long j);
 
-                long getTimeUs(int i);
-            }
+    RangedUri getSegmentUrl(int i);
+
+    long getTimeUs(int i);
+}

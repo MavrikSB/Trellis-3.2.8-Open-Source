@@ -1,28 +1,27 @@
-            package org.scribe.builder.api;
+package org.scribe.builder.api;
 
-            import org.scribe.extractors.AccessTokenExtractor;
-            import org.scribe.extractors.TokenExtractor20Impl;
-            import org.scribe.model.OAuthConfig;
-            import org.scribe.model.Verb;
-            import org.scribe.oauth.OAuth20ServiceImpl;
-            import org.scribe.oauth.OAuthService;
-            
-            
-    public abstract class DefaultApi20 implements Api {
-                public abstract String getAccessTokenEndpoint();
+import org.scribe.extractors.AccessTokenExtractor;
+import org.scribe.extractors.TokenExtractor20Impl;
+import org.scribe.model.OAuthConfig;
+import org.scribe.model.Verb;
+import org.scribe.oauth.OAuth20ServiceImpl;
+import org.scribe.oauth.OAuthService;
 
-                public abstract String getAuthorizationUrl(OAuthConfig oAuthConfig);
+public abstract class DefaultApi20 implements Api {
+    public abstract String getAccessTokenEndpoint();
 
-        public AccessTokenExtractor getAccessTokenExtractor() {
-            return new TokenExtractor20Impl();
-                }
+    public abstract String getAuthorizationUrl(OAuthConfig oAuthConfig);
 
-        public Verb getAccessTokenVerb() {
-            return Verb.GET;
-                }
+    public AccessTokenExtractor getAccessTokenExtractor() {
+        return new TokenExtractor20Impl();
+    }
 
-                @Override 
-        public OAuthService createService(OAuthConfig config) {
-            return new OAuth20ServiceImpl(this, config);
-                }
-            }
+    public Verb getAccessTokenVerb() {
+        return Verb.GET;
+    }
+
+    @Override
+    public OAuthService createService(OAuthConfig config) {
+        return new OAuth20ServiceImpl(this, config);
+    }
+}

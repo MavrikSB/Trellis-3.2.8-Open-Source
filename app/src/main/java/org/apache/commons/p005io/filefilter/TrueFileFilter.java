@@ -1,23 +1,22 @@
-            package org.apache.commons.p005io.filefilter;
+package org.apache.commons.p005io.filefilter;
 
-            import java.io.File;
-            import java.io.Serializable;
-            
-            
-    public class TrueFileFilter implements IOFileFilter, Serializable {
-                public static final IOFileFilter TRUE = new TrueFileFilter();
-                public static final IOFileFilter INSTANCE = TRUE;
+import java.io.File;
+import java.io.Serializable;
 
-        protected TrueFileFilter() {
-                }
+public class TrueFileFilter implements IOFileFilter, Serializable {
+    public static final IOFileFilter TRUE = new TrueFileFilter();
+    public static final IOFileFilter INSTANCE = TRUE;
 
-                @Override 
-        public boolean accept(File file) {
-            return true;
-                }
+    protected TrueFileFilter() {
+    }
 
-                @Override 
-        public boolean accept(File dir, String name) {
-            return true;
-                }
-            }
+    @Override
+    public boolean accept(File file) {
+        return true;
+    }
+
+    @Override
+    public boolean accept(File dir, String name) {
+        return true;
+    }
+}

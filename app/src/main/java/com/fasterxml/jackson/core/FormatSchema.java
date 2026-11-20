@@ -1,6 +1,5 @@
-            package com.fasterxml.jackson.core;
-            
-            
-            public interface FormatSchema {
-                String getSchemaType();
-            }
+package com.fasterxml.jackson.core;
+
+public interface FormatSchema {
+    String getSchemaType();
+}

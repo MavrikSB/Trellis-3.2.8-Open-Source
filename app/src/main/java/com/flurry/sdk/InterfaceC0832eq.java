@@ -1,19 +1,13 @@
-            package com.flurry.sdk;
+package com.flurry.sdk;
 
-            import android.content.Context;
-            
-            
-            
-            public interface InterfaceC0832eq {
-                
-                void mo528a(C0796dg c0796dg);
+import android.content.Context;
 
-                
-                void mo529a(C0796dg c0796dg, Context context);
+public interface InterfaceC0832eq {
+    void mo528a(C0796dg c0796dg);
 
-                
-                void mo530b(C0796dg c0796dg, Context context);
+    void mo529a(C0796dg c0796dg, Context context);
 
-                
-                void mo531c(C0796dg c0796dg, Context context);
-            }
+    void mo530b(C0796dg c0796dg, Context context);
+
+    void mo531c(C0796dg c0796dg, Context context);
+}

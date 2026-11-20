@@ -1,62 +1,61 @@
-            package org.apache.commons.p005io.filefilter;
+package org.apache.commons.p005io.filefilter;
 
-            import java.io.File;
-            import java.io.Serializable;
-            import java.util.List;
-            import org.apache.commons.p005io.FilenameUtils;
-            
-            
-            @Deprecated
-    public class WildcardFilter extends AbstractFileFilter implements Serializable {
-                private final String[] wildcards;
+import java.io.File;
+import java.io.Serializable;
+import java.util.List;
+import org.apache.commons.p005io.FilenameUtils;
 
-        public WildcardFilter(String wildcard) {
-            if (wildcard == null) {
-                throw new IllegalArgumentException("The wildcard must not be null");
-                    }
-            this.wildcards = new String[]{wildcard};
-                }
+@Deprecated
+public class WildcardFilter extends AbstractFileFilter implements Serializable {
+    private final String[] wildcards;
 
-        public WildcardFilter(String[] wildcards) {
-            if (wildcards == null) {
-                throw new IllegalArgumentException("The wildcard array must not be null");
-                    }
-            this.wildcards = new String[wildcards.length];
-            System.arraycopy(wildcards, 0, this.wildcards, 0, wildcards.length);
-                }
+    public WildcardFilter(String wildcard) {
+        if (wildcard == null) {
+            throw new IllegalArgumentException("The wildcard must not be null");
+        }
+        this.wildcards = new String[]{wildcard};
+    }
 
-        public WildcardFilter(List<String> wildcards) {
-            if (wildcards == null) {
-                throw new IllegalArgumentException("The wildcard list must not be null");
-                    }
-            this.wildcards = (String[]) wildcards.toArray(new String[wildcards.size()]);
-                }
+    public WildcardFilter(String[] wildcards) {
+        if (wildcards == null) {
+            throw new IllegalArgumentException("The wildcard array must not be null");
+        }
+        this.wildcards = new String[wildcards.length];
+        System.arraycopy(wildcards, 0, this.wildcards, 0, wildcards.length);
+    }
 
-                @Override 
-       public boolean accept(File dir, String name) {
-           if (dir != null && new File(dir, name).isDirectory()) {
-                        return false;
-                    }
-           String[] arr$ = this.wildcards;
-                    for (String wildcard : arr$) {
-               if (FilenameUtils.wildcardMatch(name, wildcard)) {
-                   return true;
-                        }
-                    }
-                    return false;
-                }
+    public WildcardFilter(List<String> wildcards) {
+        if (wildcards == null) {
+            throw new IllegalArgumentException("The wildcard list must not be null");
+        }
+        this.wildcards = (String[]) wildcards.toArray(new String[wildcards.size()]);
+    }
 
-                @Override 
-       public boolean accept(File file) {
-           if (file.isDirectory()) {
-                        return false;
-                    }
-           String[] arr$ = this.wildcards;
-                    for (String wildcard : arr$) {
-               if (FilenameUtils.wildcardMatch(file.getName(), wildcard)) {
-                   return true;
-                        }
-                    }
-                    return false;
-                }
+    @Override
+    public boolean accept(File dir, String name) {
+        if (dir != null && new File(dir, name).isDirectory()) {
+            return false;
+        }
+        String[] arr$ = this.wildcards;
+        for (String wildcard : arr$) {
+            if (FilenameUtils.wildcardMatch(name, wildcard)) {
+                return true;
             }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean accept(File file) {
+        if (file.isDirectory()) {
+            return false;
+        }
+        String[] arr$ = this.wildcards;
+        for (String wildcard : arr$) {
+            if (FilenameUtils.wildcardMatch(file.getName(), wildcard)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}

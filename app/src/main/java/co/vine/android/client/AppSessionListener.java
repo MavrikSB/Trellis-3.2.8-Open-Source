@@ -1,347 +1,346 @@
-            package co.vine.android.client;
-
-            import android.os.Bundle;
-            import android.support.annotation.NonNull;
-            import android.support.annotation.Nullable;
-            import android.util.Pair;
-            import co.vine.android.api.ComplaintMenuOption;
-            import co.vine.android.api.TwitterUser;
-            import co.vine.android.api.VineChannel;
-            import co.vine.android.api.VineClientFlags;
-            import co.vine.android.api.VineComment;
-            import co.vine.android.api.VineEverydayNotification;
-            import co.vine.android.api.VineLogin;
-            import co.vine.android.api.VineNotificationSetting;
-            import co.vine.android.api.VinePagedData;
-            import co.vine.android.api.VinePost;
-            import co.vine.android.api.VineRTCConversation;
-            import co.vine.android.api.VineRepost;
-            import co.vine.android.api.VineSingleNotification;
-            import co.vine.android.api.VineTag;
-            import co.vine.android.api.VineUser;
-            import co.vine.android.cache.image.ImageKey;
-            import co.vine.android.cache.image.UrlImage;
-            import co.vine.android.cache.video.UrlVideo;
-            import co.vine.android.cache.video.VideoKey;
-            import co.vine.android.network.HttpResult;
-            import co.vine.android.network.UrlCachePolicy;
-            import co.vine.android.service.PendingAction;
-            import com.facebook.SessionState;
-            import java.util.ArrayList;
-            import java.util.HashMap;
-            
-            
-    public abstract class AppSessionListener {
-                private boolean mEnabled;
+package co.vine.android.client;
+
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.util.Pair;
+import co.vine.android.api.ComplaintMenuOption;
+import co.vine.android.api.TwitterUser;
+import co.vine.android.api.VineChannel;
+import co.vine.android.api.VineClientFlags;
+import co.vine.android.api.VineComment;
+import co.vine.android.api.VineEverydayNotification;
+import co.vine.android.api.VineLogin;
+import co.vine.android.api.VineNotificationSetting;
+import co.vine.android.api.VinePagedData;
+import co.vine.android.api.VinePost;
+import co.vine.android.api.VineRTCConversation;
+import co.vine.android.api.VineRepost;
+import co.vine.android.api.VineSingleNotification;
+import co.vine.android.api.VineTag;
+import co.vine.android.api.VineUser;
+import co.vine.android.cache.image.ImageKey;
+import co.vine.android.cache.image.UrlImage;
+import co.vine.android.cache.video.UrlVideo;
+import co.vine.android.cache.video.VideoKey;
+import co.vine.android.network.HttpResult;
+import co.vine.android.network.UrlCachePolicy;
+import co.vine.android.service.PendingAction;
+import com.facebook.SessionState;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-        public void onLoginComplete(Session session, String reqId, int statusCode, String reasonPhrase, int errorCode, VineLogin login) {
-                }
+public abstract class AppSessionListener {
+    private boolean mEnabled;
 
-        public void onLogoutComplete(String reqId) {
-                }
+    public void onLoginComplete(Session session, String reqId, int statusCode, String reasonPhrase, int errorCode, VineLogin login) {
+    }
 
-        public void onSignUpComplete(String reqId, int statusCode, String reasonPhrase, VineLogin vineLogin, String accountName, String password, String avatarUrl) {
-                }
+    public void onLogoutComplete(String reqId) {
+    }
 
-        public void onGetUsersComplete(Session session, String reqId, int statusCode, String reasonPhrase, int count, ArrayList<VineUser> users, int nextPage, int previousPage, long anchor) {
-                }
+    public void onSignUpComplete(String reqId, int statusCode, String reasonPhrase, VineLogin vineLogin, String accountName, String password, String avatarUrl) {
+    }
 
-        public void onGetTwitterAuthUrlComplete(String reqId, String authUrl) {
-                }
+    public void onGetUsersComplete(Session session, String reqId, int statusCode, String reasonPhrase, int count, ArrayList<VineUser> users, int nextPage, int previousPage, long anchor) {
+    }
 
-        public void onGetEditionsComplete(int statusCode, ArrayList<Pair<String, String>> editions) {
-                }
+    public void onGetTwitterAuthUrlComplete(String reqId, String authUrl) {
+    }
 
-        public void onCheckTwitterComplete(String reqId, int statusCode, String reasonPhrase, int errorCode, boolean accountExists, VineUser user, VineLogin login) {
-                }
+    public void onGetEditionsComplete(int statusCode, ArrayList<Pair<String, String>> editions) {
+    }
 
-        public void onGetTwitterUserComplete(String reqId, int statusCode, String reasonPhrase, TwitterUser user, VineLogin login) {
-                }
+    public void onCheckTwitterComplete(String reqId, int statusCode, String reasonPhrase, int errorCode, boolean accountExists, VineUser user, VineLogin login) {
+    }
 
-       public void onPhotoImageLoaded(HashMap<ImageKey, UrlImage> images) {
-                }
+    public void onGetTwitterUserComplete(String reqId, int statusCode, String reasonPhrase, TwitterUser user, VineLogin login) {
+    }
 
-       public void onPhotoImageError(ImageKey key, HttpResult result) {
-                }
+    public void onPhotoImageLoaded(HashMap<ImageKey, UrlImage> images) {
+    }
 
-       public void onTwitterxAuthComplete(String reqId, int statusCode, String reasonPhrase, VineLogin login) {
-                }
+    public void onPhotoImageError(ImageKey key, HttpResult result) {
+    }
 
-       public void onGetTwitterFriendsComplete(String reqId, int statusCode, String reasonPhrase, int count, ArrayList<VineUser> users) {
-                }
+    public void onTwitterxAuthComplete(String reqId, int statusCode, String reasonPhrase, VineLogin login) {
+    }
 
-       public void onResetPasswordComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onGetTwitterFriendsComplete(String reqId, int statusCode, String reasonPhrase, int count, ArrayList<VineUser> users) {
+    }
 
-       public void onVideoPathObtained(HashMap<VideoKey, UrlVideo> videos) {
-                }
+    public void onResetPasswordComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onVideoPathError(VideoKey key, HttpResult result) {
-                }
+    public void onVideoPathObtained(HashMap<VideoKey, UrlVideo> videos) {
+    }
 
-       public void onGetCommentsComplete(String reqId, int statusCode, String reasonPhrase, int nextPage, long anchor, ArrayList<VineComment> comments) {
-                }
+    public void onVideoPathError(VideoKey key, HttpResult result) {
+    }
 
-       public void onPostCommentComplete(String reqId, int statusCode, String reasonPhrase, long postId, String comment, VineComment vc) {
-                }
+    public void onGetCommentsComplete(String reqId, int statusCode, String reasonPhrase, int nextPage, long anchor, ArrayList<VineComment> comments) {
+    }
 
-       public void onGetUsersMeComplete(String reqId, int statusCode, String reasonPhrase, long sessionOwnerId, @Nullable VineUser meUser, UrlCachePolicy policy) {
-                }
+    public void onPostCommentComplete(String reqId, int statusCode, String reasonPhrase, long postId, String comment, VineComment vc) {
+    }
 
-       public void onGetTimeLineComplete(String reqId, int statusCode, String reasonPhrase, int type, int count, boolean memory, ArrayList<VinePost> posts, String tag, int pageType, int next, int previous, long anchor, boolean userInitiated, int size, String title, UrlCachePolicy cachePolicy, Bundle bundle) {
-                }
+    public void onGetUsersMeComplete(String reqId, int statusCode, String reasonPhrase, long sessionOwnerId, @Nullable VineUser meUser, UrlCachePolicy policy) {
+    }
 
-       public void onFollowComplete(String reqId, int statusCode, String reasonPhrase, long userId) {
-                }
+    public void onGetTimeLineComplete(String reqId, int statusCode, String reasonPhrase, int type, int count, boolean memory, ArrayList<VinePost> posts, String tag, int pageType, int next, int previous, long anchor, boolean userInitiated, int size, String title, UrlCachePolicy cachePolicy, Bundle bundle) {
+    }
 
-       public void onBulkFollowComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onFollowComplete(String reqId, int statusCode, String reasonPhrase, long userId) {
+    }
 
-       public void onUnFollowComplete(String reqId, int statusCode, String reasonPhrase, long userId) {
-                }
+    public void onBulkFollowComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onGetActivityComplete(String reqId, int statusCode, String reasonPhrase, VinePagedData<VineEverydayNotification> notifications, VinePagedData<VineSingleNotification> followRequests, UrlCachePolicy policyUsed) {
-                }
+    public void onUnFollowComplete(String reqId, int statusCode, String reasonPhrase, long userId) {
+    }
 
-       public void onGetActivityCountComplete(String reqId, int statusCode, String reasonPhrase, int activityCount, int followRequestCount, int messagesCount, UrlCachePolicy policyUsed) {
-                }
+    public void onGetActivityComplete(String reqId, int statusCode, String reasonPhrase, VinePagedData<VineEverydayNotification> notifications, VinePagedData<VineSingleNotification> followRequests, UrlCachePolicy policyUsed) {
+    }
 
-       public void onGetAddressFriendsComplete(String reqId, int statusCode, String reasonPhrase, int count, ArrayList<VineUser> users) {
-                }
+    public void onGetActivityCountComplete(String reqId, int statusCode, String reasonPhrase, int activityCount, int followRequestCount, int messagesCount, UrlCachePolicy policyUsed) {
+    }
 
-       public void onRemoveUsersComplete(String reqId) {
-                }
+    public void onGetAddressFriendsComplete(String reqId, int statusCode, String reasonPhrase, int count, ArrayList<VineUser> users) {
+    }
 
-       public void onGetUserComplete(String reqId, int statusCode, String reasonPhrase, @Nullable VineUser user, UrlCachePolicy policy) {
-                }
+    public void onRemoveUsersComplete(String reqId) {
+    }
 
-       public void onUpdateProfileComplete(String reqId, int statusCode, String reasonPhrase, String avatarUri) {
-                }
+    public void onGetUserComplete(String reqId, int statusCode, String reasonPhrase, @Nullable VineUser user, UrlCachePolicy policy) {
+    }
 
-       public void onUpdateEditionComplete(String reqId, int statusCode, String reasonPhrase, String edition) {
-                }
+    public void onUpdateProfileComplete(String reqId, int statusCode, String reasonPhrase, String avatarUri) {
+    }
 
-       public void onReportPostComplete(String reqId, int statusCode, String reasonPhrase, long postId) {
-                }
+    public void onUpdateEditionComplete(String reqId, int statusCode, String reasonPhrase, String edition) {
+    }
 
-       public void onDeletePostComplete(String reqId, long postId, int statusCode, String reasonPhrase) {
-                }
+    public void onReportPostComplete(String reqId, int statusCode, String reasonPhrase, long postId) {
+    }
 
-       public void onConnectTwitterComplete(String reqId, int statusCode, String reasonPhrase, String username, String token, String secret, long userId) {
-                }
+    public void onDeletePostComplete(String reqId, long postId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onDisconnectTwitterComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onConnectTwitterComplete(String reqId, int statusCode, String reasonPhrase, String username, String token, String secret, long userId) {
+    }
 
-       public void onLikePost(String reqId, int statusCode, String reasonPhrase, long postId) {
-                }
+    public void onDisconnectTwitterComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onUnlikePost(String reqId, int statusCode, String reasonPhrase, long postId) {
-                }
+    public void onLikePost(String reqId, int statusCode, String reasonPhrase, long postId) {
+    }
 
-       public void onRevine(String reqId, int statusCode, String reasonPhrase, long postId, VineRepost repost) {
-                }
+    public void onUnlikePost(String reqId, int statusCode, String reasonPhrase, long postId) {
+    }
 
-       public void onUnrevine(String reqId, int statusCode, String reasonPhrase, long postId) {
-                }
+    public void onRevine(String reqId, int statusCode, String reasonPhrase, long postId, VineRepost repost) {
+    }
 
-       public void onGetSinglePostComplete(String reqId, int statusCode, String reasonPhrase, VinePost post) {
-                }
+    public void onUnrevine(String reqId, int statusCode, String reasonPhrase, long postId) {
+    }
 
-       public void onGetPostIdComplete(String reqId, int statusCode, String reasonPhrase, long postId) {
-                }
+    public void onGetSinglePostComplete(String reqId, int statusCode, String reasonPhrase, VinePost post) {
+    }
 
-       public void onFacebookSessionChanged(com.facebook.Session session, SessionState state, Exception exception) {
-                }
+    public void onGetPostIdComplete(String reqId, int statusCode, String reasonPhrase, long postId) {
+    }
 
-       public void onUserSearchComplete(String reqId, int statusCode, String reasonPhrase, int count, int nextPage, int previousPage, ArrayList<VineUser> users) {
-                }
+    public void onFacebookSessionChanged(com.facebook.Session session, SessionState state, Exception exception) {
+    }
 
-       public void onTagSearchComplete(String reqId, int statusCode, String reasonPhrase, int count, int nextPage, int previousPage, ArrayList<VineTag> tags) {
-                }
+    public void onUserSearchComplete(String reqId, int statusCode, String reasonPhrase, int count, int nextPage, int previousPage, ArrayList<VineUser> users) {
+    }
 
-       public void onClearCacheComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onTagSearchComplete(String reqId, int statusCode, String reasonPhrase, int count, int nextPage, int previousPage, ArrayList<VineTag> tags) {
+    }
 
-       public void onConnectFacebookComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onClearCacheComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onUpdateFollowEditorsPicksComplete(String reqId, int statusCode, String reasonPhrase, boolean isFollowing) {
-                }
+    public void onConnectFacebookComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onBlockUserComplete(String reqId, int statusCode, String reasonPhrase, boolean userBlocked, String blockedUsername) {
-                }
+    public void onUpdateFollowEditorsPicksComplete(String reqId, int statusCode, String reasonPhrase, boolean isFollowing) {
+    }
 
-       public void onUnblockUserComplete(String reqId, int statusCode, String reasonPhrase, boolean userUnblocked, String blockedUsername) {
-                }
+    public void onBlockUserComplete(String reqId, int statusCode, String reasonPhrase, boolean userBlocked, String blockedUsername) {
+    }
 
-       public void onReportUserComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onUnblockUserComplete(String reqId, int statusCode, String reasonPhrase, boolean userUnblocked, String blockedUsername) {
+    }
 
-       public void onRespondFollowRequestComplete(String reqId, int statusCode, String reasonPhrase, boolean accept, long userId) {
-                }
+    public void onReportUserComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onUpdateExplicitComplete(String reqId, int statusCode, String reasonPhrase, boolean explicit) {
-                }
+    public void onRespondFollowRequestComplete(String reqId, int statusCode, String reasonPhrase, boolean accept, long userId) {
+    }
 
-       public void onUpdatePrivateComplete(String reqId, int statusCode, String reasonPhrase, boolean priv) {
-                }
+    public void onUpdateExplicitComplete(String reqId, int statusCode, String reasonPhrase, boolean explicit) {
+    }
 
-       public void onGetChannelsComplete(String reqId, int statusCode, String reasonPhrase, ArrayList<VineChannel> channels) {
-                }
+    public void onUpdatePrivateComplete(String reqId, int statusCode, String reasonPhrase, boolean priv) {
+    }
 
-       public void onSharePostComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onGetChannelsComplete(String reqId, int statusCode, String reasonPhrase, ArrayList<VineChannel> channels) {
+    }
 
-       public void onGcmRegistrationComplete(String reqId, int statusCode, String reasonPhrase, long userId) {
-                }
+    public void onSharePostComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onGetPendingNotificationCountComplete(String reqId, int statusCode, String reasonPhrase, int count) {
-                }
+    public void onGcmRegistrationComplete(String reqId, int statusCode, String reasonPhrase, long userId) {
+    }
 
-       public void onGetUserTypeAheadComplete(String reqId, int statusCode, String reasonPhrase, String query, ArrayList<VineUser> users) {
-                }
+    public void onGetPendingNotificationCountComplete(String reqId, int statusCode, String reasonPhrase, int count) {
+    }
 
-       public void onGetFriendsTypeAheadComplete(String reqId, int statusCode, String reasonPhrase, String query, ArrayList<VineUser> users) {
-                }
+    public void onGetUserTypeAheadComplete(String reqId, int statusCode, String reasonPhrase, String query, ArrayList<VineUser> users) {
+    }
 
-       public void onGetTagTypeAheadComplete(String reqId, int statusCode, String reasonPhrase, String query, ArrayList<VineTag> tags) {
-                }
+    public void onGetFriendsTypeAheadComplete(String reqId, int statusCode, String reasonPhrase, String query, ArrayList<VineUser> users) {
+    }
 
-       public void onEnableUserRepostsComplete(String reqId, int statusCode, String reasonPhrase, boolean success) {
-                }
+    public void onGetTagTypeAheadComplete(String reqId, int statusCode, String reasonPhrase, String query, ArrayList<VineTag> tags) {
+    }
 
-       public void onDisableUserRepostsComplete(String reqId, int statusCode, String reasonPhrase, boolean success) {
-                }
+    public void onEnableUserRepostsComplete(String reqId, int statusCode, String reasonPhrase, boolean success) {
+    }
 
-       public void onDeactivateAccountComplete(String reqId, int statusCode, String reasonPhrase, boolean success) {
-                }
+    public void onDisableUserRepostsComplete(String reqId, int statusCode, String reasonPhrase, boolean success) {
+    }
 
-       public void onLowMemory() {
-                }
+    public void onDeactivateAccountComplete(String reqId, int statusCode, String reasonPhrase, boolean success) {
+    }
 
-       public void onTrimMemory(int level) {
-                }
+    public void onLowMemory() {
+    }
 
-       public void onGetMessageInboxComplete(String reqId, int statusCode, String reasonPhrase, int count) {
-                }
+    public void onTrimMemory(int level) {
+    }
 
-       public void onCaptchaRequired(String reqId, String captchaUrl, PendingAction actionToRetry) {
-                }
+    public void onGetMessageInboxComplete(String reqId, int statusCode, String reasonPhrase, int count) {
+    }
 
-       public void onGetUserIdComplete(String reqId, int statusCode, String reasonPhrase, long userId) {
-                }
+    public void onCaptchaRequired(String reqId, String captchaUrl, PendingAction actionToRetry) {
+    }
 
-       public void onProfilePhotoUpdatedComplete(String reqId, int statusCode, String reasonPhrase, String avatarUrl) {
-                }
+    public void onGetUserIdComplete(String reqId, int statusCode, String reasonPhrase, long userId) {
+    }
 
-       public void onGetConversationComplete(String reqId, int statusCode, String reasonPhrase, long conversationObjectId, int responseCode, boolean empty) {
-                }
+    public void onProfilePhotoUpdatedComplete(String reqId, int statusCode, String reasonPhrase, String avatarUrl) {
+    }
 
-       public void onGetConversationRowIdComplete(long recipientId, boolean isRecipientAVineUser, long conversationObjectId, String username, boolean amFollowing) {
-                }
+    public void onGetConversationComplete(String reqId, int statusCode, String reasonPhrase, long conversationObjectId, int responseCode, boolean empty) {
+    }
 
-       public void onGetConversationRemoteIdComplete(long conversationId) {
-                }
+    public void onGetConversationRowIdComplete(long recipientId, boolean isRecipientAVineUser, long conversationObjectId, String username, boolean amFollowing) {
+    }
 
-       public void onRequestPhoneVerificationComplete(String reqId, int statusCode, String reasonPhrase, String phone) {
-                }
+    public void onGetConversationRemoteIdComplete(long conversationId) {
+    }
 
-       public void onVerifyPhoneNumberComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onRequestPhoneVerificationComplete(String reqId, int statusCode, String reasonPhrase, String phone) {
+    }
 
-       public void onVerifyEmailComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onVerifyPhoneNumberComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onRequestEmailVerificationComplete(String reqId, int statusCode, String reasonPhrase, String email) {
-                }
+    public void onVerifyEmailComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onIgnoreConversationComplete(String reqId, int statusCode, String reasonPhrase, long conversationObjectId) {
-                }
+    public void onRequestEmailVerificationComplete(String reqId, int statusCode, String reasonPhrase, String email) {
+    }
 
-       public void onDeleteConversationComplete(String reqId, int statusCode, String reasonPhrase, long aLong) {
-                }
+    public void onIgnoreConversationComplete(String reqId, int statusCode, String reasonPhrase, long conversationObjectId) {
+    }
 
-       public void onMergeNotificationComplete(VineSingleNotification lastNotification, @NonNull ArrayList<VineSingleNotification> notifications) {
-                }
+    public void onDeleteConversationComplete(String reqId, int statusCode, String reasonPhrase, long aLong) {
+    }
 
-       public void onWebSocketConnectComplete() {
-                }
+    public void onMergeNotificationComplete(VineSingleNotification lastNotification, @NonNull ArrayList<VineSingleNotification> notifications) {
+    }
 
-       public void onWebSocketDisconnected() {
-                }
+    public void onWebSocketConnectComplete() {
+    }
 
-       public void onWebSocketError() {
-                }
+    public void onWebSocketDisconnected() {
+    }
 
-       public void onDeleteCommentComplete(String reqId, int statusCode, String reasonPhrase, long commentId) {
-                }
+    public void onWebSocketError() {
+    }
 
-       public void onSpamCommentComplete(String reqId, int statusCode, String reasonPhrase, long commentId) {
-                }
+    public void onDeleteCommentComplete(String reqId, int statusCode, String reasonPhrase, long commentId) {
+    }
 
-       public void onUpdateTypingStateComplete(boolean isTyping) {
-                }
+    public void onSpamCommentComplete(String reqId, int statusCode, String reasonPhrase, long commentId) {
+    }
 
-       public void onSubscribeConversationComplete() {
-                }
+    public void onUpdateTypingStateComplete(boolean isTyping) {
+    }
 
-       public void onReceiveRTCMessage(ArrayList<VineRTCConversation> data) {
-                }
+    public void onSubscribeConversationComplete() {
+    }
 
-       public void onUpdateAcceptOonComplete(String reqId, int statusCode, String reasonPhrase, boolean acceptOon) {
-                }
+    public void onReceiveRTCMessage(ArrayList<VineRTCConversation> data) {
+    }
 
-       public void onUpdateEnableAddressBookComplete(String reqId, int statusCode, String reasonPhrase, boolean enableAddressBook) {
-                }
+    public void onUpdateAcceptOonComplete(String reqId, int statusCode, String reasonPhrase, boolean acceptOon) {
+    }
 
-       public void onPostVideoComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onUpdateEnableAddressBookComplete(String reqId, int statusCode, String reasonPhrase, boolean enableAddressBook) {
+    }
 
-       public void onUpdateDiscoverability(String reqId, int statusCode, String reasonPhrase, int type, boolean enable) {
-                }
+    public void onPostVideoComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onFetchClientFlagsComplete(String reqId, int statusCode, String reasonPhrase, @Nullable VineClientFlags clientFlags, boolean showBanner) {
-                }
+    public void onUpdateDiscoverability(String reqId, int statusCode, String reasonPhrase, int type, boolean enable) {
+    }
 
-       public void onAbortAllRequestsComplete() {
-                }
+    public void onFetchClientFlagsComplete(String reqId, int statusCode, String reasonPhrase, @Nullable VineClientFlags clientFlags, boolean showBanner) {
+    }
 
-       public void onMobileDataNetworkActivated() {
-                }
+    public void onAbortAllRequestsComplete() {
+    }
 
-       public void onGetNotificationSettingsComplete(String reqId, ArrayList<VineNotificationSetting> notifSettings) {
-                }
+    public void onMobileDataNetworkActivated() {
+    }
 
-       public void onSaveNotificationSettingsComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onGetNotificationSettingsComplete(String reqId, ArrayList<VineNotificationSetting> notifSettings) {
+    }
 
-       public void onFollowChannelComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onSaveNotificationSettingsComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onBulkFollowChannelComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onFollowChannelComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onFavoriteUserComplete(String reqId, int statusCode, String reasonPhrase) {
-                }
+    public void onBulkFollowChannelComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onFetchFavoritePeopleComplete(String reqId, int statusCode, String reasonPhrase, ArrayList<VineUser> users, int nextPage, int prevPage, String anchor) {
-                }
+    public void onFavoriteUserComplete(String reqId, int statusCode, String reasonPhrase) {
+    }
 
-       public void onFetchSuggestedFavoritesComplete(String reqId, int statusCode, String reasonPhrase, ArrayList<VineUser> users) {
-                }
+    public void onFetchFavoritePeopleComplete(String reqId, int statusCode, String reasonPhrase, ArrayList<VineUser> users, int nextPage, int prevPage, String anchor) {
+    }
 
-       public void onFetchOnboardingSuggestedFavoritesComplete(String reqId, int statusCode, String reasonPhrase, ArrayList<VineUser> users) {
-                }
+    public void onFetchSuggestedFavoritesComplete(String reqId, int statusCode, String reasonPhrase, ArrayList<VineUser> users) {
+    }
 
-       public void setEnabled(boolean enabled) {
-           this.mEnabled = enabled;
-                }
+    public void onFetchOnboardingSuggestedFavoritesComplete(String reqId, int statusCode, String reasonPhrase, ArrayList<VineUser> users) {
+    }
 
-       public boolean isEnabled() {
-           return this.mEnabled;
-                }
+    public void setEnabled(boolean enabled) {
+        this.mEnabled = enabled;
+    }
 
-       public void onComplaintMenu(String reqId, int statusCode, ArrayList<ComplaintMenuOption> complaintMenu) {
-                }
-            }
+    public boolean isEnabled() {
+        return this.mEnabled;
+    }
+
+    public void onComplaintMenu(String reqId, int statusCode, ArrayList<ComplaintMenuOption> complaintMenu) {
+    }
+}

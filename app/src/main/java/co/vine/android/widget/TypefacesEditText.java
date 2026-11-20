@@ -1,87 +1,82 @@
-            package co.vine.android.widget;
+package co.vine.android.widget;
 
-            import android.content.Context;
-            import android.content.res.TypedArray;
-            import android.graphics.Typeface;
-            import android.support.annotation.NonNull;
-            import android.util.AttributeSet;
-            import android.view.KeyEvent;
-            import android.view.inputmethod.EditorInfo;
-            import android.view.inputmethod.InputConnection;
-            import android.view.inputmethod.InputConnectionWrapper;
-            import co.vine.android.R;
-            import co.vine.android.views.SdkEditText;
-            
-            
-    public class TypefacesEditText extends SdkEditText {
-                private KeyboardListener mKeyboardListener;
-                private int mWeight;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Typeface;
+import android.support.annotation.NonNull;
+import android.util.AttributeSet;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputConnectionWrapper;
+import co.vine.android.R;
+import co.vine.android.views.SdkEditText;
 
-                public interface KeyboardListener {
-                    void onKeyboardDismissed();
+public class TypefacesEditText extends SdkEditText {
+    private KeyboardListener mKeyboardListener;
+    private int mWeight;
 
-                    boolean sendKeyEvent(KeyEvent keyEvent);
-                }
+    public interface KeyboardListener {
+        void onKeyboardDismissed();
 
-        static  KeyboardListener access$000(TypefacesEditText x0) {
-            return x0.mKeyboardListener;
-                }
+        boolean sendKeyEvent(KeyEvent keyEvent);
+    }
 
-        public TypefacesEditText(Context context) {
-            super(context);
-            this.mKeyboardListener = null;
-                }
+    public TypefacesEditText(Context context) {
+        super(context);
+        this.mKeyboardListener = null;
+    }
 
-        public TypefacesEditText(Context context, AttributeSet attrs) {
-            super(context, attrs);
-            this.mKeyboardListener = null;
-            init(context, attrs);
-                }
+    public TypefacesEditText(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.mKeyboardListener = null;
+        init(context, attrs);
+    }
 
-        public TypefacesEditText(Context context, AttributeSet attrs, int defStyle) {
-            super(context, attrs, defStyle);
-            this.mKeyboardListener = null;
-            init(context, attrs);
-                }
+    public TypefacesEditText(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        this.mKeyboardListener = null;
+        init(context, attrs);
+    }
 
-        public void init(Context context, AttributeSet attrs) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.VineTextView, R.attr.vineEditTextStyle, 0);
-            int style = a.getInt(R.styleable.VineTextView_textStyle, 0);
-            this.mWeight = a.getInt(R.styleable.VineTextView_textWeight, 2);
-            a.recycle();
-            setTypeface(Typefaces.get(context).getContentTypeface(style, this.mWeight), style);
-                }
+    public void init(Context context, AttributeSet attrs) {
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.VineTextView, R.attr.vineEditTextStyle, 0);
+        int style = a.getInt(R.styleable.VineTextView_textStyle, 0);
+        this.mWeight = a.getInt(R.styleable.VineTextView_textWeight, 2);
+        a.recycle();
+        setTypeface(Typefaces.get(context).getContentTypeface(style, this.mWeight), style);
+    }
 
-                @Override 
-        public void setTypeface(Typeface tf, int style) {
-            super.setTypeface(Typefaces.get(getContext()).getContentTypeface(style, this.mWeight));
-                }
+    @Override
+    public void setTypeface(Typeface tf, int style) {
+        super.setTypeface(Typefaces.get(getContext()).getContentTypeface(style, this.mWeight));
+    }
 
-        public void setKeyboardListener(KeyboardListener listener) {
-            this.mKeyboardListener = listener;
-                }
+    public void setKeyboardListener(KeyboardListener listener) {
+        this.mKeyboardListener = listener;
+    }
 
-                @Override 
-        public boolean onKeyPreIme(int keyCode, @NonNull KeyEvent keyEvent) {
-            if (keyCode == 4 && this.mKeyboardListener != null) {
-                this.mKeyboardListener.onKeyboardDismissed();
-                    }
-            return super.onKeyPreIme(keyCode, keyEvent);
-                }
+    @Override
+    public boolean onKeyPreIme(int keyCode, @NonNull KeyEvent keyEvent) {
+        if (keyCode == 4 && this.mKeyboardListener != null) {
+            this.mKeyboardListener.onKeyboardDismissed();
+        }
+        return super.onKeyPreIme(keyCode, keyEvent);
+    }
 
-                @Override 
-        public InputConnection onCreateInputConnection(@NonNull EditorInfo outAttrs) {
-            return new TypeFacesInputConnection(super.onCreateInputConnection(outAttrs), true);
-                }
+    @Override
+    public InputConnection onCreateInputConnection(@NonNull EditorInfo outAttrs) {
+        return new TypeFacesInputConnection(super.onCreateInputConnection(outAttrs), true);
+    }
 
-        private class TypeFacesInputConnection extends InputConnectionWrapper {
-            public TypeFacesInputConnection(InputConnection target, boolean mutable) {
-                super(target, mutable);
-                    }
+    private class TypeFacesInputConnection extends InputConnectionWrapper {
+        public TypeFacesInputConnection(InputConnection target, boolean mutable) {
+            super(target, mutable);
+        }
 
-                    @Override 
-            public boolean sendKeyEvent(KeyEvent event) {
-                        return (TypefacesEditText.access$000(TypefacesEditText.this) != null && TypefacesEditText.access$000(TypefacesEditText.this).sendKeyEvent(event)) || super.sendKeyEvent(event);
-                    }
-                }
-            }
+        @Override
+        public boolean sendKeyEvent(KeyEvent event) {
+            return (TypefacesEditText.this.mKeyboardListener != null && TypefacesEditText.this.mKeyboardListener.sendKeyEvent(event)) || super.sendKeyEvent(event);
+        }
+    }
+}

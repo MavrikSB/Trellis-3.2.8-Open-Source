@@ -1,29 +1,25 @@
-            package org.scribe.services;
-            
-            
-     public abstract class Base64Encoder {
-                private static Base64Encoder instance;
+package org.scribe.services;
 
-                public abstract String encode(byte[] bArr);
+public abstract class Base64Encoder {
+    private static Base64Encoder instance;
 
-                public abstract String getType();
+    public abstract String encode(byte[] bArr);
 
-         public static synchronized Base64Encoder getInstance() {
-                    try {
-                        if (instance == null) {
-                    instance = createEncoderInstance();
-                        }
-                    } catch (Throwable th) {
-                        throw th;
-                    }
-            return instance;
-                }
+    public abstract String getType();
 
-        private static Base64Encoder createEncoderInstance() {
-                    return CommonsEncoder.isPresent() ? new CommonsEncoder() : new DatatypeConverterEncoder();
-                }
+    public static synchronized Base64Encoder getInstance() {
+        if (instance == null) {
+            instance = createEncoderInstance();
+        }
 
-        public static String type() {
-            return getInstance().getType();
-                }
-            }
+        return instance;
+    }
+
+    private static Base64Encoder createEncoderInstance() {
+        return CommonsEncoder.isPresent() ? new CommonsEncoder() : new DatatypeConverterEncoder();
+    }
+
+    public static String type() {
+        return getInstance().getType();
+    }
+}

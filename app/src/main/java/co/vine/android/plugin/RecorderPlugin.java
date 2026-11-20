@@ -1,81 +1,80 @@
-            package co.vine.android.plugin;
+package co.vine.android.plugin;
 
-            import android.graphics.Bitmap;
-            import android.support.annotation.Nullable;
-            import android.support.v4.app.Fragment;
-            import android.view.LayoutInflater;
-            import android.view.View;
-            import android.view.ViewGroup;
-            import co.vine.android.player.SdkVideoView;
-            import co.vine.android.recorder.BasicVineRecorder;
-            import co.vine.android.recorder.RecordSegment;
-            import co.vine.android.recorder.camera.CameraSetting;
-            import java.util.ArrayList;
-            
-            
-            public interface RecorderPlugin<T extends View, K extends BasicVineRecorder> extends Plugin {
-                boolean canEdit();
+import android.graphics.Bitmap;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import co.vine.android.player.SdkVideoView;
+import co.vine.android.recorder.BasicVineRecorder;
+import co.vine.android.recorder.RecordSegment;
+import co.vine.android.recorder.camera.CameraSetting;
+import java.util.ArrayList;
 
-                void createLayout(ViewGroup viewGroup, LayoutInflater layoutInflater, Fragment fragment);
+public interface RecorderPlugin<T extends View, K extends BasicVineRecorder> extends Plugin {
+    boolean canEdit();
 
-                @Nullable
-                Fragment getFragment();
+    void createLayout(ViewGroup viewGroup, LayoutInflater layoutInflater, Fragment fragment);
 
-                @Nullable
-                K getRecorder();
+    @Nullable
+    Fragment getFragment();
 
-                @Nullable
-                T getView();
+    @Nullable
+    K getRecorder();
 
-                void onAdjustingLayoutParamsComplete(int i, int i2);
+    @Nullable
+    T getView();
 
-                void onAnimateEditModeControlsInUI();
+    void onAdjustingLayoutParamsComplete(int i, int i2);
 
-                void onAnimateEditModeControlsOutUI();
+    void onAnimateEditModeControlsInUI();
 
-                void onAutoFocus(int i, int i2);
+    void onAnimateEditModeControlsOutUI();
 
-                boolean onBackButtonPressed(boolean z);
+    void onAutoFocus(int i, int i2);
 
-                void onCameraReady(boolean z, boolean z2);
+    boolean onBackButtonPressed(boolean z);
 
-                void onDraftUpgradeNumberChanged(int i);
+    void onCameraReady(boolean z, boolean z2);
 
-                void onEndRelativeTime(K k);
+    void onDraftUpgradeNumberChanged(int i);
 
-                void onHideDrafts();
+    void onEndRelativeTime(K k);
 
-                void onIndividualSegmentClicked(RecordSegment recordSegment, SdkVideoView sdkVideoView);
+    void onHideDrafts();
 
-                T onLayout(ViewGroup viewGroup, LayoutInflater layoutInflater, Fragment fragment);
+    void onIndividualSegmentClicked(RecordSegment recordSegment, SdkVideoView sdkVideoView);
 
-                void onOfferLastFrame(Bitmap bitmap, CameraSetting cameraSetting);
+    T onLayout(ViewGroup viewGroup, LayoutInflater layoutInflater, Fragment fragment);
 
-                void onOfferLastFrame(byte[] bArr, CameraSetting cameraSetting);
+    void onOfferLastFrame(Bitmap bitmap, CameraSetting cameraSetting);
 
-                void onOnboardingStepFinished();
+    void onOfferLastFrame(byte[] bArr, CameraSetting cameraSetting);
 
-                void onRecorderSet(BasicVineRecorder basicVineRecorder);
+    void onOnboardingStepFinished();
 
-                void onResumeAsyncTaskPostExecute();
+    void onRecorderSet(BasicVineRecorder basicVineRecorder);
 
-                void onResumeCameraAsyncTaskPostExecute();
+    void onResumeAsyncTaskPostExecute();
 
-                void onSegmentDataChanged(ArrayList<RecordSegment> arrayList);
+    void onResumeCameraAsyncTaskPostExecute();
 
-                void onSessionSwapped();
+    void onSegmentDataChanged(ArrayList<RecordSegment> arrayList);
 
-                boolean onSetEditMode(boolean z, boolean z2);
+    void onSessionSwapped();
 
-                void onShowDrafts();
+    boolean onSetEditMode(boolean z, boolean z2);
 
-                void onStartDrafts();
+    void onShowDrafts();
 
-                void onStartEditMode();
+    void onStartDrafts();
 
-                void onStartRelativeTime(K k);
+    void onStartEditMode();
 
-                void onZoomUpdated(int i, boolean z);
+    void onStartRelativeTime(K k);
 
-                void setMessagingMode(boolean z);
-            }
+    void onZoomUpdated(int i, boolean z);
+
+    void setMessagingMode(boolean z);
+}

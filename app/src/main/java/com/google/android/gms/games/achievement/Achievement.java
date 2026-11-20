@@ -1,48 +1,47 @@
-            package com.google.android.gms.games.achievement;
+package com.google.android.gms.games.achievement;
 
-            import android.database.CharArrayBuffer;
-            import android.net.Uri;
-            import com.google.android.gms.games.Player;
-            
-            
-            public interface Achievement {
-                public static final int STATE_HIDDEN = 2;
-                public static final int STATE_REVEALED = 1;
-                public static final int STATE_UNLOCKED = 0;
-                public static final int TYPE_INCREMENTAL = 1;
-                public static final int TYPE_STANDARD = 0;
+import android.database.CharArrayBuffer;
+import android.net.Uri;
+import com.google.android.gms.games.Player;
 
-                String getAchievementId();
+public interface Achievement {
+    public static final int STATE_HIDDEN = 2;
+    public static final int STATE_REVEALED = 1;
+    public static final int STATE_UNLOCKED = 0;
+    public static final int TYPE_INCREMENTAL = 1;
+    public static final int TYPE_STANDARD = 0;
 
-                int getCurrentSteps();
+    String getAchievementId();
 
-                String getDescription();
+    int getCurrentSteps();
 
-                void getDescription(CharArrayBuffer charArrayBuffer);
+    String getDescription();
 
-                String getFormattedCurrentSteps();
+    void getDescription(CharArrayBuffer charArrayBuffer);
 
-                void getFormattedCurrentSteps(CharArrayBuffer charArrayBuffer);
+    String getFormattedCurrentSteps();
 
-                String getFormattedTotalSteps();
+    void getFormattedCurrentSteps(CharArrayBuffer charArrayBuffer);
 
-                void getFormattedTotalSteps(CharArrayBuffer charArrayBuffer);
+    String getFormattedTotalSteps();
 
-                long getLastUpdatedTimestamp();
+    void getFormattedTotalSteps(CharArrayBuffer charArrayBuffer);
 
-                String getName();
+    long getLastUpdatedTimestamp();
 
-                void getName(CharArrayBuffer charArrayBuffer);
+    String getName();
 
-                Player getPlayer();
+    void getName(CharArrayBuffer charArrayBuffer);
 
-                Uri getRevealedImageUri();
+    Player getPlayer();
 
-                int getState();
+    Uri getRevealedImageUri();
 
-                int getTotalSteps();
+    int getState();
 
-                int getType();
+    int getTotalSteps();
 
-                Uri getUnlockedImageUri();
-            }
+    int getType();
+
+    Uri getUnlockedImageUri();
+}

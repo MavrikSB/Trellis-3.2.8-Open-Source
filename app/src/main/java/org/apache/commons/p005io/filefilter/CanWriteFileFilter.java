@@ -1,18 +1,17 @@
-            package org.apache.commons.p005io.filefilter;
+package org.apache.commons.p005io.filefilter;
 
-            import java.io.File;
-            import java.io.Serializable;
-            
-            
-    public class CanWriteFileFilter extends AbstractFileFilter implements Serializable {
-                public static final IOFileFilter CAN_WRITE = new CanWriteFileFilter();
-                public static final IOFileFilter CANNOT_WRITE = new NotFileFilter(CAN_WRITE);
+import java.io.File;
+import java.io.Serializable;
 
-        protected CanWriteFileFilter() {
-                }
+public class CanWriteFileFilter extends AbstractFileFilter implements Serializable {
+    public static final IOFileFilter CAN_WRITE = new CanWriteFileFilter();
+    public static final IOFileFilter CANNOT_WRITE = new NotFileFilter(CAN_WRITE);
 
-                @Override 
-        public boolean accept(File file) {
-            return file.canWrite();
-                }
-            }
+    protected CanWriteFileFilter() {
+    }
+
+    @Override
+    public boolean accept(File file) {
+        return file.canWrite();
+    }
+}

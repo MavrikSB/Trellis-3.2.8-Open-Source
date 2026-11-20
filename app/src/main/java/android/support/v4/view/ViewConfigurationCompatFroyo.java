@@ -1,13 +1,12 @@
-            package android.support.v4.view;
+package android.support.v4.view;
 
-            import android.view.ViewConfiguration;
-            
-            
-    class ViewConfigurationCompatFroyo {
-        ViewConfigurationCompatFroyo() {
-                }
+import android.view.ViewConfiguration;
 
-        public static int getScaledPagingTouchSlop(ViewConfiguration config) {
-            return config.getScaledPagingTouchSlop();
-                }
-            }
+class ViewConfigurationCompatFroyo {
+    ViewConfigurationCompatFroyo() {
+    }
+
+    public static int getScaledPagingTouchSlop(ViewConfiguration config) {
+        return config.getScaledPagingTouchSlop();
+    }
+}

@@ -1,13 +1,12 @@
-            package android.support.v7.app;
-            
-            
-    class ActionBarActivityDelegateJBMR2 extends ActionBarActivityDelegateJB {
-        ActionBarActivityDelegateJBMR2(ActionBarActivity activity) {
-            super(activity);
-                }
+package android.support.v7.app;
 
-                @Override 
-        public ActionBar createSupportActionBar() {
-            return new ActionBarImplJBMR2(this.mActivity, this.mActivity);
-                }
-            }
+class ActionBarActivityDelegateJBMR2 extends ActionBarActivityDelegateJB {
+    ActionBarActivityDelegateJBMR2(ActionBarActivity activity) {
+        super(activity);
+    }
+
+    @Override
+    public ActionBar createSupportActionBar() {
+        return new ActionBarImplJBMR2(this.mActivity, this.mActivity);
+    }
+}

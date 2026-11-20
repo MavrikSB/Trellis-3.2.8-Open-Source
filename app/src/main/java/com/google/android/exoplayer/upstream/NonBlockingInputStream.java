@@ -1,18 +1,17 @@
-            package com.google.android.exoplayer.upstream;
+package com.google.android.exoplayer.upstream;
 
-            import java.nio.ByteBuffer;
-            
-            
-            public interface NonBlockingInputStream {
-                void close();
+import java.nio.ByteBuffer;
 
-                long getAvailableByteCount();
+public interface NonBlockingInputStream {
+    void close();
 
-                boolean isEndOfStream();
+    long getAvailableByteCount();
 
-                int read(ByteBuffer byteBuffer, int i);
+    boolean isEndOfStream();
 
-                int read(byte[] bArr, int i, int i2);
+    int read(ByteBuffer byteBuffer, int i);
 
-                int skip(int i);
-            }
+    int read(byte[] bArr, int i, int i2);
+
+    int skip(int i);
+}

@@ -1,16 +1,11 @@
-            package com.crashlytics.android.internal;
+package com.crashlytics.android.internal;
 
-            import java.io.InputStream;
-            
-            
-            
-            public interface InterfaceC0660aG {
-                
-                InputStream mo164a();
+import java.io.InputStream;
 
-                
-                String mo165b();
+public interface InterfaceC0660aG {
+    InputStream mo164a();
 
-                
-                String[] mo166c();
-            }
+    String mo165b();
+
+    String[] mo166c();
+}

@@ -1,6 +1,5 @@
-            package com.fasterxml.jackson.core.util;
-            
-            
-            public interface Instantiatable<T> {
-                T createInstance();
-            }
+package com.fasterxml.jackson.core.util;
+
+public interface Instantiatable<T> {
+    T createInstance();
+}

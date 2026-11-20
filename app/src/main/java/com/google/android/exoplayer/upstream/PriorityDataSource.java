@@ -1,32 +1,31 @@
-            package com.google.android.exoplayer.upstream;
+package com.google.android.exoplayer.upstream;
 
-            import com.google.android.exoplayer.util.Assertions;
-            import java.io.IOException;
-            
-            
-    public class PriorityDataSource implements DataSource {
-                private final int priority;
-                private final DataSource upstream;
+import com.google.android.exoplayer.util.Assertions;
+import java.io.IOException;
 
-        public PriorityDataSource(int priority, DataSource upstream) {
-            this.priority = priority;
-            this.upstream = (DataSource) Assertions.checkNotNull(upstream);
-                }
+public class PriorityDataSource implements DataSource {
+    private final int priority;
+    private final DataSource upstream;
 
-                @Override 
-        public long open(DataSpec dataSpec) throws IOException {
-            NetworkLock.instance.proceedOrThrow(this.priority);
-            return this.upstream.open(dataSpec);
-                }
+    public PriorityDataSource(int priority, DataSource upstream) {
+        this.priority = priority;
+        this.upstream = (DataSource) Assertions.checkNotNull(upstream);
+    }
 
-                @Override 
-        public int read(byte[] buffer, int offset, int max) throws IOException {
-            NetworkLock.instance.proceedOrThrow(this.priority);
-            return this.upstream.read(buffer, offset, max);
-                }
+    @Override
+    public long open(DataSpec dataSpec) throws IOException {
+        NetworkLock.instance.proceedOrThrow(this.priority);
+        return this.upstream.open(dataSpec);
+    }
 
-                @Override 
-        public void close() throws IOException {
-            this.upstream.close();
-                }
-            }
+    @Override
+    public int read(byte[] buffer, int offset, int max) throws IOException {
+        NetworkLock.instance.proceedOrThrow(this.priority);
+        return this.upstream.read(buffer, offset, max);
+    }
+
+    @Override
+    public void close() throws IOException {
+        this.upstream.close();
+    }
+}

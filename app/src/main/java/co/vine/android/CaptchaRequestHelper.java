@@ -1,65 +1,64 @@
-            package co.vine.android;
+package co.vine.android;
 
-            import android.app.Activity;
-            import android.content.Intent;
-            import android.os.Bundle;
-            import co.vine.android.service.VineService;
-            
-            
-    public abstract class CaptchaRequestHelper {
-                public static final int REQUEST_CODE_CAPTCHA = 11;
-                protected static final String STATE_PENDING_CAPTCHA_REQUEST = "state_pending_captcha_request";
-                protected PendingCaptchaRequest mPendingCaptchaRequest;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import co.vine.android.service.VineService;
 
-                protected abstract void handleFailedCaptchaRequest(PendingCaptchaRequest pendingCaptchaRequest);
+public abstract class CaptchaRequestHelper {
+    public static final int REQUEST_CODE_CAPTCHA = 11;
+    protected static final String STATE_PENDING_CAPTCHA_REQUEST = "state_pending_captcha_request";
+    protected PendingCaptchaRequest mPendingCaptchaRequest;
 
-                protected abstract void handleRetryCaptchaRequest(PendingCaptchaRequest pendingCaptchaRequest);
+    protected abstract void handleFailedCaptchaRequest(PendingCaptchaRequest pendingCaptchaRequest);
 
-        public void setPendingCaptchaRequest(PendingCaptchaRequest pendingCaptchaRequest) {
-            this.mPendingCaptchaRequest = pendingCaptchaRequest;
-                }
+    protected abstract void handleRetryCaptchaRequest(PendingCaptchaRequest pendingCaptchaRequest);
 
-        public void restorePendingCaptchaRequest(Bundle savedInstanceState) {
-            this.mPendingCaptchaRequest = (PendingCaptchaRequest) savedInstanceState.getParcelable(STATE_PENDING_CAPTCHA_REQUEST);
-                }
+    public void setPendingCaptchaRequest(PendingCaptchaRequest pendingCaptchaRequest) {
+        this.mPendingCaptchaRequest = pendingCaptchaRequest;
+    }
 
-        public void onCaptchaRequired(Activity activity, String reqId, int actionCode, Bundle bundle, String captchaUrl) {
-            setPendingCaptchaRequest(new PendingCaptchaRequest(reqId, actionCode, bundle));
-            if (activity != null) {
-                Intent i = CaptchaActivity.getIntent(activity, captchaUrl, reqId);
-                activity.startActivityForResult(i, 11);
+    public void restorePendingCaptchaRequest(Bundle savedInstanceState) {
+        this.mPendingCaptchaRequest = (PendingCaptchaRequest) savedInstanceState.getParcelable(STATE_PENDING_CAPTCHA_REQUEST);
+    }
+
+    public void onCaptchaRequired(Activity activity, String reqId, int actionCode, Bundle bundle, String captchaUrl) {
+        setPendingCaptchaRequest(new PendingCaptchaRequest(reqId, actionCode, bundle));
+        if (activity != null) {
+            Intent i = CaptchaActivity.getIntent(activity, captchaUrl, reqId);
+            activity.startActivityForResult(i, 11);
+        }
+    }
+
+    public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 11:
+                if (this.mPendingCaptchaRequest != null && data != null) {
+                    String reqId = data.getStringExtra(VineService.EXTRA_REQUEST_ID);
+                    if (resultCode == -1 && reqId.equals(this.mPendingCaptchaRequest.reqId)) {
+                        this.mPendingCaptchaRequest.state = 2;
+                    } else if (resultCode == 2 && reqId.equals(this.mPendingCaptchaRequest.reqId)) {
+                        this.mPendingCaptchaRequest.state = 3;
                     }
                 }
+                return true;
+            default:
+                return false;
+        }
+    }
 
-        public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
-                    switch (requestCode) {
-                        case 11:
-                    if (this.mPendingCaptchaRequest != null && data != null) {
-                        String reqId = data.getStringExtra(VineService.EXTRA_REQUEST_ID);
-                        if (resultCode == -1 && reqId.equals(this.mPendingCaptchaRequest.reqId)) {
-                            this.mPendingCaptchaRequest.state = 2;
-                                } else if (resultCode == 2 && reqId.equals(this.mPendingCaptchaRequest.reqId)) {
-                            this.mPendingCaptchaRequest.state = 3;
-                                }
-                            }
-                    return true;
-                        default:
-                    return false;
-                    }
-                }
-
-        public void handlePendingCaptchaRequest() {
-            if (this.mPendingCaptchaRequest != null) {
-                if (this.mPendingCaptchaRequest.state == 3) {
-                    handleFailedCaptchaRequest(this.mPendingCaptchaRequest);
-                        } else if (this.mPendingCaptchaRequest.state == 2) {
-                    handleRetryCaptchaRequest(this.mPendingCaptchaRequest);
-                        }
-                this.mPendingCaptchaRequest = null;
-                    }
-                }
-
-        public void onSaveInstanceState(Bundle outState) {
-            outState.putParcelable(STATE_PENDING_CAPTCHA_REQUEST, this.mPendingCaptchaRequest);
-                }
+    public void handlePendingCaptchaRequest() {
+        if (this.mPendingCaptchaRequest != null) {
+            if (this.mPendingCaptchaRequest.state == 3) {
+                handleFailedCaptchaRequest(this.mPendingCaptchaRequest);
+            } else if (this.mPendingCaptchaRequest.state == 2) {
+                handleRetryCaptchaRequest(this.mPendingCaptchaRequest);
             }
+            this.mPendingCaptchaRequest = null;
+        }
+    }
+
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(STATE_PENDING_CAPTCHA_REQUEST, this.mPendingCaptchaRequest);
+    }
+}

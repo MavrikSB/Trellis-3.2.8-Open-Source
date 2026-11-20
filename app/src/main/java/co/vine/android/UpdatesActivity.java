@@ -7,12 +7,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import co.vine.android.views.SwitchInterface;
 
-
-
-
-
 public class UpdatesActivity extends BaseControllerActionBarActivity implements View.OnClickListener {
-
     private TextView mStatus;
     private Button mCheckButton;
     private co.vine.android.views.SwitchInterface mAutoSwitch;
@@ -30,10 +25,10 @@ public class UpdatesActivity extends BaseControllerActionBarActivity implements 
         mAutoSwitch = (co.vine.android.views.SwitchInterface) findViewById(R.id.updates_auto);
         mAutoSwitch.setChecked(UpdateManager.isAutoEnabled(this));
         mAutoSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                UpdateManager.setAutoEnabled(UpdatesActivity.this, isChecked);
-            }
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    UpdateManager.setAutoEnabled(UpdatesActivity.this, isChecked);
+                }
         });
         TextView githubRow = (TextView) findViewById(R.id.updates_github);
         githubRow.setOnClickListener(this);
@@ -48,33 +43,33 @@ public class UpdatesActivity extends BaseControllerActionBarActivity implements 
         }
         mChangelog.setText(R.string.updates_changelog_loading);
         UpdateManager.fetchAllReleaseNotes(this, new UpdateManager.ReleasesCallback() {
-            @Override
-            public void onResult(java.util.List<UpdateManager.ReleaseNotes> releases) {
-                if (mChangelog == null) {
-                    return;
-                }
-                if (releases == null || releases.isEmpty()) {
-                    mChangelog.setText(R.string.updates_error);
-                    return;
-                }
-                StringBuilder sb = new StringBuilder();
-                for (UpdateManager.ReleaseNotes notes : releases) {
-                    if (notes == null) {
-                        continue;
+                @Override
+                public void onResult(java.util.List<UpdateManager.ReleaseNotes> releases) {
+                    if (mChangelog == null) {
+                        return;
                     }
-                    sb.append("<b>Build ").append(notes.build).append("</b><br>");
-                    String body = notes.body.replace("`", "").trim().replace("\n", "<br>");
-                    sb.append(body).append("<br><br>");
+                    if (releases == null || releases.isEmpty()) {
+                        mChangelog.setText(R.string.updates_error);
+                        return;
+                    }
+                    StringBuilder sb = new StringBuilder();
+                    for (UpdateManager.ReleaseNotes notes : releases) {
+                        if (notes == null) {
+                            continue;
+                        }
+                        sb.append("<b>Build ").append(notes.build).append("</b><br>");
+                        String body = notes.body.replace("`", "").trim().replace("\n", "<br>");
+                        sb.append(body).append("<br><br>");
+                    }
+                    mChangelog.setText(android.text.Html.fromHtml(sb.toString().trim()));
                 }
-                mChangelog.setText(android.text.Html.fromHtml(sb.toString().trim()));
-            }
 
-            @Override
-            public void onError() {
-                if (mChangelog != null) {
-                    mChangelog.setText(R.string.updates_error);
+                @Override
+                public void onError() {
+                    if (mChangelog != null) {
+                        mChangelog.setText(R.string.updates_error);
+                    }
                 }
-            }
         });
     }
 
@@ -92,24 +87,24 @@ public class UpdatesActivity extends BaseControllerActionBarActivity implements 
             mCheckButton.setEnabled(false);
             mStatus.setText(R.string.updates_checking);
             UpdateManager.checkForUpdate(this, new UpdateManager.UpdateCallback() {
-                @Override
-                public void onResult(UpdateManager.UpdateInfo info) {
-                    mCheckButton.setEnabled(true);
-                    if (info != null && info.newer && info.apkUrl != null) {
-                        mStatus.setText(getString(R.string.updates_new_build, info.version));
-                        UpdateManager.showUpdateDialog(UpdatesActivity.this, info);
-                    } else if (info != null) {
-                        mStatus.setText(R.string.updates_uptodate);
-                    } else {
+                    @Override
+                    public void onResult(UpdateManager.UpdateInfo info) {
+                        mCheckButton.setEnabled(true);
+                        if (info != null && info.newer && info.apkUrl != null) {
+                            mStatus.setText(getString(R.string.updates_new_build, info.version));
+                            UpdateManager.showUpdateDialog(UpdatesActivity.this, info);
+                        } else if (info != null) {
+                            mStatus.setText(R.string.updates_uptodate);
+                        } else {
+                            mStatus.setText(R.string.updates_error);
+                        }
+                    }
+
+                    @Override
+                    public void onError() {
+                        mCheckButton.setEnabled(true);
                         mStatus.setText(R.string.updates_error);
                     }
-                }
-
-                @Override
-                public void onError() {
-                    mCheckButton.setEnabled(true);
-                    mStatus.setText(R.string.updates_error);
-                }
             });
         }
     }

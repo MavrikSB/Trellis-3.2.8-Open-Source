@@ -1,10 +1,9 @@
-            package com.squareup.okhttp;
+package com.squareup.okhttp;
 
-            import java.io.IOException;
-            
-            
-            public interface Callback {
-                void onFailure(Request request, IOException iOException);
+import java.io.IOException;
 
-                void onResponse(Response response) throws IOException;
-            }
+public interface Callback {
+    void onFailure(Request request, IOException iOException);
+
+    void onResponse(Response response) throws IOException;
+}

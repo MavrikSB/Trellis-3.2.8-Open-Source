@@ -1,68 +1,67 @@
-            package co.vine.android.recorder;
-            
-            
-    public class RecordState {
-                private volatile RecordSegment mCurrentSegment;
-                private boolean mIsRecordingEnded;
-                private RecordSegment mLastAudioRecordingSegment;
-                private RecordSegment mLastVideoSegment;
-                private volatile boolean mRecordingAudio;
-                private volatile boolean mCollectMoreAudio = true;
-                private volatile boolean isRecordingStarted = false;
+package co.vine.android.recorder;
 
-        public boolean collectMoreAudio() {
-            return this.mCollectMoreAudio;
-                }
+public class RecordState {
+    private volatile RecordSegment mCurrentSegment;
+    private boolean mIsRecordingEnded;
+    private RecordSegment mLastAudioRecordingSegment;
+    private RecordSegment mLastVideoSegment;
+    private volatile boolean mRecordingAudio;
+    private volatile boolean mCollectMoreAudio = true;
+    private volatile boolean isRecordingStarted = false;
 
-        public boolean recordingAudio() {
-            return this.mRecordingAudio;
-                }
+    public boolean collectMoreAudio() {
+        return this.mCollectMoreAudio;
+    }
 
-        public boolean isEnded() {
-            return this.mIsRecordingEnded;
-                }
+    public boolean recordingAudio() {
+        return this.mRecordingAudio;
+    }
 
-        public void setRecordingAudio(boolean recordingAudio) {
-            this.mRecordingAudio = recordingAudio;
-                }
+    public boolean isEnded() {
+        return this.mIsRecordingEnded;
+    }
 
-        public RecordSegment getCurrentSegment() {
-            return this.mCurrentSegment;
-                }
+    public void setRecordingAudio(boolean recordingAudio) {
+        this.mRecordingAudio = recordingAudio;
+    }
 
-        public void setCurrentSegment(RecordSegment currentSegment) {
-            this.mCurrentSegment = currentSegment;
-                }
+    public RecordSegment getCurrentSegment() {
+        return this.mCurrentSegment;
+    }
 
-        public RecordSegment getLastVideoSegment() {
-            return this.mLastVideoSegment;
-                }
+    public void setCurrentSegment(RecordSegment currentSegment) {
+        this.mCurrentSegment = currentSegment;
+    }
 
-        public void setLastVideoSegment(RecordSegment mLastVideoSegment) {
-            this.mLastVideoSegment = mLastVideoSegment;
-                }
+    public RecordSegment getLastVideoSegment() {
+        return this.mLastVideoSegment;
+    }
 
-        public void setEnded(boolean isRecordingEnded) {
-            this.mIsRecordingEnded = isRecordingEnded;
-                }
+    public void setLastVideoSegment(RecordSegment mLastVideoSegment) {
+        this.mLastVideoSegment = mLastVideoSegment;
+    }
 
-        public RecordSegment getLastAudioRecordingSegment() {
-            return this.mLastAudioRecordingSegment;
-                }
+    public void setEnded(boolean isRecordingEnded) {
+        this.mIsRecordingEnded = isRecordingEnded;
+    }
 
-        public void setLastAudioRecordingSegment(RecordSegment lastAudioRecordingSegment) {
-            this.mLastAudioRecordingSegment = lastAudioRecordingSegment;
-                }
+    public RecordSegment getLastAudioRecordingSegment() {
+        return this.mLastAudioRecordingSegment;
+    }
 
-        public void setCollectMoreAudio(boolean collectMoreAudio) {
-            this.mCollectMoreAudio = collectMoreAudio;
-                }
+    public void setLastAudioRecordingSegment(RecordSegment lastAudioRecordingSegment) {
+        this.mLastAudioRecordingSegment = lastAudioRecordingSegment;
+    }
 
-        public boolean isStarted() {
-            return this.isRecordingStarted;
-                }
+    public void setCollectMoreAudio(boolean collectMoreAudio) {
+        this.mCollectMoreAudio = collectMoreAudio;
+    }
 
-        public void setStarted(boolean isStarted) {
-            this.isRecordingStarted = isStarted;
-                }
-            }
+    public boolean isStarted() {
+        return this.isRecordingStarted;
+    }
+
+    public void setStarted(boolean isStarted) {
+        this.isRecordingStarted = isStarted;
+    }
+}

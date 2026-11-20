@@ -1,14 +1,13 @@
-            package android.support.v4.view.accessibility;
+package android.support.v4.view.accessibility;
 
-            import android.view.View;
-            import android.view.accessibility.AccessibilityRecord;
-            
-            
-    class AccessibilityRecordCompatJellyBean {
-        AccessibilityRecordCompatJellyBean() {
-                }
+import android.view.View;
+import android.view.accessibility.AccessibilityRecord;
 
-        public static void setSource(Object record, View root, int virtualDescendantId) {
-            ((AccessibilityRecord) record).setSource(root, virtualDescendantId);
-                }
-            }
+class AccessibilityRecordCompatJellyBean {
+    AccessibilityRecordCompatJellyBean() {
+    }
+
+    public static void setSource(Object record, View root, int virtualDescendantId) {
+        ((AccessibilityRecord) record).setSource(root, virtualDescendantId);
+    }
+}

@@ -1,25 +1,24 @@
-            package com.squareup.okhttp.internal;
-            
-            
-    public abstract class NamedRunnable implements Runnable {
-                private final String name;
+package com.squareup.okhttp.internal;
 
-                protected abstract void execute();
+public abstract class NamedRunnable implements Runnable {
+    private final String name;
 
-        public NamedRunnable(String format, Object... args) {
-            this.name = String.format(format, args);
-                }
+    protected abstract void execute();
 
-                @Override 
-        public final void run() {
-            String oldName = Thread.currentThread().getName();
-            Thread.currentThread().setName(this.name);
-                    try {
-                execute();
-                Thread.currentThread().setName(oldName);
-                    } catch (Throwable th) {
-                        Thread.currentThread().setName(oldName);
-                        throw th;
-                    }
-                }
-            }
+    public NamedRunnable(String format, Object... args) {
+        this.name = String.format(format, args);
+    }
+
+    @Override
+    public final void run() {
+        String oldName = Thread.currentThread().getName();
+        Thread.currentThread().setName(this.name);
+        try {
+            execute();
+            Thread.currentThread().setName(oldName);
+        } catch (Throwable th) {
+            Thread.currentThread().setName(oldName);
+            throw th;
+        }
+    }
+}

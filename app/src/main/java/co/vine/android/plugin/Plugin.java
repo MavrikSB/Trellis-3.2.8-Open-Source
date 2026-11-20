@@ -1,43 +1,42 @@
-            package co.vine.android.plugin;
+package co.vine.android.plugin;
 
-            import android.app.Activity;
-            import android.content.Intent;
-            import android.os.Handler;
-            import android.view.KeyEvent;
-            import android.view.Menu;
-            import android.view.MenuItem;
-            
-            
-            public interface Plugin {
-                Handler getHandler();
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Handler;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 
-                int getId();
+public interface Plugin {
+    Handler getHandler();
 
-                String getName();
+    int getId();
 
-                void onActivityCreated(Activity activity);
+    String getName();
 
-                boolean onActivityResult(Activity activity, int i, int i2, Intent intent);
+    void onActivityCreated(Activity activity);
 
-                int onAdded(PluginManager pluginManager, int i);
+    boolean onActivityResult(Activity activity, int i, int i2, Intent intent);
 
-                boolean onBackPressed();
+    int onAdded(PluginManager pluginManager, int i);
 
-                boolean onCreateOptionsMenu(Menu menu);
+    boolean onBackPressed();
 
-                void onDestroy();
+    boolean onCreateOptionsMenu(Menu menu);
 
-                boolean onKeyDown(int i, KeyEvent keyEvent);
+    void onDestroy();
 
-                boolean onKeyUp(int i, KeyEvent keyEvent);
+    boolean onKeyDown(int i, KeyEvent keyEvent);
 
-                boolean onOptionsItemSelected(MenuItem menuItem);
+    boolean onKeyUp(int i, KeyEvent keyEvent);
 
-                void onPause();
+    boolean onOptionsItemSelected(MenuItem menuItem);
 
-                void onResume(Activity activity);
+    void onPause();
 
-                void onStart(Activity activity);
+    void onResume(Activity activity);
 
-                void onStop(Activity activity);
-            }
+    void onStart(Activity activity);
+
+    void onStop(Activity activity);
+}

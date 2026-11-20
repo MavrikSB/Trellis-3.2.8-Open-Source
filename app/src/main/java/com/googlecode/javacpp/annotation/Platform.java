@@ -1,37 +1,36 @@
-            package com.googlecode.javacpp.annotation;
+package com.googlecode.javacpp.annotation;
 
-            import java.lang.annotation.ElementType;
-            import java.lang.annotation.Retention;
-            import java.lang.annotation.RetentionPolicy;
-            import java.lang.annotation.Target;
-            
-            
-            @Target({ElementType.TYPE, ElementType.METHOD})
-            @Retention(RetentionPolicy.RUNTIME)
-            public @interface Platform {
-                String[] cinclude() default {};
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-                String[] define() default {};
+@Target({ElementType.TYPE, ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Platform {
+    String[] cinclude() default {};
 
-                String[] framework() default {};
+    String[] define() default {};
 
-                String[] include() default {};
+    String[] framework() default {};
 
-                String[] includepath() default {};
+    String[] include() default {};
 
-                String library() default "";
+    String[] includepath() default {};
 
-                String[] link() default {};
+    String library() default "";
 
-                String[] linkpath() default {};
+    String[] link() default {};
 
-                String[] not() default {};
+    String[] linkpath() default {};
 
-                String[] options() default {};
+    String[] not() default {};
 
-                String[] preload() default {};
+    String[] options() default {};
 
-                String[] preloadpath() default {};
+    String[] preload() default {};
 
-                String[] value() default {};
-            }
+    String[] preloadpath() default {};
+
+    String[] value() default {};
+}

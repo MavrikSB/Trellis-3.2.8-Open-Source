@@ -1,14 +1,13 @@
-            package android.support.v4.media;
+package android.support.v4.media;
 
-            import android.view.KeyEvent;
-            
-            
-            interface TransportMediatorCallback {
-                long getPlaybackPosition();
+import android.view.KeyEvent;
 
-                void handleAudioFocusChange(int i);
+interface TransportMediatorCallback {
+    long getPlaybackPosition();
 
-                void handleKey(KeyEvent keyEvent);
+    void handleAudioFocusChange(int i);
 
-                void playbackPositionUpdate(long j);
-            }
+    void handleKey(KeyEvent keyEvent);
+
+    void playbackPositionUpdate(long j);
+}

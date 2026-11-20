@@ -1,18 +1,17 @@
-            package co.vine.android.network;
-            
-            
-     public class TransferProgressEvent {
-                private long bytesTransfered;
+package co.vine.android.network;
 
-         public TransferProgressEvent(int bytesTransfered) {
-            this.bytesTransfered = bytesTransfered;
-                }
+public class TransferProgressEvent {
+    private long bytesTransfered;
 
-        public void setBytesTransfered(long bytesTransfered) {
-            this.bytesTransfered = bytesTransfered;
-                }
+    public TransferProgressEvent(int bytesTransfered) {
+        this.bytesTransfered = bytesTransfered;
+    }
 
-        public long getBytesTransfered() {
-            return this.bytesTransfered;
-                }
-            }
+    public void setBytesTransfered(long bytesTransfered) {
+        this.bytesTransfered = bytesTransfered;
+    }
+
+    public long getBytesTransfered() {
+        return this.bytesTransfered;
+    }
+}

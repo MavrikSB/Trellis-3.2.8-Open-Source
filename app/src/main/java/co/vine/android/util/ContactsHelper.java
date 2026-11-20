@@ -1,123 +1,119 @@
-            package co.vine.android.util;
+package co.vine.android.util;
 
-            import android.accounts.Account;
-            import android.accounts.AccountManager;
-            import android.content.Context;
-            import android.database.Cursor;
-            import android.net.Uri;
-            import android.os.Bundle;
-            import android.provider.ContactsContract;
-            import android.support.v4.app.Fragment;
-            import android.support.v4.app.LoaderManager;
-            import android.support.v4.content.CursorLoader;
-            import android.support.v4.content.Loader;
-            import android.telephony.TelephonyManager;
-            import android.text.TextUtils;
-            import co.vine.android.service.VineService;
-            
-            
-    public class ContactsHelper implements LoaderManager.LoaderCallbacks<Cursor> {
-                private static final String GOOGLE_ACCOUNT = "com.google";
-                private static final int LOADER_ID_CONTACTS_DATA = 2;
-                private static final int LOADER_ID_CONTACTS_PROFILE = 1;
-                private Fragment mFragment;
-                private ContactHelperListener mListener;
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
+import android.telephony.TelephonyManager;
+import android.text.TextUtils;
+import co.vine.android.service.VineService;
 
-                public interface ContactHelperListener {
-                    void onEmailLoaded(String str);
+public class ContactsHelper implements LoaderManager.LoaderCallbacks<Cursor> {
+    private static final String GOOGLE_ACCOUNT = "com.google";
+    private static final int LOADER_ID_CONTACTS_DATA = 2;
+    private static final int LOADER_ID_CONTACTS_PROFILE = 1;
+    private Fragment mFragment;
+    private ContactHelperListener mListener;
 
-                    void onNameLoaded(String str);
+    public interface ContactHelperListener {
+        void onEmailLoaded(String str);
 
-                    void onPhoneNumberLoaded(String str);
-                }
+        void onNameLoaded(String str);
 
-                private interface ProfileQuery {
-                    public static final int INDEX_MIME_TYPE = 2;
-                    public static final int INDEX_PHONE_NUMBER = 1;
-                    public static final String[] PROJECTION = {"_id", "data1", "mimetype"};
-                }
+        void onPhoneNumberLoaded(String str);
+    }
 
+    private interface ProfileQuery {
+        public static final int INDEX_MIME_TYPE = 2;
+        public static final int INDEX_PHONE_NUMBER = 1;
+        public static final String[] PROJECTION = {"_id", "data1", "mimetype"};
+    }
 
-        public static void loadContacts(Fragment fragment, ContactHelperListener listener) {
-            ContactsHelper helper = new ContactsHelper(fragment, listener);
-            helper.init();
-                }
+    public static void loadContacts(Fragment fragment, ContactHelperListener listener) {
+        ContactsHelper helper = new ContactsHelper(fragment, listener);
+        helper.init();
+    }
 
-        public ContactsHelper(Fragment fragment, ContactHelperListener listener) {
-            this.mFragment = fragment;
-            this.mListener = listener;
-                }
+    public ContactsHelper(Fragment fragment, ContactHelperListener listener) {
+        this.mFragment = fragment;
+        this.mListener = listener;
+    }
 
-        public void init() {
-            if (!BuildUtil.isExplore()) {
-                LoaderManager lm = this.mFragment.getLoaderManager();
-                lm.initLoader(1, null, this);
-                lm.initLoader(2, null, this);
-                AccountManager manager = AccountManager.get(this.mFragment.getActivity());
-                Account[] accounts = manager.getAccountsByType("com.google");
-                if (accounts != null && accounts.length > 0) {
-                    this.mListener.onEmailLoaded(accounts[0].name);
-                        }
-                    }
-                }
-
-                @Override 
-       public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-                    switch (id) {
-                        case 1:
-                   return new ContactCursorLoader(this.mFragment.getActivity(), ContactsContract.Profile.CONTENT_URI, new String[]{"display_name"}, null, null, null);
-                        case 2:
-                   return new ContactCursorLoader(this.mFragment.getActivity(), Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI, "data"), ProfileQuery.PROJECTION, "mimetype=?", new String[]{"vnd.android.cursor.item/phone_v2"}, null);
-                        default:
-                            return null;
-                    }
-                }
-
-       private static class ContactCursorLoader extends CursorLoader {
-
-           public ContactCursorLoader(Context context, Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-               super(context, uri, projection, selection, selectionArgs, sortOrder);
-                    }
-
-                    
-                    @Override 
-           public Cursor loadInBackground() {
-                        try {
-                   return super.loadInBackground();
-                        } catch (Throwable e) {
-                   CrashUtil.logException(e);
-                   return null;
-                        }
-                    }
-                }
-
-       public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-                    switch (loader.getId()) {
-                        case 1:
-                   if (cursor != null && cursor.moveToFirst()) {
-                       String name = cursor.getString(cursor.getColumnIndex("display_name"));
-                       this.mListener.onNameLoaded(name);
-                                break;
-                            }
-                            break;
-                        case 2:
-                   String phone = null;
-                   if (cursor != null && cursor.moveToFirst()) {
-                       String mimeType = cursor.getString(2);
-                       if ("vnd.android.cursor.item/phone_v2".equals(mimeType)) {
-                           phone = cursor.getString(1);
-                                }
-                            }
-                   if (TextUtils.isEmpty(phone)) {
-                       TelephonyManager tm = (TelephonyManager) this.mFragment.getActivity().getSystemService(VineService.EXTRA_PHONE);
-                       phone = tm.getLine1Number();
-                            }
-                   this.mListener.onPhoneNumberLoaded(phone);
-                            break;
-                    }
-                }
-
-                @Override 
-       public void onLoaderReset(Loader<Cursor> loader) {
-                }
+    public void init() {
+        if (!BuildUtil.isExplore()) {
+            LoaderManager lm = this.mFragment.getLoaderManager();
+            lm.initLoader(1, null, this);
+            lm.initLoader(2, null, this);
+            AccountManager manager = AccountManager.get(this.mFragment.getActivity());
+            Account[] accounts = manager.getAccountsByType("com.google");
+            if (accounts != null && accounts.length > 0) {
+                this.mListener.onEmailLoaded(accounts[0].name);
             }
+        }
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        switch (id) {
+            case 1:
+                return new ContactCursorLoader(this.mFragment.getActivity(), ContactsContract.Profile.CONTENT_URI, new String[]{"display_name"}, null, null, null);
+            case 2:
+                return new ContactCursorLoader(this.mFragment.getActivity(), Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI, "data"), ProfileQuery.PROJECTION, "mimetype=?", new String[]{"vnd.android.cursor.item/phone_v2"}, null);
+            default:
+                return null;
+        }
+    }
+
+    private static class ContactCursorLoader extends CursorLoader {
+        public ContactCursorLoader(Context context, Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+            super(context, uri, projection, selection, selectionArgs, sortOrder);
+        }
+
+        @Override
+        public Cursor loadInBackground() {
+            try {
+                return super.loadInBackground();
+            } catch (Throwable e) {
+                CrashUtil.logException(e);
+                return null;
+            }
+        }
+    }
+
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        switch (loader.getId()) {
+            case 1:
+                if (cursor != null && cursor.moveToFirst()) {
+                    String name = cursor.getString(cursor.getColumnIndex("display_name"));
+                    this.mListener.onNameLoaded(name);
+                    break;
+                }
+                break;
+            case 2:
+                String phone = null;
+                if (cursor != null && cursor.moveToFirst()) {
+                    String mimeType = cursor.getString(2);
+                    if ("vnd.android.cursor.item/phone_v2".equals(mimeType)) {
+                        phone = cursor.getString(1);
+                    }
+                }
+                if (TextUtils.isEmpty(phone)) {
+                    TelephonyManager tm = (TelephonyManager) this.mFragment.getActivity().getSystemService(VineService.EXTRA_PHONE);
+                    phone = tm.getLine1Number();
+                }
+                this.mListener.onPhoneNumberLoaded(phone);
+                break;
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+    }
+}

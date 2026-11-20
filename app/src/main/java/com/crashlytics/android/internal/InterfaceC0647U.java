@@ -1,23 +1,15 @@
-            package com.crashlytics.android.internal;
-            
-            
-            
-            interface InterfaceC0647U {
-                
-                void mo110a();
+package com.crashlytics.android.internal;
 
-                
-                void mo111a(C0648V c0648v);
+interface InterfaceC0647U {
+    void mo110a();
 
-                
-                void mo112a(C0664aK c0664aK, String str);
+    void mo111a(C0648V c0648v);
 
-                
-                void mo113b();
+    void mo112a(C0664aK c0664aK, String str);
 
-                
-                void mo114c();
+    void mo113b();
 
-                
-                void mo115d();
-            }
+    void mo114c();
+
+    void mo115d();
+}

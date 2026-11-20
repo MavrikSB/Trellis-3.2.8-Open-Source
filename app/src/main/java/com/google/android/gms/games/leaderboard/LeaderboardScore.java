@@ -1,35 +1,34 @@
-            package com.google.android.gms.games.leaderboard;
+package com.google.android.gms.games.leaderboard;
 
-            import android.database.CharArrayBuffer;
-            import android.net.Uri;
-            import com.google.android.gms.common.data.Freezable;
-            import com.google.android.gms.games.Player;
-            
-            
-            public interface LeaderboardScore extends Freezable<LeaderboardScore> {
-                String getDisplayRank();
+import android.database.CharArrayBuffer;
+import android.net.Uri;
+import com.google.android.gms.common.data.Freezable;
+import com.google.android.gms.games.Player;
 
-                void getDisplayRank(CharArrayBuffer charArrayBuffer);
+public interface LeaderboardScore extends Freezable<LeaderboardScore> {
+    String getDisplayRank();
 
-                String getDisplayScore();
+    void getDisplayRank(CharArrayBuffer charArrayBuffer);
 
-                void getDisplayScore(CharArrayBuffer charArrayBuffer);
+    String getDisplayScore();
 
-                long getRank();
+    void getDisplayScore(CharArrayBuffer charArrayBuffer);
 
-                long getRawScore();
+    long getRank();
 
-                Player getScoreHolder();
+    long getRawScore();
 
-                String getScoreHolderDisplayName();
+    Player getScoreHolder();
 
-                void getScoreHolderDisplayName(CharArrayBuffer charArrayBuffer);
+    String getScoreHolderDisplayName();
 
-                Uri getScoreHolderHiResImageUri();
+    void getScoreHolderDisplayName(CharArrayBuffer charArrayBuffer);
 
-                Uri getScoreHolderIconImageUri();
+    Uri getScoreHolderHiResImageUri();
 
-                String getScoreTag();
+    Uri getScoreHolderIconImageUri();
 
-                long getTimestampMillis();
-            }
+    String getScoreTag();
+
+    long getTimestampMillis();
+}

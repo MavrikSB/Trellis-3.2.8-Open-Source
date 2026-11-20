@@ -1,97 +1,96 @@
-            package co.vine.android.recorder;
+package co.vine.android.recorder;
 
-            import com.edisonwang.android.slog.SLog;
-            
-            
-    public class RecordClock {
-                private volatile long mAudioTimeRecorded;
-                private volatile int mAudioTimestampUs;
-                private long mFrameTimeUs;
-                private long mLastAudioTimestamp;
-                private long mStartTime;
-                private volatile long mVideoTimestampUs;
+import com.edisonwang.android.slog.SLog;
 
-        public long getVideoTimestampUs() {
-            return this.mVideoTimestampUs;
-                }
+public class RecordClock {
+    private volatile long mAudioTimeRecorded;
+    private volatile int mAudioTimestampUs;
+    private long mFrameTimeUs;
+    private long mLastAudioTimestamp;
+    private long mStartTime;
+    private volatile long mVideoTimestampUs;
 
-        public int getAudioTimestampUs() {
-            return this.mAudioTimestampUs;
-                }
+    public long getVideoTimestampUs() {
+        return this.mVideoTimestampUs;
+    }
 
-        public boolean isVideoAhead() {
-                    return getVideoTimestampUs() > ((long) getAudioTimestampUs());
-                }
+    public int getAudioTimestampUs() {
+        return this.mAudioTimestampUs;
+    }
 
-        public void setVideoTimestampUs(long timestampUs) {
-            this.mVideoTimestampUs = timestampUs;
-                }
+    public boolean isVideoAhead() {
+        return getVideoTimestampUs() > ((long) getAudioTimestampUs());
+    }
 
-        public void printState() {
-            SLog.m466i("Current timestamps: {}, {}.", Long.valueOf(this.mVideoTimestampUs), Integer.valueOf(this.mAudioTimestampUs));
-                }
+    public void setVideoTimestampUs(long timestampUs) {
+        this.mVideoTimestampUs = timestampUs;
+    }
 
-        public void setAudioTimestampUs(int timestampUs) {
-            this.mAudioTimestampUs = timestampUs;
-                }
+    public void printState() {
+        SLog.m466i("Current timestamps: {}, {}.", Long.valueOf(this.mVideoTimestampUs), Integer.valueOf(this.mAudioTimestampUs));
+    }
 
-        public void resetStartTime() {
-            this.mStartTime = 0L;
-                }
+    public void setAudioTimestampUs(int timestampUs) {
+        this.mAudioTimestampUs = timestampUs;
+    }
 
-        public void setFrameTimeUs(long frameTimeUs) {
-            this.mFrameTimeUs = frameTimeUs;
-                }
+    public void resetStartTime() {
+        this.mStartTime = 0L;
+    }
 
-        public long getFrameTimeUs() {
-            return this.mFrameTimeUs;
-                }
+    public void setFrameTimeUs(long frameTimeUs) {
+        this.mFrameTimeUs = frameTimeUs;
+    }
 
-        public void startSegment() {
-            this.mStartTime = System.currentTimeMillis();
-                }
+    public long getFrameTimeUs() {
+        return this.mFrameTimeUs;
+    }
 
-        public void onFrameIncrement() {
-            this.mVideoTimestampUs += this.mFrameTimeUs;
-                }
+    public void startSegment() {
+        this.mStartTime = System.currentTimeMillis();
+    }
 
-        public boolean wasAudioJustRecorded() {
-                    return System.nanoTime() - this.mAudioTimeRecorded < ((long) RecordConfigUtils.AUDIO_WAIT_THRESHOLD_NS);
-                }
+    public void onFrameIncrement() {
+        this.mVideoTimestampUs += this.mFrameTimeUs;
+    }
 
-        public void updateAudioTimestamp(boolean resetAudioRecordTime, int newStamp) {
-            if (this.mAudioTimestampUs != newStamp) {
-                this.mAudioTimestampUs = newStamp;
-                if (resetAudioRecordTime) {
-                    this.mAudioTimeRecorded = -1L;
-                        } else {
-                    this.mAudioTimeRecorded = System.nanoTime();
-                        }
-                    }
-                }
+    public boolean wasAudioJustRecorded() {
+        return System.nanoTime() - this.mAudioTimeRecorded < ((long) RecordConfigUtils.AUDIO_WAIT_THRESHOLD_NS);
+    }
 
-        public long onNewVideoFrame() {
-                    long timestamp;
-            int audioTimestamp = getAudioTimestampUs();
-            if (audioTimestamp == 0) {
-                        if (this.mStartTime <= 0) {
-                            return 0L;
-                        }
-                        long timestamp2 = (System.currentTimeMillis() - this.mStartTime) * 1000;
-                return timestamp2;
-                    }
-                    if (this.mLastAudioTimestamp == audioTimestamp) {
-                long timestamp3 = ((long) audioTimestamp) + this.mFrameTimeUs;
-                return timestamp3;
-                    }
-                    if (this.mAudioTimeRecorded > 0) {
-                long offset = (System.nanoTime() - this.mAudioTimeRecorded) / 1000;
-                timestamp = offset + ((long) audioTimestamp);
-                SLog.m447d("Offset {}.", Long.valueOf(offset));
-                    } else {
-                        timestamp = audioTimestamp;
-                    }
-            this.mLastAudioTimestamp = audioTimestamp;
-            return timestamp;
-                }
+    public void updateAudioTimestamp(boolean resetAudioRecordTime, int newStamp) {
+        if (this.mAudioTimestampUs != newStamp) {
+            this.mAudioTimestampUs = newStamp;
+            if (resetAudioRecordTime) {
+                this.mAudioTimeRecorded = -1L;
+            } else {
+                this.mAudioTimeRecorded = System.nanoTime();
             }
+        }
+    }
+
+    public long onNewVideoFrame() {
+        long timestamp;
+        int audioTimestamp = getAudioTimestampUs();
+        if (audioTimestamp == 0) {
+            if (this.mStartTime <= 0) {
+                return 0L;
+            }
+            long timestamp2 = (System.currentTimeMillis() - this.mStartTime) * 1000;
+            return timestamp2;
+        }
+        if (this.mLastAudioTimestamp == audioTimestamp) {
+            long timestamp3 = ((long) audioTimestamp) + this.mFrameTimeUs;
+            return timestamp3;
+        }
+        if (this.mAudioTimeRecorded > 0) {
+            long offset = (System.nanoTime() - this.mAudioTimeRecorded) / 1000;
+            timestamp = offset + ((long) audioTimestamp);
+            SLog.m447d("Offset {}.", Long.valueOf(offset));
+        } else {
+            timestamp = audioTimestamp;
+        }
+        this.mLastAudioTimestamp = audioTimestamp;
+        return timestamp;
+    }
+}

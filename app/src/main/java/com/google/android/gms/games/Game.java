@@ -1,45 +1,44 @@
-            package com.google.android.gms.games;
+package com.google.android.gms.games;
 
-            import android.database.CharArrayBuffer;
-            import android.net.Uri;
-            import android.os.Parcelable;
-            import com.google.android.gms.common.data.Freezable;
-            
-            
-            public interface Game extends Parcelable, Freezable<Game> {
-                int getAchievementTotalCount();
+import android.database.CharArrayBuffer;
+import android.net.Uri;
+import android.os.Parcelable;
+import com.google.android.gms.common.data.Freezable;
 
-                String getApplicationId();
+public interface Game extends Parcelable, Freezable<Game> {
+    int getAchievementTotalCount();
 
-                String getDescription();
+    String getApplicationId();
 
-                void getDescription(CharArrayBuffer charArrayBuffer);
+    String getDescription();
 
-                String getDeveloperName();
+    void getDescription(CharArrayBuffer charArrayBuffer);
 
-                void getDeveloperName(CharArrayBuffer charArrayBuffer);
+    String getDeveloperName();
 
-                String getDisplayName();
+    void getDeveloperName(CharArrayBuffer charArrayBuffer);
 
-                void getDisplayName(CharArrayBuffer charArrayBuffer);
+    String getDisplayName();
 
-                Uri getFeaturedImageUri();
+    void getDisplayName(CharArrayBuffer charArrayBuffer);
 
-                int getGameplayAclStatus();
+    Uri getFeaturedImageUri();
 
-                Uri getHiResImageUri();
+    int getGameplayAclStatus();
 
-                Uri getIconImageUri();
+    Uri getHiResImageUri();
 
-                String getInstancePackageName();
+    Uri getIconImageUri();
 
-                int getLeaderboardCount();
+    String getInstancePackageName();
 
-                String getPrimaryCategory();
+    int getLeaderboardCount();
 
-                String getSecondaryCategory();
+    String getPrimaryCategory();
 
-                boolean isInstanceInstalled();
+    String getSecondaryCategory();
 
-                boolean isPlayEnabledGame();
-            }
+    boolean isInstanceInstalled();
+
+    boolean isPlayEnabledGame();
+}

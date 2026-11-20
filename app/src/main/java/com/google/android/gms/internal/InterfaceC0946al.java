@@ -1,12 +1,9 @@
-            package com.google.android.gms.internal;
+package com.google.android.gms.internal;
 
-            import android.location.Location;
-            
-            
-            
-            public interface InterfaceC0946al {
-                
-                Location mo1254a(long j);
+import android.location.Location;
 
-                void init();
-            }
+public interface InterfaceC0946al {
+    Location mo1254a(long j);
+
+    void init();
+}

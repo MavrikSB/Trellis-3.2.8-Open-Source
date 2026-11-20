@@ -1,6 +1,5 @@
 package com.flurry.android;
 
-
 public final class Constants {
     private Constants() { }
     public static final byte FEMALE = 0;

@@ -1,14 +1,13 @@
-            package okio;
+package okio;
 
-            import java.io.Closeable;
-            import java.io.IOException;
-            
-            
-            public interface Source extends Closeable {
-                @Override 
-                void close() throws IOException;
+import java.io.Closeable;
+import java.io.IOException;
 
-                long read(Buffer buffer, long j) throws IOException;
+public interface Source extends Closeable {
+    @Override
+    void close() throws IOException;
 
-                Timeout timeout();
-            }
+    long read(Buffer buffer, long j) throws IOException;
+
+    Timeout timeout();
+}

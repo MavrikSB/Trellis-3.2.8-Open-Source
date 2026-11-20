@@ -1,35 +1,34 @@
-            package com.squareup.okhttp;
+package com.squareup.okhttp;
 
-            import com.squareup.okhttp.internal.Util;
-            
-            
-    public final class Challenge {
-                private final String realm;
-                private final String scheme;
+import com.squareup.okhttp.internal.Util;
 
-        public Challenge(String scheme, String realm) {
-            this.scheme = scheme;
-            this.realm = realm;
-                }
+public final class Challenge {
+    private final String realm;
+    private final String scheme;
 
-        public String getScheme() {
-            return this.scheme;
-                }
+    public Challenge(String scheme, String realm) {
+        this.scheme = scheme;
+        this.realm = realm;
+    }
 
-        public String getRealm() {
-            return this.realm;
-                }
+    public String getScheme() {
+        return this.scheme;
+    }
 
-        public boolean equals(Object o) {
-                    return (o instanceof Challenge) && Util.equal(this.scheme, ((Challenge) o).scheme) && Util.equal(this.realm, ((Challenge) o).realm);
-                }
+    public String getRealm() {
+        return this.realm;
+    }
 
-        public int hashCode() {
-            int result = (this.realm != null ? this.realm.hashCode() : 0) + 899;
-            return (result * 31) + (this.scheme != null ? this.scheme.hashCode() : 0);
-                }
+    public boolean equals(Object o) {
+        return (o instanceof Challenge) && Util.equal(this.scheme, ((Challenge) o).scheme) && Util.equal(this.realm, ((Challenge) o).realm);
+    }
 
-        public String toString() {
-            return this.scheme + " realm=\"" + this.realm + "\"";
-                }
-            }
+    public int hashCode() {
+        int result = (this.realm != null ? this.realm.hashCode() : 0) + 899;
+        return (result * 31) + (this.scheme != null ? this.scheme.hashCode() : 0);
+    }
+
+    public String toString() {
+        return this.scheme + " realm=\"" + this.realm + "\"";
+    }
+}

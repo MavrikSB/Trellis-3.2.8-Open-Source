@@ -1,66 +1,65 @@
-            package org.scribe.model;
+package org.scribe.model;
 
-            import java.io.Serializable;
-            import org.scribe.utils.Preconditions;
-            
-            
-    public class Token implements Serializable {
-                private static final long serialVersionUID = 715000866082812683L;
-                private final String rawResponse;
-                private final String secret;
-                private final String token;
+import java.io.Serializable;
+import org.scribe.utils.Preconditions;
 
-        public Token(String token, String secret) {
-            this(token, secret, null);
-                }
+public class Token implements Serializable {
+    private static final long serialVersionUID = 715000866082812683L;
+    private final String rawResponse;
+    private final String secret;
+    private final String token;
 
-        public Token(String token, String secret, String rawResponse) {
-            Preconditions.checkNotNull(token, "Token can't be null");
-            Preconditions.checkNotNull(secret, "Secret can't be null");
-            this.token = token;
-            this.secret = secret;
-            this.rawResponse = rawResponse;
-                }
+    public Token(String token, String secret) {
+        this(token, secret, null);
+    }
 
-        public String getToken() {
-            return this.token;
-                }
+    public Token(String token, String secret, String rawResponse) {
+        Preconditions.checkNotNull(token, "Token can't be null");
+        Preconditions.checkNotNull(secret, "Secret can't be null");
+        this.token = token;
+        this.secret = secret;
+        this.rawResponse = rawResponse;
+    }
 
-        public String getSecret() {
-            return this.secret;
-                }
+    public String getToken() {
+        return this.token;
+    }
 
-        public String getRawResponse() {
-            if (this.rawResponse == null) {
-                throw new IllegalStateException("This token object was not constructed by scribe and does not have a rawResponse");
-                    }
-            return this.rawResponse;
-                }
+    public String getSecret() {
+        return this.secret;
+    }
 
-        public String toString() {
-            return String.format("Token[%s , %s]", this.token, this.secret);
-                }
+    public String getRawResponse() {
+        if (this.rawResponse == null) {
+            throw new IllegalStateException("This token object was not constructed by scribe and does not have a rawResponse");
+        }
+        return this.rawResponse;
+    }
 
-        public boolean isEmpty() {
-                    return "".equals(this.token) && "".equals(this.secret);
-                }
+    public String toString() {
+        return String.format("Token[%s , %s]", this.token, this.secret);
+    }
 
-        public static Token empty() {
-            return new Token("", "");
-                }
+    public boolean isEmpty() {
+        return "".equals(this.token) && "".equals(this.secret);
+    }
 
-        public boolean equals(Object o) {
-            if (this == o) {
-                        return true;
-                    }
-            if (o == null || getClass() != o.getClass()) {
-                        return false;
-                    }
-            Token that = (Token) o;
-                    return this.token.equals(that.token) && this.secret.equals(that.secret);
-                }
+    public static Token empty() {
+        return new Token("", "");
+    }
 
-        public int hashCode() {
-            return (this.token.hashCode() * 31) + this.secret.hashCode();
-                }
-            }
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Token that = (Token) o;
+        return this.token.equals(that.token) && this.secret.equals(that.secret);
+    }
+
+    public int hashCode() {
+        return (this.token.hashCode() * 31) + this.secret.hashCode();
+    }
+}

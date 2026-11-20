@@ -1,25 +1,24 @@
-            package co.vine.android.recorder.audio;
+package co.vine.android.recorder.audio;
 
-            import android.media.AudioRecord;
-            import java.io.DataOutputStream;
-            import java.io.IOException;
-            import java.nio.Buffer;
-            
-            
-            public interface AudioArray<T, K extends Buffer> {
-                K asBuffer();
+import android.media.AudioRecord;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.nio.Buffer;
 
-                T getData();
+public interface AudioArray<T, K extends Buffer> {
+    K asBuffer();
 
-                void getFrom(K k);
+    T getData();
 
-                int getLength();
+    void getFrom(K k);
 
-                void putInto(AudioArray<T, ?> audioArray, int i, int i2);
+    int getLength();
 
-                void putInto(K k, int i, int i2);
+    void putInto(AudioArray<T, ?> audioArray, int i, int i2);
 
-                int readFrom(AudioRecord audioRecord, int i);
+    void putInto(K k, int i, int i2);
 
-                void writeInto(DataOutputStream dataOutputStream, int i, int i2) throws IOException;
-            }
+    int readFrom(AudioRecord audioRecord, int i);
+
+    void writeInto(DataOutputStream dataOutputStream, int i, int i2) throws IOException;
+}

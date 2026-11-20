@@ -1,26 +1,25 @@
-            package android.support.v4.media;
-            
-            
-            public abstract class TransportController {
-                public abstract int getBufferPercentage();
+package android.support.v4.media;
 
-                public abstract long getCurrentPosition();
+public abstract class TransportController {
+    public abstract int getBufferPercentage();
 
-                public abstract long getDuration();
+    public abstract long getCurrentPosition();
 
-                public abstract int getTransportControlFlags();
+    public abstract long getDuration();
 
-                public abstract boolean isPlaying();
+    public abstract int getTransportControlFlags();
 
-                public abstract void pausePlaying();
+    public abstract boolean isPlaying();
 
-                public abstract void registerStateListener(TransportStateListener transportStateListener);
+    public abstract void pausePlaying();
 
-                public abstract void seekTo(long j);
+    public abstract void registerStateListener(TransportStateListener transportStateListener);
 
-                public abstract void startPlaying();
+    public abstract void seekTo(long j);
 
-                public abstract void stopPlaying();
+    public abstract void startPlaying();
 
-                public abstract void unregisterStateListener(TransportStateListener transportStateListener);
-            }
+    public abstract void stopPlaying();
+
+    public abstract void unregisterStateListener(TransportStateListener transportStateListener);
+}

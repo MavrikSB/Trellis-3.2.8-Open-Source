@@ -1,8 +1,7 @@
-            package co.vine.android.widget;
-            
-            
-            public interface OnTabChangedListener {
-                void onMoveAway(int i);
+package co.vine.android.widget;
 
-                void onMoveTo(int i);
-            }
+public interface OnTabChangedListener {
+    void onMoveAway(int i);
+
+    void onMoveTo(int i);
+}

@@ -1,33 +1,31 @@
-            package android.support.v7.internal.view.menu;
+package android.support.v7.internal.view.menu;
 
-            import android.graphics.drawable.Drawable;
-            
-            
-            public interface MenuView {
+import android.graphics.drawable.Drawable;
 
-                public interface ItemView {
-                    MenuItemImpl getItemData();
+public interface MenuView {
+    public interface ItemView {
+        MenuItemImpl getItemData();
 
-                    void initialize(MenuItemImpl menuItemImpl, int i);
+        void initialize(MenuItemImpl menuItemImpl, int i);
 
-                    boolean prefersCondensedTitle();
+        boolean prefersCondensedTitle();
 
-                    void setCheckable(boolean z);
+        void setCheckable(boolean z);
 
-                    void setChecked(boolean z);
+        void setChecked(boolean z);
 
-                    void setEnabled(boolean z);
+        void setEnabled(boolean z);
 
-                    void setIcon(Drawable drawable);
+        void setIcon(Drawable drawable);
 
-                    void setShortcut(boolean z, char c);
+        void setShortcut(boolean z, char c);
 
-                    void setTitle(CharSequence charSequence);
+        void setTitle(CharSequence charSequence);
 
-                    boolean showsIcon();
-                }
+        boolean showsIcon();
+    }
 
-                int getWindowAnimations();
+    int getWindowAnimations();
 
-                void initialize(MenuBuilder menuBuilder);
-            }
+    void initialize(MenuBuilder menuBuilder);
+}

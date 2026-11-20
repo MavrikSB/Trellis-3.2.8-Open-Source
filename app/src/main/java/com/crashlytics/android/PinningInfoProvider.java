@@ -1,12 +1,11 @@
-            package com.crashlytics.android;
+package com.crashlytics.android;
 
-            import java.io.InputStream;
-            
-            
-            public interface PinningInfoProvider {
-                String getKeyStorePassword();
+import java.io.InputStream;
 
-                InputStream getKeyStoreStream();
+public interface PinningInfoProvider {
+    String getKeyStorePassword();
 
-                String[] getPins();
-            }
+    InputStream getKeyStoreStream();
+
+    String[] getPins();
+}

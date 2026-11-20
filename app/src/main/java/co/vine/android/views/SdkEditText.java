@@ -1,31 +1,30 @@
-            package co.vine.android.views;
+package co.vine.android.views;
 
-            import android.content.Context;
-            import android.support.annotation.NonNull;
-            import android.util.AttributeSet;
-            import android.view.MotionEvent;
-            import android.widget.EditText;
-            
-            
-    public class SdkEditText extends EditText {
-        public SdkEditText(Context context) {
-            super(context);
-                }
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.widget.EditText;
 
-        public SdkEditText(Context context, AttributeSet attrs) {
-            super(context, attrs);
-                }
+public class SdkEditText extends EditText {
+    public SdkEditText(Context context) {
+        super(context);
+    }
 
-        public SdkEditText(Context context, AttributeSet attrs, int defStyle) {
-            super(context, attrs, defStyle);
-                }
+    public SdkEditText(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-                @Override 
-        public boolean onTouchEvent(@NonNull MotionEvent event) {
-                    try {
-                return super.onTouchEvent(event);
-                    } catch (IndexOutOfBoundsException | VerifyError e) {
-                return false;
-                    }
-                }
-            }
+    public SdkEditText(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
+
+    @Override
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
+        try {
+            return super.onTouchEvent(event);
+        } catch (IndexOutOfBoundsException | VerifyError e) {
+            return false;
+        }
+    }
+}

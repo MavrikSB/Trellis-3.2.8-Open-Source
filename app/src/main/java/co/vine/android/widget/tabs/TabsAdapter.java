@@ -1,188 +1,187 @@
-            package co.vine.android.widget.tabs;
+package co.vine.android.widget.tabs;
 
-            import android.content.ComponentCallbacks;
-            import android.os.Bundle;
-            import android.os.Parcelable;
-            import android.support.v4.app.Fragment;
-            import android.support.v4.app.FragmentPagerAdapter;
-            import android.support.v4.view.ViewPager;
-            import android.view.ViewGroup;
-            import android.widget.ImageView;
-            import android.widget.TabHost;
-            import android.widget.TabWidget;
-            import co.vine.android.BaseArrayListFragment;
-            import co.vine.android.BaseControllerActionBarActivity;
-            import co.vine.android.BaseFragment;
-            import co.vine.android.widget.OnTabChangedListener;
-            import java.util.ArrayList;
-            
-            
-    public class TabsAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener {
-                private final BaseControllerActionBarActivity mActivity;
-                private final ViewPagerScrollBar mScrollBar;
-                private boolean mSetActionBarColorOnPageSelectedEnabled;
-                private final DummyTabFactory mTabFactory;
-                private final TabHost mTabHost;
-                private final ArrayList<TabInfo> mTabs;
-                private final ViewPager mViewPager;
-                public int previousTab;
+import android.content.ComponentCallbacks;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TabHost;
+import android.widget.TabWidget;
+import co.vine.android.BaseArrayListFragment;
+import co.vine.android.BaseControllerActionBarActivity;
+import co.vine.android.BaseFragment;
+import co.vine.android.widget.OnTabChangedListener;
+import java.util.ArrayList;
 
-        public ArrayList<TabInfo> getTabs() {
-            return this.mTabs;
-                }
+public class TabsAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener {
+    private final BaseControllerActionBarActivity mActivity;
+    private final ViewPagerScrollBar mScrollBar;
+    private boolean mSetActionBarColorOnPageSelectedEnabled;
+    private final DummyTabFactory mTabFactory;
+    private final TabHost mTabHost;
+    private final ArrayList<TabInfo> mTabs;
+    private final ViewPager mViewPager;
+    public int previousTab;
 
-        public ArrayList<TabInfo> tabs() {
-            return this.mTabs;
-                }
+    public ArrayList<TabInfo> getTabs() {
+        return this.mTabs;
+    }
 
-        public TabInfo getTab(int pos) {
-            return this.mTabs.get(pos);
-                }
+    public ArrayList<TabInfo> tabs() {
+        return this.mTabs;
+    }
 
-        public TabsAdapter(BaseControllerActionBarActivity activity, TabHost tabHost, ViewPager pager, ViewPagerScrollBar scrollBar) {
-            super(activity.getSupportFragmentManager());
-            this.mTabs = new ArrayList<>();
-            this.mSetActionBarColorOnPageSelectedEnabled = true;
-            this.mActivity = activity;
-            this.mTabHost = tabHost;
-            this.mViewPager = pager;
-            this.mViewPager.setAdapter(this);
-            this.mViewPager.setOnPageChangeListener(this);
-            this.mScrollBar = scrollBar;
-            this.mTabFactory = new DummyTabFactory(this.mActivity);
-                }
+    public TabInfo getTab(int pos) {
+        return this.mTabs.get(pos);
+    }
 
-        public void addTab(TabHost.TabSpec tabSpec, Class<?> clss, Bundle args) {
-            TabInfo info = new TabInfo(clss, args, tabSpec.getTag());
-            tabSpec.setContent(this.mTabFactory);
-            this.mTabs.add(info);
-            this.mTabHost.addTab(tabSpec);
-            notifyDataSetChanged();
-                }
+    public TabsAdapter(BaseControllerActionBarActivity activity, TabHost tabHost, ViewPager pager, ViewPagerScrollBar scrollBar) {
+        super(activity.getSupportFragmentManager());
+        this.mTabs = new ArrayList<>();
+        this.mSetActionBarColorOnPageSelectedEnabled = true;
+        this.mActivity = activity;
+        this.mTabHost = tabHost;
+        this.mViewPager = pager;
+        this.mViewPager.setAdapter(this);
+        this.mViewPager.setOnPageChangeListener(this);
+        this.mScrollBar = scrollBar;
+        this.mTabFactory = new DummyTabFactory(this.mActivity);
+    }
 
-                @Override 
-        public int getCount() {
-            return this.mTabs.size();
-                }
+    public void addTab(TabHost.TabSpec tabSpec, Class<?> clss, Bundle args) {
+        TabInfo info = new TabInfo(clss, args, tabSpec.getTag());
+        tabSpec.setContent(this.mTabFactory);
+        this.mTabs.add(info);
+        this.mTabHost.addTab(tabSpec);
+        notifyDataSetChanged();
+    }
 
-                @Override 
-        public int getItemPosition(Object object) {
-            boolean found = false;
-                    for (TabInfo info : this.mTabs) {
-                if (info.fragment() == object) {
-                    found = true;
-                            break;
-                        }
-                    }
-                    return found ? -1 : -2;
-                }
+    @Override
+    public int getCount() {
+        return this.mTabs.size();
+    }
 
-        public Fragment getCurrentFragment() {
-            TabInfo tab = getTab(this.mTabHost.getCurrentTab());
-            if (tab != null) {
-                return tab.fragment();
-                    }
-                    return null;
-                }
+    @Override
+    public int getItemPosition(Object object) {
+        boolean found = false;
+        for (TabInfo info : this.mTabs) {
+            if (info.fragment() == object) {
+                found = true;
+                break;
+            }
+        }
+        return found ? -1 : -2;
+    }
 
-                @Override 
-       public Parcelable saveState() {
-           return new TabSavedState(this.mTabs);
-                }
+    public Fragment getCurrentFragment() {
+        TabInfo tab = getTab(this.mTabHost.getCurrentTab());
+        if (tab != null) {
+            return tab.fragment();
+        }
+        return null;
+    }
 
-                @Override 
-       public void restoreState(Parcelable state, ClassLoader loader) {
-           TabSavedState savedState = (TabSavedState) state;
-           String[] tags = savedState.tags;
-                    for (int i = 0; i < tags.length; i++) {
-               String tag = tags[i];
-               Fragment fragment = this.mActivity.getSupportFragmentManager().findFragmentByTag(tag);
-               if (fragment != null) {
-                   this.mTabs.get(i).setFragment(fragment);
-                   if (fragment instanceof BaseArrayListFragment) {
-                       ((BaseArrayListFragment) fragment).setScrollListener(new TabScrollListener(this.mActivity, i));
-                            }
-                        }
-                    }
-                }
+    @Override
+    public Parcelable saveState() {
+        return new TabSavedState(this.mTabs);
+    }
 
-                @Override 
-       public Fragment getItem(int position) {
-           return Fragment.instantiate(this.mActivity, this.mTabs.get(position).clss.getName(), this.mTabs.get(position).bundle);
-                }
-
-                @Override 
-       public Object instantiateItem(ViewGroup container, int position) {
-           Fragment blf = (Fragment) super.instantiateItem(container, position);
-           this.mTabs.get(position).setFragment(blf);
-           if (blf instanceof BaseArrayListFragment) {
-               ((BaseArrayListFragment) blf).setScrollListener(new TabScrollListener(this.mActivity, position));
-                    }
-           return blf;
-                }
-
-                @Override 
-       public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-           if (this.mViewPager.getCurrentItem() < position && this.mScrollBar != null) {
-               this.mScrollBar.scroll(position, -positionOffsetPixels);
-                    } else if (this.mScrollBar != null) {
-               this.mScrollBar.scroll(position, positionOffsetPixels);
-                    }
-                }
-
-       public void onPageSelected(int position) {
-           TabWidget widget = this.mTabHost.getTabWidget();
-           int descendantFocusability = widget.getDescendantFocusability();
-           widget.setDescendantFocusability(393216);
-           if (position != this.previousTab) {
-               ((IconTabHost) this.mTabHost).setTabExplicit(position);
-               ComponentCallbacks componentCallbacksFragment = this.mTabs.get(this.previousTab).fragment();
-               if (componentCallbacksFragment != null && (componentCallbacksFragment instanceof OnTabChangedListener)) {
-                   ((OnTabChangedListener) componentCallbacksFragment).onMoveAway(position);
-                        }
-               ComponentCallbacks componentCallbacksFragment2 = this.mTabs.get(position).fragment();
-               if (componentCallbacksFragment2 != null && (componentCallbacksFragment2 instanceof OnTabChangedListener)) {
-                   ((OnTabChangedListener) componentCallbacksFragment2).onMoveTo(this.previousTab);
-                        }
-               if (componentCallbacksFragment2 != null && this.mSetActionBarColorOnPageSelectedEnabled) {
-                   ((BaseFragment) componentCallbacksFragment2).setActionBarColor();
-                        }
-                    }
-           this.previousTab = this.mTabHost.getCurrentTab();
-           if (this.mScrollBar != null) {
-               this.mScrollBar.setPageColor(position);
-                    }
-           widget.setDescendantFocusability(descendantFocusability);
-                }
-
-                @Override 
-       public void onPageScrollStateChanged(int state) {
-                }
-
-       public TabIndicator getIndicator(int tabIndex) {
-           TabWidget widget = this.mTabHost.getTabWidget();
-           if (widget != null) {
-                        return (TabIndicator) widget.getChildTabViewAt(tabIndex);
-                    }
-                    return null;
-                }
-
-       public void setNew(int tabIndex, boolean isNew) {
-           TabIndicator indicator = getIndicator(tabIndex);
-           if (indicator != null) {
-               indicator.setNew(isNew);
-                    }
-                }
-
-       public ImageView getNewIndicatorForTab(int tabIndex) {
-           TabIndicator indicator = getIndicator(tabIndex);
-           if (indicator != null) {
-                        return indicator.getNewIndicator();
-                    }
-                    return null;
-                }
-
-       public void setSetActionBarColorOnPageSelectedEnabled(boolean setActionBarColorOnPageSelectedEnabled) {
-           this.mSetActionBarColorOnPageSelectedEnabled = setActionBarColorOnPageSelectedEnabled;
+    @Override
+    public void restoreState(Parcelable state, ClassLoader loader) {
+        TabSavedState savedState = (TabSavedState) state;
+        String[] tags = savedState.tags;
+        for (int i = 0; i < tags.length; i++) {
+            String tag = tags[i];
+            Fragment fragment = this.mActivity.getSupportFragmentManager().findFragmentByTag(tag);
+            if (fragment != null) {
+                this.mTabs.get(i).setFragment(fragment);
+                if (fragment instanceof BaseArrayListFragment) {
+                    ((BaseArrayListFragment) fragment).setScrollListener(new TabScrollListener(this.mActivity, i));
                 }
             }
+        }
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+        return Fragment.instantiate(this.mActivity, this.mTabs.get(position).clss.getName(), this.mTabs.get(position).bundle);
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        Fragment blf = (Fragment) super.instantiateItem(container, position);
+        this.mTabs.get(position).setFragment(blf);
+        if (blf instanceof BaseArrayListFragment) {
+            ((BaseArrayListFragment) blf).setScrollListener(new TabScrollListener(this.mActivity, position));
+        }
+        return blf;
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        if (this.mViewPager.getCurrentItem() < position && this.mScrollBar != null) {
+            this.mScrollBar.scroll(position, -positionOffsetPixels);
+        } else if (this.mScrollBar != null) {
+            this.mScrollBar.scroll(position, positionOffsetPixels);
+        }
+    }
+
+    public void onPageSelected(int position) {
+        TabWidget widget = this.mTabHost.getTabWidget();
+        int descendantFocusability = widget.getDescendantFocusability();
+        widget.setDescendantFocusability(393216);
+        if (position != this.previousTab) {
+            ((IconTabHost) this.mTabHost).setTabExplicit(position);
+            ComponentCallbacks componentCallbacksFragment = this.mTabs.get(this.previousTab).fragment();
+            if (componentCallbacksFragment != null && (componentCallbacksFragment instanceof OnTabChangedListener)) {
+                ((OnTabChangedListener) componentCallbacksFragment).onMoveAway(position);
+            }
+            ComponentCallbacks componentCallbacksFragment2 = this.mTabs.get(position).fragment();
+            if (componentCallbacksFragment2 != null && (componentCallbacksFragment2 instanceof OnTabChangedListener)) {
+                ((OnTabChangedListener) componentCallbacksFragment2).onMoveTo(this.previousTab);
+            }
+            if (componentCallbacksFragment2 != null && this.mSetActionBarColorOnPageSelectedEnabled) {
+                ((BaseFragment) componentCallbacksFragment2).setActionBarColor();
+            }
+        }
+        this.previousTab = this.mTabHost.getCurrentTab();
+        if (this.mScrollBar != null) {
+            this.mScrollBar.setPageColor(position);
+        }
+        widget.setDescendantFocusability(descendantFocusability);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+    }
+
+    public TabIndicator getIndicator(int tabIndex) {
+        TabWidget widget = this.mTabHost.getTabWidget();
+        if (widget != null) {
+            return (TabIndicator) widget.getChildTabViewAt(tabIndex);
+        }
+        return null;
+    }
+
+    public void setNew(int tabIndex, boolean isNew) {
+        TabIndicator indicator = getIndicator(tabIndex);
+        if (indicator != null) {
+            indicator.setNew(isNew);
+        }
+    }
+
+    public ImageView getNewIndicatorForTab(int tabIndex) {
+        TabIndicator indicator = getIndicator(tabIndex);
+        if (indicator != null) {
+            return indicator.getNewIndicator();
+        }
+        return null;
+    }
+
+    public void setSetActionBarColorOnPageSelectedEnabled(boolean setActionBarColorOnPageSelectedEnabled) {
+        this.mSetActionBarColorOnPageSelectedEnabled = setActionBarColorOnPageSelectedEnabled;
+    }
+}

@@ -1,198 +1,197 @@
-            package android.support.v4.content;
+package android.support.v4.content;
 
-            import android.content.Context;
-            import android.database.ContentObserver;
-            import android.os.Handler;
-            import android.support.v4.util.DebugUtils;
-            import java.io.FileDescriptor;
-            import java.io.PrintWriter;
-            
-            
-    public class Loader<D> {
-                Context mContext;
-                int mId;
-                OnLoadCompleteListener<D> mListener;
-                boolean mStarted = false;
-                boolean mAbandoned = false;
-                boolean mReset = true;
-                boolean mContentChanged = false;
-                boolean mProcessingChange = false;
+import android.content.Context;
+import android.database.ContentObserver;
+import android.os.Handler;
+import android.support.v4.util.DebugUtils;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 
-                public interface OnLoadCompleteListener<D> {
-                    void onLoadComplete(Loader<D> loader, D d);
-                }
+public class Loader<D> {
+    Context mContext;
+    int mId;
+    OnLoadCompleteListener<D> mListener;
+    boolean mStarted = false;
+    boolean mAbandoned = false;
+    boolean mReset = true;
+    boolean mContentChanged = false;
+    boolean mProcessingChange = false;
 
-        public final class ForceLoadContentObserver extends ContentObserver {
-            public ForceLoadContentObserver() {
-                super(new Handler());
-                    }
+    public interface OnLoadCompleteListener<D> {
+        void onLoadComplete(Loader<D> loader, D d);
+    }
 
-                    @Override 
-            public boolean deliverSelfNotifications() {
-                return true;
-                    }
+    public final class ForceLoadContentObserver extends ContentObserver {
+        public ForceLoadContentObserver() {
+            super(new Handler());
+        }
 
-                    @Override 
-            public void onChange(boolean selfChange) {
-                Loader.this.onContentChanged();
-                    }
-                }
+        @Override
+        public boolean deliverSelfNotifications() {
+            return true;
+        }
 
-        public Loader(Context context) {
-            this.mContext = context.getApplicationContext();
-                }
+        @Override
+        public void onChange(boolean selfChange) {
+            Loader.this.onContentChanged();
+        }
+    }
 
-       public void deliverResult(D data) {
-           if (this.mListener != null) {
-               this.mListener.onLoadComplete(this, data);
-                    }
-                }
+    public Loader(Context context) {
+        this.mContext = context.getApplicationContext();
+    }
 
-       public Context getContext() {
-           return this.mContext;
-                }
+    public void deliverResult(D data) {
+        if (this.mListener != null) {
+            this.mListener.onLoadComplete(this, data);
+        }
+    }
 
-       public int getId() {
-           return this.mId;
-                }
+    public Context getContext() {
+        return this.mContext;
+    }
 
-       public void registerListener(int id, OnLoadCompleteListener<D> listener) {
-           if (this.mListener != null) {
-               throw new IllegalStateException("There is already a listener registered");
-                    }
-           this.mListener = listener;
-           this.mId = id;
-                }
+    public int getId() {
+        return this.mId;
+    }
 
-       public void unregisterListener(OnLoadCompleteListener<D> listener) {
-           if (this.mListener == null) {
-               throw new IllegalStateException("No listener register");
-                    }
-           if (this.mListener != listener) {
-               throw new IllegalArgumentException("Attempting to unregister the wrong listener");
-                    }
-           this.mListener = null;
-                }
+    public void registerListener(int id, OnLoadCompleteListener<D> listener) {
+        if (this.mListener != null) {
+            throw new IllegalStateException("There is already a listener registered");
+        }
+        this.mListener = listener;
+        this.mId = id;
+    }
 
-       public boolean isStarted() {
-           return this.mStarted;
-                }
+    public void unregisterListener(OnLoadCompleteListener<D> listener) {
+        if (this.mListener == null) {
+            throw new IllegalStateException("No listener register");
+        }
+        if (this.mListener != listener) {
+            throw new IllegalArgumentException("Attempting to unregister the wrong listener");
+        }
+        this.mListener = null;
+    }
 
-       public boolean isAbandoned() {
-           return this.mAbandoned;
-                }
+    public boolean isStarted() {
+        return this.mStarted;
+    }
 
-       public boolean isReset() {
-           return this.mReset;
-                }
+    public boolean isAbandoned() {
+        return this.mAbandoned;
+    }
 
-       public final void startLoading() {
-           this.mStarted = true;
-           this.mReset = false;
-           this.mAbandoned = false;
-           onStartLoading();
-                }
+    public boolean isReset() {
+        return this.mReset;
+    }
 
-       protected void onStartLoading() {
-                }
+    public final void startLoading() {
+        this.mStarted = true;
+        this.mReset = false;
+        this.mAbandoned = false;
+        onStartLoading();
+    }
 
-       public void forceLoad() {
-           onForceLoad();
-                }
+    protected void onStartLoading() {
+    }
 
-       protected void onForceLoad() {
-                }
+    public void forceLoad() {
+        onForceLoad();
+    }
 
-       public void stopLoading() {
-           this.mStarted = false;
-           onStopLoading();
-                }
+    protected void onForceLoad() {
+    }
 
-       protected void onStopLoading() {
-                }
+    public void stopLoading() {
+        this.mStarted = false;
+        onStopLoading();
+    }
 
-       public void abandon() {
-           this.mAbandoned = true;
-           onAbandon();
-                }
+    protected void onStopLoading() {
+    }
 
-       protected void onAbandon() {
-                }
+    public void abandon() {
+        this.mAbandoned = true;
+        onAbandon();
+    }
 
-       public void reset() {
-           onReset();
-           this.mReset = true;
-           this.mStarted = false;
-           this.mAbandoned = false;
-           this.mContentChanged = false;
-           this.mProcessingChange = false;
-                }
+    protected void onAbandon() {
+    }
 
-       protected void onReset() {
-                }
+    public void reset() {
+        onReset();
+        this.mReset = true;
+        this.mStarted = false;
+        this.mAbandoned = false;
+        this.mContentChanged = false;
+        this.mProcessingChange = false;
+    }
 
-       public boolean takeContentChanged() {
-           boolean res = this.mContentChanged;
-           this.mContentChanged = false;
-           this.mProcessingChange |= res;
-           return res;
-                }
+    protected void onReset() {
+    }
 
-       public void commitContentChanged() {
-           this.mProcessingChange = false;
-                }
+    public boolean takeContentChanged() {
+        boolean res = this.mContentChanged;
+        this.mContentChanged = false;
+        this.mProcessingChange |= res;
+        return res;
+    }
 
-       public void rollbackContentChanged() {
-           if (this.mProcessingChange) {
-               this.mContentChanged = true;
-                    }
-                }
+    public void commitContentChanged() {
+        this.mProcessingChange = false;
+    }
 
-       public void onContentChanged() {
-           if (this.mStarted) {
-               forceLoad();
-                    } else {
-               this.mContentChanged = true;
-                    }
-                }
+    public void rollbackContentChanged() {
+        if (this.mProcessingChange) {
+            this.mContentChanged = true;
+        }
+    }
 
-       public String dataToString(D data) {
-           StringBuilder sb = new StringBuilder(64);
-           DebugUtils.buildShortClassTag(data, sb);
-           sb.append("}");
-           return sb.toString();
-                }
+    public void onContentChanged() {
+        if (this.mStarted) {
+            forceLoad();
+        } else {
+            this.mContentChanged = true;
+        }
+    }
 
-       public String toString() {
-           StringBuilder sb = new StringBuilder(64);
-           DebugUtils.buildShortClassTag(this, sb);
-           sb.append(" id=");
-           sb.append(this.mId);
-           sb.append("}");
-           return sb.toString();
-                }
+    public String dataToString(D data) {
+        StringBuilder sb = new StringBuilder(64);
+        DebugUtils.buildShortClassTag(data, sb);
+        sb.append("}");
+        return sb.toString();
+    }
 
-       public void dump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
-           writer.print(prefix);
-                    writer.print("mId=");
-                    writer.print(this.mId);
-           writer.print(" mListener=");
-                    writer.println(this.mListener);
-           if (this.mStarted || this.mContentChanged || this.mProcessingChange) {
-               writer.print(prefix);
-                        writer.print("mStarted=");
-                        writer.print(this.mStarted);
-               writer.print(" mContentChanged=");
-                        writer.print(this.mContentChanged);
-               writer.print(" mProcessingChange=");
-                        writer.println(this.mProcessingChange);
-                    }
-           if (this.mAbandoned || this.mReset) {
-               writer.print(prefix);
-                        writer.print("mAbandoned=");
-                        writer.print(this.mAbandoned);
-               writer.print(" mReset=");
-                        writer.println(this.mReset);
-                    }
-                }
-            }
+    public String toString() {
+        StringBuilder sb = new StringBuilder(64);
+        DebugUtils.buildShortClassTag(this, sb);
+        sb.append(" id=");
+        sb.append(this.mId);
+        sb.append("}");
+        return sb.toString();
+    }
+
+    public void dump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
+        writer.print(prefix);
+        writer.print("mId=");
+        writer.print(this.mId);
+        writer.print(" mListener=");
+        writer.println(this.mListener);
+        if (this.mStarted || this.mContentChanged || this.mProcessingChange) {
+            writer.print(prefix);
+            writer.print("mStarted=");
+            writer.print(this.mStarted);
+            writer.print(" mContentChanged=");
+            writer.print(this.mContentChanged);
+            writer.print(" mProcessingChange=");
+            writer.println(this.mProcessingChange);
+        }
+        if (this.mAbandoned || this.mReset) {
+            writer.print(prefix);
+            writer.print("mAbandoned=");
+            writer.print(this.mAbandoned);
+            writer.print(" mReset=");
+            writer.println(this.mReset);
+        }
+    }
+}

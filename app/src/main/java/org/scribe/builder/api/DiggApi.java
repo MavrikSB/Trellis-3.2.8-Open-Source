@@ -1,24 +1,23 @@
-            package org.scribe.builder.api;
+package org.scribe.builder.api;
 
-            import org.scribe.model.Token;
-            
-            
-    public class DiggApi extends DefaultApi10a {
-                private static final String AUTHORIZATION_URL = "http://digg.com/oauth/authorize?oauth_token=%s";
-                private static final String BASE_URL = "http://services.digg.com/oauth/";
+import org.scribe.model.Token;
 
-                @Override 
-        public String getRequestTokenEndpoint() {
-            return "http://services.digg.com/oauth/request_token";
-                }
+public class DiggApi extends DefaultApi10a {
+    private static final String AUTHORIZATION_URL = "http://digg.com/oauth/authorize?oauth_token=%s";
+    private static final String BASE_URL = "http://services.digg.com/oauth/";
 
-                @Override 
-        public String getAccessTokenEndpoint() {
-            return "http://services.digg.com/oauth/access_token";
-                }
+    @Override
+    public String getRequestTokenEndpoint() {
+        return "http://services.digg.com/oauth/request_token";
+    }
 
-                @Override 
-        public String getAuthorizationUrl(Token requestToken) {
-            return String.format(AUTHORIZATION_URL, requestToken.getToken());
-                }
-            }
+    @Override
+    public String getAccessTokenEndpoint() {
+        return "http://services.digg.com/oauth/access_token";
+    }
+
+    @Override
+    public String getAuthorizationUrl(Token requestToken) {
+        return String.format(AUTHORIZATION_URL, requestToken.getToken());
+    }
+}

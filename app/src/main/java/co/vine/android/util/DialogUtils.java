@@ -1,16 +1,15 @@
-            package co.vine.android.util;
+package co.vine.android.util;
 
-            import android.app.Dialog;
-            
-            
-     public class DialogUtils {
-         private DialogUtils() {
-                }
+import android.app.Dialog;
 
-        public static void showDialogUnsafe(Dialog dialog) {
-                    try {
-                dialog.show();
-                    } catch (Exception e) {
-                    }
-                }
-            }
+public class DialogUtils {
+    private DialogUtils() {
+    }
+
+    public static void showDialogUnsafe(Dialog dialog) {
+        try {
+            dialog.show();
+        } catch (Exception e) {
+        }
+    }
+}

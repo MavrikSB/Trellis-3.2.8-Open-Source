@@ -1,44 +1,42 @@
-            package com.squareup.okhttp.internal.spdy;
+package com.squareup.okhttp.internal.spdy;
 
-            import java.io.IOException;
-            import java.util.List;
-            import okio.BufferedSource;
-            
-            
-    public interface PushObserver {
-                public static final PushObserver CANCEL = new C12821();
+import java.io.IOException;
+import java.util.List;
+import okio.BufferedSource;
 
-                boolean onData(int i, BufferedSource bufferedSource, int i2, boolean z) throws IOException;
+public interface PushObserver {
+    public static final PushObserver CANCEL = new C12821();
 
-                boolean onHeaders(int i, List<Header> list, boolean z);
+    boolean onData(int i, BufferedSource bufferedSource, int i2, boolean z) throws IOException;
 
-                boolean onRequest(int i, List<Header> list);
+    boolean onHeaders(int i, List<Header> list, boolean z);
 
-                void onReset(int i, ErrorCode errorCode);
+    boolean onRequest(int i, List<Header> list);
 
-                
-        static class C12821 implements PushObserver {
-            C12821() {
-                    }
+    void onReset(int i, ErrorCode errorCode);
 
-                    @Override 
-            public boolean onRequest(int streamId, List<Header> requestHeaders) {
-                return true;
-                    }
+    static class C12821 implements PushObserver {
+        C12821() {
+        }
 
-                    @Override 
-            public boolean onHeaders(int streamId, List<Header> responseHeaders, boolean last) {
-                return true;
-                    }
+        @Override
+        public boolean onRequest(int streamId, List<Header> requestHeaders) {
+            return true;
+        }
 
-                    @Override 
-            public boolean onData(int streamId, BufferedSource source, int byteCount, boolean last) throws IOException {
-                source.skip(byteCount);
-                return true;
-                    }
+        @Override
+        public boolean onHeaders(int streamId, List<Header> responseHeaders, boolean last) {
+            return true;
+        }
 
-                    @Override 
-            public void onReset(int streamId, ErrorCode errorCode) {
-                    }
-                }
-            }
+        @Override
+        public boolean onData(int streamId, BufferedSource source, int byteCount, boolean last) throws IOException {
+            source.skip(byteCount);
+            return true;
+        }
+
+        @Override
+        public void onReset(int streamId, ErrorCode errorCode) {
+        }
+    }
+}

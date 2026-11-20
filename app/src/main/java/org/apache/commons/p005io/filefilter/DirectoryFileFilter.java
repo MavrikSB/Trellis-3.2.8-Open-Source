@@ -1,18 +1,17 @@
-            package org.apache.commons.p005io.filefilter;
+package org.apache.commons.p005io.filefilter;
 
-            import java.io.File;
-            import java.io.Serializable;
-            
-            
-    public class DirectoryFileFilter extends AbstractFileFilter implements Serializable {
-                public static final IOFileFilter DIRECTORY = new DirectoryFileFilter();
-                public static final IOFileFilter INSTANCE = DIRECTORY;
+import java.io.File;
+import java.io.Serializable;
 
-        protected DirectoryFileFilter() {
-                }
+public class DirectoryFileFilter extends AbstractFileFilter implements Serializable {
+    public static final IOFileFilter DIRECTORY = new DirectoryFileFilter();
+    public static final IOFileFilter INSTANCE = DIRECTORY;
 
-                @Override 
-        public boolean accept(File file) {
-            return file.isDirectory();
-                }
-            }
+    protected DirectoryFileFilter() {
+    }
+
+    @Override
+    public boolean accept(File file) {
+        return file.isDirectory();
+    }
+}

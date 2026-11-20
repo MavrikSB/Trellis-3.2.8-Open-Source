@@ -1,31 +1,30 @@
-            package co.vine.android.plugin;
+package co.vine.android.plugin;
 
-            import android.app.Activity;
-            import android.content.Intent;
-            import android.view.KeyEvent;
-            import com.edisonwang.android.slog.SLog;
-            
-            
-    public class DebugReceiverPlugin extends BasePlugin {
-                private static int[] mDebugMenuSecrets = {24, 25, 24, 25};
-                private int mDebugMenu;
+import android.app.Activity;
+import android.content.Intent;
+import android.view.KeyEvent;
+import com.edisonwang.android.slog.SLog;
 
-        public DebugReceiverPlugin() {
-            super("debugReceiver");
-            this.mDebugMenu = 0;
-                }
+public class DebugReceiverPlugin extends BasePlugin {
+    private static int[] mDebugMenuSecrets = {24, 25, 24, 25};
+    private int mDebugMenu;
 
-                @Override 
-        public boolean onKeyUp(int keyCode, KeyEvent event) {
-                    Activity activity;
-            if (SLog.sLogsOn && this.mDebugMenu < mDebugMenuSecrets.length && keyCode == mDebugMenuSecrets[this.mDebugMenu]) {
-                this.mDebugMenu++;
-                if (this.mDebugMenu == mDebugMenuSecrets.length && (activity = getActivity()) != null) {
-                    activity.sendBroadcast(new Intent("co.vine.android.debug_receiver"));
-                    return false;
-                        }
+    public DebugReceiverPlugin() {
+        super("debugReceiver");
+        this.mDebugMenu = 0;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        Activity activity;
+        if (SLog.sLogsOn && this.mDebugMenu < mDebugMenuSecrets.length && keyCode == mDebugMenuSecrets[this.mDebugMenu]) {
+            this.mDebugMenu++;
+            if (this.mDebugMenu == mDebugMenuSecrets.length && (activity = getActivity()) != null) {
+                activity.sendBroadcast(new Intent("co.vine.android.debug_receiver"));
                 return false;
-                    }
-            return false;
-                }
             }
+            return false;
+        }
+        return false;
+    }
+}

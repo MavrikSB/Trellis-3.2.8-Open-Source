@@ -1,16 +1,15 @@
-            package com.google.android.exoplayer;
+package com.google.android.exoplayer;
 
-            import com.google.android.exoplayer.upstream.Allocator;
-            
-            
-            public interface LoadControl {
-                Allocator getAllocator();
+import com.google.android.exoplayer.upstream.Allocator;
 
-                void register(Object obj, int i);
+public interface LoadControl {
+    Allocator getAllocator();
 
-                void trimAllocator();
+    void register(Object obj, int i);
 
-                void unregister(Object obj);
+    void trimAllocator();
 
-                boolean update(Object obj, long j, long j2, boolean z, boolean z2);
-            }
+    void unregister(Object obj);
+
+    boolean update(Object obj, long j, long j2, boolean z, boolean z2);
+}

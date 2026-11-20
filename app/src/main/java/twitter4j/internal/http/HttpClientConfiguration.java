@@ -1,28 +1,27 @@
-            package twitter4j.internal.http;
-            
-            
-            public interface HttpClientConfiguration {
-                int getHttpConnectionTimeout();
+package twitter4j.internal.http;
 
-                int getHttpDefaultMaxPerRoute();
+public interface HttpClientConfiguration {
+    int getHttpConnectionTimeout();
 
-                int getHttpMaxTotalConnections();
+    int getHttpDefaultMaxPerRoute();
 
-                String getHttpProxyHost();
+    int getHttpMaxTotalConnections();
 
-                String getHttpProxyPassword();
+    String getHttpProxyHost();
 
-                int getHttpProxyPort();
+    String getHttpProxyPassword();
 
-                String getHttpProxyUser();
+    int getHttpProxyPort();
 
-                int getHttpReadTimeout();
+    String getHttpProxyUser();
 
-                int getHttpRetryCount();
+    int getHttpReadTimeout();
 
-                int getHttpRetryIntervalSeconds();
+    int getHttpRetryCount();
 
-                boolean isGZIPEnabled();
+    int getHttpRetryIntervalSeconds();
 
-                boolean isPrettyDebugEnabled();
-            }
+    boolean isGZIPEnabled();
+
+    boolean isPrettyDebugEnabled();
+}

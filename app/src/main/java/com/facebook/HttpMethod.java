@@ -1,8 +1,7 @@
-            package com.facebook;
-            
-            
-            public enum HttpMethod {
-                GET,
-                POST,
-                DELETE
-            }
+package com.facebook;
+
+public enum HttpMethod {
+    GET,
+    POST,
+    DELETE
+        }

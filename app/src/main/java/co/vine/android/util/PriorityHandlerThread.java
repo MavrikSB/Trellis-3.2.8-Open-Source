@@ -1,20 +1,19 @@
-            package co.vine.android.util;
+package co.vine.android.util;
 
-            import android.os.HandlerThread;
-            import android.os.Process;
-            
-            
-    public class PriorityHandlerThread extends HandlerThread {
-                private final int priority;
+import android.os.HandlerThread;
+import android.os.Process;
 
-        public PriorityHandlerThread(String name, int priority) {
-            super(name);
-            this.priority = priority;
-                }
+public class PriorityHandlerThread extends HandlerThread {
+    private final int priority;
 
-                @Override 
-        public void run() {
-            Process.setThreadPriority(this.priority);
-            super.run();
-                }
-            }
+    public PriorityHandlerThread(String name, int priority) {
+        super(name);
+        this.priority = priority;
+    }
+
+    @Override
+    public void run() {
+        Process.setThreadPriority(this.priority);
+        super.run();
+    }
+}

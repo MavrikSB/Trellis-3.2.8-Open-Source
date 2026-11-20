@@ -1,6 +1,5 @@
 package com.google.android.gms.games;
 
-
 public final class GamesClient {
     private GamesClient() {
     }

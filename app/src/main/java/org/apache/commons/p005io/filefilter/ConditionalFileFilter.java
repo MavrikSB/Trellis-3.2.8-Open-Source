@@ -1,14 +1,13 @@
-            package org.apache.commons.p005io.filefilter;
+package org.apache.commons.p005io.filefilter;
 
-            import java.util.List;
-            
-            
-            public interface ConditionalFileFilter {
-                void addFileFilter(IOFileFilter iOFileFilter);
+import java.util.List;
 
-                List<IOFileFilter> getFileFilters();
+public interface ConditionalFileFilter {
+    void addFileFilter(IOFileFilter iOFileFilter);
 
-                boolean removeFileFilter(IOFileFilter iOFileFilter);
+    List<IOFileFilter> getFileFilters();
 
-                void setFileFilters(List<IOFileFilter> list);
-            }
+    boolean removeFileFilter(IOFileFilter iOFileFilter);
+
+    void setFileFilters(List<IOFileFilter> list);
+}

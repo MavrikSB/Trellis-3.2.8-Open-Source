@@ -1,35 +1,34 @@
-            package org.scribe.model;
+package org.scribe.model;
 
-            import java.util.HashMap;
-            import java.util.Map;
-            
-            
-    public class OAuthRequest extends Request {
-                private static final String OAUTH_PREFIX = "oauth_";
-                private Map<String, String> oauthParameters;
+import java.util.HashMap;
+import java.util.Map;
 
-        public OAuthRequest(Verb verb, String url) {
-            super(verb, url);
-            this.oauthParameters = new HashMap();
-                }
+public class OAuthRequest extends Request {
+    private static final String OAUTH_PREFIX = "oauth_";
+    private Map<String, String> oauthParameters;
 
-        public void addOAuthParameter(String key, String value) {
-            this.oauthParameters.put(checkKey(key), value);
-                }
+    public OAuthRequest(Verb verb, String url) {
+        super(verb, url);
+        this.oauthParameters = new HashMap();
+    }
 
-        private String checkKey(String key) {
-            if (key.startsWith("oauth_") || key.equals("scope")) {
-                return key;
-                    }
-            throw new IllegalArgumentException(String.format("OAuth parameters must either be '%s' or start with '%s'", "scope", "oauth_"));
-                }
+    public void addOAuthParameter(String key, String value) {
+        this.oauthParameters.put(checkKey(key), value);
+    }
 
-        public Map<String, String> getOauthParameters() {
-            return this.oauthParameters;
-                }
+    private String checkKey(String key) {
+        if (key.startsWith("oauth_") || key.equals("scope")) {
+            return key;
+        }
+        throw new IllegalArgumentException(String.format("OAuth parameters must either be '%s' or start with '%s'", "scope", "oauth_"));
+    }
 
-                @Override 
-        public String toString() {
-            return String.format("@OAuthRequest(%s, %s)", getVerb(), getUrl());
-                }
-            }
+    public Map<String, String> getOauthParameters() {
+        return this.oauthParameters;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("@OAuthRequest(%s, %s)", getVerb(), getUrl());
+    }
+}

@@ -1,42 +1,39 @@
-            package com.fasterxml.jackson.core;
+package com.fasterxml.jackson.core;
 
-            import java.util.Iterator;
-            
-            
-            public interface TreeNode {
-                JsonToken asToken();
+import java.util.Iterator;
 
-                
-                TreeNode m525at(JsonPointer jsonPointer);
+public interface TreeNode {
+    JsonToken asToken();
 
-                
-                TreeNode m526at(String str) throws IllegalArgumentException;
+    TreeNode m525at(JsonPointer jsonPointer);
 
-                Iterator<String> fieldNames();
+    TreeNode m526at(String str) throws IllegalArgumentException;
 
-                TreeNode get(int i);
+    Iterator<String> fieldNames();
 
-                TreeNode get(String str);
+    TreeNode get(int i);
 
-                boolean isArray();
+    TreeNode get(String str);
 
-                boolean isContainerNode();
+    boolean isArray();
 
-                boolean isMissingNode();
+    boolean isContainerNode();
 
-                boolean isObject();
+    boolean isMissingNode();
 
-                boolean isValueNode();
+    boolean isObject();
 
-                JsonParser.NumberType numberType();
+    boolean isValueNode();
 
-                TreeNode path(int i);
+    JsonParser.NumberType numberType();
 
-                TreeNode path(String str);
+    TreeNode path(int i);
 
-                int size();
+    TreeNode path(String str);
 
-                JsonParser traverse();
+    int size();
 
-                JsonParser traverse(ObjectCodec objectCodec);
-            }
+    JsonParser traverse();
+
+    JsonParser traverse(ObjectCodec objectCodec);
+}

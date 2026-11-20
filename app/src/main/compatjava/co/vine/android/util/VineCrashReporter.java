@@ -3,11 +3,6 @@ package co.vine.android.util;
 import android.content.Context;
 import android.util.Log;
 
-
-
-
-
-
 public final class VineCrashReporter {
     private static final String TAG = "Crashlytics";
 

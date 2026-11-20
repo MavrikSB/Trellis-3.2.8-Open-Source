@@ -1,17 +1,16 @@
-            package twitter4j;
+package twitter4j;
 
-            import twitter4j.auth.Authorization;
-            import twitter4j.conf.Configuration;
-            
-            
-            public interface TwitterBase {
-                void createFriendship(long j) throws TwitterException;
+import twitter4j.auth.Authorization;
+import twitter4j.conf.Configuration;
 
-                void createFriendship(String str) throws TwitterException;
+public interface TwitterBase {
+    void createFriendship(long j) throws TwitterException;
 
-                Authorization getAuthorization();
+    void createFriendship(String str) throws TwitterException;
 
-                Configuration getConfiguration();
+    Authorization getAuthorization();
 
-                void shutdown();
-            }
+    Configuration getConfiguration();
+
+    void shutdown();
+}

@@ -1,20 +1,19 @@
-            package org.apache.commons.p005io;
+package org.apache.commons.p005io;
 
-            import java.io.File;
-            import java.io.IOException;
-            
-            
-    public class FileExistsException extends IOException {
-                private static final long serialVersionUID = 1;
+import java.io.File;
+import java.io.IOException;
 
-        public FileExistsException() {
-                }
+public class FileExistsException extends IOException {
+    private static final long serialVersionUID = 1;
 
-        public FileExistsException(String message) {
-            super(message);
-                }
+    public FileExistsException() {
+    }
 
-        public FileExistsException(File file) {
-            super("File " + file + " exists");
-                }
-            }
+    public FileExistsException(String message) {
+        super(message);
+    }
+
+    public FileExistsException(File file) {
+        super("File " + file + " exists");
+    }
+}

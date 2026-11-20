@@ -1,13 +1,12 @@
-            package android.support.v4.view;
+package android.support.v4.view;
 
-            import android.view.ViewGroup;
-            
-            
-    class ViewGroupCompatHC {
-        private ViewGroupCompatHC() {
-                }
+import android.view.ViewGroup;
 
-        public static void setMotionEventSplittingEnabled(ViewGroup group, boolean split) {
-            group.setMotionEventSplittingEnabled(split);
-                }
-            }
+class ViewGroupCompatHC {
+    private ViewGroupCompatHC() {
+    }
+
+    public static void setMotionEventSplittingEnabled(ViewGroup group, boolean split) {
+        group.setMotionEventSplittingEnabled(split);
+    }
+}

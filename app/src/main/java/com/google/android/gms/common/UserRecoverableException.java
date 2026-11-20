@@ -1,17 +1,16 @@
-            package com.google.android.gms.common;
+package com.google.android.gms.common;
 
-            import android.content.Intent;
-            
-            
-            public class UserRecoverableException extends Exception {
-                private final Intent mIntent;
+import android.content.Intent;
 
-                public UserRecoverableException(String msg, Intent intent) {
-                    super(msg);
-                    this.mIntent = intent;
-                }
+public class UserRecoverableException extends Exception {
+    private final Intent mIntent;
 
-                public Intent getIntent() {
-                    return new Intent(this.mIntent);
-                }
-            }
+    public UserRecoverableException(String msg, Intent intent) {
+        super(msg);
+        this.mIntent = intent;
+    }
+
+    public Intent getIntent() {
+        return new Intent(this.mIntent);
+    }
+}

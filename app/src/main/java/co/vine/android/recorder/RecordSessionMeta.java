@@ -1,45 +1,44 @@
-            package co.vine.android.recorder;
+package co.vine.android.recorder;
 
-            import java.io.Externalizable;
-            import java.io.IOException;
-            import java.io.ObjectInput;
-            import java.io.ObjectOutput;
-            
-            
-    public class RecordSessionMeta implements Externalizable {
-                private static final long serialVersionUID = 3412330863787653276L;
-                private long mLastModified;
-                private int mProgress;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
-        public RecordSessionMeta() {
-                }
+public class RecordSessionMeta implements Externalizable {
+    private static final long serialVersionUID = 3412330863787653276L;
+    private long mLastModified;
+    private int mProgress;
 
-        public RecordSessionMeta(int progress) {
-            this.mLastModified = System.currentTimeMillis();
-            this.mProgress = progress;
-                }
+    public RecordSessionMeta() {
+    }
 
-        public long getLastModified() {
-            return this.mLastModified;
-                }
+    public RecordSessionMeta(int progress) {
+        this.mLastModified = System.currentTimeMillis();
+        this.mProgress = progress;
+    }
 
-        public int getProgress() {
-            return this.mProgress;
-                }
+    public long getLastModified() {
+        return this.mLastModified;
+    }
 
-        public void setProgress(int progress) {
-            this.mProgress = progress;
-                }
+    public int getProgress() {
+        return this.mProgress;
+    }
 
-                @Override 
-        public void readExternal(ObjectInput input) throws IOException, ClassNotFoundException {
-            this.mProgress = input.readInt();
-            this.mLastModified = input.readLong();
-                }
+    public void setProgress(int progress) {
+        this.mProgress = progress;
+    }
 
-                @Override 
-        public void writeExternal(ObjectOutput output) throws IOException {
-            output.writeInt(this.mProgress);
-            output.writeLong(this.mLastModified);
-                }
-            }
+    @Override
+    public void readExternal(ObjectInput input) throws IOException, ClassNotFoundException {
+        this.mProgress = input.readInt();
+        this.mLastModified = input.readLong();
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput output) throws IOException {
+        output.writeInt(this.mProgress);
+        output.writeLong(this.mLastModified);
+    }
+}

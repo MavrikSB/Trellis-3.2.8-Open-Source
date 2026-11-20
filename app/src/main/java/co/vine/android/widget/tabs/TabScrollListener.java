@@ -1,17 +1,16 @@
-            package co.vine.android.widget.tabs;
+package co.vine.android.widget.tabs;
 
-            import co.vine.android.BaseControllerActionBarActivity;
-            
-            
-    public class TabScrollListener {
-                private final BaseControllerActionBarActivity mActivity;
-                private final int mTabIndex;
+import co.vine.android.BaseControllerActionBarActivity;
 
-        public TabScrollListener(BaseControllerActionBarActivity activity, int position) {
-            this.mTabIndex = position;
-            this.mActivity = activity;
-                }
+public class TabScrollListener {
+    private final BaseControllerActionBarActivity mActivity;
+    private final int mTabIndex;
 
-        public void onScrollFirstItem() {
-                }
-            }
+    public TabScrollListener(BaseControllerActionBarActivity activity, int position) {
+        this.mTabIndex = position;
+        this.mActivity = activity;
+    }
+
+    public void onScrollFirstItem() {
+    }
+}

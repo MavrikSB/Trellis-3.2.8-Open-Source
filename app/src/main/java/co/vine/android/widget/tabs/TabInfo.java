@@ -1,38 +1,37 @@
-            package co.vine.android.widget.tabs;
+package co.vine.android.widget.tabs;
 
-            import android.os.Bundle;
-            import android.support.v4.app.Fragment;
-            import java.lang.ref.WeakReference;
-            
-            
-    public class TabInfo {
-                public final Bundle bundle;
-                public final Class<?> clss;
-                private WeakReference<Fragment> mRef;
-                protected String mTag;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import java.lang.ref.WeakReference;
 
-        public TabInfo(Class<?> clss, Bundle bundle, String tag) {
-            this.clss = clss;
-            this.bundle = bundle;
-            this.mTag = tag;
-                }
+public class TabInfo {
+    public final Bundle bundle;
+    public final Class<?> clss;
+    private WeakReference<Fragment> mRef;
+    protected String mTag;
 
-        public void setFragment(Fragment f) {
-            if (f != null) {
-                this.mRef = new WeakReference<>(f);
-                    } else {
-                this.mRef = null;
-                    }
-                }
+    public TabInfo(Class<?> clss, Bundle bundle, String tag) {
+        this.clss = clss;
+        this.bundle = bundle;
+        this.mTag = tag;
+    }
 
-        public Fragment fragment() {
-            if (this.mRef != null) {
-                return this.mRef.get();
-                    }
-                    return null;
-                }
+    public void setFragment(Fragment f) {
+        if (f != null) {
+            this.mRef = new WeakReference<>(f);
+        } else {
+            this.mRef = null;
+        }
+    }
 
-        public String getTag() {
-            return this.mTag;
-                }
-            }
+    public Fragment fragment() {
+        if (this.mRef != null) {
+            return this.mRef.get();
+        }
+        return null;
+    }
+
+    public String getTag() {
+        return this.mTag;
+    }
+}

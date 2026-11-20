@@ -1,28 +1,27 @@
-            package com.google.android.gms.dynamic;
+package com.google.android.gms.dynamic;
 
-            import android.app.Activity;
-            import android.os.Bundle;
-            import android.view.LayoutInflater;
-            import android.view.View;
-            import android.view.ViewGroup;
-            
-            
-            public interface LifecycleDelegate {
-                void onCreate(Bundle bundle);
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-                View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle);
+public interface LifecycleDelegate {
+    void onCreate(Bundle bundle);
 
-                void onDestroy();
+    View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle);
 
-                void onDestroyView();
+    void onDestroy();
 
-                void onInflate(Activity activity, Bundle bundle, Bundle bundle2);
+    void onDestroyView();
 
-                void onLowMemory();
+    void onInflate(Activity activity, Bundle bundle, Bundle bundle2);
 
-                void onPause();
+    void onLowMemory();
 
-                void onResume();
+    void onPause();
 
-                void onSaveInstanceState(Bundle bundle);
-            }
+    void onResume();
+
+    void onSaveInstanceState(Bundle bundle);
+}

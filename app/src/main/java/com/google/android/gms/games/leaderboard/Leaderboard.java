@@ -1,23 +1,22 @@
-            package com.google.android.gms.games.leaderboard;
+package com.google.android.gms.games.leaderboard;
 
-            import android.database.CharArrayBuffer;
-            import android.net.Uri;
-            import java.util.ArrayList;
-            
-            
-            public interface Leaderboard {
-                public static final int SCORE_ORDER_LARGER_IS_BETTER = 1;
-                public static final int SCORE_ORDER_SMALLER_IS_BETTER = 0;
+import android.database.CharArrayBuffer;
+import android.net.Uri;
+import java.util.ArrayList;
 
-                String getDisplayName();
+public interface Leaderboard {
+    public static final int SCORE_ORDER_LARGER_IS_BETTER = 1;
+    public static final int SCORE_ORDER_SMALLER_IS_BETTER = 0;
 
-                void getDisplayName(CharArrayBuffer charArrayBuffer);
+    String getDisplayName();
 
-                Uri getIconImageUri();
+    void getDisplayName(CharArrayBuffer charArrayBuffer);
 
-                String getLeaderboardId();
+    Uri getIconImageUri();
 
-                int getScoreOrder();
+    String getLeaderboardId();
 
-                ArrayList<LeaderboardVariant> getVariants();
-            }
+    int getScoreOrder();
+
+    ArrayList<LeaderboardVariant> getVariants();
+}

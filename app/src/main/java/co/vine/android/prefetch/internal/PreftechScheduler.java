@@ -1,16 +1,15 @@
-            package co.vine.android.prefetch.internal;
+package co.vine.android.prefetch.internal;
 
-            import co.vine.android.prefetch.PrefetchManager;
-            
-            
-            public interface PreftechScheduler {
-                void cancel(PrefetchManager prefetchManager);
+import co.vine.android.prefetch.PrefetchManager;
 
-                long getNextSync(long j, PrefetchManager prefetchManager);
+public interface PreftechScheduler {
+    void cancel(PrefetchManager prefetchManager);
 
-                void runNow(PrefetchManager prefetchManager, long j);
+    long getNextSync(long j, PrefetchManager prefetchManager);
 
-                int schedule(PrefetchManager prefetchManager, boolean z);
+    void runNow(PrefetchManager prefetchManager, long j);
 
-                void scheduleFailedFetch(PrefetchManager prefetchManager);
-            }
+    int schedule(PrefetchManager prefetchManager, boolean z);
+
+    void scheduleFailedFetch(PrefetchManager prefetchManager);
+}

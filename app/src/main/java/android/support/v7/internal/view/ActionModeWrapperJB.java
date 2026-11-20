@@ -1,37 +1,36 @@
-            package android.support.v7.internal.view;
+package android.support.v7.internal.view;
 
-            import android.content.Context;
-            import android.view.ActionMode;
-            
-            
-    public class ActionModeWrapperJB extends ActionModeWrapper {
-        public ActionModeWrapperJB(Context context, ActionMode frameworkActionMode) {
-            super(context, frameworkActionMode);
-                }
+import android.content.Context;
+import android.view.ActionMode;
 
-                @Override 
-        public boolean getTitleOptionalHint() {
-            return this.mWrappedObject.getTitleOptionalHint();
-                }
+public class ActionModeWrapperJB extends ActionModeWrapper {
+    public ActionModeWrapperJB(Context context, ActionMode frameworkActionMode) {
+        super(context, frameworkActionMode);
+    }
 
-                @Override 
-        public void setTitleOptionalHint(boolean titleOptional) {
-            this.mWrappedObject.setTitleOptionalHint(titleOptional);
-                }
+    @Override
+    public boolean getTitleOptionalHint() {
+        return this.mWrappedObject.getTitleOptionalHint();
+    }
 
-                @Override 
-        public boolean isTitleOptional() {
-            return this.mWrappedObject.isTitleOptional();
-                }
+    @Override
+    public void setTitleOptionalHint(boolean titleOptional) {
+        this.mWrappedObject.setTitleOptionalHint(titleOptional);
+    }
 
-        public static class CallbackWrapper extends ActionModeWrapper.CallbackWrapper {
-            public CallbackWrapper(Context context, android.support.v7.view.ActionMode.Callback supportCallback) {
-                super(context, supportCallback);
-                    }
+    @Override
+    public boolean isTitleOptional() {
+        return this.mWrappedObject.isTitleOptional();
+    }
 
-                    @Override 
-            protected ActionModeWrapper createActionModeWrapper(Context context, ActionMode mode) {
-                return new ActionModeWrapperJB(context, mode);
-                    }
-                }
-            }
+    public static class CallbackWrapper extends ActionModeWrapper.CallbackWrapper {
+        public CallbackWrapper(Context context, android.support.v7.view.ActionMode.Callback supportCallback) {
+            super(context, supportCallback);
+        }
+
+        @Override
+        protected ActionModeWrapper createActionModeWrapper(Context context, ActionMode mode) {
+            return new ActionModeWrapperJB(context, mode);
+        }
+    }
+}

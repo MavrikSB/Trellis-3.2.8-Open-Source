@@ -1,17 +1,15 @@
-            package co.vine.android.network;
+package co.vine.android.network;
 
-            import java.io.File;
-            
-            
-            public interface FileNetworkEntity {
+import java.io.File;
 
-                public interface ProgressListener {
-                    void progressChanged(TransferProgressEvent transferProgressEvent);
-                }
+public interface FileNetworkEntity {
+    public interface ProgressListener {
+        void progressChanged(TransferProgressEvent transferProgressEvent);
+    }
 
-                String getContentTypeString();
+    String getContentTypeString();
 
-                File getFile();
+    File getFile();
 
-                ProgressListener getUploadProgressListener();
-            }
+    ProgressListener getUploadProgressListener();
+}

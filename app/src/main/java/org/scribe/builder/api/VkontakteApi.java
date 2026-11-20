@@ -1,29 +1,28 @@
-            package org.scribe.builder.api;
+package org.scribe.builder.api;
 
-            import org.scribe.extractors.AccessTokenExtractor;
-            import org.scribe.extractors.JsonTokenExtractor;
-            import org.scribe.model.OAuthConfig;
-            import org.scribe.utils.OAuthEncoder;
-            import org.scribe.utils.Preconditions;
-            
-            
-    public class VkontakteApi extends DefaultApi20 {
-                private static final String AUTHORIZE_URL = "https://oauth.vk.com/authorize?client_id=%s&redirect_uri=%s&response_type=code";
-                private static final String SCOPED_AUTHORIZE_URL = String.format("%s&scope=%%s", AUTHORIZE_URL);
+import org.scribe.extractors.AccessTokenExtractor;
+import org.scribe.extractors.JsonTokenExtractor;
+import org.scribe.model.OAuthConfig;
+import org.scribe.utils.OAuthEncoder;
+import org.scribe.utils.Preconditions;
 
-                @Override 
-        public String getAccessTokenEndpoint() {
-            return "https://api.vkontakte.ru/oauth/access_token";
-                }
+public class VkontakteApi extends DefaultApi20 {
+    private static final String AUTHORIZE_URL = "https://oauth.vk.com/authorize?client_id=%s&redirect_uri=%s&response_type=code";
+    private static final String SCOPED_AUTHORIZE_URL = String.format("%s&scope=%%s", AUTHORIZE_URL);
 
-                @Override 
-        public String getAuthorizationUrl(OAuthConfig config) {
-            Preconditions.checkValidUrl(config.getCallback(), "Valid url is required for a callback. Vkontakte does not support OOB");
-                    return config.hasScope() ? String.format(SCOPED_AUTHORIZE_URL, config.getApiKey(), OAuthEncoder.encode(config.getCallback()), OAuthEncoder.encode(config.getScope())) : String.format(AUTHORIZE_URL, config.getApiKey(), OAuthEncoder.encode(config.getCallback()));
-                }
+    @Override
+    public String getAccessTokenEndpoint() {
+        return "https://api.vkontakte.ru/oauth/access_token";
+    }
 
-                @Override 
-        public AccessTokenExtractor getAccessTokenExtractor() {
-            return new JsonTokenExtractor();
-                }
-            }
+    @Override
+    public String getAuthorizationUrl(OAuthConfig config) {
+        Preconditions.checkValidUrl(config.getCallback(), "Valid url is required for a callback. Vkontakte does not support OOB");
+        return config.hasScope() ? String.format(SCOPED_AUTHORIZE_URL, config.getApiKey(), OAuthEncoder.encode(config.getCallback()), OAuthEncoder.encode(config.getScope())) : String.format(AUTHORIZE_URL, config.getApiKey(), OAuthEncoder.encode(config.getCallback()));
+    }
+
+    @Override
+    public AccessTokenExtractor getAccessTokenExtractor() {
+        return new JsonTokenExtractor();
+    }
+}

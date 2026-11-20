@@ -1,53 +1,49 @@
-            package com.googlecode.javacpp;
+package com.googlecode.javacpp;
 
-            import com.googlecode.javacpp.annotation.Cast;
-            import com.googlecode.javacpp.annotation.Name;
-            
-            
-            @Name({"size_t"})
-    public class SizeTPointer extends Pointer {
-                private native void allocateArray(int i);
+import com.googlecode.javacpp.annotation.Cast;
+import com.googlecode.javacpp.annotation.Name;
 
-                @Cast({"size_t"})
-                public native long get(int i);
+@Name({"size_t"})
+public class SizeTPointer extends Pointer {
+    private native void allocateArray(int i);
 
-                public native SizeTPointer put(int i, long j);
+    @Cast({"size_t"})
+    public native long get(int i);
 
+    public native SizeTPointer put(int i, long j);
 
+    public SizeTPointer(int size) {
+        try {
+            allocateArray(size);
+        } catch (UnsatisfiedLinkError e) {
+            throw new RuntimeException("No native JavaCPP library in memory. (Has Loader.load() been called?)", e);
+        }
+    }
 
+    public SizeTPointer(Pointer p) {
+        super(p);
+    }
 
-        public SizeTPointer(int size) {
-                    try {
-                allocateArray(size);
-                    } catch (UnsatisfiedLinkError e) {
-                throw new RuntimeException("No native JavaCPP library in memory. (Has Loader.load() been called?)", e);
-                    }
-                }
+    @Override
+    public SizeTPointer position(int position) {
+        return (SizeTPointer) super.position(position);
+    }
 
-        public SizeTPointer(Pointer p) {
-            super(p);
-                }
+    @Override
+    public SizeTPointer limit(int limit) {
+        return (SizeTPointer) super.limit(limit);
+    }
 
-                @Override 
-        public SizeTPointer position(int position) {
-            return (SizeTPointer) super.position(position);
-                }
+    @Override
+    public SizeTPointer capacity(int capacity) {
+        return (SizeTPointer) super.capacity(capacity);
+    }
 
-                @Override 
-        public SizeTPointer limit(int limit) {
-            return (SizeTPointer) super.limit(limit);
-                }
+    public long get() {
+        return get(0);
+    }
 
-                @Override 
-        public SizeTPointer capacity(int capacity) {
-            return (SizeTPointer) super.capacity(capacity);
-                }
-
-        public long get() {
-            return get(0);
-                }
-
-        public SizeTPointer put(long s) {
-            return put(0, s);
-                }
-            }
+    public SizeTPointer put(long s) {
+        return put(0, s);
+    }
+}

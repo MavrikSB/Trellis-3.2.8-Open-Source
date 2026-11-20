@@ -1,22 +1,21 @@
-            package org.apache.commons.p005io.monitor;
+package org.apache.commons.p005io.monitor;
 
-            import java.io.File;
-            
-            
-            public interface FileAlterationListener {
-                void onDirectoryChange(File file);
+import java.io.File;
 
-                void onDirectoryCreate(File file);
+public interface FileAlterationListener {
+    void onDirectoryChange(File file);
 
-                void onDirectoryDelete(File file);
+    void onDirectoryCreate(File file);
 
-                void onFileChange(File file);
+    void onDirectoryDelete(File file);
 
-                void onFileCreate(File file);
+    void onFileChange(File file);
 
-                void onFileDelete(File file);
+    void onFileCreate(File file);
 
-                void onStart(FileAlterationObserver fileAlterationObserver);
+    void onFileDelete(File file);
 
-                void onStop(FileAlterationObserver fileAlterationObserver);
-            }
+    void onStart(FileAlterationObserver fileAlterationObserver);
+
+    void onStop(FileAlterationObserver fileAlterationObserver);
+}
