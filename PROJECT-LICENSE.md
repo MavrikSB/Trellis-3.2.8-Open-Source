@@ -1,6 +1,6 @@
 # License for project-added recovery work
 
-Copyright (c) 2026 under RandomBlenderGuy
+Copyright (c) 2026 under MavrikSB
 
 Permission is granted, free of charge, to use, copy, modify, and distribute the project-added compatibility bridges, build configuration, documentation, and source-decompilation edits, subject to the following conditions:
 
